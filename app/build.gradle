@@ -69,4 +69,24 @@ dependencies {
     androidTestImplementation 'androidx.compose.ui:ui-test-junit4'
     debugImplementation 'androidx.compose.ui:ui-tooling'
     debugImplementation 'androidx.compose.ui:ui-test-manifest'
+
+    //okhttp
+    implementation("com.squareup.okhttp3:logging-interceptor:4.11.0")
+
+    //glide
+    implementation 'com.github.bumptech.glide:glide:4.16.0'
+
+    //kakao
+    implementation "com.kakao.sdk:v2-all:2.15.0" // 전체 모듈 설치, 2.11.0 버전부터 지원
+
+    //viewmodel
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1"
+
+    //retrofit2
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+
+    //gson
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+
+
 }
