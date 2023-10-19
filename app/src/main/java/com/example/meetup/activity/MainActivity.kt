@@ -11,6 +11,7 @@ import com.example.meetup.R
 import com.example.meetup.model.PostKaKaoTokenResponseModel
 import com.example.meetup.retrofit2.APIS
 import com.example.meetup.retrofit2.RetrofitInstance
+import com.example.meetup.sharedPreference.MyApplication
 import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.common.model.ClientError
 import com.kakao.sdk.common.model.ClientErrorCause
@@ -93,6 +94,10 @@ class MainActivity : AppCompatActivity() {
 
 
                         Log.d("PostKaKaoTokenResponseModel", response.body().toString())
+
+
+                        MyApplication.preferences.setString("accessToken", response.body()!!.result.accessToken)
+
 
                         //홈 화면으로 이동 코드
 
