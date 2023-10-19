@@ -1,6 +1,7 @@
 package com.example.meetup.sharedPreference
 
 import android.app.Application
+import com.example.meetup.BuildConfig
 import com.kakao.sdk.common.KakaoSdk
 
 class MyApplication : Application() {
@@ -12,7 +13,7 @@ class MyApplication : Application() {
         preferences = PreferenceUtil(applicationContext)
         super.onCreate()
 
-        KakaoSdk.init(this, "2cd17fd1458fded657e0a1fd6ea32be2")
+        KakaoSdk.init(this, BuildConfig.KAKAO_APP_KEY)
 
     }
 }
