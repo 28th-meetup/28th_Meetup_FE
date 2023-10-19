@@ -3,6 +3,9 @@ plugins {
     id 'org.jetbrains.kotlin.android'
 }
 
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
 android {
     namespace 'com.example.meetup'
     compileSdk 33
@@ -13,6 +16,8 @@ android {
         targetSdk 33
         versionCode 1
         versionName "1.0"
+
+        buildConfigField "String", "BASE_URL", properties['base_url']
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -36,8 +41,11 @@ android {
     buildFeatures {
         compose true
     }
-    buildFeatures{
+    buildFeatures {
         dataBinding true
+    }
+    buildFeatures {
+        buildConfig = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion '1.4.3'
