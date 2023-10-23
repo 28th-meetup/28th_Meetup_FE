@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/tab1"
+        android:title="홈"
+        android:enabled="true"
+        android:icon="@drawable/noodles"/>
+    <item
+        android:id="@+id/tab2"
+        android:title="가게"
+        android:enabled="true"
+
+        android:icon="@drawable/storefront"/>
+    <item
+        android:id="@+id/tab3"
+        android:title="찜"
+        android:enabled="true"
+
+        android:icon="@drawable/heart"/>
+    <item
+        android:id="@+id/tab4"
+        android:title="나눠먹기"
+        android:enabled="true"
+
+        android:icon="@drawable/people"/>
+    <item
+        android:id="@+id/tab5"
+        android:title="내 정보"
+        android:enabled="true"
+
+        android:icon="@drawable/person_circle"/>
+</menu>
