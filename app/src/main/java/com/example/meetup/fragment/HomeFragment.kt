@@ -28,8 +28,26 @@ class HomeFragment : Fragment() {
 
         initView()
 
+        fragmentHomeBinding.run {
+            toolbar.run {
+                inflateMenu(R.menu.home_menu)
+
+                setOnMenuItemClickListener {
+                    when (it.itemId) {
+                        R.id.item_alert -> {
+
+                        }
+
+                        R.id.item_cart -> {
+
+                        }
+
+                        else -> { }
+                    }
+                    true
                 }
             }
+        }
         return fragmentHomeBinding.root
     }
 
