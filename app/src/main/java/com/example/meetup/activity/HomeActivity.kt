@@ -68,13 +68,6 @@ class HomeActivity : AppCompatActivity() {
 
                 R.id.tab4 -> {
                     val transaction = manager.beginTransaction()
-                    transaction.replace(R.id.frameArea, shareFragment)
-                    transaction.commit()
-                    true
-                }
-
-                R.id.tab5 -> {
-                    val transaction = manager.beginTransaction()
                     transaction.replace(R.id.frameArea, myInfoFragment)
                     transaction.commit()
                     true
