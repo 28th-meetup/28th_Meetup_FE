@@ -25,7 +25,7 @@ Feat. 소셜 로그인 기능 구현
 
 카카오 소셜 로그인 구현
 
-Resolves: #21 or Fixed: #21
+Resolves: #21 or Fixes: #21
 See also: #20, #26
 ```
 
