@@ -1,14 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragment.StoreFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="store" />
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="22.83dp"
+        android:layout_marginTop="14.84dp"
+        android:fontFamily="@font/pretendard_semi_bold"
+        android:text="내가 설정한 주소"
+        android:textColor="@color/black"
+        android:textSize="22sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/btn_alarm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_alarm"
+        android:layout_marginTop="15.06dp"
+        android:layout_marginRight="13.07dp"
+        app:layout_constraintEnd_toStartOf="@+id/btn_cart"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/btn_cart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_cart"
+        android:layout_marginRight="22.83dp"
+        android:layout_marginTop="12.92dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <SearchView
+        android:id="@+id/searchview"
+        style="@style/SearchViewStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:iconifiedByDefault="false"
+        android:layout_marginTop="79.92dp"
+        android:layout_marginLeft="22.83dp"
+        android:layout_marginRight="22.83dp"
+        android:elevation="5dp"
+        android:queryBackground="@color/transparent"
+        android:queryHint="메뉴 또는 가게 이름을 입력해주세요"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:layout_marginTop="22dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/searchview">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+android:layout_weight="1"            android:fontFamily="@font/pretendard_semi_bold"
+            android:gravity="center"
+            android:text="전체"
+            android:paddingTop="16dp"
+            android:paddingBottom="12dp"
+            android:textColor="#1E1F23"
+            android:background="@drawable/store_select_border"
+            android:textSize="18sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/store_not_select_border"
+            android:fontFamily="@font/pretendard_semi_bold"
+            android:gravity="center"
+            android:text="메뉴변경형"
+            android:paddingTop="16dp"
+            android:paddingBottom="12dp"
+            android:textColor="#6E7178"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
