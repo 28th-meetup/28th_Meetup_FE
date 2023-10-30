@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="category_name">
+        <item>"밑반찬"</item>
+        <item>"김치"</item>
+        <item>"국물류"</item>
+        <item>"면류"</item>
+        <item>"고기류"</item>
+        <item>"해물류"</item>
+        <item>"밥/죽"</item>
+        <item>"간식/음료"</item>
+        <item>"반조리"</item>
+        <item>"기타"</item>
+    </array>
+</resources>
