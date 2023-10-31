@@ -8,8 +8,11 @@ import android.view.ViewGroup
 import com.example.meetup.R
 import android.graphics.Color
 import androidx.fragment.app.FragmentManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.meetup.adapter.StoreListAdapter
 
 import com.example.meetup.databinding.FragmentStoreBinding
+import com.example.meetup.model.StoreListResponseModel
 
 
 class StoreFragment : Fragment() {
@@ -18,6 +21,7 @@ class StoreFragment : Fragment() {
     private var _binding: FragmentStoreBinding? = null
     private val binding get() = _binding!!
 
+    private lateinit var storeListAdapter: StoreListAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,7 +37,16 @@ class StoreFragment : Fragment() {
         val view = binding.root
 
 
+        val store_list = ArrayList<StoreListResponseModel>()
 
+        store_list.add(StoreListResponseModel("a","a","a","가게1","100000원","4.8"))
+        store_list.add(StoreListResponseModel("a","a","a","가게2","100000원","4.8"))
+        store_list.add(StoreListResponseModel("a","a","a","가게3","100000원","4.8"))
+
+        storeListAdapter = StoreListAdapter(store_list)
+
+        binding.recyclerviewStoreList.adapter = storeListAdapter
+        binding.recyclerviewStoreList.layoutManager = LinearLayoutManager(requireContext())
 
 
         return view
