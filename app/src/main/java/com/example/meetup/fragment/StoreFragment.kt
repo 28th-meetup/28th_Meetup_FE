@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.meetup.R
 import android.graphics.Color
+import androidx.fragment.app.FragmentManager
 
 import com.example.meetup.databinding.FragmentStoreBinding
 
@@ -33,12 +34,15 @@ class StoreFragment : Fragment() {
 
 
 
+
+
         return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val modalBottomSheet = ModalBottomSheetFragment()
 
         binding.btnAll.setOnClickListener {
 
@@ -49,6 +53,11 @@ class StoreFragment : Fragment() {
 
 
             btnMenuChange()
+        }
+
+        binding.btnFilter.setOnClickListener {
+            fragmentManager?.let { it1 -> modalBottomSheet.show(it1, ModalBottomSheetFragment.TAG) }
+
         }
     }
 
