@@ -18,4 +18,11 @@
         <item name="backgroundColor">@color/white</item>
         <item name="titleCentered">true</item>
     </style>
+
+    <style name="AppModalStyle" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/bottom_sheet_border</item>
+    </style>
+    <style name="AppBottomSheetDialogTheme" parent="Theme.MaterialComponents.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/AppModalStyle</item>
+    </style>
 </resources>
