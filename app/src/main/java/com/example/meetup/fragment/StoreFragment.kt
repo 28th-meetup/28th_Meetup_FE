@@ -55,7 +55,6 @@ class StoreFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val modalBottomSheet = ModalBottomSheetFragment()
 
         binding.btnAll.setOnClickListener {
 
@@ -69,9 +68,13 @@ class StoreFragment : Fragment() {
         }
 
         binding.btnFilter.setOnClickListener {
-            fragmentManager?.let { it1 -> modalBottomSheet.show(it1, ModalBottomSheetFragment.TAG) }
+            val modalBottomSheet = ModalBottomSheetFragment()
 
+
+            modalBottomSheet.show(requireFragmentManager(),ModalBottomSheetFragment.TAG)
         }
+
+
     }
 
 

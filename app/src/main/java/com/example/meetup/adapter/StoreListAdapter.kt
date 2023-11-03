@@ -39,15 +39,15 @@ RecyclerView.Adapter<StoreListAdapter.ViewHolder>(){
         fun bind(item: StoreListResponseModel) {
 
 
-            Glide.with(itemView.context)
-                .load(item.imageview_1)
-                .into(imageview_1)
-            Glide.with(itemView.context)
-                .load(item.imageview_2)
-                .into(imageview_2)
-            Glide.with(itemView.context)
-                .load(item.imageview_3)
-                .into(imageview_3)
+//            Glide.with(itemView.context)
+//                .load(item.imageview_1)
+//                .into(imageview_1)
+//            Glide.with(itemView.context)
+//                .load(item.imageview_2)
+//                .into(imageview_2)
+//            Glide.with(itemView.context)
+//                .load(item.imageview_3)
+//                .into(imageview_3)
             textview_store_name.text = item.textview_store_name
             textview_least_price.text = item.textview_least_price
             textview_rate.text = item.textview_rate
