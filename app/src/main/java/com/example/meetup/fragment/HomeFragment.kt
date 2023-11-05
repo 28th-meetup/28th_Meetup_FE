@@ -14,6 +14,7 @@ import com.example.meetup.adapter.CategoryAdapter
 import com.example.meetup.adapter.HomeSetAdapter
 import com.example.meetup.adapter.HomeTopAdapter
 import com.example.meetup.databinding.FragmentHomeBinding
+import com.example.meetup.Util.fromDpToPx
 
 
 class HomeFragment : Fragment() {
@@ -77,7 +78,4 @@ class HomeFragment : Fragment() {
             }
         }
     }
-
-    fun Float.fromDpToPx(): Int =
-        (this * Resources.getSystem().displayMetrics.density).toInt()
 }
