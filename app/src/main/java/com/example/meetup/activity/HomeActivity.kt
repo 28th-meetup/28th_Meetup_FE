@@ -3,8 +3,11 @@ package com.example.meetup.activity
 import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.core.content.ContextCompat
 import com.example.meetup.R
+import com.example.meetup.databinding.ActivityHomeBinding
+import com.example.meetup.databinding.FragmentHomeBinding
 import com.example.meetup.fragment.HeartFragment
 import com.example.meetup.fragment.HomeFragment
 import com.example.meetup.fragment.MyInfoFragment
@@ -15,12 +18,17 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 class HomeActivity : AppCompatActivity() {
 
     val manager = supportFragmentManager
+    lateinit var binding: ActivityHomeBinding
 
 
     @SuppressLint("ResourceType")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_home)
+
+        binding = ActivityHomeBinding.inflate(layoutInflater)
+
+
+        setContentView(binding.root)
 
 
         val bottomNav = findViewById<BottomNavigationView>(R.id.bottom_nav)
@@ -32,7 +40,6 @@ class HomeActivity : AppCompatActivity() {
         val homeFragment = HomeFragment()
         val storeFragment = StoreFragment()
         val heartFragment = HeartFragment()
-        val shareFragment = ShareFragment()
         val myInfoFragment = MyInfoFragment()
 
         transaction.replace(R.id.frameArea, homeFragment)
@@ -78,4 +85,7 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
+    fun hideBottomNavigation(state:Boolean){
+        if(state) binding.bottomNav.visibility = View.GONE else binding.bottomNav.visibility=View.VISIBLE
+    }
 }

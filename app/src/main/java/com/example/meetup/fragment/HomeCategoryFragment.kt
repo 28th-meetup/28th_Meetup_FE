@@ -74,6 +74,8 @@ class HomeCategoryFragment : Fragment() {
 
     fun initView() {
         binding.run {
+            homeActivity.hideBottomNavigation(true)
+
             recyclerview.run {
                 adapter = HomeSetAdapter()
 
