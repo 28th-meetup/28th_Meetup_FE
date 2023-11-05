@@ -7,6 +7,8 @@ import com.kakao.sdk.common.KakaoSdk
 class MyApplication : Application() {
     companion object{
         lateinit var preferences: PreferenceUtil
+
+        var category = ""
     }
 
     override fun onCreate() {
