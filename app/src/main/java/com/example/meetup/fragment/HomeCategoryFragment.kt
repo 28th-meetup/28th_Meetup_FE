@@ -72,4 +72,17 @@ class HomeCategoryFragment : Fragment() {
         return binding.root
     }
 
+    fun initView() {
+        binding.run {
+            recyclerview.run {
+                adapter = HomeSetAdapter()
+
+                layoutManager = GridLayoutManager(requireContext(), 2)
+
+                val spanCount = 2
+                val space = 22.83f.fromDpToPx()
+                addItemDecoration(HomeSetAdapter.GridSpacingItemDecoration(spanCount, space, false))
+            }
+        }
+    }
 }
