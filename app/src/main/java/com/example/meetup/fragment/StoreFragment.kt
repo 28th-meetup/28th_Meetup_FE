@@ -48,6 +48,18 @@ class StoreFragment : Fragment() {
         binding.recyclerviewStoreList.adapter = storeListAdapter
         binding.recyclerviewStoreList.layoutManager = LinearLayoutManager(requireContext())
 
+        storeListAdapter.itemClick = object :StoreListAdapter.ItemClick {
+
+            override fun onClick(view: View, position: Int) {
+
+                val storeDetailFragment = StoreDetailFragment()
+                fragmentManager?.beginTransaction()?.apply {
+                    replace(R.id.frameArea, storeDetailFragment)
+                    addToBackStack(null)
+                    commit()
+                }
+            }
+        }
 
         return view
     }

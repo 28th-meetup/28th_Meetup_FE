@@ -27,6 +27,13 @@ RecyclerView.Adapter<StoreListAdapter.ViewHolder>(){
 
         return  storeList.size   }
 
+    interface ItemClick {
+        fun onClick(view: View,position: Int)
+
+    }
+
+    var itemClick : ItemClick? = null
+
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
         var imageview_1 : ImageView = view.findViewById(R.id.imageview_1)
@@ -51,6 +58,12 @@ RecyclerView.Adapter<StoreListAdapter.ViewHolder>(){
             textview_store_name.text = item.textview_store_name
             textview_least_price.text = item.textview_least_price
             textview_rate.text = item.textview_rate
+
+            itemView.setOnClickListener {
+
+                itemClick?.onClick(itemView,adapterPosition)
+
+            }
 
         }
     }
