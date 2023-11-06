@@ -1,14 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".fragment.StoreDetailNoticeFragment">
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content">
+        <LinearLayout
 
-</FrameLayout>
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".fragment.StoreDetailNoticeFragment">
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="22.83dp"
+                android:layout_marginTop="34.25dp"
+                android:drawableLeft="@drawable/ic_megaphone"
+                android:drawablePadding="4dp"
+                android:fontFamily="@font/pretendard_semi_bold"
+                android:text="오늘 영업 쉽니다."
+                android:textColor="#000000"
+                android:textSize="20.55sp"
+                />
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18.27dp"
+                android:layout_marginLeft="22.83dp"
+
+                android:fontFamily="@font/pretendard_regular"
+                android:text="몸이 안좋아서 오늘 영업 쉬어가겠습니다. 오늘 방문해주신
+                \n모든 분들께 양해 부탁드립니다. 건강 회복 후 빠른 시일 내 \n에 맛있는 음식으로 보답하겠습니다!"
+                android:textColor="#000000"
+                android:textSize="16sp"
+               />
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="22.83dp"
+                android:layout_marginLeft="22.83dp"
+
+                android:fontFamily="@font/pretendard_light"
+                android:text="2023년 10월 26일"
+                android:textColor="@color/gray3"
+                android:textSize="13.7sp"
+                 />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#EBEFF7"
+                android:layout_marginTop="34.25dp"
+                app:layout_constraintTop_toBottomOf="@+id/textView6" />
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="22.83dp"
+                android:layout_marginTop="34.25dp"
+                android:drawableLeft="@drawable/ic_megaphone"
+                android:drawablePadding="4dp"
+                android:fontFamily="@font/pretendard_semi_bold"
+                android:text="이제부터 배달 시작합니다."
+                android:textColor="#000000"
+                android:textSize="20.55sp"
+                />
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18.27dp"
+                android:layout_marginLeft="22.83dp"
+
+                android:fontFamily="@font/pretendard_regular"
+                android:text="더빛나게가게에서 드디어 배달을 시작합니다! 이용해주시는
+                \n모든 고객님들께 정성을 가득 담은 반찬을 전해줄 수 있도록 \n최선을 다하겠습니다!"
+                android:textColor="#000000"
+                android:textSize="16sp"
+                />
+
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="22.83dp"
+                android:layout_marginLeft="22.83dp"
+
+                android:fontFamily="@font/pretendard_light"
+                android:text="2022년 9월 22일"
+                android:textColor="@color/gray3"
+                android:textSize="13.7sp"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#EBEFF7"
+                android:layout_marginTop="34.25dp"
+                app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+</layout>
