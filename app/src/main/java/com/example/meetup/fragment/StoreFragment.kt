@@ -39,9 +39,9 @@ class StoreFragment : Fragment() {
 
         val store_list = ArrayList<StoreListResponseModel>()
 
-        store_list.add(StoreListResponseModel("a","a","a","가게1","100000원","4.8"))
-        store_list.add(StoreListResponseModel("a","a","a","가게2","100000원","4.8"))
-        store_list.add(StoreListResponseModel("a","a","a","가게3","100000원","4.8"))
+        store_list.add(StoreListResponseModel("a", "a", "a", "가게1", "100000원", "4.8"))
+        store_list.add(StoreListResponseModel("a", "a", "a", "가게2", "100000원", "4.8"))
+        store_list.add(StoreListResponseModel("a", "a", "a", "가게3", "100000원", "4.8"))
 
         storeListAdapter = StoreListAdapter(store_list)
 
@@ -71,7 +71,7 @@ class StoreFragment : Fragment() {
             val modalBottomSheet = ModalBottomSheetFragment()
 
 
-            modalBottomSheet.show(requireFragmentManager(),ModalBottomSheetFragment.TAG)
+            modalBottomSheet.show(requireFragmentManager(), ModalBottomSheetFragment.TAG)
         }
 
 
