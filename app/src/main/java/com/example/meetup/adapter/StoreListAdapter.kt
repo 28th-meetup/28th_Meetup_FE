@@ -46,9 +46,9 @@ RecyclerView.Adapter<StoreListAdapter.ViewHolder>(){
         fun bind(item: StoreListResponseModel) {
 
 
-//            Glide.with(itemView.context)
-//                .load(item.imageview_1)
-//                .into(imageview_1)
+            Glide.with(itemView.context)
+                .load(item.imageview_1)
+                .into(imageview_1)
 //            Glide.with(itemView.context)
 //                .load(item.imageview_2)
 //                .into(imageview_2)

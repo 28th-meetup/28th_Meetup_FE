@@ -28,6 +28,13 @@ class StoreDetailFragment : Fragment() {
         _binding = FragmentStoreDetailBinding.inflate(inflater,container,false)
         val view = binding.root
 
+        //초기 설정
+        val storeDetailMenuFragment = StoreDetailMenuFragment()
+        fragmentManager?.beginTransaction()?.apply {
+            replace(R.id.store_detail_frame_area, storeDetailMenuFragment)
+            addToBackStack(null)
+            commit()
+        }
 
         return view
     }
@@ -73,7 +80,12 @@ class StoreDetailFragment : Fragment() {
         binding.btnReview.setBackgroundResource(R.drawable.store_not_select_border)
 
 
-
+        val storeDetailMenuFragment = StoreDetailMenuFragment()
+        fragmentManager?.beginTransaction()?.apply {
+            replace(R.id.store_detail_frame_area, storeDetailMenuFragment)
+            addToBackStack(null)
+            commit()
+        }
 
     }
     fun btnStoreInfoClick() {
