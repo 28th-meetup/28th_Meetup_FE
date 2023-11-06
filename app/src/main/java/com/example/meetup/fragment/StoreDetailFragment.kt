@@ -1,13 +1,18 @@
 package com.example.meetup.fragment
 
+import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.meetup.R
+import com.example.meetup.databinding.FragmentStoreBinding
+import com.example.meetup.databinding.FragmentStoreDetailBinding
 
 class StoreDetailFragment : Fragment() {
+    private var _binding: FragmentStoreDetailBinding? = null
+    private val binding get() = _binding!!
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,8 +24,100 @@ class StoreDetailFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_store_detail, container, false)
+
+        _binding = FragmentStoreDetailBinding.inflate(inflater,container,false)
+        val view = binding.root
+
+
+        return view
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        //메뉴 클릭
+        binding.btnMenu.setOnClickListener {
+
+            btnMenuClick()
+        }
+
+        //가게 정보 클릭
+        binding.btnStoreInfo.setOnClickListener {
+
+            btnStoreInfoClick()
+        }
+
+        //공지사항 클릭
+        binding.btnNotice.setOnClickListener {
+
+            btnNoticeClick()
+        }
+
+        //리뷰 클릭
+        binding.btnReview.setOnClickListener {
+
+            btnReviewClick()
+        }
+    }
+
+    fun btnMenuClick() {
+
+        binding.btnMenu.setTextColor(Color.parseColor("#000000"))
+        binding.btnStoreInfo.setTextColor(Color.parseColor("#6E7178"))
+        binding.btnNotice.setTextColor(Color.parseColor("#6E7178"))
+        binding.btnReview.setTextColor(Color.parseColor("#6E7178"))
+
+        binding.btnMenu.setBackgroundResource(R.drawable.store_select_border)
+        binding.btnStoreInfo.setBackgroundResource(R.drawable.store_not_select_border)
+        binding.btnNotice.setBackgroundResource(R.drawable.store_not_select_border)
+        binding.btnReview.setBackgroundResource(R.drawable.store_not_select_border)
+
+
+
+
+    }
+    fun btnStoreInfoClick() {
+
+        binding.btnMenu.setTextColor(Color.parseColor("#6E7178"))
+        binding.btnStoreInfo.setTextColor(Color.parseColor("#000000"))
+        binding.btnNotice.setTextColor(Color.parseColor("#6E7178"))
+        binding.btnReview.setTextColor(Color.parseColor("#6E7178"))
+
+        binding.btnMenu.setBackgroundResource(R.drawable.store_not_select_border)
+        binding.btnStoreInfo.setBackgroundResource(R.drawable.store_select_border)
+        binding.btnNotice.setBackgroundResource(R.drawable.store_not_select_border)
+        binding.btnReview.setBackgroundResource(R.drawable.store_not_select_border)
+
+
+    }
+
+    fun btnNoticeClick() {
+
+
+        binding.btnMenu.setTextColor(Color.parseColor("#6E7178"))
+        binding.btnStoreInfo.setTextColor(Color.parseColor("#6E7178"))
+        binding.btnNotice.setTextColor(Color.parseColor("#000000"))
+        binding.btnReview.setTextColor(Color.parseColor("#6E7178"))
+
+        binding.btnMenu.setBackgroundResource(R.drawable.store_not_select_border)
+        binding.btnStoreInfo.setBackgroundResource(R.drawable.store_not_select_border)
+        binding.btnNotice.setBackgroundResource(R.drawable.store_select_border)
+        binding.btnReview.setBackgroundResource(R.drawable.store_not_select_border)
+
+    }
+
+    fun btnReviewClick() {
+
+        binding.btnMenu.setTextColor(Color.parseColor("#6E7178"))
+        binding.btnStoreInfo.setTextColor(Color.parseColor("#6E7178"))
+        binding.btnNotice.setTextColor(Color.parseColor("#6E7178"))
+        binding.btnReview.setTextColor(Color.parseColor("#000000"))
+
+        binding.btnMenu.setBackgroundResource(R.drawable.store_not_select_border)
+        binding.btnStoreInfo.setBackgroundResource(R.drawable.store_not_select_border)
+        binding.btnNotice.setBackgroundResource(R.drawable.store_not_select_border)
+        binding.btnReview.setBackgroundResource(R.drawable.store_select_border)
+
     }
 
 

@@ -159,7 +159,6 @@
                     android:layout_marginLeft="4.5dp"
                     android:fontFamily="@font/pretendard_regular"
                     android:text="찜하기"
-
                     android:textSize="16sp" />
 
             </LinearLayout>
@@ -178,11 +177,13 @@
 
 
         <LinearLayout
+            android:id="@+id/linearLayout4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
 
             <TextView
+                android:id="@+id/btn_menu"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -196,6 +197,7 @@
                 android:textSize="18.27sp" />
 
             <TextView
+                android:id="@+id/btn_store_info"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -204,40 +206,46 @@
                 android:gravity="center"
                 android:paddingTop="23.4dp"
                 android:paddingBottom="9.4dp"
-                android:textColor="#6E7178"
                 android:text="가게정보"
+                android:textColor="#6E7178"
                 android:textSize="18.27sp" />
 
             <TextView
+                android:id="@+id/btn_notice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/store_not_select_border"
                 android:fontFamily="@font/pretendard_semi_bold"
-
                 android:gravity="center"
                 android:paddingTop="23.4dp"
                 android:paddingBottom="9.4dp"
                 android:text="공지사항"
                 android:textColor="#6E7178"
-
                 android:textSize="18.27sp" />
 
             <TextView
+                android:id="@+id/btn_review"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/store_not_select_border"
                 android:fontFamily="@font/pretendard_semi_bold"
-                android:textColor="#6E7178"
-
                 android:gravity="center"
                 android:paddingTop="23.4dp"
                 android:paddingBottom="9.4dp"
                 android:text="리뷰"
+                android:textColor="#6E7178"
                 android:textSize="18.27sp" />
 
         </LinearLayout>
+
+        <FrameLayout
+            android:id="@+id/store_detail_frame_area"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout4" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
