@@ -108,9 +108,9 @@
 
                 <ImageView
                     android:id="@+id/imageview_logo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_cart" />
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/bottom_logo" />
 
                 <TextView
                     android:id="@+id/textview_info"
