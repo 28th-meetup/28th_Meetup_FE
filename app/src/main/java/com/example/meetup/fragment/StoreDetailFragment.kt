@@ -155,6 +155,12 @@ class StoreDetailFragment : Fragment() {
         binding.btnNotice.setBackgroundResource(R.drawable.store_not_select_border)
         binding.btnReview.setBackgroundResource(R.drawable.store_select_border)
 
+        val storeDetailReviewFragment = StoreDetailReviewFragment()
+        fragmentManager?.beginTransaction()?.apply {
+            replace(R.id.store_detail_frame_area, storeDetailReviewFragment)
+            addToBackStack(null)
+            commit()
+        }
     }
 
 

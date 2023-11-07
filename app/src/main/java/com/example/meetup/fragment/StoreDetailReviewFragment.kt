@@ -5,56 +5,47 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.meetup.R
+import com.example.meetup.adapter.ReviewListAdapter
+import com.example.meetup.databinding.FragmentStoreDetailMenuBinding
+import com.example.meetup.databinding.FragmentStoreDetailReviewBinding
+import com.example.meetup.model.ReviewListResponseModel
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [StoreDetailReviewFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class StoreDetailReviewFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
+    private var _binding: FragmentStoreDetailReviewBinding? = null
+    private val binding get() = _binding!!
+
+    private lateinit var reviewListAdapter: ReviewListAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_store_detail_review, container, false)
+
+        _binding = FragmentStoreDetailReviewBinding.inflate(inflater,container,false)
+        val view = binding.root
+
+        val review_list = ArrayList<ReviewListResponseModel>()
+
+        review_list.add(ReviewListResponseModel("aa","aa","aa","aa","Aa","2020-02-02"))
+        review_list.add(ReviewListResponseModel("bb","bb","bb","bb","bb","2020-01-02"))
+        review_list.add(ReviewListResponseModel("cc","cc","cc","cc","cc","2020-01-01"))
+
+
+        reviewListAdapter = ReviewListAdapter(review_list)
+
+        binding.recyclerviewStoreDetailReview.adapter = reviewListAdapter
+
+        binding.recyclerviewStoreDetailReview.layoutManager = LinearLayoutManager(context)
+        return view
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment StoreDetailReviewFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            StoreDetailReviewFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
-    }
+
 }
