@@ -65,8 +65,20 @@ class StoreDetailFragment : Fragment() {
 
             btnReviewClick()
         }
+
+        binding.btnBack.setOnClickListener {
+            btnBackClick()
+        }
     }
 
+    fun btnBackClick() {
+        val storeFragment = StoreFragment()
+        fragmentManager?.beginTransaction()?.apply {
+            replace(R.id.frameArea, storeFragment)
+            addToBackStack(null)
+            commit()
+        }
+    }
     fun btnMenuClick() {
 
         binding.btnMenu.setTextColor(Color.parseColor("#000000"))
