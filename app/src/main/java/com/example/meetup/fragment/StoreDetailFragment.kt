@@ -1,11 +1,15 @@
 package com.example.meetup.fragment
 
+import android.app.Dialog
 import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.compose.ui.window.Dialog
+import androidx.fragment.app.DialogFragment
 import com.example.meetup.R
 import com.example.meetup.databinding.FragmentStoreBinding
 import com.example.meetup.databinding.FragmentStoreDetailBinding
