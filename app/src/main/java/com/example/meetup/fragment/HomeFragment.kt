@@ -70,7 +70,7 @@ class HomeFragment : Fragment() {
             }
 
             recyclerviewSet.run {
-                adapter = HomeSetAdapter()
+                adapter = HomeSetAdapter(homeActivity.manager)
                 layoutManager = GridLayoutManager(requireContext(),2)
 
                 val spanCount = 2

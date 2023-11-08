@@ -77,7 +77,7 @@ class HomeCategoryFragment : Fragment() {
             homeActivity.hideBottomNavigation(true)
 
             recyclerview.run {
-                adapter = HomeSetAdapter()
+                adapter = HomeSetAdapter(homeActivity.manager)
 
                 layoutManager = GridLayoutManager(requireContext(), 2)
 

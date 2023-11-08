@@ -6,13 +6,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.meetup.R
 import com.example.meetup.databinding.RowCategoryBinding
 import com.example.meetup.databinding.RowSetBinding
 import com.example.meetup.databinding.RowTop10Binding
+import com.example.meetup.fragment.HomeCategoryFragment
+import com.example.meetup.fragment.MenuFragment
+import com.example.meetup.sharedPreference.MyApplication
 
-class HomeSetAdapter() :
+class HomeSetAdapter(var manager: FragmentManager) :
     RecyclerView.Adapter<HomeSetAdapter.HomeSetViewHolder>() {
     private var onItemClickListener: ((Int) -> Unit)? = null
     private var context: Context? = null
@@ -53,12 +57,15 @@ class HomeSetAdapter() :
 
         init {
             binding.root.setOnClickListener {
-//                val context = it.context
-//                val intent = Intent(context, PostActivity::class.java)
-//                intent.putExtra("제목", binding.tvTitle.text)
-//                intent.putExtra("내용", binding.tvContent.text)
-//                intent.putExtra("id", articleId)
-//                ContextCompat.startActivity(context, intent, null)
+
+                val menuFragment = MenuFragment()
+
+//                MyApplication.category = categoryNameList.get(adapterPosition)
+
+                val transaction = manager.beginTransaction()
+                transaction.replace(R.id.frameArea, menuFragment)
+                transaction.commit()
+                true
             }
         }
     }
