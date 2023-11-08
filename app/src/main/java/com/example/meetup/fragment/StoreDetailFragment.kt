@@ -69,8 +69,19 @@ class StoreDetailFragment : Fragment() {
         binding.btnBack.setOnClickListener {
             btnBackClick()
         }
+
+        binding.textviewHeart.setOnClickListener {
+            textviewHeartCLick()
+        }
     }
 
+    fun textviewHeartCLick() {
+
+        val customDialogHeartFragment = CustomDialogHeartFragment()
+
+        customDialogHeartFragment.show(requireFragmentManager(),"CustomDialogHeartFragment")
+
+    }
     fun btnBackClick() {
         val storeFragment = StoreFragment()
         fragmentManager?.beginTransaction()?.apply {
