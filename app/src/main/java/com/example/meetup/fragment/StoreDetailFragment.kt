@@ -77,10 +77,12 @@ class StoreDetailFragment : Fragment() {
 
     fun textviewHeartCLick() {
 
+
         val customDialogHeartFragment = CustomDialogHeartFragment()
 
         customDialogHeartFragment.show(requireFragmentManager(),"CustomDialogHeartFragment")
 
+        binding.imageviewHeart.setImageResource(R.drawable.ic_heart_fill)
     }
     fun btnBackClick() {
         val storeFragment = StoreFragment()
