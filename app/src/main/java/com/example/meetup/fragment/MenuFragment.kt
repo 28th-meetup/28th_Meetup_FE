@@ -60,6 +60,21 @@ class MenuFragment : Fragment() {
                 }
             }
 
+            var fullText = textviewFoodPrice.text
+
+            val spannableString = SpannableString(fullText)
+
+            // 시작 인덱스와 끝 인덱스 사이의 텍스트에 다른 색상 적용
+            val startIndex = textviewFoodPrice.text.length -1
+            val endIndex = textviewFoodPrice.text.length
+            spannableString.setSpan(
+                ForegroundColorSpan(Color.parseColor("#FF000000")), // 색상 설정
+                startIndex, // 시작 인덱스
+                endIndex, // 끝 인덱스 (exclusive)
+                SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE // 스타일 적용 범위 설정
+            )
+
+            textviewFoodPrice.text = spannableString
         }
 
         return binding.root
