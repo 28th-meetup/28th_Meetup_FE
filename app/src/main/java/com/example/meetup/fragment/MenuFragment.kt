@@ -42,6 +42,24 @@ class MenuFragment : Fragment() {
                 }
             }
 
+            layoutDeliveryInfo.setOnClickListener {
+                var deliveryInfo = layoutDeliveryInfoValue.visibility == View.GONE
+                if(deliveryInfo) {
+                    layoutDeliveryInfoValue.visibility = View.VISIBLE
+                } else {
+                    layoutDeliveryInfoValue.visibility = View.GONE
+                }
+            }
+
+            layoutFoodInfo.setOnClickListener {
+                var foodInfo = layoutFoodInfoValue.visibility == View.GONE
+                if(foodInfo) {
+                    layoutFoodInfoValue.visibility = View.VISIBLE
+                } else {
+                    layoutFoodInfoValue.visibility = View.GONE
+                }
+            }
+
         }
 
         return binding.root
