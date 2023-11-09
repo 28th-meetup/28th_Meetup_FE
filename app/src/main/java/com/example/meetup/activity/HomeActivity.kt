@@ -62,7 +62,7 @@ class HomeActivity : AppCompatActivity() {
                 R.id.tab3 -> {
                     //로그인 하고 안하고 조건문 만들기
                     val transaction = manager.beginTransaction()
-                    transaction.replace(R.id.frameArea, heartNotLoginFragment)
+                    transaction.replace(R.id.frameArea, heartFragment)
                     transaction.commit()
                     true
                 }
