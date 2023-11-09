@@ -8,53 +8,62 @@
     android:layout_height="match_parent"
     tools:context=".fragment.HeartNotLoginFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:elevation="5dp"
+        app:cardElevation="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/textView11"
-            android:layout_width="wrap_content"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="22.83dp"
-            android:layout_marginTop="14.84dp"
-            android:fontFamily="@font/pretendard_semi_bold"
-            android:paddingBottom="14dp"
-            android:text="찜한 가게"
-            android:textColor="@color/black"
-            android:textSize="22.83sp"
-
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/imageview_alarm"
-            android:layout_width="25.12dp"
-            android:layout_height="25.12dp"
-            android:layout_marginTop="12.56dp"
-            android:layout_marginRight="14dp"
-
-            android:src="@drawable/ic_alarm"
-            app:layout_constraintBottom_toBottomOf="@+id/imageview_cart"
-            app:layout_constraintEnd_toStartOf="@+id/imageview_cart"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/imageview_cart"
-            android:layout_width="27.4dp"
-            android:layout_height="27.4dp"
-            android:layout_marginTop="12.56dp"
-            android:layout_marginRight="22.83dp"
-            android:src="@drawable/ic_cart"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="22.83dp"
+                android:layout_marginTop="14.84dp"
+                android:fontFamily="@font/pretendard_semi_bold"
+                android:paddingBottom="14dp"
+                android:text="찜한 가게"
+                android:textColor="@color/black"
+                android:textSize="22.83sp"
+
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/imageview_alarm"
+                android:layout_width="25.12dp"
+                android:layout_height="25.12dp"
+                android:layout_marginTop="12.56dp"
+                android:layout_marginRight="14dp"
+
+                android:src="@drawable/ic_alarm"
+                app:layout_constraintBottom_toBottomOf="@+id/imageview_cart"
+                app:layout_constraintEnd_toStartOf="@+id/imageview_cart"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/imageview_cart"
+                android:layout_width="27.4dp"
+                android:layout_height="27.4dp"
+                android:layout_marginTop="12.56dp"
+                android:layout_marginRight="22.83dp"
+                android:src="@drawable/ic_cart"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
 
     <TextView
         android:id="@+id/textView12"
@@ -67,7 +76,7 @@
         android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/cardview" />
 
     <TextView
         android:id="@+id/textView13"
