@@ -132,6 +132,10 @@ class ModalBottomSheetOrderOption : BottomSheetDialogFragment() {
 
                 dismiss()
 
+                val dialog = DialogOrder()
+                // 알림창이 띄워져있는 동안 배경 클릭 막기
+                dialog.isCancelable = false
+                activity?.let { dialog.show(it.supportFragmentManager, "OrderDialog") }
             }
         }
     }
