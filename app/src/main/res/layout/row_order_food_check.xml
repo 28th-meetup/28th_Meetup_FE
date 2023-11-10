@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/layout_option_selected"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10.97dp"
+        android:background="@drawable/row_layout_order_food_background"
+        android:orientation="vertical"
+        android:paddingLeft="18.27dp"
+        android:paddingTop="12.56dp"
+        android:paddingRight="17.12dp"
+        android:paddingBottom="11.42dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textview_food_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/pretendard_semi_bold"
+                    android:text="TextView"
+                    android:textColor="@color/black"
+                    android:textSize="20.55sp" />
+
+                <Button
+                    android:layout_width="45.67dp"
+                    android:layout_height="22.83dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="4.57dp"
+                    android:background="@drawable/button_delivery_background"
+                    android:clickable="false"
+                    android:fontFamily="@font/pretendard_semi_bold"
+                    android:text="배달"
+                    android:textColor="@color/white"
+                    android:textSize="13.7dp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textview_option_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="9.13dp"
+            android:fontFamily="@font/pretendard_regular"
+            android:text="[옵션]"
+            android:textAlignment="center"
+            android:textColor="@color/gray2"
+            android:textSize="15.98sp" />
+
+    </LinearLayout>
+</LinearLayout>
