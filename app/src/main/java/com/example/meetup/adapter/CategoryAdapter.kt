@@ -1,16 +1,22 @@
 package com.example.meetup.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.Rect
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.meetup.R
+import com.example.meetup.activity.MainActivity
 import com.example.meetup.databinding.RowCategoryBinding
+import com.example.meetup.fragment.HomeCategoryFragment
+import com.example.meetup.fragment.HomeFragment
+import com.example.meetup.sharedPreference.MyApplication
 
-class CategoryAdapter(var categoryNameList: Array<String>) :
+class CategoryAdapter(var categoryNameList: Array<String>, var manager: FragmentManager) :
     RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() {
     private var onItemClickListener: ((Int) -> Unit)? = null
     private var context: Context? = null
@@ -39,12 +45,15 @@ class CategoryAdapter(var categoryNameList: Array<String>) :
 
         init {
             binding.root.setOnClickListener {
-//                val context = it.context
-//                val intent = Intent(context, PostActivity::class.java)
-//                intent.putExtra("제목", binding.tvTitle.text)
-//                intent.putExtra("내용", binding.tvContent.text)
-//                intent.putExtra("id", articleId)
-//                ContextCompat.startActivity(context, intent, null)
+
+                val homeCategoryFragment = HomeCategoryFragment()
+
+                MyApplication.category = categoryNameList.get(adapterPosition)
+
+                val transaction = manager.beginTransaction()
+                transaction.replace(R.id.frameArea, homeCategoryFragment)
+                transaction.commit()
+                true
             }
         }
     }

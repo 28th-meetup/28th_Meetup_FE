@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context=".fragment.MenuFragment">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:elevation="9.133333206176758dp"
+        android:outlineSpotShadowColor="#0A000000"
+        android:theme="@style/ToolbarTheme" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imageview_food"
+                android:layout_width="match_parent"
+                android:layout_height="274dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/img_basic" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingHorizontal="22.83dp">
+
+                <TextView
+                    android:id="@+id/textview_food_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="34.25dp"
+                    android:fontFamily="@font/pretendard_semi_bold"
+                    android:textColor="#000000"
+                    android:textSize="27.4sp" />
+
+                <TextView
+                    android:id="@+id/textview_food_price"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="11.42dp"
+                    android:fontFamily="@font/pretendard_semi_bold"
+                    android:text="100,000원"
+                    android:textAlignment="textEnd"
+                    android:textColor="@color/main_color"
+                    android:textSize="22.83sp" />
+
+                <TextView
+                    android:id="@+id/textview_food_info_summary"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="11.42dp"
+                    android:fontFamily="@font/pretendard_regular"
+                    android:textColor="@color/gray2"
+                    android:textSize="15.98sp" />
+            </LinearLayout>
+
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_height="13.7dp"
+                android:layout_marginTop="26.72dp"
+                app:dividerColor="@color/gray_blue2" />
+
+            <TextView
+                android:id="@+id/textview_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18.27dp"
+                android:layout_marginBottom="18.38dp"
+                android:fontFamily="@font/pretendard_semi_bold"
+                android:paddingHorizontal="22.83dp"
+                android:text="상품 정보"
+                android:textColor="#000000"
+                android:textSize="20.55sp" />
+
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_height="1.14dp"
+                app:dividerColor="@color/gray_blue2" />
+
+            <ImageView
+                android:id="@+id/imageview_food_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="22.83dp"
+                android:src="@drawable/img_basic" />
+
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_height="13.7dp"
+                app:dividerColor="@color/gray_blue2" />
+
+            <LinearLayout
+                android:id="@+id/layout_delivery_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingHorizontal="22.83dp"
+                android:paddingTop="17.13dp"
+                android:paddingBottom="18.67dp">
+
+                <TextView
+                    android:id="@+id/textview_delivery_info"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/pretendard_regular"
+                    android:text="배송 / 교환 / 반품 안내"
+                    android:textColor="@color/black"
+                    android:textSize="18.27sp" />
+
+                <ImageView
+                    android:id="@+id/imageview_delivery_info_down"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_down" />
+            </LinearLayout>
+
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_height="1.14dp"
+                app:dividerColor="@color/gray_blue2" />
+
+
+            <LinearLayout
+                android:id="@+id/layout_delivery_info_value"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="22.83dp">
+
+                <TextView
+                    android:id="@+id/textview_delivery_info1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/pretendard_semi_bold"
+                    android:text="배송 안내"
+                    android:textSize="18.27sp" />
+
+                <TextView
+                    android:id="@+id/textview_delivery_info2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="11.42dp"
+                    android:fontFamily="@font/pretendard_regular"
+                    android:text="@string/delivery_info"
+                    android:textSize="13.7sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_food_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingHorizontal="22.83dp"
+                android:paddingTop="17.13dp"
+                android:paddingBottom="18.67dp">
+
+                <TextView
+                    android:id="@+id/textview_food_info"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/pretendard_regular"
+                    android:text="상품정보 제공고시 (원재료 및 원산지 등)"
+                    android:textColor="@color/black"
+                    android:textSize="18.27sp" />
+
+                <ImageView
+                    android:id="@+id/imageview_food_info_down"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_down" />
+            </LinearLayout>
+
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_height="1.14dp"
+                app:dividerColor="@color/gray_blue2" />
+
+            <LinearLayout
+                android:id="@+id/layout_food_info_value"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="22.83dp">
+
+                <TextView
+                    android:id="@+id/textview_food_info1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/pretendard_semi_bold"
+                    android:text="구성 성분표"
+                    android:textSize="18.27sp" />
+
+                <TextView
+                    android:id="@+id/textview_food_info2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="11.42dp"
+                    android:fontFamily="@font/pretendard_regular"
+                    android:text="@string/food_info"
+                    android:textSize="13.7sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingHorizontal="22.83dp"
+                android:paddingVertical="11.42dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textview_order"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/pretendard_light"
+                        android:text="최소주문금액"
+                        android:textColor="@color/gray2"
+                        android:textSize="13.7sp" />
+
+                    <TextView
+                        android:id="@+id/textview_order_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/pretendard_semi_bold"
+                        android:text="원"
+                        android:textColor="@color/gray"
+                        android:textSize="15.98sp" />
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/button_order"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="27.4dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/button_radius"
+                    android:fontFamily="@font/pretendard_semi_bold"
+                    android:text="상품 담기"
+                    android:textColor="@color/white"
+                    android:textSize="20.55sp"
+                    app:cornerRadius="9dp" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

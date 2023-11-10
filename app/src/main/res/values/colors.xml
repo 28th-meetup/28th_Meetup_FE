@@ -23,4 +23,5 @@
     <color name="sub_color">#34C185</color>
     <color name="sub_color2">#6FDDAE</color>
     <color name="sub_color3">#CEF4E4</color>
+    <color name="blur_background">#661E1F23</color>
 </resources>
