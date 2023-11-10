@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="34.25dp">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView"
+            android:layout_width="85.6dp"
+            android:layout_height="85.6dp"
+            android:layout_marginLeft="22.83dp"
+            app:cardCornerRadius="11dp"
+            app:cardElevation="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/imageview_store"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/gray_blue2" />
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/textview_store_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="11.42dp"
+            android:fontFamily="@font/pretendard_semi_bold"
+            android:text="미르네 반찬"
+            android:textColor="@color/black"
+            android:textSize="20.55sp"
+            app:layout_constraintStart_toEndOf="@+id/cardView"
+            app:layout_constraintTop_toTopOf="@+id/cardView" />
+
+        <TextView
+            android:id="@+id/textview_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4.57dp"
+            android:fontFamily="@font/pretendard_light"
+            android:text="2023-10-02 오후 04:24"
+            android:textColor="@color/gray4"
+            android:textSize="13.7sp"
+            app:layout_constraintStart_toStartOf="@+id/textview_store_name"
+            app:layout_constraintTop_toBottomOf="@+id/textview_store_name" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="#34C185"
+            app:cardCornerRadius="4.57dp"
+            app:layout_constraintStart_toStartOf="@+id/textview_store_name"
+            app:layout_constraintTop_toBottomOf="@+id/textview_time">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="11dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginRight="11dp"
+                android:layout_marginBottom="2dp"
+                android:fontFamily="@font/pretendard_semi_bold"
+                android:text="배달"
+                android:textColor="#FFFFFF"
+                android:textSize="13.7sp" />
+        </androidx.cardview.widget.CardView>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="22.83dp"
+        android:background="@color/gray_blue2" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="22.83dp"
+        android:layout_marginTop="22.83dp"
+        android:layout_marginRight="22.83dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pretendard_semi_bold"
+            android:text="주문상세"
+            android:textColor="@color/black"
+            android:textSize="18.27sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textview_order_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pretendard_semi_bold"
+            android:text="30,000원"
+            android:textColor="@color/black"
+            android:textSize="18.27sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="11.42dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="22.83dp"
+            android:fontFamily="@font/pretendard_regular"
+            android:text="밑반찬 세트"
+            android:textColor="@color/black"
+            android:textSize="18.27sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12.56dp"
+            android:fontFamily="@font/pretendard_regular"
+            android:text="2개"
+            android:textColor="@color/gray"
+            android:textSize="18.27sp" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="11.42dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="22.83dp"
+            android:fontFamily="@font/pretendard_regular"
+            android:text="소고기 미역국"
+            android:textColor="@color/black"
+            android:textSize="18.27sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12.56dp"
+            android:fontFamily="@font/pretendard_regular"
+            android:text="1개"
+            android:textColor="@color/gray"
+            android:textSize="18.27sp" />
+
+
+    </LinearLayout>
+
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="22.83dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginRight="22.83dp"
+        android:theme="@style/Theme.MaterialComponents.Light"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="0dp"
+        app:strokeColor="@color/main_color"
+        app:strokeWidth="1dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="13dp"
+            android:layout_marginBottom="13dp"
+            android:fontFamily="@font/pretendard_semi_bold"
+            android:text="후기 작성하기"
+            android:textColor="@color/main_color"
+            android:textSize="18.27sp"/>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="13.7dp"
+        android:layout_marginTop="22.83dp"
+        android:background="@color/gray_blue2"/>
+
+
+</LinearLayout>

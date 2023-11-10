@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <ImageView
+        android:id="@+id/imageview_heart_list"
+        android:layout_width="85.62dp"
+        android:layout_height="85.62dp"
+        android:layout_marginTop="11.42dp"
+        android:layout_marginBottom="11.42dp"
+        android:background="@color/gray_blue2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textview_food_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/pretendard_semi_bold"
+        android:text="미르네 반찬"
+        android:layout_marginLeft="11.42dp"
+        android:layout_marginTop="15.1dp"
+        android:textColor="@color/black"
+        android:textSize="20.55sp"
+        app:layout_constraintStart_toEndOf="@+id/imageview_heart_list"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginLeft="11.42dp"
+
+        android:layout_marginTop="11.42dp"
+        app:layout_constraintStart_toEndOf="@+id/imageview_heart_list"
+        app:layout_constraintTop_toBottomOf="@+id/textview_food_name">
+
+        <ImageView
+            android:layout_width="18.27dp"
+            android:layout_height="18.27dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_star" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pretendard_light"
+            android:text="4.8"
+            android:layout_marginLeft="2dp"
+            android:textColor="@color/gray"
+            android:textSize="16sp" />
+
+        <LinearLayout
+            android:layout_gravity="center"
+            android:layout_width="1dp"
+            android:layout_height="16dp"
+            android:layout_marginLeft="5dp"
+
+            android:background="@color/gray4" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pretendard_light"
+            android:text="최소주문"
+            android:layout_marginLeft="5dp"
+
+            android:textColor="@color/gray"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/textview_food_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pretendard_light"
+            android:text="12,000"
+            android:layout_marginLeft="5dp"
+
+            android:textColor="@color/gray"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pretendard_light"
+            android:text="원"
+            android:textColor="@color/gray"
+            android:textSize="16sp" />
+
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="11.42dp"
+
+        android:background="@color/gray_blue2"
+        app:layout_constraintTop_toBottomOf="@+id/imageview_heart_list" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

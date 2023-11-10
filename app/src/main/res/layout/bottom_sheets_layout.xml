@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardElevation="5dp">
+
+    <LinearLayout
+        android:id="@+id/layout_bottom_sheets"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/transparent"
+        android:elevation="5dp"
+
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bottom_sheet_border"
+            android:paddingTop="22dp"
+            android:src="@drawable/ic_bottom_sheet_icon" />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pretendard_semi_bold"
+            android:gravity="center"
+            android:paddingTop="18dp"
+            android:paddingBottom="18dp"
+            android:text="정렬"
+            android:textColor="#000000"
+            android:textSize="20.55sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#EBEFF7" />
+
+        <TextView
+            android:id="@+id/textview_top_review"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pretendard_regular"
+            android:gravity="center"
+            android:paddingTop="18dp"
+            android:paddingBottom="18dp"
+            android:text="후기 많은 순"
+            android:textColor="#4B4D53"
+            android:textSize="20.55sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#EBEFF7" />
+
+        <TextView
+            android:id="@+id/textview_top_rate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pretendard_regular"
+            android:gravity="center"
+            android:paddingTop="18dp"
+            android:paddingBottom="18dp"
+            android:text="평점 많은 순"
+
+            android:textColor="#4B4D53"
+            android:textSize="20.55sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#EBEFF7" />
+
+        <TextView
+            android:id="@+id/textview_high_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pretendard_regular"
+            android:gravity="center"
+            android:paddingTop="18dp"
+            android:paddingBottom="18dp"
+            android:text="높은 가격 순"
+
+            android:textColor="#4B4D53"
+            android:textSize="20.55sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#EBEFF7" />
+
+        <TextView
+            android:id="@+id/textview_low_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pretendard_regular"
+            android:gravity="center"
+            android:paddingTop="18dp"
+            android:paddingBottom="18dp"
+            android:text="낮은 가격 순"
+
+            android:textColor="#4B4D53"
+            android:textSize="20.55sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#EBEFF7" />
+
+        <TextView
+            android:id="@+id/textview_recent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pretendard_regular"
+            android:gravity="center"
+            android:paddingTop="18dp"
+            android:paddingBottom="18dp"
+            android:text="최신순"
+
+            android:textColor="#4B4D53"
+            android:textSize="20.55sp" />
+
+
+    </LinearLayout>
+
+</LinearLayout>
+</layout>

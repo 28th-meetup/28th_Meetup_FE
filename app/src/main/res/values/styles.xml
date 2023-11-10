@@ -5,4 +5,10 @@
         <item name="fontFamily">@font/pretendard_regular</item>
         <item name="android:textSize">15.98sp</item>
     </style>
+    <style name="CustomDialogTheme">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:backgroundDimAmount">0.7</item> <!-- 배경 어둡게 설정 -->
+    </style>
+
 </resources>
