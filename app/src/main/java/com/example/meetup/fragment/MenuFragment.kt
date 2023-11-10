@@ -1,6 +1,10 @@
 package com.example.meetup.fragment
 
+import android.graphics.BlendMode
+import android.graphics.BlendModeColorFilter
 import android.graphics.Color
+import android.graphics.PorterDuff
+import android.os.Build
 import android.os.Bundle
 import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
@@ -9,11 +13,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.meetup.R
+import com.example.meetup.activity.HomeActivity
+import com.example.meetup.bottomSheet.ModalBottomSheetOrderOption
 import com.example.meetup.databinding.FragmentMenuBinding
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 
 class MenuFragment : Fragment() {
 
     lateinit var binding: FragmentMenuBinding
+    lateinit var homeActivity: HomeActivity
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -21,13 +29,33 @@ class MenuFragment : Fragment() {
     ): View? {
 
         binding = FragmentMenuBinding.inflate(inflater)
+        homeActivity = activity as HomeActivity
 
         binding.run {
 
-            layoutDeliveryInfoValue.visibility = View.GONE
-            layoutFoodInfoValue.visibility = View.GONE
+            initView()
 
             toolbar.run {
+
+                // back 버튼 설정
+                setNavigationIcon(R.drawable.ic_back)
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                    navigationIcon?.colorFilter =
+                        BlendModeColorFilter(Color.DKGRAY, BlendMode.SRC_ATOP)
+                } else {
+                    navigationIcon?.setColorFilter(Color.DKGRAY, PorterDuff.Mode.SRC_ATOP)
+                }
+
+                setNavigationOnClickListener {
+                    // 유저 인입경로별 뒤로가기 기능 구현
+                    val homeFragment = HomeFragment()
+
+                    val transaction = homeActivity.manager.beginTransaction()
+                    transaction.replace(R.id.frameArea, homeFragment)
+                    transaction.commit()
+                }
+
                 inflateMenu(R.menu.main_cart_menu)
 
                 setOnMenuItemClickListener {
@@ -40,6 +68,10 @@ class MenuFragment : Fragment() {
                     }
                     true
                 }
+            }
+
+            buttonOrder.setOnClickListener {
+                modalBottomSheet()
             }
 
             layoutDeliveryInfo.setOnClickListener {
@@ -78,5 +110,19 @@ class MenuFragment : Fragment() {
         }
 
         return binding.root
+    }
+
+    fun initView() {
+        binding.run {
+
+            homeActivity.hideBottomNavigation(true)
+
+            layoutDeliveryInfoValue.visibility = View.GONE
+            layoutFoodInfoValue.visibility = View.GONE
+        }
+    }
+    private fun modalBottomSheet() {
+        val modal = ModalBottomSheetOrderOption()
+        modal.show(homeActivity.supportFragmentManager, "주문하기 옵션")
     }
 }
