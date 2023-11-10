@@ -1,14 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".fragment.ChattingFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/btn_back"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="22.83dp"
+            android:layout_marginTop="20.55dp"
+            android:src="@drawable/ic_back"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20.55dp"
+            android:fontFamily="@font/pretendard_semi_bold"
+            android:text="채팅 모아보기"
+            android:textColor="@color/black"
+            android:textSize="23sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="22.83dp"
+        android:layout_marginTop="22.83dp"
+        android:layout_marginRight="22.83dp"
+        android:theme="@style/Theme.MaterialComponents.Light"
+        app:cardCornerRadius="11.42dp"
+        app:cardElevation="5dp"
+        app:strokeColor="#E2E3E5"
+        app:strokeWidth="1dp">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="22.83dp"
+            android:layout_marginTop="11.42dp"
+            android:layout_marginBottom="11.42dp"
+            android:background="@color/transparent"
+            android:drawableLeft="@drawable/ic_search"
+            android:drawablePadding="4dp"
+            android:fontFamily="@font/pretendard_regular"
+            android:hint="가게 이름 또는 판매자 이름 검색"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+    </com.google.android.material.card.MaterialCardView>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerview_chatting_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_marginTop="22.83dp" />
 
-</FrameLayout>
+
+</LinearLayout>
