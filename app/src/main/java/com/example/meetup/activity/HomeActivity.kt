@@ -8,7 +8,7 @@ import com.example.meetup.R
 import com.example.meetup.fragment.HeartFragment
 import com.example.meetup.fragment.HeartNotLoginFragment
 import com.example.meetup.fragment.HomeFragment
-import com.example.meetup.fragment.MyInfoFragment
+import com.example.meetup.fragment.MyPageFragment
 import com.example.meetup.fragment.StoreFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -32,7 +32,7 @@ class HomeActivity : AppCompatActivity() {
         val homeFragment = HomeFragment()
         val storeFragment = StoreFragment()
         val heartFragment = HeartFragment()
-        val myInfoFragment = MyInfoFragment()
+        val myPageFragment = MyPageFragment()
         val heartNotLoginFragment = HeartNotLoginFragment()
 
         transaction.replace(R.id.frameArea, homeFragment)
@@ -69,7 +69,7 @@ class HomeActivity : AppCompatActivity() {
 
                 R.id.tab4 -> {
                     val transaction = manager.beginTransaction()
-                    transaction.replace(R.id.frameArea, myInfoFragment)
+                    transaction.replace(R.id.frameArea, myPageFragment)
                     transaction.commit()
                     true
                 }

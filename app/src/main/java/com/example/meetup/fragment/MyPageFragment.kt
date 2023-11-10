@@ -28,6 +28,12 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_
         super.onViewCreated(view, savedInstanceState)
 
 
+        binding.btnChangeSeller.setOnClickListener {
+            val storeEnrollDialogFragment = StoreEnrollDialogFragment()
+
+            storeEnrollDialogFragment.show(requireFragmentManager(),"StoreEnrollDialogFragment")
+
+        }
     }
 
 

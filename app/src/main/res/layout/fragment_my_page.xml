@@ -108,6 +108,7 @@
                 app:layout_constraintStart_toEndOf="@+id/textview_my_name" />
 
             <com.google.android.material.card.MaterialCardView
+                android:id="@+id/btn_change_seller"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="18.27dp"
