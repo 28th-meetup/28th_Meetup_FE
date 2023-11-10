@@ -6,7 +6,6 @@ import android.os.Bundle
 import androidx.core.content.ContextCompat
 import com.example.meetup.R
 import com.example.meetup.fragment.HeartFragment
-import com.example.meetup.fragment.HeartNotLoginFragment
 import com.example.meetup.fragment.HomeFragment
 import com.example.meetup.fragment.MyPageFragment
 import com.example.meetup.fragment.StoreFragment
@@ -33,7 +32,6 @@ class HomeActivity : AppCompatActivity() {
         val storeFragment = StoreFragment()
         val heartFragment = HeartFragment()
         val myPageFragment = MyPageFragment()
-        val heartNotLoginFragment = HeartNotLoginFragment()
 
         transaction.replace(R.id.frameArea, homeFragment)
         transaction.addToBackStack(null)
