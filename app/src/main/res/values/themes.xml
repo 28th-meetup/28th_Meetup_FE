@@ -12,7 +12,6 @@
         <item name="bottomSheetStyle">@style/AppModalStyle</item>
 
     </style>
-
     <style name="ToolbarTheme" parent="ThemeOverlay.AppCompat.Light">
         <item name="android:fontFamily">@font/pretendard_semi_bold</item>
         <item name="android:textSize">16sp</item>
