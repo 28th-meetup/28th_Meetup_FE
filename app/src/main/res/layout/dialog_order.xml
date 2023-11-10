@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/dialog_rounded_background"
+    android:orientation="vertical"
+    android:paddingHorizontal="50.23dp"
+    android:paddingTop="31.97dp"
+    android:paddingBottom="36.53dp">
+
+    <ImageView
+        android:id="@+id/imageview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:src="@drawable/img_order" />
+
+    <TextView
+        android:id="@+id/textview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15.98dp"
+        android:fontFamily="@font/pretendard_bold"
+        android:text="상품을 장바구니에\n담으시겠습니까?"
+        android:textAlignment="center"
+        android:textSize="25.12dp" />
+
+    <Scroll
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerview_food"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="29.05dp" />
+    </Scroll>
+
+    <Button
+        android:id="@+id/button_add_food"
+        android:layout_width="255dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="29.68dp"
+        android:background="@drawable/button_radius"
+        android:fontFamily="@font/pretendard_semi_bold"
+        android:text="상품 담기"
+        android:textColor="@color/white"
+        android:textSize="20.55sp" />
+
+    <Button
+        android:id="@+id/button_back"
+        android:layout_width="255dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="13.7dp"
+        android:background="@drawable/layout_order_food_background"
+        android:fontFamily="@font/pretendard_semi_bold"
+        android:text="뒤로 가기"
+        android:textSize="20.55sp" />
+</LinearLayout>
