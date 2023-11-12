@@ -53,6 +53,14 @@ class ChattingFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.btnBack.setOnClickListener {
+            val myPageFragment = MyPageFragment()
+            fragmentManager?.beginTransaction()?.apply {
+                replace(R.id.frameArea, myPageFragment)
+                commit()
+            }
+        }
     }
 
 
