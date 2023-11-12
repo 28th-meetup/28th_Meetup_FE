@@ -41,10 +41,18 @@ class OrderListFragment : Fragment() {
         orderList.add(OrderListResponseModel("b","bb","bbb","bb"))
         orderList.add(OrderListResponseModel("c","cc","ccc","cc"))
 
-        orderListAdapter = OrderListAdapter(orderList,{
+        orderListAdapter = OrderListAdapter(orderList) {
 
-            Toast.makeText(requireContext(),it.toString(),Toast.LENGTH_SHORT).show()
-        })
+            Toast.makeText(requireContext(), it.toString(), Toast.LENGTH_SHORT).show()
+
+
+            val reviewWriteFragment = ReviewWriteFragment()
+            fragmentManager?.beginTransaction()?.apply {
+                replace(R.id.frameArea, reviewWriteFragment)
+                commit()
+            }
+
+        }
 
         binding.recyclerviewOrderList.adapter = orderListAdapter
         binding.recyclerviewOrderList.layoutManager = LinearLayoutManager(requireContext())
@@ -60,6 +68,13 @@ class OrderListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
+        binding.btnBack.setOnClickListener {
+            val myPageFragment = MyPageFragment()
+            fragmentManager?.beginTransaction()?.apply {
+                replace(R.id.frameArea, myPageFragment)
+                commit()
+            }
+        }
     }
   }
 
