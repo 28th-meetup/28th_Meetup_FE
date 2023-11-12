@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.meetup.R
 import com.example.meetup.adapter.OrderListAdapter
@@ -36,6 +37,16 @@ class OrderListFragment : Fragment() {
 
         var orderList = ArrayList<OrderListResponseModel>()
 
+        orderList.add(OrderListResponseModel("A","aa","aaa","Aa"))
+        orderList.add(OrderListResponseModel("b","bb","bbb","bb"))
+        orderList.add(OrderListResponseModel("c","cc","ccc","cc"))
+
+        orderListAdapter = OrderListAdapter(orderList,{
+
+            Toast.makeText(requireContext(),it.toString(),Toast.LENGTH_SHORT).show()
+        })
+
+        binding.recyclerviewOrderList.adapter = orderListAdapter
         binding.recyclerviewOrderList.layoutManager = LinearLayoutManager(requireContext())
 
 
