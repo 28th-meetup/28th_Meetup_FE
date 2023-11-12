@@ -50,6 +50,14 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_
                 commit()
             }
         }
+
+        binding.btnChangeSeller.setOnClickListener {
+            val myPageSellerFragment = MyPageSellerFragment()
+            fragmentManager?.beginTransaction()?.apply {
+                replace(R.id.frameArea, myPageSellerFragment)
+                commit()
+            }
+        }
     }
 
 
