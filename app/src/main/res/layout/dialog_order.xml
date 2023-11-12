@@ -2,11 +2,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/dialog_rounded_background"
     android:orientation="vertical"
     android:paddingHorizontal="50.23dp"
-    android:paddingTop="31.97dp"
-    android:paddingBottom="36.53dp">
+    android:paddingTop="31.97dp">
 
     <ImageView
         android:id="@+id/imageview"
@@ -25,7 +25,7 @@
         android:textAlignment="center"
         android:textSize="25.12dp" />
 
-    <Scroll
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -34,7 +34,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="29.05dp" />
-    </Scroll>
+    </ScrollView>
 
     <Button
         android:id="@+id/button_add_food"
@@ -42,7 +42,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="29.68dp"
-        android:background="@drawable/button_radius"
+        android:background="@drawable/button_dialog_main"
         android:fontFamily="@font/pretendard_semi_bold"
         android:text="상품 담기"
         android:textColor="@color/white"
@@ -52,10 +52,14 @@
         android:id="@+id/button_back"
         android:layout_width="255dp"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:layout_gravity="center_horizontal"
         android:layout_marginTop="13.7dp"
-        android:background="@drawable/layout_order_food_background"
+        android:background="@drawable/button_dialog_back"
         android:fontFamily="@font/pretendard_semi_bold"
         android:text="뒤로 가기"
         android:textSize="20.55sp" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="36.53dp"/>
 </LinearLayout>
