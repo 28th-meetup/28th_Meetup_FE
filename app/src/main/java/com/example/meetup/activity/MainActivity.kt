@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.ImageView
 import com.example.meetup.R
+import com.example.meetup.databinding.ActivityMainBinding
 import com.example.meetup.model.PostKaKaoTokenResponseModel
 import com.example.meetup.retrofit2.APIS
 import com.example.meetup.retrofit2.RetrofitInstance
@@ -23,22 +24,27 @@ import retrofit2.Response
 class MainActivity : AppCompatActivity() {
 
     private val APIS = RetrofitInstance.retrofitInstance().create(APIS::class.java)
+    lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
 
+        binding = ActivityMainBinding.inflate(layoutInflater)
 
-
-        val kakaoLoginBtn = findViewById<ImageView>(R.id.btn_kakao_login)
-
-
-        //로그인 버튼 클릭
-        kakaoLoginBtn.setOnClickListener {
-            startKakaoLogin(this)
+        binding.run {
+            // 이메일 로그인 버튼 클릭
+            buttonEmailLogin.setOnClickListener {
+                val loginIntent = Intent(this@MainActivity,AuthActivity::class.java)
+                startActivity(loginIntent)
+            }
+            // 카카오 로그인 버튼 클릭
+            buttonKakaoLogin.setOnClickListener {
+                startKakaoLogin(this@MainActivity)
+            }
         }
 
 
+        setContentView(binding.root)
     }
 
     fun startKakaoLogin(context: Context) {
@@ -54,7 +60,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-// 카카오톡이 설치되어 있으면 카카오톡으로 로그인, 아니면 카카오계정으로 로그인
+        // 카카오톡이 설치되어 있으면 카카오톡으로 로그인, 아니면 카카오계정으로 로그인
         if (UserApiClient.instance.isKakaoTalkLoginAvailable(context)) {
             UserApiClient.instance.loginWithKakaoTalk(context) { token, error ->
                 if (error != null) {
@@ -100,7 +106,8 @@ class MainActivity : AppCompatActivity() {
 
 
                         //홈 화면으로 이동 코드
-
+                        val homeIntent = Intent(this@MainActivity,HomeActivity::class.java)
+                        startActivity(homeIntent)
 
                     } else {
                         Log.d("PostKaKaoTokenResponseModel", "fail 1")
