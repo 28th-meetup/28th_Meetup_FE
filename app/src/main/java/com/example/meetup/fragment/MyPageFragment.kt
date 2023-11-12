@@ -47,6 +47,7 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_
             val chattingFragment = ChattingFragment()
             fragmentManager?.beginTransaction()?.apply {
                 replace(R.id.frameArea, chattingFragment)
+                addToBackStack(null)
                 commit()
             }
         }

@@ -55,11 +55,13 @@ class ChattingFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.btnBack.setOnClickListener {
-            val myPageFragment = MyPageFragment()
-            fragmentManager?.beginTransaction()?.apply {
-                replace(R.id.frameArea, myPageFragment)
-                commit()
-            }
+//            val myPageFragment = MyPageFragment()
+//            fragmentManager?.beginTransaction()?.apply {
+//                replace(R.id.frameArea, myPageFragment)
+//                commit()
+//            }
+
+            fragmentManager?.popBackStack()
         }
     }
 

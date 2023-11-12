@@ -31,6 +31,13 @@ class MyPageSellerFragment : BaseFragment<FragmentMyPageSellerBinding>(R.layout.
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val mypageSellerStoreManageFragment = MypageSellerStoreManageFragment()
+        fragmentManager?.beginTransaction()?.apply {
+            replace(R.id.framelayout_mypage_seller, mypageSellerStoreManageFragment)
+            commit()
+        }
+
+
         binding.btnStoreManage.setOnClickListener {
             btnStoreManageClick()
         }
@@ -39,11 +46,24 @@ class MyPageSellerFragment : BaseFragment<FragmentMyPageSellerBinding>(R.layout.
             btnOrderManageClick()
         }
 
-        val mypageSellerStoreManageFragment = MypageSellerStoreManageFragment()
-        fragmentManager?.beginTransaction()?.apply {
-            replace(R.id.framelayout_mypage_seller, mypageSellerStoreManageFragment)
-            commit()
+        binding.btnChangeSeller.setOnClickListener {
+            val myPageFragment = MyPageFragment()
+            fragmentManager?.beginTransaction()?.apply {
+                replace(R.id.frameArea, myPageFragment)
+                commit()
+            }
         }
+
+        binding.imageviewChatting.setOnClickListener {
+            val chattingFragment = ChattingFragment()
+            fragmentManager?.beginTransaction()?.apply {
+                replace(R.id.frameArea, chattingFragment)
+                addToBackStack(null)
+                commit()
+            }
+
+        }
+
     }
 
     fun btnStoreManageClick(){
