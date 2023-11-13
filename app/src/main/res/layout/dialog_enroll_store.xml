@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/dialog_rounded_background"
-    android:orientation="vertical"
     android:paddingHorizontal="50.23dp"
-    android:paddingTop="31.97dp">
+    android:paddingTop="34.25dp"
+    android:background="@drawable/dialog_rounded_background">
 
     <ImageView
         android:id="@+id/imageview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:src="@drawable/img_order" />
+        android:src="@drawable/img_alert" />
 
     <TextView
         android:id="@+id/textview"
@@ -21,30 +20,31 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="15.98dp"
         android:fontFamily="@font/pretendard_bold"
-        android:text="상품을 장바구니에\n담으시겠습니까?"
+        android:text="생성된 가게가 없습니다.\n가게를 등록하시겠습니까?"
         android:textAlignment="center"
         android:textSize="25.12dp" />
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerview_food"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="29.05dp" />
-    </ScrollView>
+    <TextView
+        android:id="@+id/textView16"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="22.83dp"
+        android:text="신분증 사진을 제출하면\n인증 절차가 개시됩니다."
+        android:textAlignment="center"
+        android:textColor="@color/gray3"
+        android:fontFamily="@font/pretendard_regular"
+        android:textSize="18.27sp"/>
 
     <Button
         android:id="@+id/button_add_food"
         android:layout_width="255dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="29.68dp"
+        android:layout_marginTop="22.83dp"
         android:background="@drawable/button_dialog_main"
         android:fontFamily="@font/pretendard_semi_bold"
-        android:text="상품 담기"
+        android:text="가게 등록"
         android:textColor="@color/white"
         android:textSize="20.55sp" />
 
@@ -53,13 +53,15 @@
         android:layout_width="255dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="13.7dp"
-        android:background="@drawable/button_dialog_back"
+        android:layout_marginTop="11.42dp"
+        android:background="@drawable/button_dialog_main_color_stroke"
         android:fontFamily="@font/pretendard_semi_bold"
         android:text="뒤로 가기"
+        android:textColor="@color/main_color"
         android:textSize="20.55sp" />
 
     <Space
         android:layout_width="match_parent"
-        android:layout_height="36.53dp"/>
+        android:layout_height="34.25dp"/>
+
 </LinearLayout>

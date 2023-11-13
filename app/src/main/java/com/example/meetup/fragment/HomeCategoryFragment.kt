@@ -60,7 +60,11 @@ class HomeCategoryFragment : Fragment() {
                     when (it.itemId) {
 
                         R.id.item_main_cart -> {
+                            val cartFragment = CartFragment()
 
+                            val transaction = homeActivity.manager.beginTransaction()
+                            transaction.replace(R.id.frameArea, cartFragment)
+                            transaction.commit()
                         }
 
                         else -> { }

@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context=".fragment.LoginFragment">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:elevation="9.133333206176758dp"
+        android:outlineSpotShadowColor="#0A000000"
+        android:theme="@style/ToolbarTheme" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingHorizontal="22.83dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="26.45dp"
+            android:orientation="vertical"
+            android:paddingVertical="11.42dp">
+
+            <TextView
+                android:id="@+id/textview_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/pretendard_semi_bold"
+                android:text="이메일"
+                android:textColor="@color/black"
+                android:textSize="15.98sp" />
+
+            <EditText
+                android:id="@+id/edittext_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="11.42dp"
+                android:background="@drawable/text_login_background"
+                android:fontFamily="@font/pretendard_regular"
+                android:hint="example@gmail.com"
+                android:inputType="text|textEmailAddress"
+                android:paddingHorizontal="22.83dp"
+                android:paddingVertical="11.42dp"
+                android:textColor="@color/black"
+                android:textColorHint="#6E7178"
+                android:textSize="18.27sp" />
+
+            <TextView
+                android:id="@+id/textview_email_error"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="11.42dp"
+                android:fontFamily="@font/pretendard_light"
+                android:text=" * 이메일이 올바르지 않습니다."
+                android:textColor="#E70000"
+                android:textSize="13.7sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingVertical="11.42dp">
+
+            <TextView
+                android:id="@+id/textview_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/pretendard_semi_bold"
+                android:text="비밀번호"
+                android:textColor="@color/black"
+                android:textSize="15.98sp" />
+
+            <EditText
+                android:id="@+id/edittext_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="11.42dp"
+                android:background="@drawable/text_login_background"
+                android:fontFamily="@font/pretendard_regular"
+                android:hint="비밀번호 8자 이상"
+                android:inputType="text|textPassword"
+                android:paddingHorizontal="22.83dp"
+                android:paddingVertical="11.42dp"
+                android:textColor="@color/black"
+                android:textColorHint="#6E7178"
+                android:textSize="18.27sp" />
+
+            <TextView
+                android:id="@+id/textview_password_error"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="11.42dp"
+                android:fontFamily="@font/pretendard_light"
+                android:text=" * 비밀번호가 올바르지 않습니다."
+                android:textColor="#E70000"
+                android:textSize="13.7sp" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/button_login"
+            android:layout_width="match_parent"
+            android:layout_height="68.5dp"
+            android:layout_marginTop="22.83dp"
+            android:background="@drawable/button_login_background"
+            android:fontFamily="@font/pretendard_semi_bold"
+            android:text="로그인"
+            android:textColor="@color/white"
+            android:textSize="20.55sp" />
+
+        <Button
+            android:id="@+id/button_find_account"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22.83dp"
+            android:background="@color/transparent"
+            android:fontFamily="@font/pretendard_light"
+            android:text="이메일 / 비밀번호 찾기"
+            android:textAlignment="center"
+            android:textColor="@color/gray3"
+            android:textSize="15.98sp" />
+    </LinearLayout>
+
+</LinearLayout>

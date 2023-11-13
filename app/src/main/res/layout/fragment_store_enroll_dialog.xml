@@ -52,7 +52,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:backgroundTint="@color/main_color"
-        android:layout_marginTop="22.83dp"
+            android:layout_marginTop="22.83dp"
             android:theme="@style/Theme.MaterialComponents.Light"
             app:cardCornerRadius="10dp">
 
