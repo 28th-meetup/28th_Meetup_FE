@@ -22,6 +22,9 @@ class CertificationCompleteFragment : Fragment() {
 
         binding.run {
             buttonHome.setOnClickListener {
+                //홈 화면으로 이동 코드
+                val homeIntent = Intent(requireContext(), HomeActivity::class.java)
+                startActivity(homeIntent)
             }
         }
         return binding.root
