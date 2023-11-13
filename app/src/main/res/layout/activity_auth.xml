@@ -7,7 +7,7 @@
     tools:context=".activity.AuthActivity">
 
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/fragmentContainerView"
+        android:id="@+id/container_auth"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:name="com.example.meetup.fragment.LoginFragment"

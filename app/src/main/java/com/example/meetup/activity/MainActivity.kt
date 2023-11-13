@@ -9,6 +9,9 @@ import android.util.Log
 import android.widget.ImageView
 import com.example.meetup.R
 import com.example.meetup.databinding.ActivityMainBinding
+import com.example.meetup.fragment.HomeFragment
+import com.example.meetup.fragment.LoginFragment
+import com.example.meetup.fragment.SignUpFragment
 import com.example.meetup.model.PostKaKaoTokenResponseModel
 import com.example.meetup.retrofit2.APIS
 import com.example.meetup.retrofit2.RetrofitInstance
@@ -35,11 +38,18 @@ class MainActivity : AppCompatActivity() {
             // 이메일 로그인 버튼 클릭
             buttonEmailLogin.setOnClickListener {
                 val loginIntent = Intent(this@MainActivity,AuthActivity::class.java)
+                loginIntent.putExtra("auth",1)
                 startActivity(loginIntent)
             }
             // 카카오 로그인 버튼 클릭
             buttonKakaoLogin.setOnClickListener {
                 startKakaoLogin(this@MainActivity)
+            }
+            // 이메일 회원가입 버튼 클릭
+            buttonSignUp.setOnClickListener {
+                val signUpIntent = Intent(this@MainActivity,AuthActivity::class.java)
+                signUpIntent.putExtra("auth",0)
+                startActivity(signUpIntent)
             }
         }
 
