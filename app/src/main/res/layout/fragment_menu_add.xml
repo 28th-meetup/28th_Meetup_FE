@@ -752,7 +752,7 @@
                 android:layout_marginTop="22.83dp"
                 android:layout_marginRight="22.83dp"
                 android:layout_marginBottom="50dp"
-                android:backgroundTint="@color/main_color"
+                android:backgroundTint="#BFC1C5"
                 app:cardCornerRadius="9.13dp"
                 app:cardElevation="0dp">
 
