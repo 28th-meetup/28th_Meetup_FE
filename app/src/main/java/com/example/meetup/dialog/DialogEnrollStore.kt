@@ -49,6 +49,11 @@ class DialogEnrollStore(var manager: FragmentManager) : DialogFragment() {
             this.confirmDialogInterface?.onClickYesButton(id!!)
             dismiss()
 
+            val completeFragment = CertificationCompleteFragment()
+
+            val transaction = manager.beginTransaction()
+            transaction.replace(R.id.container, completeFragment)
+            transaction.commit()
         }
 
         return binding.root
