@@ -46,6 +46,39 @@ class CertificationFragment : Fragment() {
         requestPermissions(permissionList,0)
 
 
+        val preview = CameraSurfaceView(requireContext())
+        cameraSurfaceView = preview
+        val layoutParams = LinearLayout.LayoutParams(
+            LinearLayout.LayoutParams.MATCH_PARENT,
+            274f.fromDpToPx()
+        )
+
+        // 뷰를 레이아웃에 추가
+        binding.linearlayoutCamera.addView(preview, layoutParams)
+
+
+        binding.run {
+            buttonCapture.setOnClickListener {
+                if(buttonRecapture.visibility == View.INVISIBLE) {
+                    onCaptureClick()
+                    preview.visibility = View.GONE
+                    buttonRecapture.visibility = View.VISIBLE
+                    buttonCapture.text = "제출하기"
+                    textviewContent.visibility = View.INVISIBLE
+                    imageviewPhoto.visibility = View.VISIBLE
+                } else {
+                    val dialog = DialogEnrollStore(certificationActivity.supportFragmentManager)
+                    // 알림창이 띄워져있는 동안 배경 클릭 막기
+                    dialog.isCancelable = false
+                    certificationActivity?.let { dialog.show(it.supportFragmentManager, "EnrollStoreDialog") }
+                }
+            }
+            buttonRecapture.setOnClickListener {
+                buttonRecapture.visibility = View.INVISIBLE
+                imageviewPhoto.visibility = View.GONE
+            }
+        }
+
         return binding.root
     }
 
@@ -71,5 +104,23 @@ class CertificationFragment : Fragment() {
             buttonRecapture.visibility = View.INVISIBLE
             imageviewPhoto.visibility = View.GONE
         }
+    }
+
+    fun onCaptureClick() {
+        // 사진 찍기
+        cameraSurfaceView.takePicture(Camera.PictureCallback { data, camera ->
+            // 사진이 찍힌 후의 처리를 여기에 추가하세요
+            // data: JPEG 이미지 데이터
+            Log.d("showPhoto","click")
+            showPhoto(data)
+        })
+    }
+
+    private fun showPhoto(data: ByteArray) {
+        // JPEG 이미지 데이터를 Bitmap으로 디코딩
+        val bitmap: Bitmap? = BitmapFactory.decodeByteArray(data, 0, data.size)
+
+        // Bitmap을 ImageView에 설정
+        binding.imageviewPhoto.setImageBitmap(bitmap)
     }
 }
