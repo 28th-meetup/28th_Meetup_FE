@@ -442,8 +442,8 @@
                         android:layout_height="1dp"
                         android:layout_marginTop="60dp"
                         android:background="@color/gray_blue"
-                        app:layout_constraintTop_toTopOf="parent"
-                        android:orientation="horizontal" />
+                        android:orientation="horizontal"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
                         android:id="@+id/textView17"
@@ -660,12 +660,15 @@
                 app:strokeWidth="1dp">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:id="@+id/btn_option_all_able_text"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="17.12dp"
                     android:layout_marginTop="12.56dp"
-                    android:layout_marginBottom="12.56dp"
+                    android:layout_marginRight="17.12dp"
 
+                    android:layout_marginBottom="12.56dp"
+                    android:drawableRight="@drawable/ic_checkmark_circle"
                     android:drawablePadding="11dp"
                     android:fontFamily="@font/pretendard_regular"
                     android:text="배달 포장 모두 가능"
@@ -690,14 +693,18 @@
                 app:strokeWidth="1dp">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:id="@+id/btn_option_only_delivery_text"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="17.12dp"
                     android:layout_marginTop="12.56dp"
+                    android:layout_marginRight="17.12dp"
                     android:layout_marginBottom="12.56dp"
+                    android:drawableRight="@drawable/ic_checkmark_circle"
                     android:drawablePadding="11dp"
                     android:fontFamily="@font/pretendard_regular"
                     android:text="배달만 가능"
+
                     android:textColor="@color/black"
                     android:textSize="18.27sp" />
 
@@ -719,14 +726,19 @@
                 app:strokeWidth="1dp">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:id="@+id/btn_option_only_togo_text"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="17.12dp"
                     android:layout_marginTop="12.56dp"
+                    android:layout_marginRight="17.12dp"
                     android:layout_marginBottom="12.56dp"
+                    android:drawableRight="@drawable/ic_checkmark_circle"
                     android:drawablePadding="11dp"
                     android:fontFamily="@font/pretendard_regular"
+
                     android:text="포장만 가능"
+
                     android:textColor="@color/black"
                     android:textSize="18.27sp" />
 
