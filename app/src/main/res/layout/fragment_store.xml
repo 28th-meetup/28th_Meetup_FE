@@ -25,19 +25,20 @@
 
         <ImageView
             android:id="@+id/btn_alarm"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15.06dp"
-            android:layout_marginRight="13.07dp"
+            android:layout_width="25.12dp"
+            android:layout_height="25.12dp"
+            android:layout_marginTop="12.56dp"
+            android:layout_marginRight="14dp"
             android:src="@drawable/ic_alarm"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_cart"
             app:layout_constraintEnd_toStartOf="@+id/btn_cart"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/btn_cart"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12.92dp"
+            android:layout_width="27.4dp"
+            android:layout_height="27.4dp"
+            android:layout_marginTop="12.56dp"
             android:layout_marginRight="22.83dp"
             android:src="@drawable/ic_cart"
             app:layout_constraintEnd_toEndOf="parent"

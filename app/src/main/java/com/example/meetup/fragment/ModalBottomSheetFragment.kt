@@ -10,6 +10,19 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 class ModalBottomSheetFragment : BottomSheetDialogFragment() {
 
+
+    override fun onStart() {
+        super.onStart()
+
+//        dialog?.window?.setLayout(
+//            ViewGroup.LayoutParams.MATCH_PARENT,
+//            ViewGroup.LayoutParams.MATCH_PARENT
+//        )
+//        dialog?.window?.setBackgroundDrawableResource(android.R.color.transparent)
+//        dialog?.window?.setDimAmount(0.8f)
+        // 배경을 흐려지게 설정
+        dialog?.window?.setBackgroundDrawableResource(R.drawable.blur_background)
+    }
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -30,6 +43,10 @@ class ModalBottomSheetFragment : BottomSheetDialogFragment() {
 
     override fun getTheme(): Int = R.style.AppBottomSheetDialogTheme
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+    }
 
 
 }

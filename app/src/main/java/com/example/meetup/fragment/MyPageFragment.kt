@@ -34,6 +34,31 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_
             storeEnrollDialogFragment.show(requireFragmentManager(),"StoreEnrollDialogFragment")
 
         }
+
+        binding.btnOrderList.setOnClickListener {
+            val orderListFragment = OrderListFragment()
+            fragmentManager?.beginTransaction()?.apply {
+                replace(R.id.frameArea, orderListFragment)
+                commit()
+            }
+        }
+
+        binding.btnChattingList.setOnClickListener {
+            val chattingFragment = ChattingFragment()
+            fragmentManager?.beginTransaction()?.apply {
+                replace(R.id.frameArea, chattingFragment)
+                addToBackStack(null)
+                commit()
+            }
+        }
+
+        binding.btnChangeSeller.setOnClickListener {
+            val myPageSellerFragment = MyPageSellerFragment()
+            fragmentManager?.beginTransaction()?.apply {
+                replace(R.id.frameArea, myPageSellerFragment)
+                commit()
+            }
+        }
     }
 
 

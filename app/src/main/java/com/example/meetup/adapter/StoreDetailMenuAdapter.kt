@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.meetup.R
 import com.example.meetup.model.StoreDetailMenuResponseModel
+import com.google.android.material.card.MaterialCardView
 
 class StoreDetailMenuAdapter(private var storeDetailMenuList : ArrayList<StoreDetailMenuResponseModel>) :
     RecyclerView.Adapter<StoreDetailMenuAdapter.ViewHolder>() {
@@ -38,7 +39,6 @@ class StoreDetailMenuAdapter(private var storeDetailMenuList : ArrayList<StoreDe
         var imageview_menu : ImageView = view.findViewById(R.id.imageview_menu)
         var textview_menu_name : TextView = view.findViewById(R.id.textview_menu_name)
         var textview_menu_price : TextView = view.findViewById(R.id.textview_menu_price)
-
 
         fun bind(item: StoreDetailMenuResponseModel) {
 
