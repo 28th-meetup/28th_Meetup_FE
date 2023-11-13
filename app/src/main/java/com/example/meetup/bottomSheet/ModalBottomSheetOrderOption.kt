@@ -83,9 +83,6 @@ class ModalBottomSheetOrderOption : BottomSheetDialogFragment() {
         )
 
         dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-
-        // 배경을 흐려지게 설정
-        dialog?.window?.setBackgroundDrawableResource(R.drawable.blur_background)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
