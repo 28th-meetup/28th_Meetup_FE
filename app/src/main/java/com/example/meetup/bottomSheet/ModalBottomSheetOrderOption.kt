@@ -34,7 +34,7 @@ class ModalBottomSheetOrderOption : BottomSheetDialogFragment() {
     var deliveryOption = ""
     lateinit var homeActivity: HomeActivity
 
-//    override fun getTheme(): Int = R.style.RoundBottomSheetDialog
+    override fun getTheme(): Int = R.style.AppBottomSheetDialogTheme
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
 
@@ -45,7 +45,7 @@ class ModalBottomSheetOrderOption : BottomSheetDialogFragment() {
         bottomSheetDialog.setContentView(contentView)
 
         val behavior = BottomSheetBehavior.from(contentView.parent as View)
-//
+
 //        // Bottom Sheet의 높이를 고정하고자 하는 값으로 설정
 //        behavior.peekHeight = resources.getDimensionPixelSize(R.dimen.bottom_sheet_height)
 //
@@ -82,8 +82,7 @@ class ModalBottomSheetOrderOption : BottomSheetDialogFragment() {
             ViewGroup.LayoutParams.MATCH_PARENT
         )
 
-        // 배경을 흐려지게 설정
-        dialog?.window?.setBackgroundDrawableResource(R.drawable.blur_background)
+        dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
