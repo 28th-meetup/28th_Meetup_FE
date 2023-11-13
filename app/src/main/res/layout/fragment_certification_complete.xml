@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".fragment.CertificationCompleteFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="256.87dp"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/imageview_check"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/img_complete" />
+
+        <TextView
+            android:id="@+id/textview_complete1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="17.17dp"
+            android:fontFamily="@font/pretendard_bold"
+            android:text="인증신청이 완료되었습니다."
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="25.12sp" />
+
+        <TextView
+            android:id="@+id/textview_complete2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="13.7dp"
+            android:fontFamily="@font/pretendard_regular"
+            android:text="인증 절차 완료까지 3-5일이 소요됩니다."
+            android:textAlignment="center"
+            android:textColor="@color/gray3"
+            android:textSize="18.12sp" />
+
+        <Button
+            android:id="@+id/button_home"
+            android:layout_width="230dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="34.29dp"
+            android:background="@drawable/button_radius"
+            android:fontFamily="@font/pretendard_semi_bold"
+            android:text="홈으로"
+            android:textColor="@color/white"
+            android:textSize="20.55sp" />
+    </LinearLayout>
+</LinearLayout>

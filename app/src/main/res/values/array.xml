@@ -12,4 +12,16 @@
         <item>"반조리"</item>
         <item>"기타"</item>
     </array>
+
+    <array name="location_array">
+        <item>캐나다, 토론토 (Canada, Toronto)</item>
+        <item>캐나다, 밴쿠버 (Canada, Vancuver)</item>
+        <item>미국, 보스턴 (U.S.A., Boston)</item>
+        <item>미국, 시카고 (U.S.A., Chicago)</item>
+        <item>미국, 로스앤젤레스 (U.S.A., Los Angeles)</item>
+        <item>미국, 샌프란시스코(U.S.A., San Francisco)</item>
+        <item>미국, 시애틀 (U.S.A., Seattle)</item>
+        <item>미국, 뉴욕 (U.S.A., New York)</item>
+        <item>국가와 지역을 선택해주세요</item> <!--hint-->
+    </array>
 </resources>

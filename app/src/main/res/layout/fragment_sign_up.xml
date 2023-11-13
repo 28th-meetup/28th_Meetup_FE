@@ -1,0 +1,527 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:context=".fragment.SignUpFragment">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:elevation="9.133333206176758dp"
+        android:outlineSpotShadowColor="#0A000000"
+        android:theme="@style/ToolbarTheme" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingHorizontal="22.83dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingVertical="11.42dp">
+
+                    <TextView
+                        android:id="@+id/textview_email"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/pretendard_semi_bold"
+                        android:text="이메일"
+                        android:textColor="@color/black"
+                        android:textSize="15.98sp" />
+
+                    <EditText
+                        android:id="@+id/edittext_email"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="11.42dp"
+                        android:background="@drawable/text_login_background"
+                        android:fontFamily="@font/pretendard_regular"
+                        android:hint="example@gmail.com"
+                        android:inputType="text|textEmailAddress"
+                        android:paddingHorizontal="22.83dp"
+                        android:paddingVertical="11.42dp"
+                        android:textColor="@color/black"
+                        android:textColorHint="#6E7178"
+                        android:textSize="18.27sp" />
+
+                    <TextView
+                        android:id="@+id/textview_email_error"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="11.42dp"
+                        android:fontFamily="@font/pretendard_light"
+                        android:text=" * 이메일이 올바르지 않습니다."
+                        android:textColor="#E70000"
+                        android:textSize="13.7sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingVertical="11.42dp">
+
+                    <TextView
+                        android:id="@+id/textview_password"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/pretendard_semi_bold"
+                        android:text="비밀번호"
+                        android:textColor="@color/black"
+                        android:textSize="15.98sp" />
+
+                    <EditText
+                        android:id="@+id/edittext_password"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="11.42dp"
+                        android:background="@drawable/text_login_background"
+                        android:fontFamily="@font/pretendard_regular"
+                        android:hint="영문, 숫자, 특수문자 포함 8글자 이상"
+                        android:inputType="text|textPassword"
+                        android:paddingHorizontal="22.83dp"
+                        android:paddingVertical="11.42dp"
+                        android:textColor="@color/black"
+                        android:textColorHint="#6E7178"
+                        android:textSize="18.27sp" />
+
+                    <TextView
+                        android:id="@+id/textview_password_error"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="11.42dp"
+                        android:fontFamily="@font/pretendard_light"
+                        android:text=" * 비밀번호는 영문 대소문자, 숫자 등을 조합하여\n    최소 8자리 이상이어야 합니다. "
+                        android:textColor="#E70000"
+                        android:textSize="13.7sp" />
+
+                    <EditText
+                        android:id="@+id/edittext_password_check"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="11.42dp"
+                        android:background="@drawable/text_login_background"
+                        android:fontFamily="@font/pretendard_regular"
+                        android:hint="비밀번호 확인"
+                        android:inputType="text|textPassword"
+                        android:paddingHorizontal="22.83dp"
+                        android:paddingVertical="11.42dp"
+                        android:textColor="@color/black"
+                        android:textColorHint="#6E7178"
+                        android:textSize="18.27sp" />
+
+                    <TextView
+                        android:id="@+id/textview_password_check_error"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="11.42dp"
+                        android:fontFamily="@font/pretendard_light"
+                        android:text=" * 비밀번호가 일치하지 않습니다."
+                        android:textColor="#E70000"
+                        android:textSize="13.7sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingVertical="11.42dp">
+
+                    <TextView
+                        android:id="@+id/textview_nick_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/pretendard_semi_bold"
+                        android:text="닉네임"
+                        android:textColor="@color/black"
+                        android:textSize="15.98sp" />
+
+                    <EditText
+                        android:id="@+id/edittext_nick_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="11.42dp"
+                        android:background="@drawable/text_login_background"
+                        android:fontFamily="@font/pretendard_regular"
+                        android:hint="사용하실 닉네임을 입력해주세요"
+                        android:inputType="text|textPersonName"
+                        android:paddingHorizontal="22.83dp"
+                        android:paddingVertical="11.42dp"
+                        android:textColor="@color/black"
+                        android:textColorHint="#6E7178"
+                        android:textSize="18.27sp" />
+
+                    <TextView
+                        android:id="@+id/textview_nick_name_error"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="11.42dp"
+                        android:fontFamily="@font/pretendard_light"
+                        android:text=" * 이미 존재하는 닉네임입니다."
+                        android:textColor="#E70000"
+                        android:textSize="13.7sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingVertical="11.42dp">
+
+                    <TextView
+                        android:id="@+id/textview_phone_number"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/pretendard_semi_bold"
+                        android:text="연락처"
+                        android:textColor="@color/black"
+                        android:textSize="15.98sp" />
+
+                    <Spinner
+                        android:id="@+id/spinner_phone_number"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="11.42dp"
+                        android:background="@drawable/text_login_background"
+                        android:fontFamily="@font/pretendard_regular"
+                        android:paddingHorizontal="22.83dp"
+                        android:paddingVertical="11.42dp"
+                        android:textColor="@color/gray3"
+                        android:textColorHint="@color/gray3"
+                        android:textSize="18.27sp" />
+
+                    <EditText
+                        android:id="@+id/edittext_phone_number"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="11.42dp"
+                        android:background="@drawable/text_login_background"
+                        android:fontFamily="@font/pretendard_regular"
+                        android:hint="010-0000-0000"
+                        android:inputType="text|textPersonName"
+                        android:paddingHorizontal="22.83dp"
+                        android:paddingVertical="11.42dp"
+                        android:textColor="@color/black"
+                        android:textColorHint="#6E7178"
+                        android:textSize="18.27sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingVertical="11.42dp">
+
+                    <TextView
+                        android:id="@+id/textview_location"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/pretendard_semi_bold"
+                        android:text="주소 설정"
+                        android:textColor="@color/black"
+                        android:textSize="15.98sp" />
+
+                    <Spinner
+                        android:id="@+id/spinner_location"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="11.42dp"
+                        android:background="@drawable/text_login_background"
+                        android:fontFamily="@font/pretendard_regular"
+                        android:paddingHorizontal="22.83dp"
+                        android:paddingVertical="11.42dp"
+                        android:textColor="@color/gray3"
+                        android:textColorHint="@color/gray3"
+                        android:textSize="18.27sp" />
+
+                    <EditText
+                        android:id="@+id/edittext_location1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="11.42dp"
+                        android:background="@drawable/text_login_background"
+                        android:fontFamily="@font/pretendard_regular"
+                        android:hint="주소 1 (도시명, 도로명, 주소)"
+                        android:inputType="text|textPersonName"
+                        android:paddingHorizontal="22.83dp"
+                        android:paddingVertical="11.42dp"
+                        android:textColor="@color/black"
+                        android:textColorHint="#6E7178"
+                        android:textSize="18.27sp" />
+
+                    <EditText
+                        android:id="@+id/edittext_location2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="11.42dp"
+                        android:background="@drawable/text_login_background"
+                        android:fontFamily="@font/pretendard_regular"
+                        android:hint="주소 2 (아파트, 동호수 등)"
+                        android:inputType="text|textPersonName"
+                        android:paddingHorizontal="22.83dp"
+                        android:paddingVertical="11.42dp"
+                        android:textColor="@color/black"
+                        android:textColorHint="#6E7178"
+                        android:textSize="18.27sp" />
+
+                    <EditText
+                        android:id="@+id/edittext_location"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="11.42dp"
+                        android:background="@drawable/text_login_background"
+                        android:fontFamily="@font/pretendard_regular"
+                        android:hint="우편번호 (자동으로 기입됩니다.)"
+                        android:inputType="text|textPersonName"
+                        android:paddingHorizontal="22.83dp"
+                        android:paddingVertical="11.42dp"
+                        android:textColor="@color/black"
+                        android:textColorHint="#6E7178"
+                        android:textSize="18.27sp" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <com.google.android.material.divider.MaterialDivider
+                android:id="@+id/divider"
+                android:layout_width="match_parent"
+                android:layout_height="13.7dp"
+                app:dividerColor="@color/gray_blue2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="22.83dp"
+                android:layout_marginBottom="11.42dp"
+                android:orientation="horizontal"
+                android:paddingHorizontal="22.83dp">
+
+                <ImageButton
+                    android:id="@+id/button_checkbox_all"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@color/transparent"
+                    android:src="@drawable/checkbox" />
+
+                <TextView
+                    android:id="@+id/textview_agreement_all"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="6.85dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/pretendard_semi_bold"
+                    android:text="회원 가입을 위한 약관 모두 동의 "
+                    android:textColor="@color/black"
+                    android:textSize="15.98sp" />
+            </LinearLayout>
+
+            <com.google.android.material.divider.MaterialDivider
+                android:id="@+id/divider2"
+                android:layout_width="match_parent"
+                android:layout_height="1.14dp"
+                app:dividerColor="@color/gray_blue2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:paddingHorizontal="22.83dp"
+                android:paddingVertical="11.42dp">
+
+                <ImageButton
+                    android:id="@+id/button_checkbox1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@color/transparent"
+                    android:src="@drawable/checkbox" />
+
+                <TextView
+                    android:id="@+id/textview_agreement1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="6.85dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/pretendard_regular"
+                    android:text="[필수] 이용약관 동의"
+                    android:textColor="@color/black"
+                    android:textSize="15.98sp" />
+
+                <TextView
+                    android:id="@+id/textview_agreement1_detail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/pretendard_regular"
+                    android:text="보기"
+                    android:textColor="@color/gray3"
+                    android:textSize="13.7sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:paddingHorizontal="22.83dp"
+                android:paddingVertical="11.42dp">
+
+                <ImageButton
+                    android:id="@+id/button_checkbox2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@color/transparent"
+                    android:src="@drawable/checkbox" />
+
+                <TextView
+                    android:id="@+id/textview_agreement2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="6.85dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/pretendard_regular"
+                    android:text="[필수] 개인정보 수집 및 이용 동의"
+                    android:textColor="@color/black"
+                    android:textSize="15.98sp" />
+
+                <TextView
+                    android:id="@+id/textview_agreement2_detail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/pretendard_regular"
+                    android:text="보기"
+                    android:textColor="@color/gray3"
+                    android:textSize="13.7sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:paddingHorizontal="22.83dp"
+                android:paddingVertical="11.42dp">
+
+                <ImageButton
+                    android:id="@+id/button_checkbox3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@color/transparent"
+                    android:src="@drawable/checkbox" />
+
+                <TextView
+                    android:id="@+id/textview_agreement3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="6.85dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/pretendard_regular"
+                    android:text="[필수] 전자금융거래 이용약관"
+                    android:textColor="@color/black"
+                    android:textSize="15.98sp" />
+
+                <TextView
+                    android:id="@+id/textview_agreement3_detail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/pretendard_regular"
+                    android:text="보기"
+                    android:textColor="@color/gray3"
+                    android:textSize="13.7sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:paddingHorizontal="22.83dp"
+                android:paddingVertical="11.42dp">
+
+                <ImageButton
+                    android:id="@+id/button_checkbox4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@color/transparent"
+                    android:src="@drawable/checkbox" />
+
+                <TextView
+                    android:id="@+id/textview_agreement4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="6.85dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/pretendard_regular"
+                    android:text="[필수] 만 14세 이상 이용자"
+                    android:textColor="@color/black"
+                    android:textSize="15.98sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:layout_marginBottom="20dp"
+                android:paddingHorizontal="22.83dp"
+                android:paddingVertical="11.42dp">
+
+                <ImageButton
+                    android:id="@+id/button_checkbox5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@color/transparent"
+                    android:src="@drawable/checkbox" />
+
+                <TextView
+                    android:id="@+id/textview_agreement5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="6.85dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/pretendard_regular"
+                    android:text="[선택] 선택정보 수집 및 이용동의"
+                    android:textColor="@color/black"
+                    android:textSize="15.98sp" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/button_login"
+                android:layout_width="match_parent"
+                android:layout_height="68.5dp"
+                android:layout_margin="22.83dp"
+                android:background="@drawable/button_login_background"
+                android:fontFamily="@font/pretendard_semi_bold"
+                android:text="가입하기"
+                android:textColor="@color/white"
+                android:textSize="20.55sp" />
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
