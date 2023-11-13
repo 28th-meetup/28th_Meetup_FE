@@ -129,10 +129,10 @@
                 android:layout_marginLeft="50.23dp"
                 android:layout_marginTop="13.7dp"
                 android:layout_marginRight="50.23dp"
+                android:layout_marginBottom="63.62dp"
                 android:theme="@style/Theme.MaterialComponents.Light"
                 app:cardCornerRadius="9.13dp"
                 app:cardElevation="0dp"
-                android:layout_marginBottom="63.62dp"
 
                 app:strokeColor="@color/main_color"
                 app:strokeWidth="1dp">
@@ -140,23 +140,16 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="주문 관리 보기"
+                    android:layout_gravity="center"
                     android:layout_marginTop="16.4dp"
                     android:layout_marginBottom="16.4dp"
-                    android:layout_gravity="center"
+                    android:fontFamily="@font/pretendard_semi_bold"
+                    android:text="주문 관리 보기"
                     android:textColor="@color/main_color"
-                    android:textSize="20.55sp"
-                    android:fontFamily="@font/pretendard_semi_bold"/>
-
-
-
-
-
-
+                    android:textSize="20.55sp" />
 
 
             </com.google.android.material.card.MaterialCardView>
-
 
 
         </LinearLayout>
