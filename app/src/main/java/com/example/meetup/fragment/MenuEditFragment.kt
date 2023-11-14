@@ -67,6 +67,10 @@ binding.recyclerviewMenuList.layoutManager = LinearLayoutManager(requireContext(
                 commit()
             }
         }
+
+        binding.btnBack.setOnClickListener {
+            fragmentManager?.popBackStack()
+        }
     }
 
 }

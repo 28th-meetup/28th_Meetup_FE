@@ -82,6 +82,7 @@ class MyPageSellerFragment : BaseFragment<FragmentMyPageSellerBinding>(R.layout.
         val mypageSellerStoreManageFragment = MypageSellerStoreManageFragment()
         fragmentManager?.beginTransaction()?.apply {
             replace(R.id.framelayout_mypage_seller, mypageSellerStoreManageFragment)
+            addToBackStack(null)
             commit()
         }
     }

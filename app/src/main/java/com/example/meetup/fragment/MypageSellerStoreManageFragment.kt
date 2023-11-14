@@ -35,13 +35,19 @@ class MypageSellerStoreManageFragment : BaseFragment<FragmentMypageSellerStoreMa
             val menuEditFragment = MenuEditFragment()
             fragmentManager?.beginTransaction()?.apply {
                 replace(R.id.frameArea, menuEditFragment)
+                addToBackStack(null)
                 commit()
             }
         }
 
         //가게 등록 클릭
         binding.btnStoreEnroll.setOnClickListener {
-
+            val storeEditFragment = StoreEditFragment()
+            fragmentManager?.beginTransaction()?.apply {
+                replace(R.id.frameArea, storeEditFragment)
+                addToBackStack(null)
+                commit()
+            }
         }
     }
 
