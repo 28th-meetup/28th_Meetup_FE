@@ -12,8 +12,8 @@ import com.example.meetup.model.MenuListResponseModel
 
 class MenuListAdapter(
     private var menuList: ArrayList<MenuListResponseModel>,
-//    private val itemClickListener1: (Int) -> Unit,
-//    private val itemClickListener2: (Int) -> Unit,
+    private val itemClickListener1: (Int) -> Unit,
+    private val itemClickListener2: (Int) -> Unit,
 
     ) : RecyclerView.Adapter<MenuListAdapter.ViewHolder>() {
 
@@ -30,15 +30,15 @@ class MenuListAdapter(
 
 
         //클릭 이벤트
-//        holder.btn_edit.setOnClickListener {
-//
-//            itemClickListener1.invoke(position)
-//        }
-//
-//        holder.btn_delete.setOnClickListener {
-//            itemClickListener2.invoke(position)
-//
-//        }
+        holder.btn_edit.setOnClickListener {
+
+            itemClickListener1.invoke(position)
+        }
+
+        holder.btn_delete.setOnClickListener {
+            itemClickListener2.invoke(position)
+
+        }
     }
 
     override fun getItemCount(): Int {
