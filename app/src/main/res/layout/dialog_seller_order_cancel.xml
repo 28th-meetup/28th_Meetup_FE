@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/imageview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="34.25dp"
+        android:src="@drawable/img_alert" />
+
+    <TextView
+        android:id="@+id/textview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15.98dp"
+        android:fontFamily="@font/pretendard_bold"
+        android:text="정말 주문을\n취소하시겠습니까?"
+        android:textAlignment="center"
+        android:textSize="25.12dp" />
+
+
+    <LinearLayout
+        android:layout_width="255dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:background="@drawable/row_layout_order_food_background"
+        android:paddingHorizontal="29.37dp"
+        android:paddingVertical="22.27dp"
+        android:layout_marginTop="28.54dp">
+
+        <TextView
+            android:id="@+id/textview_order_cancel_food_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="20.55sp"
+            android:fontFamily="@font/pretendard_semi_bold"/>
+
+        <TextView
+            android:id="@+id/textview_order_cancel_option_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6.85dp"
+            android:fontFamily="@font/pretendard_regular"
+            android:text="TextView"
+            android:textAlignment="center"
+            android:textColor="@color/gray2"
+            android:textSize="15.98sp" />
+
+        <TextView
+            android:id="@+id/textview_order_cancel_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="11.42dp"
+            android:fontFamily="@font/pretendard_regular"
+            android:text="TextView"
+            android:textAlignment="center"
+            android:textColor="@color/gray2"
+            android:textSize="15.98sp" />
+
+        <TextView
+            android:id="@+id/textview_order_cancel_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pretendard_semi_bold"
+            android:text="TextView"
+            android:textAlignment="center"
+            android:textColor="@color/gray2"
+            android:textSize="15.98sp" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/button_order_cancel"
+        android:layout_width="255dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="28.54dp"
+        android:background="@drawable/button_dialog_main"
+        android:fontFamily="@font/pretendard_semi_bold"
+        android:text="주문 취소"
+        android:textColor="@color/white"
+        android:textSize="20.55sp" />
+
+    <Button
+        android:id="@+id/button_back"
+        android:layout_width="255dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="13.7dp"
+        android:background="@drawable/button_dialog_main_color_stroke"
+        android:fontFamily="@font/pretendard_semi_bold"
+        android:text="뒤로 가기"
+        android:textColor="@color/main_color"
+        android:textSize="20.55sp" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="33.62dp" />
+
+</LinearLayout>
