@@ -1,11 +1,18 @@
 package com.example.meetup.fragment
 
+import android.graphics.BitmapFactory
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import androidx.activity.result.PickVisualMediaRequest
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.ui.graphics.Color
+import com.bumptech.glide.Glide
 import com.example.meetup.R
 import com.example.meetup.base.BaseFragment
 import com.example.meetup.databinding.FragmentMenuAddBinding
@@ -25,49 +32,195 @@ class MenuAddFragment : BaseFragment<FragmentMenuAddBinding>(R.layout.fragment_m
         savedInstanceState: Bundle?
     ): View? {
         return super.onCreateView(inflater, container, savedInstanceState)
+
+        val optionData = listOf("추가/할인", "추가", "할인")
+        var adapter =
+            ArrayAdapter<String>(requireContext(), android.R.layout.simple_list_item_1, optionData)
+
+        binding.textviewAddOption.adapter = adapter
+
+        binding.textviewAddOption.onItemSelectedListener =
+            object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+
+
+                }
+
+                override fun onNothingSelected(p0: AdapterView<*>?) {
+                    TODO("Not yet implemented")
+                }
+
+            }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val pickMedia =
+            registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
+                // Callback is invoked after the user selects a media item or closes the
+                // photo picker.
+                if (uri != null) {
+                    Log.d("PhotoPicker", "Selected URI: $uri")
+
+//                    bitmap = BitmapFactory.decodeStream(
+//                        requireContext().contentResolver.openInputStream(uri)
+//                    )
+
+                   Glide.with(this)
+                       .load(uri)
+                       .into(binding.imageviewChooseRepresent)
+
+
+
+                } else {
+                    Log.d("PhotoPicker", "No media selected")
+                }
+            }
+
+        //메뉴 카테고리 선택 클릭
+        binding.textviewMenuCategory.setOnClickListener {
+            menuCategoryClick()
+        }
+
+        //대표 메뉴 이미지 클릭
+        binding.imageviewChooseRepresent.setOnClickListener {
+            pickMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
+
+        }
+
+        //옵션 추가 클릭
+        binding.btnOptionAdd.setOnClickListener {
+            binding.cardviewOption2.visibility = View.VISIBLE
+        }
+
+        //배달 포장 모두 가능 클릭
         binding.btnOptionAllAble.setOnClickListener {
-
-            binding.btnOptionAllAble.strokeColor = android.graphics.Color.parseColor("#E60051")
-            binding.btnOptionAllAbleText.setTextColor(android.graphics.Color.parseColor("#E60051"))
-
-            binding.btnOptionOnlyDelivery.strokeColor = android.graphics.Color.parseColor("#ABBED1")
-            binding.btnOptionOnlyDeliveryText.setTextColor(android.graphics.Color.parseColor("#000000"))
-
-            binding.btnOptionOnlyTogo.strokeColor = android.graphics.Color.parseColor("#ABBED1")
-            binding.btnOptionOnlyTogoText.setTextColor(android.graphics.Color.parseColor("#000000"))
-
+            btnOptionAllAbleClick()
         }
 
+        //배달만 가능 클릭
         binding.btnOptionOnlyDelivery.setOnClickListener {
-
-            binding.btnOptionAllAble.strokeColor = android.graphics.Color.parseColor("#ABBED1")
-            binding.btnOptionAllAbleText.setTextColor(android.graphics.Color.parseColor("#000000"))
-
-            binding.btnOptionOnlyDelivery.strokeColor = android.graphics.Color.parseColor("#E60051")
-            binding.btnOptionOnlyDeliveryText.setTextColor(android.graphics.Color.parseColor("#E60051"))
-
-            binding.btnOptionOnlyTogo.strokeColor = android.graphics.Color.parseColor("#ABBED1")
-            binding.btnOptionOnlyTogoText.setTextColor(android.graphics.Color.parseColor("#000000"))
-
+            btnOptionOnlyDelivery()
         }
 
+        //포장만 가능 클릭
         binding.btnOptionOnlyTogo.setOnClickListener {
+            btnOptionOnlyTogo()
+        }
 
-            binding.btnOptionAllAble.strokeColor = android.graphics.Color.parseColor("#ABBED1")
-            binding.btnOptionAllAbleText.setTextColor(android.graphics.Color.parseColor("#000000"))
-
-            binding.btnOptionOnlyDelivery.strokeColor = android.graphics.Color.parseColor("#ABBED1")
-            binding.btnOptionOnlyDeliveryText.setTextColor(android.graphics.Color.parseColor("#000000"))
-
-            binding.btnOptionOnlyTogo.strokeColor = android.graphics.Color.parseColor("#E60051")
-            binding.btnOptionOnlyTogoText.setTextColor(android.graphics.Color.parseColor("#E60051"))
-
+        //뒤로 가기 클릭
+        binding.btnBack.setOnClickListener {
+            fragmentManager?.popBackStack()
         }
     }
+
+
+    fun menuCategoryClick() {
+        if (binding.linearLayoutCategory.visibility == View.GONE) {
+            binding.linearLayoutCategory.visibility = View.VISIBLE
+
+        } else if (binding.linearLayoutCategory.visibility == View.VISIBLE) {
+            binding.linearLayoutCategory.visibility = View.GONE
+        }
+
+
+        binding.textviewCaterogy1.setOnClickListener {
+            binding.textviewMenuCategory.text = binding.textviewCaterogy1.text
+            binding.linearLayoutCategory.visibility = View.GONE
+        }
+
+        binding.textviewCaterogy2.setOnClickListener {
+            binding.textviewMenuCategory.text = binding.textviewCaterogy2.text
+            binding.linearLayoutCategory.visibility = View.GONE
+        }
+        binding.textviewCaterogy3.setOnClickListener {
+            binding.textviewMenuCategory.text = binding.textviewCaterogy3.text
+            binding.linearLayoutCategory.visibility = View.GONE
+        }
+        binding.textviewCaterogy4.setOnClickListener {
+            binding.textviewMenuCategory.text = binding.textviewCaterogy4.text
+            binding.linearLayoutCategory.visibility = View.GONE
+        }
+        binding.textviewCaterogy5.setOnClickListener {
+            binding.textviewMenuCategory.text = binding.textviewCaterogy5.text
+            binding.linearLayoutCategory.visibility = View.GONE
+        }
+        binding.textviewCaterogy6.setOnClickListener {
+            binding.textviewMenuCategory.text = binding.textviewCaterogy7.text
+            binding.linearLayoutCategory.visibility = View.GONE
+        }
+        binding.textviewCaterogy7.setOnClickListener {
+            binding.textviewMenuCategory.text = binding.textviewCaterogy8.text
+            binding.linearLayoutCategory.visibility = View.GONE
+        }
+        binding.textviewCaterogy8.setOnClickListener {
+            binding.textviewMenuCategory.text = binding.textviewCaterogy8.text
+            binding.linearLayoutCategory.visibility = View.GONE
+        }
+        binding.textviewCaterogy9.setOnClickListener {
+            binding.textviewMenuCategory.text = binding.textviewCaterogy9.text
+            binding.linearLayoutCategory.visibility = View.GONE
+        }
+        binding.textviewCaterogy10.setOnClickListener {
+            binding.textviewMenuCategory.text = binding.textviewCaterogy10.text
+            binding.linearLayoutCategory.visibility = View.GONE
+        }
+
+    }
+
+    fun btnOptionAllAbleClick() {
+        binding.btnOptionAllAble.strokeColor = android.graphics.Color.parseColor("#E60051")
+        binding.btnOptionAllAbleText.setTextColor(android.graphics.Color.parseColor("#E60051"))
+
+        binding.btnOptionOnlyDelivery.strokeColor = android.graphics.Color.parseColor("#ABBED1")
+        binding.btnOptionOnlyDeliveryText.setTextColor(android.graphics.Color.parseColor("#000000"))
+
+        binding.btnOptionOnlyTogo.strokeColor = android.graphics.Color.parseColor("#ABBED1")
+        binding.btnOptionOnlyTogoText.setTextColor(android.graphics.Color.parseColor("#000000"))
+
+        binding.imageviewIscheck1.setImageResource(R.drawable._c_checkmark_circle_selected)
+        binding.imageviewIscheck2.setImageResource(R.drawable.ic_checkmark_circle)
+        binding.imageviewIscheck2.setImageResource(R.drawable.ic_checkmark_circle)
+        binding.btnAddColor.setBackgroundColor(android.graphics.Color.parseColor("#E60051"))
+
+
+
+    }
+
+    fun btnOptionOnlyDelivery() {
+        binding.btnOptionAllAble.strokeColor = android.graphics.Color.parseColor("#ABBED1")
+        binding.btnOptionAllAbleText.setTextColor(android.graphics.Color.parseColor("#000000"))
+
+        binding.btnOptionOnlyDelivery.strokeColor = android.graphics.Color.parseColor("#E60051")
+        binding.btnOptionOnlyDeliveryText.setTextColor(android.graphics.Color.parseColor("#E60051"))
+
+        binding.btnOptionOnlyTogo.strokeColor = android.graphics.Color.parseColor("#ABBED1")
+        binding.btnOptionOnlyTogoText.setTextColor(android.graphics.Color.parseColor("#000000"))
+
+        binding.imageviewIscheck1.setImageResource(R.drawable.ic_checkmark_circle)
+        binding.imageviewIscheck2.setImageResource(R.drawable._c_checkmark_circle_selected)
+        binding.imageviewIscheck3.setImageResource(R.drawable.ic_checkmark_circle)
+
+        binding.btnAddColor.setBackgroundColor(android.graphics.Color.parseColor("#E60051"))
+    }
+
+    fun btnOptionOnlyTogo() {
+        binding.btnOptionAllAble.strokeColor = android.graphics.Color.parseColor("#ABBED1")
+        binding.btnOptionAllAbleText.setTextColor(android.graphics.Color.parseColor("#000000"))
+
+        binding.btnOptionOnlyDelivery.strokeColor = android.graphics.Color.parseColor("#ABBED1")
+        binding.btnOptionOnlyDeliveryText.setTextColor(android.graphics.Color.parseColor("#000000"))
+
+        binding.btnOptionOnlyTogo.strokeColor = android.graphics.Color.parseColor("#E60051")
+        binding.btnOptionOnlyTogoText.setTextColor(android.graphics.Color.parseColor("#E60051"))
+
+        binding.imageviewIscheck1.setImageResource(R.drawable.ic_checkmark_circle)
+        binding.imageviewIscheck2.setImageResource(R.drawable.ic_checkmark_circle)
+        binding.imageviewIscheck3.setImageResource(R.drawable._c_checkmark_circle_selected)
+        binding.btnAddColor.setBackgroundColor(android.graphics.Color.parseColor("#E60051"))
+
+    }
+
 
 }

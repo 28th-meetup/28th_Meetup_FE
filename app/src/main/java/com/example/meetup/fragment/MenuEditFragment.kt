@@ -58,6 +58,15 @@ binding.recyclerviewMenuList.layoutManager = LinearLayoutManager(requireContext(
         super.onViewCreated(view, savedInstanceState)
 
 
+        //플로팅 버튼 클릭
+        binding.floatingPlus.setOnClickListener {
+            val menuAddFragment = MenuAddFragment()
+            fragmentManager?.beginTransaction()?.apply {
+                replace(R.id.frameArea, menuAddFragment)
+                addToBackStack(null)
+                commit()
+            }
+        }
     }
 
 }
