@@ -10,13 +10,15 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
+import com.bumptech.glide.Glide
 import com.example.meetup.R
 import com.example.meetup.base.BaseFragment
 import com.example.meetup.databinding.FragmentReviewWriteBinding
 import com.kakao.sdk.talk.model.Order
 
 
-class ReviewWriteFragment : BaseFragment<FragmentReviewWriteBinding>(R.layout.fragment_review_write) {
+class ReviewWriteFragment :
+    BaseFragment<FragmentReviewWriteBinding>(R.layout.fragment_review_write) {
 
 
     var star_rate = 0
@@ -38,7 +40,7 @@ class ReviewWriteFragment : BaseFragment<FragmentReviewWriteBinding>(R.layout.fr
         super.onViewCreated(view, savedInstanceState)
 
         val pickMedia =
-            registerForActivityResult(ActivityResultContracts.PickMultipleVisualMedia(10)) { uri ->
+            registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
                 // Callback is invoked after the user selects a media item or closes the
                 // photo picker.
                 if (uri != null) {
@@ -50,9 +52,10 @@ class ReviewWriteFragment : BaseFragment<FragmentReviewWriteBinding>(R.layout.fr
 
 //                        binding.textView8.setText("$uri")
 
-                    binding.textviewPhotoNum.setText("사진 ${uri.size}/10")
-                    binding.textviewUri1.setText(uri.toString())
-                    binding.textviewUri1.visibility = View.VISIBLE
+
+                    Glide.with(this)
+                        .load(uri)
+                        .into(binding.imageviewReviewImage)
 
 
                 } else {
@@ -60,7 +63,7 @@ class ReviewWriteFragment : BaseFragment<FragmentReviewWriteBinding>(R.layout.fr
                 }
             }
 
-        binding.btnChoosePhoto.setOnClickListener{
+        binding.imageviewReviewImage.setOnClickListener {
 
             pickMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
 
@@ -122,7 +125,7 @@ class ReviewWriteFragment : BaseFragment<FragmentReviewWriteBinding>(R.layout.fr
             btnXClick()
         }
 
-        binding.textviewWrite.setOnClickListener{
+        binding.textviewWrite.setOnClickListener {
 
             textviewWriteClick()
         }
@@ -142,17 +145,16 @@ class ReviewWriteFragment : BaseFragment<FragmentReviewWriteBinding>(R.layout.fr
         review_content = binding.edittextReviewContent.text.toString()
 
 
-        if(star_rate==0){
-            Toast.makeText(context,"별점을 선택해주세요.",Toast.LENGTH_SHORT).show()
-        } else if (binding.edittextReviewContent.length()<20){
-            Toast.makeText(context,"내용을 최소 20자 이상 작성해주세요.",Toast.LENGTH_SHORT).show()
+        if (star_rate == 0) {
+            Toast.makeText(context, "별점을 선택해주세요.", Toast.LENGTH_SHORT).show()
+        } else if (binding.edittextReviewContent.length() < 20) {
+            Toast.makeText(context, "내용을 최소 20자 이상 작성해주세요.", Toast.LENGTH_SHORT).show()
 
         } else {
             //통신
 
         }
     }
-
 
 
 }

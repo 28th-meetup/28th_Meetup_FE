@@ -47,19 +47,26 @@
         app:strokeColor="#E2E3E5"
         app:strokeWidth="1dp">
 
-        <EditText
+<!--        <EditText-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginLeft="22.83dp"-->
+<!--            android:layout_marginTop="11.42dp"-->
+<!--            android:layout_marginBottom="11.42dp"-->
+<!--            android:background="@color/transparent"-->
+<!--            android:drawableLeft="@drawable/ic_search"-->
+<!--            android:drawablePadding="4dp"-->
+<!--            android:fontFamily="@font/pretendard_regular"-->
+<!--            android:hint="가게 이름 또는 판매자 이름 검색"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:textSize="16sp" />-->
+
+        <SearchView
+            android:id="@+id/searchview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="22.83dp"
-            android:layout_marginTop="11.42dp"
-            android:layout_marginBottom="11.42dp"
-            android:background="@color/transparent"
-            android:drawableLeft="@drawable/ic_search"
-            android:drawablePadding="4dp"
-            android:fontFamily="@font/pretendard_regular"
-            android:hint="가게 이름 또는 판매자 이름 검색"
-            android:textColor="@color/black"
-            android:textSize="16sp" />
+            android:iconifiedByDefault="false"/>
+
     </com.google.android.material.card.MaterialCardView>
 
     <LinearLayout

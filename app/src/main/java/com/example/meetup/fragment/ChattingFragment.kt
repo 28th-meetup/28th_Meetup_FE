@@ -1,10 +1,12 @@
 package com.example.meetup.fragment
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.meetup.R
 import com.example.meetup.adapter.ChattingListAdapter
@@ -41,6 +43,7 @@ class ChattingFragment : Fragment() {
         chattingList.add(ChattingListResponseModel("22","333","333","333","3"))
 
 
+//        binding.searchview.setOnQueryTextListener(searchViewTextListener)
         chattingListAdapter = ChattingListAdapter(chattingList)
 
         binding.recyclerviewChattingList.adapter = chattingListAdapter
@@ -65,5 +68,19 @@ class ChattingFragment : Fragment() {
         }
     }
 
-
+//    var searchViewTextListener: SearchView.OnQueryTextListener =
+//        object : SearchView.OnQueryTextListener {
+//            //검색버튼 입력시 호출, 검색버튼이 없으므로 사용하지 않음
+//            override fun onQueryTextSubmit(s: String): Boolean {
+//                return false
+//            }
+//
+//            //텍스트 입력/수정시에 호출
+//            override fun onQueryTextChange(s: String): Boolean {
+//                chattingListAdapter.getFilter().filter(s)
+//                Log.d("Aaa", "SearchVies Text is changed : $s")
+//
+//                return false
+//            }
+//        }
 }
