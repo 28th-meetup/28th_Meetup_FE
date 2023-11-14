@@ -13,6 +13,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
+            android:background="#FFFFFF"
             tools:context=".fragment.StoreEditFragment">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -160,11 +161,10 @@
                     android:layout_width="139dp"
                     android:layout_height="match_parent"
                     android:layout_marginTop="11.42dp"
+                    android:background="@drawable/text_login_background"
                     android:textColor="@color/gray3"
                     android:textColorHint="@color/gray3"
-                    android:textSize="18.27sp"
-                    android:background="@drawable/text_login_background"/>
-
+                    android:textSize="18.27sp" />
 
 
             </LinearLayout>

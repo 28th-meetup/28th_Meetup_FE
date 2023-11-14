@@ -16,11 +16,13 @@ import com.bumptech.glide.Glide
 import com.example.meetup.R
 import com.example.meetup.base.BaseFragment
 import com.example.meetup.databinding.FragmentMenuAddBinding
+import com.example.meetup.databinding.FragmentStoreDetailBinding
 
 
-class MenuAddFragment : BaseFragment<FragmentMenuAddBinding>(R.layout.fragment_menu_add) {
+class MenuAddFragment : Fragment() {
 
-
+    private var _binding: FragmentMenuAddBinding? = null
+    private val binding get() = _binding!!
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -31,11 +33,17 @@ class MenuAddFragment : BaseFragment<FragmentMenuAddBinding>(R.layout.fragment_m
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return super.onCreateView(inflater, container, savedInstanceState)
 
-        val optionData = listOf("추가/할인", "추가", "할인")
+        _binding = FragmentMenuAddBinding.inflate(inflater,container,false)
+        val view = binding.root
+
+
+
+        val optionData = resources.getStringArray(R.array.spinner_option)
         var adapter =
-            ArrayAdapter<String>(requireContext(), android.R.layout.simple_list_item_1, optionData)
+            ArrayAdapter<String>(requireContext(), android.R.layout.simple_spinner_item, optionData)
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
 
         binding.textviewAddOption.adapter = adapter
 
@@ -51,6 +59,8 @@ class MenuAddFragment : BaseFragment<FragmentMenuAddBinding>(R.layout.fragment_m
                 }
 
             }
+        return view
+
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

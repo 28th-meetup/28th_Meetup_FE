@@ -11,6 +11,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
+            android:background="#FFFFFF"
             tools:context=".fragment.MenuAddFragment">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -459,7 +460,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/textView17"
                         app:layout_constraintTop_toTopOf="@+id/textView17"
-                        app:strokeColor="@color/black"
+                        app:strokeColor="@color/gray_blue"
                         app:strokeWidth="1dp">
 
 
@@ -525,6 +526,7 @@
                         android:layout_height="45.67dp"
                         android:layout_marginTop="16.5dp"
                         android:layout_marginBottom="26.26dp"
+                        android:background="@drawable/text_login_background"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="@+id/textView18"
                         app:layout_constraintTop_toBottomOf="@+id/textView18"
@@ -541,7 +543,7 @@
                         app:layout_constraintBottom_toBottomOf="@+id/textview_add_option"
                         app:layout_constraintStart_toEndOf="@+id/textview_add_option"
                         app:layout_constraintTop_toTopOf="@+id/textview_add_option"
-                        app:strokeColor="@color/black"
+                        app:strokeColor="@color/gray_blue"
                         app:strokeWidth="1dp">
 
                         <EditText

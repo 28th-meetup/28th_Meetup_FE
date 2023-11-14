@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import androidx.activity.result.PickVisualMediaRequest
@@ -14,12 +15,16 @@ import androidx.activity.result.contract.ActivityResultContracts
 import com.bumptech.glide.Glide
 import com.example.meetup.R
 import com.example.meetup.base.BaseFragment
+import com.example.meetup.databinding.FragmentMenuAddBinding
+import com.example.meetup.databinding.FragmentMenuEditBinding
 import com.example.meetup.databinding.FragmentStoreEditBinding
 
 
-class StoreEditFragment : BaseFragment<FragmentStoreEditBinding>(R.layout.fragment_store_edit) {
+class StoreEditFragment : Fragment() {
 
 
+    private var _binding: FragmentStoreEditBinding? = null
+    private val binding get() = _binding!!
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -30,8 +35,32 @@ class StoreEditFragment : BaseFragment<FragmentStoreEditBinding>(R.layout.fragme
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return super.onCreateView(inflater, container, savedInstanceState)
 
+        _binding = FragmentStoreEditBinding.inflate(inflater,container,false)
+        val view = binding.root
+
+
+        val spinnerMoney = resources.getStringArray(R.array.spinner_money)
+        var moneyAdapter =
+            ArrayAdapter<String>(requireContext(), android.R.layout.simple_spinner_item, spinnerMoney)
+
+        moneyAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+
+        binding.spinnerMoney.adapter = moneyAdapter
+        binding.spinnerMoney.onItemSelectedListener =
+            object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+
+
+                }
+
+                override fun onNothingSelected(p0: AdapterView<*>?) {
+                    TODO("Not yet implemented")
+                }
+
+            }
+
+        return view
 
 
 
