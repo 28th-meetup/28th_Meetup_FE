@@ -37,6 +37,14 @@ class MyPageSellerFragment : BaseFragment<FragmentMyPageSellerBinding>(R.layout.
             commit()
         }
 
+        binding.imageviewAlarm.setOnClickListener {
+            val alarmFragment = AlarmFragment()
+            fragmentManager?.beginTransaction()?.apply {
+                replace(R.id.frameArea, alarmFragment)
+                addToBackStack(null)
+                commit()
+            }
+        }
 
         //가게 관리 클릭
         binding.btnStoreManage.setOnClickListener {

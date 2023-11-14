@@ -68,6 +68,15 @@ class StoreFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
+        binding.btnAlarm.setOnClickListener {
+
+            val alarmFragment = AlarmFragment()
+            fragmentManager?.beginTransaction()?.apply {
+                replace(R.id.frameArea, alarmFragment)
+                addToBackStack(null)
+                commit()
+            }
+        }
         binding.btnAll.setOnClickListener {
 
             btnAll()

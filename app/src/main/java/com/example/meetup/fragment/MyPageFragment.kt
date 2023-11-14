@@ -28,6 +28,14 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_
         super.onViewCreated(view, savedInstanceState)
 
 
+        binding.imageviewAlarm.setOnClickListener {
+            val alarmFragment = AlarmFragment()
+            fragmentManager?.beginTransaction()?.apply {
+                replace(R.id.frameArea, alarmFragment)
+                addToBackStack(null)
+                commit()
+            }
+        }
         binding.btnChangeSeller.setOnClickListener {
             val storeEnrollDialogFragment = StoreEnrollDialogFragment()
 
