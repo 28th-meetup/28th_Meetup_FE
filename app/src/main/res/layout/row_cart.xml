@@ -24,7 +24,7 @@
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/imageview"
-            style="@style/ShapeAppearance.Material3.Corner.Large"
+            app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Small"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="9.13dp"
