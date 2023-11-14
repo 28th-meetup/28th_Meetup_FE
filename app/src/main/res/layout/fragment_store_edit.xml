@@ -13,6 +13,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
+            android:background="#FFFFFF"
             tools:context=".fragment.StoreEditFragment">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -91,8 +92,8 @@
                 android:textSize="16sp" />
 
             <com.google.android.material.card.MaterialCardView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="123dp"
+                android:layout_height="123dp"
                 android:layout_marginLeft="22.83dp"
                 android:layout_marginTop="22.83dp"
                 android:theme="@style/Theme.MaterialComponents.Light"
@@ -101,27 +102,13 @@
                 app:strokeColor="@color/gray_blue"
                 app:strokeWidth="1dp">
 
-                <LinearLayout
-                    android:id="@+id/btn_choose_photo_represent"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:padding="28.27dp">
+                <ImageView
+                    android:id="@+id/imageview_choose_represent"
 
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_camera" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/pretendard_light"
-                        android:text="대표 이미지를\n업로드하세요"
-                        android:textColor="@color/gray"
-                        android:textSize="13.7sp" />
-                </LinearLayout>
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ic_choose_represent_img"/>
 
 
             </com.google.android.material.card.MaterialCardView>
@@ -170,15 +157,14 @@
                 </com.google.android.material.card.MaterialCardView>
 
                 <Spinner
+                    android:id="@+id/spinner_money"
                     android:layout_width="139dp"
                     android:layout_height="match_parent"
                     android:layout_marginTop="11.42dp"
+                    android:background="@drawable/text_login_background"
                     android:textColor="@color/gray3"
                     android:textColorHint="@color/gray3"
-                    android:textSize="18.27sp"
-
-                    android:background="@drawable/text_login_background"/>
-
+                    android:textSize="18.27sp" />
 
 
             </LinearLayout>
@@ -448,8 +434,8 @@
 
     <ImageView
         android:id="@+id/imageview_check_yes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="18.27dp"
+        android:layout_height="18.27dp"
         android:layout_marginTop="22.83dp"
         android:layout_marginLeft="11dp"
         android:src="@drawable/ic_checkbox_uncheck"
@@ -472,8 +458,8 @@
 
     <ImageView
         android:id="@+id/imageview_check_no"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="18.27dp"
+        android:layout_height="18.27dp"
         android:layout_marginRight="6.85dp"
         android:src="@drawable/ic_checkbox_uncheck"
         app:layout_constraintBottom_toBottomOf="@+id/textView21"
@@ -506,7 +492,7 @@
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="68.5dp"
                 android:layout_marginLeft="22.83dp"
                 android:layout_marginTop="22.83dp"
                 android:layout_marginRight="22.83dp"
@@ -516,12 +502,12 @@
                 app:cardElevation="0dp">
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/btn_save_color"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_gravity="center"
-                    android:layout_marginTop="21.75dp"
+                    android:gravity="center"
 
-                    android:layout_marginBottom="21.75dp"
                     android:fontFamily="@font/pretendard_semi_bold"
                     android:text="저장하기"
 

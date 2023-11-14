@@ -69,11 +69,17 @@
         android:background="@color/gray_blue2"/>
 
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerview_chatting_list"
+    <FrameLayout
+        android:id="@+id/framearea_chatting_list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-         />
+        android:layout_height="match_parent">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerview_chatting_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+
+    </FrameLayout>
 
 
 </LinearLayout>

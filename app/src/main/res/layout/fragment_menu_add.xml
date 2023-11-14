@@ -11,6 +11,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
+            android:background="#FFFFFF"
             tools:context=".fragment.MenuAddFragment">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -132,6 +133,7 @@
                     android:id="@+id/linearLayout_category"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:visibility="gone"
                     android:orientation="vertical">
 
                     <TextView
@@ -260,8 +262,9 @@
                 android:textSize="16sp" />
 
             <com.google.android.material.card.MaterialCardView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/cardview_photo_represent"
+                android:layout_width="123dp"
+                android:layout_height="123dp"
                 android:layout_marginLeft="22.83dp"
                 android:layout_marginTop="22.83dp"
                 android:theme="@style/Theme.MaterialComponents.Light"
@@ -270,27 +273,13 @@
                 app:strokeColor="@color/gray_blue"
                 app:strokeWidth="1dp">
 
-                <LinearLayout
-                    android:id="@+id/btn_choose_photo_represent"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:padding="28.27dp">
+                <ImageView
+                    android:id="@+id/imageview_choose_represent"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ic_choose_represent_img"/>
 
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_camera" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/pretendard_light"
-                        android:text="대표 이미지를\n업로드하세요"
-                        android:textColor="@color/gray"
-                        android:textSize="13.7sp" />
-                </LinearLayout>
 
 
             </com.google.android.material.card.MaterialCardView>
@@ -471,7 +460,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/textView17"
                         app:layout_constraintTop_toTopOf="@+id/textView17"
-                        app:strokeColor="@color/black"
+                        app:strokeColor="@color/gray_blue"
                         app:strokeWidth="1dp">
 
 
@@ -529,32 +518,19 @@
                         app:layout_constraintTop_toTopOf="@+id/textView18" />
 
 
-                    <com.google.android.material.card.MaterialCardView
+
+
+                    <Spinner
                         android:id="@+id/textview_add_option"
-                        android:layout_width="101dp"
+                        android:layout_width="100dp"
                         android:layout_height="45.67dp"
                         android:layout_marginTop="16.5dp"
                         android:layout_marginBottom="26.26dp"
-                        android:theme="@style/Theme.MaterialComponents.Light"
-                        app:cardCornerRadius="6.85dp"
-                        app:cardElevation="0dp"
+                        android:background="@drawable/text_login_background"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="@+id/textView18"
                         app:layout_constraintTop_toBottomOf="@+id/textView18"
-                        app:strokeColor="@color/black"
-                        app:strokeWidth="1dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginTop="10.8dp"
-                            android:layout_marginBottom="10.8dp"
-                            android:drawableRight="@drawable/ic_down_mark"
-                            android:text="추가/할인"
-                            android:textSize="16sp" />
-
-                    </com.google.android.material.card.MaterialCardView>
+                       />
 
                     <com.google.android.material.card.MaterialCardView
                         android:id="@+id/edittext_option_price"
@@ -567,7 +543,7 @@
                         app:layout_constraintBottom_toBottomOf="@+id/textview_add_option"
                         app:layout_constraintStart_toEndOf="@+id/textview_add_option"
                         app:layout_constraintTop_toTopOf="@+id/textview_add_option"
-                        app:strokeColor="@color/black"
+                        app:strokeColor="@color/gray_blue"
                         app:strokeWidth="1dp">
 
                         <EditText
@@ -600,6 +576,197 @@
 
             </com.google.android.material.card.MaterialCardView>
 
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardview_option_2"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="22.83dp"
+                android:layout_marginTop="11.42dp"
+                android:layout_marginRight="22.83dp"
+                android:theme="@style/Theme.MaterialComponents.Light"
+                app:cardCornerRadius="6.85dp"
+                app:cardElevation="0dp"
+                app:strokeColor="@color/gray_blue"
+                app:strokeWidth="1dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/textView100"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="22.83dp"
+                        android:layout_marginTop="19.3dp"
+                        android:fontFamily="@font/pretendard_semi_bold"
+                        android:text="옵션 2"
+                        android:textColor="@color/black"
+                        android:textSize="18.27sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:layout_width="29dp"
+                        android:layout_height="29dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginRight="12.42dp"
+                        android:src="@drawable/ic_x"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <LinearLayout
+                        android:id="@+id/linearLayout151"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="60dp"
+                        android:background="@color/gray_blue"
+                        android:orientation="horizontal"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/textView171"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="22.83dp"
+                        android:layout_marginTop="100dp"
+                        android:fontFamily="@font/pretendard_regular"
+                        android:text="옵션명"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/materialCardView2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="75.5dp"
+                        android:layout_marginRight="27.3dp"
+                        android:theme="@style/Theme.MaterialComponents.Light"
+                        app:cardCornerRadius="6.85dp"
+                        app:cardElevation="0dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/textView171"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/textView171"
+                        app:layout_constraintTop_toTopOf="@+id/textView171"
+                        app:strokeColor="@color/black"
+                        app:strokeWidth="1dp">
+
+
+                        <EditText
+                            android:id="@+id/edittext_option_name2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="22.83dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginBottom="15dp"
+                            android:background="@color/transparent"
+                            android:fontFamily="@font/pretendard_regular"
+                            android:hint="옵션 작성"
+                            android:textColor="@color/black"
+                            android:textSize="16sp" />
+
+
+                    </com.google.android.material.card.MaterialCardView>
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="22.83dp"
+                        android:layout_marginTop="22.83dp"
+                        android:text="가격"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/materialCardView2" />
+
+                    <TextView
+                        android:id="@+id/textView181"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="77.73dp"
+                        android:layout_marginTop="22.83dp"
+                        android:text="기본 가격"
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/materialCardView2" />
+
+
+                    <TextView
+                        android:id="@+id/textView191"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="112dp"
+                        android:fontFamily="@font/pretendard_bold"
+                        android:text="1,000,000 원"
+                        android:textSize="16sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/textView181"
+                        app:layout_constraintStart_toEndOf="@+id/textView181"
+                        app:layout_constraintTop_toTopOf="@+id/textView181" />
+
+
+
+
+                    <Spinner
+                        android:id="@+id/textview_add_option2"
+                        android:layout_width="100dp"
+                        android:layout_height="45.67dp"
+                        android:layout_marginTop="16.5dp"
+                        android:layout_marginBottom="26.26dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/textView181"
+                        app:layout_constraintTop_toBottomOf="@+id/textView181"
+                        />
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/edittext_option_price2"
+                        android:layout_width="131dp"
+                        android:layout_height="45.67dp"
+                        android:layout_marginLeft="8.24dp"
+                        android:theme="@style/Theme.MaterialComponents.Light"
+                        app:cardCornerRadius="6.85dp"
+                        app:cardElevation="0dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/textview_add_option2"
+                        app:layout_constraintStart_toEndOf="@+id/textview_add_option2"
+                        app:layout_constraintTop_toTopOf="@+id/textview_add_option2"
+                        app:strokeColor="@color/black"
+                        app:strokeWidth="1dp">
+
+                        <EditText
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="22.83dp"
+                            android:layout_marginTop="10.8dp"
+                            android:layout_marginRight="66dp"
+                            android:layout_marginBottom="10.8dp"
+                            android:background="@color/transparent"
+                            android:hint="3,000"
+                            android:textColor="@color/black"
+                            android:textSize="16sp" />
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/pretendard_bold"
+                        android:text="원"
+                        android:textSize="16sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/edittext_option_price2"
+                        app:layout_constraintEnd_toEndOf="@+id/textView191"
+                        app:layout_constraintTop_toTopOf="@+id/edittext_option_price2" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            </com.google.android.material.card.MaterialCardView>
+
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/btn_option_add"
                 android:layout_width="match_parent"
@@ -623,9 +790,10 @@
                     android:drawablePadding="11dp"
                     android:fontFamily="@font/pretendard_semi_bold"
                     android:text="옵션 추가하기"
+                    android:textColor="@color/black"
                     android:textSize="18.27sp" />
 
-                "
+
 
 
             </com.google.android.material.card.MaterialCardView>
@@ -659,21 +827,31 @@
                 app:strokeColor="@color/gray_blue"
                 app:strokeWidth="1dp">
 
-                <TextView
-                    android:id="@+id/btn_option_all_able_text"
-                    android:layout_width="match_parent"
+                <LinearLayout
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="17.12dp"
-                    android:layout_marginTop="12.56dp"
-                    android:layout_marginRight="17.12dp"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/btn_option_all_able_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="17.12dp"
+                        android:layout_marginTop="12.56dp"
+                        android:layout_marginBottom="12.56dp"
+                        android:fontFamily="@font/pretendard_regular"
+                        android:text="배달 포장 모두 가능"
+                        android:textColor="@color/black"
+                        android:textSize="18.27sp" />
 
-                    android:layout_marginBottom="12.56dp"
-                    android:drawableRight="@drawable/ic_checkmark_circle"
-                    android:drawablePadding="11dp"
-                    android:fontFamily="@font/pretendard_regular"
-                    android:text="배달 포장 모두 가능"
-                    android:textColor="@color/black"
-                    android:textSize="18.27sp" />
+                    <ImageView
+                        android:id="@+id/imageview_ischeck1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="168dp"
+                        android:src="@drawable/ic_checkmark_circle"/>
+
+                </LinearLayout>
 
 
             </com.google.android.material.card.MaterialCardView>
@@ -692,21 +870,32 @@
                 app:strokeColor="@color/gray_blue"
                 app:strokeWidth="1dp">
 
-                <TextView
-                    android:id="@+id/btn_option_only_delivery_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="17.12dp"
-                    android:layout_marginTop="12.56dp"
-                    android:layout_marginRight="17.12dp"
-                    android:layout_marginBottom="12.56dp"
-                    android:drawableRight="@drawable/ic_checkmark_circle"
-                    android:drawablePadding="11dp"
-                    android:fontFamily="@font/pretendard_regular"
-                    android:text="배달만 가능"
 
-                    android:textColor="@color/black"
-                    android:textSize="18.27sp" />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/btn_option_only_delivery_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="17.12dp"
+                        android:layout_marginTop="12.56dp"
+                        android:layout_marginBottom="12.56dp"
+                        android:fontFamily="@font/pretendard_regular"
+                        android:text="배달 포장 모두 가능"
+                        android:textColor="@color/black"
+                        android:textSize="18.27sp" />
+
+                    <ImageView
+                        android:id="@+id/imageview_ischeck2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="168dp"
+                        android:src="@drawable/ic_checkmark_circle"/>
+
+                </LinearLayout>
 
 
             </com.google.android.material.card.MaterialCardView>
@@ -725,29 +914,39 @@
                 app:strokeColor="@color/gray_blue"
                 app:strokeWidth="1dp">
 
-                <TextView
-                    android:id="@+id/btn_option_only_togo_text"
-                    android:layout_width="match_parent"
+                <LinearLayout
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="17.12dp"
-                    android:layout_marginTop="12.56dp"
-                    android:layout_marginRight="17.12dp"
-                    android:layout_marginBottom="12.56dp"
-                    android:drawableRight="@drawable/ic_checkmark_circle"
-                    android:drawablePadding="11dp"
-                    android:fontFamily="@font/pretendard_regular"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/btn_option_only_togo_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="17.12dp"
+                        android:layout_marginTop="12.56dp"
+                        android:layout_marginBottom="12.56dp"
+                        android:fontFamily="@font/pretendard_regular"
+                        android:text="배달 포장 모두 가능"
+                        android:textColor="@color/black"
+                        android:textSize="18.27sp" />
 
-                    android:text="포장만 가능"
+                    <ImageView
+                        android:id="@+id/imageview_ischeck3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="168dp"
+                        android:src="@drawable/ic_checkmark_circle"/>
 
-                    android:textColor="@color/black"
-                    android:textSize="18.27sp" />
+                </LinearLayout>
 
 
             </com.google.android.material.card.MaterialCardView>
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/cardview_order"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="68.5dp"
                 android:layout_marginLeft="22.83dp"
                 android:layout_marginTop="22.83dp"
                 android:layout_marginRight="22.83dp"
@@ -757,12 +956,12 @@
                 app:cardElevation="0dp">
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/btn_add_color"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_gravity="center"
-                    android:layout_marginTop="21.75dp"
+                    android:gravity="center"
 
-                    android:layout_marginBottom="21.75dp"
                     android:fontFamily="@font/pretendard_semi_bold"
                     android:text="추가하기"
 

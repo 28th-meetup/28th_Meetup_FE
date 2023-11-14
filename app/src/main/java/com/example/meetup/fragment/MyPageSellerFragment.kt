@@ -38,14 +38,17 @@ class MyPageSellerFragment : BaseFragment<FragmentMyPageSellerBinding>(R.layout.
         }
 
 
+        //가게 관리 클릭
         binding.btnStoreManage.setOnClickListener {
             btnStoreManageClick()
         }
 
+        //주문 관리 클릭
         binding.btnOrderManage.setOnClickListener {
             btnOrderManageClick()
         }
 
+        //구매자 모드 전환
         binding.btnChangeSeller.setOnClickListener {
             val myPageFragment = MyPageFragment()
             fragmentManager?.beginTransaction()?.apply {
@@ -54,6 +57,7 @@ class MyPageSellerFragment : BaseFragment<FragmentMyPageSellerBinding>(R.layout.
             }
         }
 
+        //채팅 버튼 클릭
         binding.imageviewChatting.setOnClickListener {
             val chattingFragment = ChattingFragment()
             fragmentManager?.beginTransaction()?.apply {
@@ -63,6 +67,8 @@ class MyPageSellerFragment : BaseFragment<FragmentMyPageSellerBinding>(R.layout.
             }
 
         }
+
+
 
     }
 
@@ -76,6 +82,7 @@ class MyPageSellerFragment : BaseFragment<FragmentMyPageSellerBinding>(R.layout.
         val mypageSellerStoreManageFragment = MypageSellerStoreManageFragment()
         fragmentManager?.beginTransaction()?.apply {
             replace(R.id.framelayout_mypage_seller, mypageSellerStoreManageFragment)
+            addToBackStack(null)
             commit()
         }
     }
