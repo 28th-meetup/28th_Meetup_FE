@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/imageview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="33.11dp"
+        android:layout_gravity="center"
+        android:src="@drawable/img_alert" />
+
+    <TextView
+        android:id="@+id/textview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15.98dp"
+        android:fontFamily="@font/pretendard_bold"
+        android:text="이미 존재하는\n계정 정보입니다."
+        android:textAlignment="center"
+        android:textSize="25.12dp" />
+
+    <Button
+        android:id="@+id/button_back"
+        android:layout_width="255dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="26.77dp"
+        android:background="@drawable/button_dialog_main_color_stroke"
+        android:fontFamily="@font/pretendard_semi_bold"
+        android:text="다시 작성하기"
+        android:textColor="@color/main_color"
+        android:textSize="20.55sp" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="35.39dp"/>
+
+</LinearLayout>
