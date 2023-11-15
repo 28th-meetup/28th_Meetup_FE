@@ -14,6 +14,7 @@
     </array>
 
     <array name="location_array">
+        <item>지역명을 선택해주세요.</item> <!--hint-->
         <item>캐나다, 토론토 (Canada, Toronto)</item>
         <item>캐나다, 밴쿠버 (Canada, Vancuver)</item>
         <item>미국, 보스턴 (U.S.A., Boston)</item>
@@ -22,13 +23,12 @@
         <item>미국, 샌프란시스코(U.S.A., San Francisco)</item>
         <item>미국, 시애틀 (U.S.A., Seattle)</item>
         <item>미국, 뉴욕 (U.S.A., New York)</item>
-        <item>국가와 지역을 선택해주세요</item> <!--hint-->
     </array>
 
     <array name="phone_array">
+        <item>국가별 지정번호를 선택해주세요</item>
         <item>대한민국 (Korea) +82</item>
         <item>미국 (U.S.A.) +1</item>
         <item>캐나다 (Canada) +1</item>
-        <item>국가별 지정번호를 선택해주세요</item>
     </array>
 </resources>

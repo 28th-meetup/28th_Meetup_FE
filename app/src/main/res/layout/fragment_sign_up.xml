@@ -185,7 +185,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:paddingVertical="11.42dp">
+                    android:paddingTop="22.83dp"
+                    android:paddingBottom="34.25dp">
 
                     <TextView
                         android:id="@+id/textview_phone_number"
@@ -217,80 +218,6 @@
                         android:background="@drawable/text_login_background"
                         android:fontFamily="@font/pretendard_regular"
                         android:hint="010-0000-0000"
-                        android:inputType="text|textPersonName"
-                        android:paddingHorizontal="22.83dp"
-                        android:paddingVertical="11.42dp"
-                        android:textColor="@color/black"
-                        android:textColorHint="#6E7178"
-                        android:textSize="18.27sp" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:paddingVertical="11.42dp">
-
-                    <TextView
-                        android:id="@+id/textview_location"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/pretendard_semi_bold"
-                        android:text="주소 설정"
-                        android:textColor="@color/black"
-                        android:textSize="15.98sp" />
-
-                    <Spinner
-                        android:id="@+id/spinner_location"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="11.42dp"
-                        android:background="@drawable/text_login_background"
-                        android:fontFamily="@font/pretendard_regular"
-                        android:paddingHorizontal="22.83dp"
-                        android:paddingVertical="11.42dp"
-                        android:textColor="@color/gray3"
-                        android:textColorHint="@color/gray3"
-                        android:textSize="18.27sp" />
-
-                    <EditText
-                        android:id="@+id/edittext_location1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="11.42dp"
-                        android:background="@drawable/text_login_background"
-                        android:fontFamily="@font/pretendard_regular"
-                        android:hint="주소 1 (도시명, 도로명, 주소)"
-                        android:inputType="text|textPersonName"
-                        android:paddingHorizontal="22.83dp"
-                        android:paddingVertical="11.42dp"
-                        android:textColor="@color/black"
-                        android:textColorHint="#6E7178"
-                        android:textSize="18.27sp" />
-
-                    <EditText
-                        android:id="@+id/edittext_location2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="11.42dp"
-                        android:background="@drawable/text_login_background"
-                        android:fontFamily="@font/pretendard_regular"
-                        android:hint="주소 2 (아파트, 동호수 등)"
-                        android:inputType="text|textPersonName"
-                        android:paddingHorizontal="22.83dp"
-                        android:paddingVertical="11.42dp"
-                        android:textColor="@color/black"
-                        android:textColorHint="#6E7178"
-                        android:textSize="18.27sp" />
-
-                    <EditText
-                        android:id="@+id/edittext_location"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="11.42dp"
-                        android:background="@drawable/text_login_background"
-                        android:fontFamily="@font/pretendard_regular"
-                        android:hint="우편번호 (자동으로 기입됩니다.)"
                         android:inputType="text|textPersonName"
                         android:paddingHorizontal="22.83dp"
                         android:paddingVertical="11.42dp"

@@ -113,10 +113,6 @@ class SignUpFragment : Fragment() {
         var phoneSpinner = binding.spinnerPhoneNumber	// spinner
         var phoneArray = resources.getStringArray(R.array.phone_array)	// 배열
         setSpinner(phoneSpinner, phoneArray)	// 스피너 설정
-
-        var loactionSpinner = binding.spinnerLocation	// spinner
-        var locationArray = resources.getStringArray(R.array.location_array)	// 배열
-        setSpinner(loactionSpinner, locationArray)	// 스피너 설정
     }
 
     // 스피너 설정
@@ -124,10 +120,10 @@ class SignUpFragment : Fragment() {
         var adapter = object : ArrayAdapter<String>(
             requireContext(),
             android.R.layout.simple_dropdown_item_1line
-        ) { override fun getCount(): Int =  super.getCount() - 1 }  // array에서 hint 안 보이게 하기
+        ) { override fun getCount(): Int =  super.getCount() }  // array에서 hint 안 보이게 하기
         adapter.addAll(array.toMutableList())   // 배열 추가
         spinner.adapter = adapter               // 어댑터 달기
-        spinner.setSelection(adapter.count, false)    // 스피너 초기값=hint
+//        spinner.setSelection(, false)    // 스피너 초기값=hint
     }
 
 
