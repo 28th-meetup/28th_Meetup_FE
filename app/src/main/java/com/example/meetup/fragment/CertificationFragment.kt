@@ -64,7 +64,6 @@ class CertificationFragment : Fragment() {
                     preview.visibility = View.GONE
                     buttonRecapture.visibility = View.VISIBLE
                     buttonCapture.text = "제출하기"
-                    textviewContent.visibility = View.INVISIBLE
                     imageviewPhoto.visibility = View.VISIBLE
                 } else {
                     val dialog = DialogEnrollStore(certificationActivity.supportFragmentManager)
