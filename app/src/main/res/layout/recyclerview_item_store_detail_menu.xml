@@ -13,8 +13,7 @@
         android:id="@+id/imageview_menu"
         android:layout_width="171.25dp"
         android:layout_height="154.13dp"
-        android:src="@drawable/food"
-         />
+        android:src="@drawable/food" />
 
     <TextView
         android:id="@+id/textview_menu_name"
