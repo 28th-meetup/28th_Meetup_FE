@@ -91,27 +91,70 @@
                 android:textColor="@color/black"
                 android:textSize="16sp" />
 
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="123dp"
-                android:layout_height="123dp"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="22.83dp"
                 android:layout_marginTop="22.83dp"
-                android:theme="@style/Theme.MaterialComponents.Light"
-                app:cardCornerRadius="6.58dp"
-                app:cardElevation="0dp"
-                app:strokeColor="@color/gray_blue"
-                app:strokeWidth="1dp">
+                android:orientation="horizontal">
 
-                <ImageView
-                    android:id="@+id/imageview_choose_represent"
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="123dp"
+                    android:layout_height="123dp"
+                    android:theme="@style/Theme.MaterialComponents.Light"
+                    app:cardCornerRadius="6.58dp"
+                    app:cardElevation="0dp"
+                    app:strokeColor="@color/gray_blue"
+                    app:strokeWidth="1dp">
 
+                    <ImageView
+                        android:id="@+id/imageview_choose_represent"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/ic_choose_represent_img" />
+
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <HorizontalScrollView
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/ic_choose_represent_img" />
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:id="@+id/imageview_photo_1"
+                            android:layout_width="123dp"
+                            android:layout_height="123dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:scaleType="fitXY" />
+
+                        <ImageView
+                            android:id="@+id/imageview_photo_2"
+                            android:layout_width="123dp"
+                            android:layout_height="123dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:scaleType="fitXY" />
+
+                        <ImageView
+                            android:id="@+id/imageview_photo_3"
+                            android:layout_width="123dp"
+                            android:layout_height="123dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:scaleType="fitXY" />
+                    </LinearLayout>
 
 
-            </com.google.android.material.card.MaterialCardView>
+                </HorizontalScrollView>
+            </LinearLayout>
+
 
             <TextView
                 android:layout_width="wrap_content"
