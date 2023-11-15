@@ -48,7 +48,7 @@ class StoreFragment : Fragment() {
         binding.recyclerviewStoreList.adapter = storeListAdapter
         binding.recyclerviewStoreList.layoutManager = LinearLayoutManager(requireContext())
 
-        storeListAdapter.itemClick = object :StoreListAdapter.ItemClick {
+        storeListAdapter.itemClick = object : StoreListAdapter.ItemClick {
 
             override fun onClick(view: View, position: Int) {
 
@@ -68,6 +68,15 @@ class StoreFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
+        binding.btnAlarm.setOnClickListener {
+
+            val alarmFragment = AlarmFragment()
+            fragmentManager?.beginTransaction()?.apply {
+                replace(R.id.frameArea, alarmFragment)
+                addToBackStack(null)
+                commit()
+            }
+        }
         binding.btnAll.setOnClickListener {
 
             btnAll()
@@ -92,21 +101,20 @@ class StoreFragment : Fragment() {
 
     fun btnAll() {
         binding.btnAll.setBackgroundResource(R.drawable.store_select_border)
-
         binding.btnAll.setTextColor(Color.parseColor("#1E1F23"))
+
         binding.btnMenuChange.setBackgroundResource(R.drawable.store_not_select_border)
         binding.btnMenuChange.setTextColor(Color.parseColor("#6E7178"))
+
     }
 
     fun btnMenuChange() {
 
         binding.btnMenuChange.setTextColor(Color.parseColor("#1E1F23"))
-
         binding.btnMenuChange.setBackgroundResource(R.drawable.store_select_border)
 
 
         binding.btnAll.setTextColor(Color.parseColor("#6E7178"))
-
         binding.btnAll.setBackgroundResource(R.drawable.store_not_select_border)
 
     }

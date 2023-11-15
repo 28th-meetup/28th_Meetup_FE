@@ -216,8 +216,8 @@
         </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.card.MaterialCardView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_marginLeft="22.83dp"
             android:layout_marginTop="22.83dp"
             android:theme="@style/Theme.MaterialComponents.Light"
@@ -226,29 +226,14 @@
             app:strokeColor="@color/gray_blue"
             app:strokeWidth="1dp">
 
-            <LinearLayout
-                android:id="@+id/btn_choose_photo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:padding="18.27dp">
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_camera" />
+            <ImageView
+                android:id="@+id/imageview_review_image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_choose_represent_img"
+                android:scaleType="fitXY"/>
 
-                <TextView
-                    android:id="@+id/textview_photo_num"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/pretendard_regular"
-                    android:text="사진 0/10"
-                    android:textColor="@color/gray"
-                    android:textSize="16sp" />
-
-            </LinearLayout>
 
 
         </com.google.android.material.card.MaterialCardView>

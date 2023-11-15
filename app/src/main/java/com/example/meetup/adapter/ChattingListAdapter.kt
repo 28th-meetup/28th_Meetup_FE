@@ -3,6 +3,8 @@ package com.example.meetup.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Filter
+import android.widget.Filterable
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -11,16 +13,24 @@ import com.example.meetup.model.ChattingListResponseModel
 import com.example.meetup.model.StoreDetailMenuResponseModel
 
 class ChattingListAdapter(
-    private var chattingList: ArrayList<ChattingListResponseModel>
+     var chattingList: ArrayList<ChattingListResponseModel>
 ) :
     RecyclerView.Adapter<ChattingListAdapter.ViewHolder>() {
+
+//    var filtered = ArrayList<ChattingListResponseModel>()
+//    var itemFilter = ItemFilter()
+
+//    init {
+//        filtered.addAll(chattingList)
+//    }
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
     ): ChattingListAdapter.ViewHolder {
 
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.recyclerview_item_chatting_list,parent,false)
+        val view = LayoutInflater.from(parent.context)
+            .inflate(R.layout.recyclerview_item_chatting_list, parent, false)
         return ViewHolder(view)
     }
 
@@ -38,7 +48,7 @@ class ChattingListAdapter(
 
     }
 
-    var itemClick : ItemClick? = null
+    var itemClick: ItemClick? = null
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
@@ -63,5 +73,47 @@ class ChattingListAdapter(
 
         }
     }
+
+//    override fun getFilter(): Filter {
+//
+//        return itemFilter
+//    }
+
+//    inner class ItemFilter : Filter() {
+//        override fun performFiltering(p0: CharSequence?): FilterResults {
+//            val filterString = p0.toString()
+//            val results = FilterResults()
+//            //검색이 필요없을 경우를 위해 원본 배열을 복제
+//
+//            val filterList: ArrayList<ChattingListResponseModel> =
+//                ArrayList<ChattingListResponseModel>()
+//            //공백제외 아무런 값이 없을 경우 -> 원본 배열
+//
+//            if (filterString.trim { it <= ' ' }.isEmpty()) {
+//                results.values = chattingList
+//                results.count = chattingList.size
+//
+//                return results
+//            } else {
+//                for (a in chattingList) {
+//                    if (a.textview_chatting_name.contains(filterString)) {
+//                        filterList.add(a)
+//                    }
+//                }
+//            }
+//
+//            results.values = filterList
+//            results.count = filterList.size
+//
+//            return results
+//        }
+
+//        override fun publishResults(p0: CharSequence?, p1: FilterResults?) {
+//            filtered.clear()
+//            filtered.addAll(p1?.values as ArrayList<ChattingListResponseModel>)
+//            notifyDataSetChanged()
+//        }
+
+//    }
 
 }

@@ -71,21 +71,73 @@ class StoreEditFragment : Fragment() {
 
 
         val pickMedia =
-            registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
+            registerForActivityResult(ActivityResultContracts.PickMultipleVisualMedia(3)) { uris ->
                 // Callback is invoked after the user selects a media item or closes the
                 // photo picker.
-                if (uri != null) {
-                    Log.d("PhotoPicker", "Selected URI: $uri")
+                if (uris != null) {
+                    Log.d("PhotoPicker", "Selected URI: $uris")
 
 //                    bitmap = BitmapFactory.decodeStream(
 //                        requireContext().contentResolver.openInputStream(uri)
 //                    )
 
-                    Glide.with(this)
-                        .load(uri)
-                        .into(binding.imageviewChooseRepresent)
+//
+//
+//                    Glide.with(this)
+//                        .load(uri)
+//                        .into(binding.imageviewChooseRepresent)
 
+                    when(uris.size) {
+                        1-> {
+                            binding.imageviewPhoto1.visibility = View.VISIBLE
+                            binding.imageviewPhoto2.visibility = View.GONE
+                            binding.imageviewPhoto3.visibility = View.GONE
 
+                            Glide.with(this)
+                                .load(uris.get(0))
+                                .into(binding.imageviewPhoto1)
+//
+//                            Glide.with(this)
+//                                .load("")
+//                                .into(binding.imageviewPhoto2)
+//
+//                            Glide.with(this)
+//                                .load("")
+//                                .into(binding.imageviewPhoto3)
+
+                        }
+                        2-> {
+                            binding.imageviewPhoto1.visibility = View.VISIBLE
+                            binding.imageviewPhoto2.visibility = View.VISIBLE
+                            binding.imageviewPhoto3.visibility = View.GONE
+
+                            Glide.with(this)
+                                .load(uris.get(0))
+                                .into(binding.imageviewPhoto1)
+                            Glide.with(this)
+                                .load(uris.get(1))
+                                .into(binding.imageviewPhoto2)
+//                            Glide.with(this)
+//                                .load("")
+//                                .into(binding.imageviewPhoto3)
+
+                        }
+                        3-> {
+                            binding.imageviewPhoto1.visibility = View.VISIBLE
+                            binding.imageviewPhoto2.visibility = View.VISIBLE
+                            binding.imageviewPhoto3.visibility = View.VISIBLE
+
+                            Glide.with(this)
+                                .load(uris.get(0))
+                                .into(binding.imageviewPhoto1)
+                            Glide.with(this)
+                                .load(uris.get(1))
+                                .into(binding.imageviewPhoto2)
+                            Glide.with(this)
+                                .load(uris.get(2))
+                                .into(binding.imageviewPhoto3)
+                        }
+                    }
 
                 } else {
                     Log.d("PhotoPicker", "No media selected")
@@ -112,6 +164,12 @@ class StoreEditFragment : Fragment() {
         binding.imageviewCheckNo.setOnClickListener {
             imageviewCheckNo()
         }
+
+        //저장하기
+        binding.btnSaveColor.setOnClickListener {
+
+        }
+
     }
 
     fun imageviewCheckYes() {

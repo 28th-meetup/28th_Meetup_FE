@@ -32,18 +32,18 @@ class OrderListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        _binding = FragmentOrderListBinding.inflate(inflater,container,false)
+        _binding = FragmentOrderListBinding.inflate(inflater, container, false)
         val view = binding.root
 
         var orderList = ArrayList<OrderListResponseModel>()
 
-        orderList.add(OrderListResponseModel("A","aa","aaa","Aa"))
-        orderList.add(OrderListResponseModel("b","bb","bbb","bb"))
-        orderList.add(OrderListResponseModel("c","cc","ccc","cc"))
+        orderList.add(OrderListResponseModel("A", "aa", "aaa", "Aa"))
+        orderList.add(OrderListResponseModel("b", "bb", "bbb", "bb"))
+        orderList.add(OrderListResponseModel("c", "cc", "ccc", "cc"))
 
         orderListAdapter = OrderListAdapter(orderList) {
 
-            Toast.makeText(requireContext(), it.toString(), Toast.LENGTH_SHORT).show()
+//            Toast.makeText(requireContext(), it.toString(), Toast.LENGTH_SHORT).show()
 
 
             val reviewWriteFragment = ReviewWriteFragment()
@@ -58,7 +58,7 @@ class OrderListFragment : Fragment() {
         binding.recyclerviewOrderList.layoutManager = LinearLayoutManager(requireContext())
 
 
-        
+
 
 
         return view
@@ -76,5 +76,5 @@ class OrderListFragment : Fragment() {
             }
         }
     }
-  }
+}
 

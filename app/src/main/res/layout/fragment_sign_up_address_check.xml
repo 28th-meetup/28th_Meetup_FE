@@ -37,7 +37,7 @@
         android:paddingVertical="27dp">
 
         <TextView
-            android:id="@+id/textView22"
+            android:id="@+id/textView221"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/pretendard_regular"
@@ -46,7 +46,7 @@
             android:textSize="14sp" />
 
         <TextView
-            android:id="@+id/textView23"
+            android:id="@+id/textView231"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/pretendard_semi_bold"
@@ -55,7 +55,7 @@
             android:textSize="18sp" />
 
         <TextView
-            android:id="@+id/textView22"
+            android:id="@+id/textView222"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="22dp"
@@ -65,7 +65,7 @@
             android:textSize="14sp" />
 
         <TextView
-            android:id="@+id/textView23"
+            android:id="@+id/textView232"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/pretendard_semi_bold"
@@ -74,7 +74,7 @@
             android:textSize="18sp" />
 
         <TextView
-            android:id="@+id/textView22"
+            android:id="@+id/textView223"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="22dp"
@@ -84,7 +84,7 @@
             android:textSize="14sp" />
 
         <TextView
-            android:id="@+id/textView23"
+            android:id="@+id/textView233"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/pretendard_semi_bold"

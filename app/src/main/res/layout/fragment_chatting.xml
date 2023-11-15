@@ -47,37 +47,44 @@
         app:strokeColor="#E2E3E5"
         app:strokeWidth="1dp">
 
-        <EditText
+<!--        <EditText-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginLeft="22.83dp"-->
+<!--            android:layout_marginTop="11.42dp"-->
+<!--            android:layout_marginBottom="11.42dp"-->
+<!--            android:background="@color/transparent"-->
+<!--            android:drawableLeft="@drawable/ic_search"-->
+<!--            android:drawablePadding="4dp"-->
+<!--            android:fontFamily="@font/pretendard_regular"-->
+<!--            android:hint="가게 이름 또는 판매자 이름 검색"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:textSize="16sp" />-->
+
+        <SearchView
+            android:id="@+id/searchview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="22.83dp"
-            android:layout_marginTop="11.42dp"
-            android:layout_marginBottom="11.42dp"
-            android:background="@color/transparent"
-            android:drawableLeft="@drawable/ic_search"
-            android:drawablePadding="4dp"
-            android:fontFamily="@font/pretendard_regular"
-            android:hint="가게 이름 또는 판매자 이름 검색"
-            android:textColor="@color/black"
-            android:textSize="16sp" />
+            android:iconifiedByDefault="false"/>
+
     </com.google.android.material.card.MaterialCardView>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginTop="22.83dp"
-        android:background="@color/gray_blue2"/>
+        android:background="@color/gray_blue2" />
 
 
     <FrameLayout
         android:id="@+id/framearea_chatting_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerview_chatting_list"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            />
+            android:layout_height="match_parent" />
 
     </FrameLayout>
 
