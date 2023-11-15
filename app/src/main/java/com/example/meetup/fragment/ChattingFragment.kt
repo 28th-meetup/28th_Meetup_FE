@@ -32,15 +32,15 @@ class ChattingFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
 
-        _binding = FragmentChattingBinding.inflate(inflater,container,false)
+        _binding = FragmentChattingBinding.inflate(inflater, container, false)
         val view = binding.root
 
 
         var chattingList = ArrayList<ChattingListResponseModel>()
 
-        chattingList.add(ChattingListResponseModel("111","111","1111","1111","1"))
-        chattingList.add(ChattingListResponseModel("22","22","222","222","2"))
-        chattingList.add(ChattingListResponseModel("22","333","333","333","3"))
+        chattingList.add(ChattingListResponseModel("111", "111", "1111", "1111", "1"))
+        chattingList.add(ChattingListResponseModel("22", "22", "222", "222", "2"))
+        chattingList.add(ChattingListResponseModel("22", "333", "333", "333", "3"))
 
 
 //        binding.searchview.setOnQueryTextListener(searchViewTextListener)
@@ -58,11 +58,7 @@ class ChattingFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.btnBack.setOnClickListener {
-//            val myPageFragment = MyPageFragment()
-//            fragmentManager?.beginTransaction()?.apply {
-//                replace(R.id.frameArea, myPageFragment)
-//                commit()
-//            }
+
 
             fragmentManager?.popBackStack()
         }
