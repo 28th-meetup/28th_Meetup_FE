@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.ui.graphics.Color
@@ -23,6 +24,17 @@ class MenuAddFragment : Fragment() {
 
     private var _binding: FragmentMenuAddBinding? = null
     private val binding get() = _binding!!
+
+
+    var menuName = ""
+    var menuCategory = ""
+    var menuPrice = 0L
+    var menuImageUrl = ""
+    var menuContext = ""
+    var deliverTogo = ""
+    var optionNum = 1
+
+    var ischeck = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -34,9 +46,8 @@ class MenuAddFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        _binding = FragmentMenuAddBinding.inflate(inflater,container,false)
+        _binding = FragmentMenuAddBinding.inflate(inflater, container, false)
         val view = binding.root
-
 
 
         val optionData = resources.getStringArray(R.array.spinner_option)
@@ -48,6 +59,30 @@ class MenuAddFragment : Fragment() {
         binding.textviewAddOption.adapter = adapter
 
         binding.textviewAddOption.onItemSelectedListener =
+            object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+
+
+                }
+
+                override fun onNothingSelected(p0: AdapterView<*>?) {
+                    TODO("Not yet implemented")
+                }
+
+            }
+
+        val spinnerMoney = resources.getStringArray(R.array.spinner_money)
+        var moneyAdapter =
+            ArrayAdapter<String>(
+                requireContext(),
+                android.R.layout.simple_spinner_item,
+                spinnerMoney
+            )
+
+        moneyAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+
+        binding.spinnerMoney.adapter = moneyAdapter
+        binding.spinnerMoney.onItemSelectedListener =
             object : AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
 
@@ -77,10 +112,9 @@ class MenuAddFragment : Fragment() {
 //                        requireContext().contentResolver.openInputStream(uri)
 //                    )
 
-                   Glide.with(this)
-                       .load(uri)
-                       .into(binding.imageviewChooseRepresent)
-
+                    Glide.with(this)
+                        .load(uri)
+                        .into(binding.imageviewChooseRepresent)
 
 
                 } else {
@@ -101,7 +135,36 @@ class MenuAddFragment : Fragment() {
 
         //옵션 추가 클릭
         binding.btnOptionAdd.setOnClickListener {
-            binding.cardviewOption2.visibility = View.VISIBLE
+
+            btnOptionAdd()
+        }
+
+        binding.cardviewAdd.setOnClickListener {
+            cardviewAdd()
+        }
+        binding.btnX1.setOnClickListener {
+            binding.cardviewOption1.visibility = View.GONE
+            optionNum--
+        }
+        binding.btnX2.setOnClickListener {
+            binding.cardviewOption2.visibility = View.GONE
+
+            optionNum--
+        }
+        binding.btnX3.setOnClickListener {
+            binding.cardviewOption3.visibility = View.GONE
+            optionNum--
+
+        }
+        binding.btnX4.setOnClickListener {
+            binding.cardviewOption4.visibility = View.GONE
+            optionNum--
+
+        }
+        binding.btnX5.setOnClickListener {
+            binding.cardviewOption5.visibility = View.GONE
+            optionNum--
+
         }
 
         //배달 포장 모두 가능 클릭
@@ -125,6 +188,35 @@ class MenuAddFragment : Fragment() {
         }
     }
 
+    fun btnOptionAdd() {
+        when (optionNum) {
+            0 -> {
+                binding.cardviewOption1.visibility = View.VISIBLE
+                optionNum++
+            }
+
+            1 -> {
+                binding.cardviewOption2.visibility = View.VISIBLE
+                optionNum++
+            }
+
+            2 -> {
+                binding.cardviewOption3.visibility = View.VISIBLE
+                optionNum++
+            }
+
+            3 -> {
+                binding.cardviewOption4.visibility = View.VISIBLE
+                optionNum++
+            }
+
+            4 -> {
+                binding.cardviewOption5.visibility = View.VISIBLE
+                optionNum++
+            }
+
+        }
+    }
 
     fun menuCategoryClick() {
         if (binding.linearLayoutCategory.visibility == View.GONE) {
@@ -194,7 +286,7 @@ class MenuAddFragment : Fragment() {
         binding.imageviewIscheck2.setImageResource(R.drawable.ic_checkmark_circle)
         binding.btnAddColor.setBackgroundColor(android.graphics.Color.parseColor("#E60051"))
 
-
+        ischeck = true
 
     }
 
@@ -213,6 +305,9 @@ class MenuAddFragment : Fragment() {
         binding.imageviewIscheck3.setImageResource(R.drawable.ic_checkmark_circle)
 
         binding.btnAddColor.setBackgroundColor(android.graphics.Color.parseColor("#E60051"))
+
+        ischeck = true
+
     }
 
     fun btnOptionOnlyTogo() {
@@ -229,7 +324,29 @@ class MenuAddFragment : Fragment() {
         binding.imageviewIscheck2.setImageResource(R.drawable.ic_checkmark_circle)
         binding.imageviewIscheck3.setImageResource(R.drawable._c_checkmark_circle_selected)
         binding.btnAddColor.setBackgroundColor(android.graphics.Color.parseColor("#E60051"))
+        ischeck = true
 
+    }
+
+    fun cardviewAdd() {
+        if (binding.edittextMenuName.text.toString() == "") {
+            Toast.makeText(context, "빈칸이 있습니다.", Toast.LENGTH_SHORT).show()
+        } else if (binding.textviewMenuCategory.text.toString() == "") {
+            Toast.makeText(context, "빈칸이 있습니다.", Toast.LENGTH_SHORT).show()
+
+        } else if (binding.edittextPrice.text.toString() == "") {
+            Toast.makeText(context, "빈칸이 있습니다.", Toast.LENGTH_SHORT).show()
+
+        } else if (binding.edittextMenuName.text.toString() == "") {
+            Toast.makeText(context, "빈칸이 있습니다.", Toast.LENGTH_SHORT).show()
+
+        } else if (ischeck == false) {
+            Toast.makeText(context, "체크 표시 해주세요.", Toast.LENGTH_SHORT).show()
+
+        } else {
+            //이동
+
+        }
     }
 
 
