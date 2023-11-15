@@ -75,16 +75,6 @@
                 android:src="@drawable/img_basic" />
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/textview_content"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="11.42dp"
-            android:fontFamily="@font/pretendard_regular"
-            android:text="신분증은 여권, 주민등록증, 운전면허증만 가능합니다. "
-            android:textColor="@color/gray3"
-            android:textSize="13.7sp" />
-
     </LinearLayout>
 
     <Button

@@ -19,6 +19,19 @@
             android:outlineSpotShadowColor="#0A000000"
             android:theme="@style/ToolbarTheme" />
 
+        <TextView
+            android:id="@+id/button_filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="22.83dp"
+            android:layout_gravity="end"
+            android:drawableRight="@drawable/ic_chevron_down"
+            android:drawablePadding="2dp"
+            android:text="추천순"
+            android:fontFamily="@font/pretendard_regular"
+            android:textSize="16sp"
+            android:textColor="@color/black" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerview"
             android:layout_width="match_parent"

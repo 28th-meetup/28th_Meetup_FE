@@ -72,6 +72,13 @@ class HomeCategoryFragment : Fragment() {
                     true
                 }
             }
+
+            binding.buttonFilter.setOnClickListener {
+                val modalBottomSheet = ModalBottomSheetFragment()
+
+
+                modalBottomSheet.show(requireFragmentManager(), ModalBottomSheetFragment.TAG)
+            }
         }
         return binding.root
     }
