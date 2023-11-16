@@ -32,27 +32,13 @@ class HomeFragment : Fragment() {
         initView()
 
         binding.run {
-            toolbar.run {
-                inflateMenu(R.menu.home_menu)
+            btnCart.setOnClickListener {
+                val cartFragment = CartFragment()
 
-                setOnMenuItemClickListener {
-                    when (it.itemId) {
-                        R.id.item_alert -> {
-
-                        }
-
-                        R.id.item_cart -> {
-                            val cartFragment = CartFragment()
-
-                            val transaction = homeActivity.manager.beginTransaction()
-                            transaction.replace(R.id.frameArea, cartFragment)
-                            transaction.commit()
-                        }
-
-                        else -> { }
-                    }
-                    true
-                }
+                val transaction = homeActivity.manager.beginTransaction()
+                transaction.replace(R.id.frameArea, cartFragment)
+                transaction.addToBackStack("")
+                transaction.commit()
             }
         }
         return binding.root
@@ -82,6 +68,8 @@ class HomeFragment : Fragment() {
                 addItemDecoration(HomeSetAdapter.GridSpacingItemDecoration(spanCount, space, false))
 
             }
+
+            homeActivity.hideBottomNavigation(false)
         }
     }
 }

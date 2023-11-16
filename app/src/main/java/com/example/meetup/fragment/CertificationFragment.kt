@@ -20,12 +20,13 @@ import com.example.meetup.CameraSurfaceView
 import com.example.meetup.R
 import com.example.meetup.Util.fromDpToPx
 import com.example.meetup.activity.CertificationActivity
+import com.example.meetup.activity.HomeActivity
 import com.example.meetup.databinding.FragmentCertificationBinding
 import com.example.meetup.dialog.DialogEnrollStore
 
 class CertificationFragment : Fragment() {
     lateinit var binding: FragmentCertificationBinding
-    lateinit var certificationActivity: CertificationActivity
+    lateinit var homeActivity: HomeActivity
 
     private lateinit var cameraSurfaceView: CameraSurfaceView
 
@@ -39,7 +40,7 @@ class CertificationFragment : Fragment() {
     ): View? {
 
         binding = FragmentCertificationBinding.inflate(layoutInflater)
-        certificationActivity = activity as CertificationActivity
+        homeActivity = activity as HomeActivity
 
         initView()
 
@@ -59,22 +60,10 @@ class CertificationFragment : Fragment() {
 
         binding.run {
             buttonCapture.setOnClickListener {
-                if(buttonRecapture.visibility == View.INVISIBLE) {
-                    onCaptureClick()
-                    preview.visibility = View.GONE
-                    buttonRecapture.visibility = View.VISIBLE
-                    buttonCapture.text = "제출하기"
-                    imageviewPhoto.visibility = View.VISIBLE
-                } else {
-                    val dialog = DialogEnrollStore(certificationActivity.supportFragmentManager)
-                    // 알림창이 띄워져있는 동안 배경 클릭 막기
-                    dialog.isCancelable = false
-                    certificationActivity?.let { dialog.show(it.supportFragmentManager, "EnrollStoreDialog") }
-                }
-            }
-            buttonRecapture.setOnClickListener {
-                buttonRecapture.visibility = View.INVISIBLE
-                imageviewPhoto.visibility = View.GONE
+                val dialog = DialogEnrollStore(homeActivity.supportFragmentManager)
+                // 알림창이 띄워져있는 동안 배경 클릭 막기
+                dialog.isCancelable = false
+                homeActivity?.let { dialog.show(it.supportFragmentManager, "EnrollStoreDialog") }
             }
         }
 
@@ -99,8 +88,6 @@ class CertificationFragment : Fragment() {
 
                 }
             }
-
-            buttonRecapture.visibility = View.INVISIBLE
             imageviewPhoto.visibility = View.GONE
         }
     }

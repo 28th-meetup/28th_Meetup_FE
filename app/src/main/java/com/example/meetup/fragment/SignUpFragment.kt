@@ -80,7 +80,7 @@ class SignUpFragment : Fragment() {
                 val addressFragment = SignUpAddressFragment()
 
                 val transaction = authActivity.supportFragmentManager.beginTransaction()
-                transaction.replace(R.id.frameArea, addressFragment)
+                transaction.replace(R.id.container_auth, addressFragment)
                 transaction.commit()
             }
         }

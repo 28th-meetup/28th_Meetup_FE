@@ -78,22 +78,6 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/button_recapture"
-        android:layout_width="match_parent"
-        android:layout_height="63.93333dp"
-        android:layout_marginLeft="27.4dp"
-        android:layout_marginRight="27.4dp"
-        android:layout_marginBottom="22.83dp"
-        android:background="@drawable/button_light_gray_border"
-        android:fontFamily="@font/pretendard_semi_bold"
-        android:text="다시 촬영하기"
-        android:textColor="@color/black"
-        android:textSize="20.55sp"
-        app:layout_constraintBottom_toTopOf="@+id/button_capture"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
         android:id="@+id/button_capture"
         android:layout_width="match_parent"
         android:layout_height="63.93333dp"

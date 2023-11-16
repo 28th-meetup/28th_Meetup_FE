@@ -200,7 +200,7 @@
                     <Spinner
                         android:id="@+id/spinner_phone_number"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="57.08dp"
                         android:layout_marginTop="11.42dp"
                         android:background="@drawable/text_login_background"
                         android:fontFamily="@font/pretendard_regular"
@@ -213,7 +213,7 @@
                     <EditText
                         android:id="@+id/edittext_phone_number"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="57.08dp"
                         android:layout_marginTop="11.42dp"
                         android:background="@drawable/text_login_background"
                         android:fontFamily="@font/pretendard_regular"
