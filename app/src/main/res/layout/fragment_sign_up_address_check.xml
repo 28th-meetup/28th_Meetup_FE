@@ -142,7 +142,8 @@
         android:id="@+id/button_sign_up"
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:layout_marginHorizontal="20dp"
+        android:layout_marginLeft="22.83dp"
+        android:layout_marginRight="22.83dp"
         android:layout_marginBottom="22.83dp"
         android:background="@drawable/button_radius"
         android:fontFamily="@font/pretendard_semi_bold"
@@ -150,6 +151,5 @@
         android:textColor="@color/white"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStarOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

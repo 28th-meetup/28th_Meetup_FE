@@ -32,7 +32,7 @@ class SignUpAddressCheckFragment : Fragment() {
     fun initView() {
         binding.run {
             toolbar.run {
-                title = "이메일로 회원가입"
+                title = "주소 입력"
 
                 // back 버튼 설정
                 setNavigationIcon(R.drawable.ic_close)
