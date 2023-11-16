@@ -29,9 +29,9 @@ class StoreAddSuccessFragment : BaseFragment<FragmentStoreAddSuccessBinding>(R.l
         super.onViewCreated(view, savedInstanceState)
 
         binding.cardviewGoHome.setOnClickListener {
-            val storeFragment = StoreFragment()
+            val homeFragment = HomeFragment()
             fragmentManager?.beginTransaction()?.apply {
-                replace(R.id.frameArea, storeFragment)
+                replace(R.id.frameArea, homeFragment)
                 commit()
             }
         }

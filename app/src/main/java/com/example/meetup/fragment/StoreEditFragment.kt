@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
+import android.widget.Toast
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import com.bumptech.glide.Glide
@@ -23,6 +24,9 @@ import com.example.meetup.databinding.FragmentStoreEditBinding
 class StoreEditFragment : Fragment() {
 
 
+    var imageNum = 0
+
+    var isCheck = false
     private var _binding: FragmentStoreEditBinding? = null
     private val binding get() = _binding!!
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -69,7 +73,12 @@ class StoreEditFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
+        var loactionSpinner = binding.spinnerLocation	// spinner
+        var locationArray = resources.getStringArray(R.array.location_array)	// 배열
+        setSpinner(loactionSpinner, locationArray)	// 스피너 설정
+        var phoneSpinner = binding.spinnerPhoneNumber	// spinner
+        var phoneArray = resources.getStringArray(R.array.phone_array)	// 배열
+        setSpinner(phoneSpinner, phoneArray)	// 스피너 설정
         val pickMedia =
             registerForActivityResult(ActivityResultContracts.PickMultipleVisualMedia(3)) { uris ->
                 // Callback is invoked after the user selects a media item or closes the
@@ -87,6 +96,7 @@ class StoreEditFragment : Fragment() {
 //                        .load(uri)
 //                        .into(binding.imageviewChooseRepresent)
 
+                    imageNum = uris.size
                     when(uris.size) {
                         1-> {
                             binding.imageviewPhoto1.visibility = View.VISIBLE
@@ -168,6 +178,46 @@ class StoreEditFragment : Fragment() {
         //저장하기
         binding.btnSaveColor.setOnClickListener {
 
+            if(binding.edittextStoreName.text.toString()=="") {
+                Toast.makeText(context, "빈칸이 있습니다.", Toast.LENGTH_SHORT).show()
+
+            } else if(imageNum != 3) {
+                Toast.makeText(context, "사진 3개 선택해주세요.", Toast.LENGTH_SHORT).show()
+
+            } else if(binding.edittextMinimumPrice.text.toString() == "") {
+                Toast.makeText(context, "빈칸이 있습니다.", Toast.LENGTH_SHORT).show()
+
+            } else if(binding.edittextStoreExplain.text.toString() ==""){
+                Toast.makeText(context, "빈칸이 있습니다.", Toast.LENGTH_SHORT).show()
+
+            } else if (binding.edittextPhoneNumber.text.toString()==""){
+                Toast.makeText(context, "빈칸이 있습니다.", Toast.LENGTH_SHORT).show()
+
+            } else if(binding.edittextLocation1.text.toString()==""){
+                Toast.makeText(context, "빈칸이 있습니다.", Toast.LENGTH_SHORT).show()
+
+            } else if(binding.edittextLocation2.text.toString()==""){
+                Toast.makeText(context, "빈칸이 있습니다.", Toast.LENGTH_SHORT).show()
+
+            } else if(binding.edittextDeliverAbleArea.text.toString()==""){
+                Toast.makeText(context, "빈칸이 있습니다.", Toast.LENGTH_SHORT).show()
+
+            } else if(binding.edittextRunTime.text.toString()==""){
+                Toast.makeText(context, "빈칸이 있습니다.", Toast.LENGTH_SHORT).show()
+
+            } else if(!isCheck){
+                Toast.makeText(context, "체크 표시 해주세요.", Toast.LENGTH_SHORT).show()
+
+            } else {
+
+                val storeAddSuccessFragment =StoreAddSuccessFragment()
+                fragmentManager?.beginTransaction()?.apply {
+                    replace(R.id.frameArea, storeAddSuccessFragment)
+                    commit()
+                }
+
+            }
+
         }
 
     }
@@ -176,12 +226,23 @@ class StoreEditFragment : Fragment() {
         binding.imageviewCheckYes.setImageResource(R.drawable.ic_check_square_check)
         binding.imageviewCheckNo.setImageResource(R.drawable.ic_checkbox_uncheck)
         binding.btnSaveColor.setBackgroundColor(Color.parseColor("#E60051"))
+        isCheck = true
     }
 
     fun imageviewCheckNo() {
         binding.imageviewCheckYes.setImageResource(R.drawable.ic_checkbox_uncheck)
         binding.imageviewCheckNo.setImageResource(R.drawable.ic_check_square_check)
         binding.btnSaveColor.setBackgroundColor(Color.parseColor("#E60051"))
-    }
+        isCheck = true
 
+    }
+    private fun setSpinner(spinner: Spinner, array: Array<String>) {
+        var adapter = object : ArrayAdapter<String>(
+            requireContext(),
+            android.R.layout.simple_dropdown_item_1line
+        ) { override fun getCount(): Int =  super.getCount() }  // array에서 hint 안 보이게 하기
+        adapter.addAll(array.toMutableList())   // 배열 추가
+        spinner.adapter = adapter               // 어댑터 달기
+//        spinner.setSelection(, false)    // 스피너 초기값=hint
+    }
 }
