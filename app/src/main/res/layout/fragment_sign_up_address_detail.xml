@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/white"
+    android:orientation="vertical"
     tools:context=".fragment.SignUpAddressDetailFragment">
 
     <com.google.android.material.appbar.MaterialToolbar
@@ -14,13 +15,19 @@
         android:background="@color/white"
         android:elevation="9.133333206176758dp"
         android:outlineSpotShadowColor="#0A000000"
-        android:theme="@style/ToolbarTheme" />
+        android:theme="@style/ToolbarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
         android:paddingHorizontal="20dp"
-        android:orientation="vertical">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar">
 
         <TextView
             android:id="@+id/textview_location"
@@ -32,11 +39,21 @@
             android:textColor="#1E1F23"
             android:textSize="22sp" />
 
-        <EditText
-            android:id="@+id/edittext_location1"
+        <TextView
+            android:id="@+id/textview_post_num"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="49dp"
+            android:layout_marginTop="22.15dp"
+            android:fontFamily="@font/pretendard_semi_bold"
+            android:text="이메일"
+            android:textColor="@color/black"
+            android:textSize="15.98sp" />
+
+        <EditText
+            android:id="@+id/edittext_post_num"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="11.4dp"
             android:background="@drawable/text_login_input_background"
             android:fontFamily="@font/pretendard_regular"
             android:hint="상세 주소를 입력해 주세요."
@@ -47,15 +64,46 @@
             android:textColorHint="#6E7178"
             android:textSize="18.27sp" />
 
-        <Button
-            android:id="@+id/button"
+        <TextView
+            android:id="@+id/textview_location2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="91dp"
-            android:text="주소 입력 완료"
-            android:background="@drawable/button_radius"
+            android:layout_marginTop="34.23dp"
             android:fontFamily="@font/pretendard_semi_bold"
-            android:textColor="@color/white"
-            android:textSize="16sp"/>
+            android:text="상세주소"
+            android:textColor="@color/black"
+            android:textSize="15.98sp" />
+
+        <EditText
+            android:id="@+id/edittext_location2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="11.42dp"
+            android:background="@drawable/text_login_background"
+            android:fontFamily="@font/pretendard_regular"
+            android:hint="상세 주소를 입력해 주세요."
+            android:inputType="text|textPersonName"
+            android:paddingHorizontal="22.83dp"
+            android:paddingVertical="11.42dp"
+            android:textColor="@color/black"
+            android:textColorHint="#6E7178"
+            android:textSize="18.27sp" />
+
     </LinearLayout>
-</LinearLayout>
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="22.83dp"
+        android:layout_marginEnd="22.83dp"
+        android:layout_marginBottom="22.83dp"
+        android:background="@drawable/button_black_background"
+        android:fontFamily="@font/pretendard_semi_bold"
+        android:text="주소 확인하기"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
