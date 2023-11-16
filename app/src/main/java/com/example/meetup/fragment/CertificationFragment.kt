@@ -23,6 +23,7 @@ import com.example.meetup.activity.CertificationActivity
 import com.example.meetup.activity.HomeActivity
 import com.example.meetup.databinding.FragmentCertificationBinding
 import com.example.meetup.dialog.DialogEnrollStore
+import kotlin.concurrent.fixedRateTimer
 
 class CertificationFragment : Fragment() {
     lateinit var binding: FragmentCertificationBinding
@@ -71,6 +72,9 @@ class CertificationFragment : Fragment() {
     }
 
     fun initView() {
+
+        homeActivity.hideBottomNavigation(true)
+
         binding.run {
 
             toolbar.run {
@@ -85,7 +89,7 @@ class CertificationFragment : Fragment() {
                 }
 
                 setNavigationOnClickListener {
-
+                    fragmentManager?.popBackStack()
                 }
             }
             imageviewPhoto.visibility = View.GONE

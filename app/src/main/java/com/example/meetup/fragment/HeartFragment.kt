@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.meetup.R
+import com.example.meetup.activity.HomeActivity
 import com.example.meetup.databinding.FragmentChattingBinding
 import com.example.meetup.databinding.FragmentHeartBinding
 
@@ -13,6 +14,7 @@ import com.example.meetup.databinding.FragmentHeartBinding
 class HeartFragment : Fragment() {
     private var _binding: FragmentHeartBinding? = null
     private val binding get() = _binding!!
+    lateinit var homeActivity: HomeActivity
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,6 +29,8 @@ class HeartFragment : Fragment() {
 
         _binding = FragmentHeartBinding.inflate(inflater,container,false)
         val view = binding.root
+
+        homeActivity = activity as HomeActivity
 
         binding.imageviewAlarm.setOnClickListener {
             val alarmFragment = AlarmFragment()
@@ -44,6 +48,9 @@ class HeartFragment : Fragment() {
                 commit()
             }
         }
+
+        homeActivity.hideBottomNavigation(false)
+
 
         return view
     }
