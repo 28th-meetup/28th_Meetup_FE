@@ -16,7 +16,6 @@ class HeartFragment : Fragment() {
     private val binding get() = _binding!!
     lateinit var homeActivity: HomeActivity
 
-    lateinit var homeActivity: HomeActivity
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
