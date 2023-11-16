@@ -15,6 +15,7 @@ import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import com.bumptech.glide.Glide
 import com.example.meetup.R
+import com.example.meetup.activity.HomeActivity
 import com.example.meetup.base.BaseFragment
 import com.example.meetup.databinding.FragmentMenuAddBinding
 import com.example.meetup.databinding.FragmentMenuEditBinding
@@ -29,9 +30,13 @@ class StoreEditFragment : Fragment() {
     var isCheck = false
     private var _binding: FragmentStoreEditBinding? = null
     private val binding get() = _binding!!
+    lateinit var homeActivity: HomeActivity
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        homeActivity = activity as HomeActivity
+
+        homeActivity.hideBottomNavigation(true)
     }
 
     override fun onCreateView(
