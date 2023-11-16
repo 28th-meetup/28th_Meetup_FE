@@ -12,6 +12,7 @@ import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import com.bumptech.glide.Glide
 import com.example.meetup.R
+import com.example.meetup.activity.HomeActivity
 import com.example.meetup.base.BaseFragment
 import com.example.meetup.databinding.FragmentReviewWriteBinding
 import com.kakao.sdk.talk.model.Order
@@ -20,12 +21,15 @@ import com.kakao.sdk.talk.model.Order
 class ReviewWriteFragment :
     BaseFragment<FragmentReviewWriteBinding>(R.layout.fragment_review_write) {
 
+    lateinit var homeActivity: HomeActivity
 
     var star_rate = 0
     var review_content = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        homeActivity = activity as HomeActivity
 
+        homeActivity.hideBottomNavigation(true)
     }
 
     override fun onCreateView(

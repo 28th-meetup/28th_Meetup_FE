@@ -19,15 +19,17 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_
 
     }
 
+    override fun onResume() {
+        super.onResume()
+        homeActivity = activity as HomeActivity
+
+        homeActivity.hideBottomNavigation(false)
+    }
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-        homeActivity = activity as HomeActivity
-
-        homeActivity.hideBottomNavigation(false)
 
         return super.onCreateView(inflater, container, savedInstanceState)
     }

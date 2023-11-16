@@ -6,14 +6,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.meetup.R
+import com.example.meetup.activity.HomeActivity
 import com.example.meetup.base.BaseFragment
 import com.example.meetup.databinding.FragmentMenuAddSuccessBinding
 
 class MenuAddSuccessFragment : BaseFragment<FragmentMenuAddSuccessBinding>(R.layout.fragment_menu_add_success) {
 
+    lateinit var homeActivity: HomeActivity
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        homeActivity = activity as HomeActivity
+
+        homeActivity.hideBottomNavigation(true)
     }
 
     override fun onCreateView(

@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.meetup.R
+import com.example.meetup.activity.HomeActivity
 import com.example.meetup.adapter.OrderListAdapter
 import com.example.meetup.adapter.StoreListAdapter
 import com.example.meetup.databinding.FragmentOrderListBinding
@@ -20,11 +21,16 @@ class OrderListFragment : Fragment() {
     private var _binding: FragmentOrderListBinding? = null
     private val binding get() = _binding!!
 
+     lateinit var homeActivity: HomeActivity
+
     private lateinit var orderListAdapter: OrderListAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        homeActivity = activity as HomeActivity
+
+        homeActivity.hideBottomNavigation(true)
     }
 
     override fun onCreateView(
