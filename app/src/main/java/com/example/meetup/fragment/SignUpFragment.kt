@@ -7,6 +7,8 @@ import android.graphics.Paint
 import android.graphics.PorterDuff
 import android.os.Build
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -14,6 +16,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.EditText
 import android.widget.Spinner
 import android.widget.Toast
 import com.example.meetup.R
@@ -72,6 +75,14 @@ class SignUpFragment : Fragment() {
                 agreement5 = !agreement5
                 changeAgreementBackground(5)
             }
+
+            buttonLogin.setOnClickListener {
+                val addressFragment = SignUpAddressFragment()
+
+                val transaction = authActivity.supportFragmentManager.beginTransaction()
+                transaction.replace(R.id.frameArea, addressFragment)
+                transaction.commit()
+            }
         }
 
         return binding.root
@@ -108,6 +119,12 @@ class SignUpFragment : Fragment() {
             textviewAgreement1Detail.paintFlags = Paint.UNDERLINE_TEXT_FLAG
             textviewAgreement2Detail.paintFlags = Paint.UNDERLINE_TEXT_FLAG
             textviewAgreement3Detail.paintFlags = Paint.UNDERLINE_TEXT_FLAG
+
+            checkaddTextChange(edittextEmail)
+            checkaddTextChange(edittextPassword)
+            checkaddTextChange(edittextPasswordCheck)
+            checkaddTextChange(edittextNickName)
+            checkaddTextChange(edittextPhoneNumber)
         }
 
         var phoneSpinner = binding.spinnerPhoneNumber	// spinner
@@ -127,8 +144,38 @@ class SignUpFragment : Fragment() {
     }
 
 
+    fun checkaddTextChange(view: EditText) {
+        view.addTextChangedListener (object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                // 텍스트 변경 전에 호출되는 메서드
+            }
 
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                // 텍스트 변경 중에 호출되는 메서드
+            }
 
+            override fun afterTextChanged(s: Editable?) {
+                if(view.text.isEmpty()) {
+
+                } else {
+                    checkInput(view)
+                }
+            }
+        })
+    }
+
+    fun checkInput(view: View) {
+        view.setBackgroundResource(R.drawable.text_login_input_background)
+
+        binding.run {
+            if(!edittextEmail.text.isEmpty() && !edittextPassword.text.isEmpty() && !edittextPasswordCheck.text.isEmpty() && !edittextNickName.text.isEmpty() && !edittextPhoneNumber.text.isEmpty()) {
+                buttonLogin.run {
+                    isEnabled = true
+                    setBackgroundResource(R.drawable.button_radius)
+                }
+            }
+        }
+    }
 
     fun clickAgreementAll() {
 
