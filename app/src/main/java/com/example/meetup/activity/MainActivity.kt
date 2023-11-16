@@ -9,8 +9,10 @@ import android.util.Log
 import android.widget.ImageView
 import com.example.meetup.R
 import com.example.meetup.databinding.ActivityMainBinding
+import com.example.meetup.fragment.CartFragment
 import com.example.meetup.fragment.HomeFragment
 import com.example.meetup.fragment.LoginFragment
+import com.example.meetup.fragment.SignUpAddressFragment
 import com.example.meetup.fragment.SignUpFragment
 import com.example.meetup.model.PostKaKaoTokenResponseModel
 import com.example.meetup.retrofit2.APIS
@@ -29,10 +31,14 @@ class MainActivity : AppCompatActivity() {
     private val APIS = RetrofitInstance.retrofitInstance().create(APIS::class.java)
     lateinit var binding: ActivityMainBinding
 
+    lateinit var authActivity: AuthActivity
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
+
+        authActivity = AuthActivity()
 
         binding.run {
             // 이메일 로그인 버튼 클릭
@@ -116,8 +122,14 @@ class MainActivity : AppCompatActivity() {
 
 
                         //홈 화면으로 이동 코드
-                        val homeIntent = Intent(this@MainActivity,HomeActivity::class.java)
-                        startActivity(homeIntent)
+                        val authIntent = Intent(this@MainActivity,AuthActivity::class.java)
+                        startActivity(authIntent)
+
+                        val addressFragment = SignUpAddressFragment()
+
+                        val transaction = authActivity.supportFragmentManager.beginTransaction()
+                        transaction.replace(R.id.container_auth, addressFragment)
+                        transaction.commit()
 
                     } else {
                         Log.d("PostKaKaoTokenResponseModel", "fail 1")
