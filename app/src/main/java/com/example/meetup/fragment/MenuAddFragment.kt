@@ -346,6 +346,14 @@ class MenuAddFragment : Fragment() {
         } else {
             //이동
 
+
+                val menuAddSuccessFragment = MenuAddSuccessFragment()
+                fragmentManager?.beginTransaction()?.apply {
+                    replace(R.id.frameArea, menuAddSuccessFragment)
+                    commit()
+                }
+
+
         }
     }
 
