@@ -32,6 +32,8 @@ class SellerOrderCheckFragment : Fragment() {
         binding = FragmentSellerOrderCheckBinding.inflate(inflater)
         homeActivity = activity as HomeActivity
 
+        homeActivity.hideBottomNavigation(true)
+
         fragmentList.clear()
         fragmentList.add(SellerOrderInProgressFragment())
         fragmentList.add(SellerOrderMenuFragment())

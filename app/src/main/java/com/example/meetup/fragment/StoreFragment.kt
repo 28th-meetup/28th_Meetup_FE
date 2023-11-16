@@ -9,6 +9,7 @@ import com.example.meetup.R
 import android.graphics.Color
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.meetup.activity.HomeActivity
 import com.example.meetup.adapter.StoreListAdapter
 
 import com.example.meetup.databinding.FragmentStoreBinding
@@ -23,6 +24,8 @@ class StoreFragment : Fragment() {
 
     private lateinit var storeListAdapter: StoreListAdapter
 
+    lateinit var homeActivity: HomeActivity
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -35,6 +38,8 @@ class StoreFragment : Fragment() {
 
         _binding = FragmentStoreBinding.inflate(inflater, container, false)
         val view = binding.root
+
+        homeActivity = activity as HomeActivity
 
 
         val store_list = ArrayList<StoreListResponseModel>()
@@ -60,6 +65,8 @@ class StoreFragment : Fragment() {
                 }
             }
         }
+
+        homeActivity.hideBottomNavigation(false)
 
         return view
     }

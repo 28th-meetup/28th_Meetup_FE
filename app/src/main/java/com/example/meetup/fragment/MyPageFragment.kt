@@ -13,11 +13,10 @@ import com.example.meetup.databinding.FragmentMyPageBinding
 class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_page) {
 
     lateinit var homeActivity: HomeActivity
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        homeActivity = activity as HomeActivity
 
-        homeActivity.hideBottomNavigation(false)
     }
 
     override fun onResume() {
@@ -31,6 +30,7 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         return super.onCreateView(inflater, container, savedInstanceState)
     }
 

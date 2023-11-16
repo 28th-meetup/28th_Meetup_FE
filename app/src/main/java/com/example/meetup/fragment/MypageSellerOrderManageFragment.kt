@@ -27,6 +27,7 @@ class MypageSellerOrderManageFragment : Fragment() {
 
                 val transaction = homeActivity.manager.beginTransaction()
                 transaction.replace(R.id.frameArea, orderFragment)
+                transaction.addToBackStack("")
                 transaction.commit()
             }
             btnKoreanCheck.setOnClickListener{
@@ -34,6 +35,7 @@ class MypageSellerOrderManageFragment : Fragment() {
 
                 val transaction = homeActivity.manager.beginTransaction()
                 transaction.replace(R.id.frameArea, certificationFragment)
+                transaction.addToBackStack("")
                 transaction.commit()
             }
         }

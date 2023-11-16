@@ -14,6 +14,7 @@ import com.example.meetup.databinding.FragmentHeartBinding
 class HeartFragment : Fragment() {
     private var _binding: FragmentHeartBinding? = null
     private val binding get() = _binding!!
+    lateinit var homeActivity: HomeActivity
 
     lateinit var homeActivity: HomeActivity
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,6 +34,8 @@ class HeartFragment : Fragment() {
         _binding = FragmentHeartBinding.inflate(inflater,container,false)
         val view = binding.root
 
+        homeActivity = activity as HomeActivity
+
         binding.imageviewAlarm.setOnClickListener {
             val alarmFragment = AlarmFragment()
             fragmentManager?.beginTransaction()?.apply {
@@ -49,6 +52,9 @@ class HeartFragment : Fragment() {
                 commit()
             }
         }
+
+        homeActivity.hideBottomNavigation(false)
+
 
         return view
     }
