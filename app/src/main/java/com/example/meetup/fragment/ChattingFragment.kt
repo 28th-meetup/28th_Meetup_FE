@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.meetup.R
+import com.example.meetup.activity.HomeActivity
 import com.example.meetup.adapter.ChattingListAdapter
 import com.example.meetup.databinding.FragmentChattingBinding
 import com.example.meetup.databinding.FragmentOrderListBinding
@@ -20,10 +21,15 @@ class ChattingFragment : Fragment() {
     private var _binding: FragmentChattingBinding? = null
     private val binding get() = _binding!!
 
+    lateinit var homeActivity : HomeActivity
+
     private lateinit var chattingListAdapter: ChattingListAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        homeActivity = activity as HomeActivity
+
+        homeActivity.hideBottomNavigation(true)
     }
 
     override fun onCreateView(
