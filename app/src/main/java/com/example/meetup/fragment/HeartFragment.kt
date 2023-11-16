@@ -36,6 +36,14 @@ class HeartFragment : Fragment() {
                 commit()
             }
         }
+        binding.imageviewCart.setOnClickListener {
+            val cartFragment = CartFragment()
+            fragmentManager?.beginTransaction()?.apply {
+                replace(R.id.frameArea, cartFragment)
+                addToBackStack(null)
+                commit()
+            }
+        }
 
         return view
     }

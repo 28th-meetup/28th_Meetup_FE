@@ -77,6 +77,15 @@ class StoreFragment : Fragment() {
                 commit()
             }
         }
+
+        binding.btnCart.setOnClickListener {
+            val cartFragment = CartFragment()
+            fragmentManager?.beginTransaction()?.apply {
+                replace(R.id.frameArea, cartFragment)
+                addToBackStack(null)
+                commit()
+            }
+        }
         binding.btnAll.setOnClickListener {
 
             btnAll()

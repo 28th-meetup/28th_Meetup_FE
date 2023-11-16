@@ -42,6 +42,14 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_
             storeEnrollDialogFragment.show(requireFragmentManager(),"StoreEnrollDialogFragment")
 
         }
+        binding.imageviewCart.setOnClickListener {
+            val cartFragment = CartFragment()
+            fragmentManager?.beginTransaction()?.apply {
+                replace(R.id.frameArea, cartFragment)
+                addToBackStack(null)
+                commit()
+            }
+        }
 
         binding.btnOrderList.setOnClickListener {
             val orderListFragment = OrderListFragment()
