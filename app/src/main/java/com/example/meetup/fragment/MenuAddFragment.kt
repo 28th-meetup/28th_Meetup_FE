@@ -116,6 +116,7 @@ class MenuAddFragment : Fragment() {
                         .load(uri)
                         .into(binding.imageviewChooseRepresent)
 
+                    menuImageUrl = uri.toString()
 
                 } else {
                     Log.d("PhotoPicker", "No media selected")
@@ -337,10 +338,14 @@ class MenuAddFragment : Fragment() {
         } else if (binding.edittextPrice.text.toString() == "") {
             Toast.makeText(context, "빈칸이 있습니다.", Toast.LENGTH_SHORT).show()
 
-        } else if (binding.edittextMenuName.text.toString() == "") {
+        } else if (binding.edittextMenuExplain.text.toString() == "") {
             Toast.makeText(context, "빈칸이 있습니다.", Toast.LENGTH_SHORT).show()
 
-        } else if (ischeck == false) {
+        }
+        else if (menuImageUrl == "") {
+            Toast.makeText(context, "빈칸이 있습니다.", Toast.LENGTH_SHORT).show()
+
+        }else if (ischeck == false) {
             Toast.makeText(context, "체크 표시 해주세요.", Toast.LENGTH_SHORT).show()
 
         } else {
