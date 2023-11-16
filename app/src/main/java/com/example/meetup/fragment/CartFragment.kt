@@ -24,6 +24,7 @@ import com.example.meetup.databinding.FragmentCartBinding
 import com.example.meetup.databinding.RowCartBinding
 import com.example.meetup.databinding.RowOrderOptionBinding
 import com.example.meetup.sharedPreference.MyApplication
+import kotlin.concurrent.fixedRateTimer
 
 class CartFragment : Fragment() {
 
@@ -56,11 +57,7 @@ class CartFragment : Fragment() {
 
                 setNavigationOnClickListener {
                     // 유저별 인입경로에 따른 화면 전환
-                    val homeFragment = HomeFragment()
-
-                    val transaction = homeActivity.manager.beginTransaction()
-                    transaction.replace(R.id.frameArea, homeFragment)
-                    transaction.commit()
+                    fragmentManager?.popBackStack()
                 }
             }
         }
