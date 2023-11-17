@@ -25,4 +25,10 @@ interface APIS {
     fun checkNickName(
         @Body parameters : NickNameRequestModel
     ) : Call<BasicResponseModel>
+
+    // 우편번호 반환
+    @GET("addresses/valid")
+    fun getPostNum(
+        @Query("address") address: String
+    ) : Call<AddressesValidResponseModel>
 }
