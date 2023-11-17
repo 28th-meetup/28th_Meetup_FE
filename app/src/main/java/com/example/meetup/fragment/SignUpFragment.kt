@@ -22,8 +22,22 @@ import android.widget.Toast
 import com.example.meetup.R
 import com.example.meetup.activity.AuthActivity
 import com.example.meetup.databinding.FragmentSignUpBinding
+import com.example.meetup.dialog.DialogEnrollStore
+import com.example.meetup.dialog.DialogSignUp
+import com.example.meetup.model.BasicResponseModel
+import com.example.meetup.model.SignUpResponseModel
+import com.example.meetup.model.request.NickNameRequestModel
+import com.example.meetup.model.request.SignUpRequestModel
+import com.example.meetup.retrofit2.RetrofitInstance
+import com.example.meetup.sharedPreference.MyApplication
+import com.google.android.material.snackbar.Snackbar
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class SignUpFragment : Fragment() {
+
+    private val APIS = RetrofitInstance.retrofitInstance().create(com.example.meetup.retrofit2.APIS::class.java)
 
     lateinit var binding: FragmentSignUpBinding
     lateinit var authActivity: AuthActivity
@@ -35,6 +49,10 @@ class SignUpFragment : Fragment() {
     var agreement3 = false
     var agreement4 = false
     var agreement5 = false
+
+    var isAvailableNickName = false
+    var isClickSpinner = false
+    var phoneNumberCode = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -49,39 +67,74 @@ class SignUpFragment : Fragment() {
         binding.run {
             buttonCheckboxAll.setOnClickListener {
                 clickAgreementAll()
+                checkClick()
             }
 
             buttonCheckbox1.setOnClickListener {
                 agreement1 = !agreement1
                 changeAgreementBackground(1)
+                checkClick()
             }
 
             buttonCheckbox2.setOnClickListener {
                 agreement2 = !agreement2
                 changeAgreementBackground(2)
+                checkClick()
             }
 
             buttonCheckbox3.setOnClickListener {
                 agreement3 = !agreement3
                 changeAgreementBackground(3)
+                checkClick()
             }
 
             buttonCheckbox4.setOnClickListener {
                 agreement4 = !agreement4
                 changeAgreementBackground(4)
+                checkClick()
             }
 
             buttonCheckbox5.setOnClickListener {
                 agreement5 = !agreement5
                 changeAgreementBackground(5)
+                checkClick()
             }
 
             buttonLogin.setOnClickListener {
-                val addressFragment = SignUpAddressFragment()
+            }
 
-                val transaction = authActivity.supportFragmentManager.beginTransaction()
-                transaction.replace(R.id.container_auth, addressFragment)
-                transaction.commit()
+            edittextNickName.setOnEditorActionListener { v, actionId, event ->
+                true
+            }
+
+            spinnerPhoneNumber.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                    when(position) {
+                        0 -> {
+                            isClickSpinner = false
+                            checkClick()
+                        }
+                        1 -> {
+                            isClickSpinner = true
+                            phoneNumberCode = "KOREA"
+                            checkClick()
+                        }
+                        2 -> {
+                            isClickSpinner = true
+                            phoneNumberCode = "USA"
+                            checkClick()
+                        }
+                        3 -> {
+                            isClickSpinner = true
+                            phoneNumberCode = "CANADA"
+                            checkClick()
+                        }
+                    }
+                }
+
+                override fun onNothingSelected(parent: AdapterView<*>?) {
+
+                }
             }
         }
 
@@ -164,14 +217,56 @@ class SignUpFragment : Fragment() {
         })
     }
 
+    fun checkClick() {
+        binding.run {
+
+            var isAvailablePassword = (edittextPassword.text.toString() == edittextPasswordCheck.text.toString())
+
+            if(!edittextEmail.text.isEmpty() && !edittextPassword.text.isEmpty() && !edittextPasswordCheck.text.isEmpty() && !edittextNickName.text.isEmpty() && !edittextPhoneNumber.text.isEmpty()
+                && agreement1 && agreement2 && agreement3 && agreement4 && isAvailablePassword && isAvailableNickName && isClickSpinner) {
+                buttonLogin.run {
+                    isEnabled = true
+                    setBackgroundResource(R.drawable.button_radius)
+                }
+            } else {
+                buttonLogin.run {
+                    isEnabled = false
+                    setBackgroundResource(R.drawable.button_login_background)
+                }
+            }
+        }
+    }
+
     fun checkInput(view: View) {
         view.setBackgroundResource(R.drawable.text_login_input_background)
 
         binding.run {
-            if(!edittextEmail.text.isEmpty() && !edittextPassword.text.isEmpty() && !edittextPasswordCheck.text.isEmpty() && !edittextNickName.text.isEmpty() && !edittextPhoneNumber.text.isEmpty()) {
+            var isAvailablePassword = (edittextPassword.text.toString() == edittextPasswordCheck.text.toString())
+
+            if(!edittextPassword.text.isEmpty() && !edittextPasswordCheck.text.isEmpty()) {
+                var passwordCheck = (edittextPassword.text.toString() == edittextPasswordCheck.text.toString())
+
+                if(!passwordCheck) {
+                    textviewPasswordCheckError.visibility = View.VISIBLE
+                } else {
+                    textviewPasswordCheckError.visibility = View.GONE
+                }
+            }
+
+            if(view == edittextNickName) {
+                isAvailableNickName = false
+            }
+
+            if(!edittextEmail.text.isEmpty() && !edittextPassword.text.isEmpty() && !edittextPasswordCheck.text.isEmpty() && !edittextNickName.text.isEmpty() && !edittextPhoneNumber.text.isEmpty()
+                && agreement1 && agreement2 && agreement3 && agreement4 && isAvailablePassword && isAvailableNickName && isClickSpinner) {
                 buttonLogin.run {
                     isEnabled = true
                     setBackgroundResource(R.drawable.button_radius)
+                }
+            } else {
+                buttonLogin.run {
+                    isEnabled = false
+                    setBackgroundResource(R.drawable.button_login_background)
                 }
             }
         }
@@ -180,10 +275,8 @@ class SignUpFragment : Fragment() {
     fun clickAgreementAll() {
 
         agreementAll = !agreementAll
-        Log.d("밋업", "$agreementAll")
 
         if(agreementAll) {
-            Log.d("밋업", "in true")
             binding.buttonCheckboxAll.setImageResource(R.drawable.checkbox_fill)
             agreement1 = true
             agreement2 = true
