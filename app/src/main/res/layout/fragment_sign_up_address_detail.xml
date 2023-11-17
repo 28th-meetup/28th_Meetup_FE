@@ -45,7 +45,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="22.15dp"
             android:fontFamily="@font/pretendard_semi_bold"
-            android:text="이메일"
+            android:text="우편번호"
             android:textColor="@color/black"
             android:textSize="15.98sp" />
 
@@ -56,7 +56,6 @@
             android:layout_marginTop="11.4dp"
             android:background="@drawable/text_login_input_background"
             android:fontFamily="@font/pretendard_regular"
-            android:hint="상세 주소를 입력해 주세요."
             android:inputType="text|textPersonName"
             android:paddingHorizontal="22.83dp"
             android:paddingVertical="11.42dp"
@@ -92,7 +91,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/button_check_address"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="22.83dp"
