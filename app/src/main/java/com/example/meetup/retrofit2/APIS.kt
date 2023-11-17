@@ -31,4 +31,10 @@ interface APIS {
     fun getPostNum(
         @Query("address") address: String
     ) : Call<AddressesValidResponseModel>
+
+    // 사용자 주소 설정
+    @POST("addresses")
+    fun setAddresses(
+        @Body parameters : AddressesRequestModel
+    ) : Call<AddressesResponseModel>
 }
