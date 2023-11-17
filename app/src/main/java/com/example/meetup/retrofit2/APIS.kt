@@ -14,6 +14,12 @@ interface APIS {
     fun postKakaoToken (
         @Body token : String
     ) : Call<PostKaKaoTokenResponseModel>
+    // 이메일 회원가입
+    @POST("auth/signup")
+    fun signUp(
+        @Body parameters : SignUpRequestModel
+    ) : Call<SignUpResponseModel>
+
     // 닉네임 중복 여부 확인
     @POST("users/nickname")
     fun checkNickName(
