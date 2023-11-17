@@ -5,7 +5,12 @@ data class PostKaKaoTokenResponseModel(
     val isSuccess: Boolean,
     val code: Long,
     val message: String,
-    val result: Info
+    val result: Result?
+)
+
+data class Result(
+    val dto: Info,
+    val isSignUp: Boolean,
 )
 
 data class Info(
