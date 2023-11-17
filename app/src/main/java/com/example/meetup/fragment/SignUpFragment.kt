@@ -22,8 +22,22 @@ import android.widget.Toast
 import com.example.meetup.R
 import com.example.meetup.activity.AuthActivity
 import com.example.meetup.databinding.FragmentSignUpBinding
+import com.example.meetup.dialog.DialogEnrollStore
+import com.example.meetup.dialog.DialogSignUp
+import com.example.meetup.model.BasicResponseModel
+import com.example.meetup.model.SignUpResponseModel
+import com.example.meetup.model.request.NickNameRequestModel
+import com.example.meetup.model.request.SignUpRequestModel
+import com.example.meetup.retrofit2.RetrofitInstance
+import com.example.meetup.sharedPreference.MyApplication
+import com.google.android.material.snackbar.Snackbar
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class SignUpFragment : Fragment() {
+
+    private val APIS = RetrofitInstance.retrofitInstance().create(com.example.meetup.retrofit2.APIS::class.java)
 
     lateinit var binding: FragmentSignUpBinding
     lateinit var authActivity: AuthActivity
@@ -35,6 +49,10 @@ class SignUpFragment : Fragment() {
     var agreement3 = false
     var agreement4 = false
     var agreement5 = false
+
+    var isAvailableNickName = false
+    var isClickSpinner = false
+    var phoneNumberCode = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -49,39 +67,77 @@ class SignUpFragment : Fragment() {
         binding.run {
             buttonCheckboxAll.setOnClickListener {
                 clickAgreementAll()
+                checkClick()
             }
 
             buttonCheckbox1.setOnClickListener {
                 agreement1 = !agreement1
                 changeAgreementBackground(1)
+                checkClick()
             }
 
             buttonCheckbox2.setOnClickListener {
                 agreement2 = !agreement2
                 changeAgreementBackground(2)
+                checkClick()
             }
 
             buttonCheckbox3.setOnClickListener {
                 agreement3 = !agreement3
                 changeAgreementBackground(3)
+                checkClick()
             }
 
             buttonCheckbox4.setOnClickListener {
                 agreement4 = !agreement4
                 changeAgreementBackground(4)
+                checkClick()
             }
 
             buttonCheckbox5.setOnClickListener {
                 agreement5 = !agreement5
                 changeAgreementBackground(5)
+                checkClick()
             }
 
             buttonLogin.setOnClickListener {
-                val addressFragment = SignUpAddressFragment()
+                signUp()
+            }
 
-                val transaction = authActivity.supportFragmentManager.beginTransaction()
-                transaction.replace(R.id.container_auth, addressFragment)
-                transaction.commit()
+            edittextNickName.setOnEditorActionListener { v, actionId, event ->
+                // 닉네임 중복 확인
+                checkNickName(edittextNickName.text.toString())
+                true
+            }
+
+            spinnerPhoneNumber.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                    when(position) {
+                        0 -> {
+                            isClickSpinner = false
+                            checkClick()
+                        }
+                        1 -> {
+                            isClickSpinner = true
+                            phoneNumberCode = "KOREA"
+                            checkClick()
+                        }
+                        2 -> {
+                            isClickSpinner = true
+                            phoneNumberCode = "USA"
+                            checkClick()
+                        }
+                        3 -> {
+                            isClickSpinner = true
+                            phoneNumberCode = "CANADA"
+                            checkClick()
+                        }
+                    }
+                }
+
+                override fun onNothingSelected(parent: AdapterView<*>?) {
+
+                }
             }
         }
 
@@ -164,14 +220,56 @@ class SignUpFragment : Fragment() {
         })
     }
 
+    fun checkClick() {
+        binding.run {
+
+            var isAvailablePassword = (edittextPassword.text.toString() == edittextPasswordCheck.text.toString())
+
+            if(!edittextEmail.text.isEmpty() && !edittextPassword.text.isEmpty() && !edittextPasswordCheck.text.isEmpty() && !edittextNickName.text.isEmpty() && !edittextPhoneNumber.text.isEmpty()
+                && agreement1 && agreement2 && agreement3 && agreement4 && isAvailablePassword && isAvailableNickName && isClickSpinner) {
+                buttonLogin.run {
+                    isEnabled = true
+                    setBackgroundResource(R.drawable.button_radius)
+                }
+            } else {
+                buttonLogin.run {
+                    isEnabled = false
+                    setBackgroundResource(R.drawable.button_login_background)
+                }
+            }
+        }
+    }
+
     fun checkInput(view: View) {
         view.setBackgroundResource(R.drawable.text_login_input_background)
 
         binding.run {
-            if(!edittextEmail.text.isEmpty() && !edittextPassword.text.isEmpty() && !edittextPasswordCheck.text.isEmpty() && !edittextNickName.text.isEmpty() && !edittextPhoneNumber.text.isEmpty()) {
+            var isAvailablePassword = (edittextPassword.text.toString() == edittextPasswordCheck.text.toString())
+
+            if(!edittextPassword.text.isEmpty() && !edittextPasswordCheck.text.isEmpty()) {
+                var passwordCheck = (edittextPassword.text.toString() == edittextPasswordCheck.text.toString())
+
+                if(!passwordCheck) {
+                    textviewPasswordCheckError.visibility = View.VISIBLE
+                } else {
+                    textviewPasswordCheckError.visibility = View.GONE
+                }
+            }
+
+            if(view == edittextNickName) {
+                isAvailableNickName = false
+            }
+
+            if(!edittextEmail.text.isEmpty() && !edittextPassword.text.isEmpty() && !edittextPasswordCheck.text.isEmpty() && !edittextNickName.text.isEmpty() && !edittextPhoneNumber.text.isEmpty()
+                && agreement1 && agreement2 && agreement3 && agreement4 && isAvailablePassword && isAvailableNickName && isClickSpinner) {
                 buttonLogin.run {
                     isEnabled = true
                     setBackgroundResource(R.drawable.button_radius)
+                }
+            } else {
+                buttonLogin.run {
+                    isEnabled = false
+                    setBackgroundResource(R.drawable.button_login_background)
                 }
             }
         }
@@ -180,10 +278,8 @@ class SignUpFragment : Fragment() {
     fun clickAgreementAll() {
 
         agreementAll = !agreementAll
-        Log.d("밋업", "$agreementAll")
 
         if(agreementAll) {
-            Log.d("밋업", "in true")
             binding.buttonCheckboxAll.setImageResource(R.drawable.checkbox_fill)
             agreement1 = true
             agreement2 = true
@@ -273,5 +369,107 @@ class SignUpFragment : Fragment() {
                 }
             }
         }
+    }
+
+    fun signUp() {
+
+        binding.run {
+            var SignUpRequest = SignUpRequestModel(
+                edittextEmail.text.toString(),
+                edittextPassword.text.toString(),
+                edittextNickName.text.toString(),
+                phoneNumberCode,
+                edittextPhoneNumber.text.toString(),
+                "USER",
+                ""
+            )
+
+            Log.d("밋업", "회원가입 : ${SignUpRequest}")
+
+
+            APIS.signUp(SignUpRequest).enqueue(object :
+                Callback<SignUpResponseModel> {
+                override fun onResponse(
+                    call: Call<SignUpResponseModel>,
+                    response: Response<SignUpResponseModel>
+                ) {
+                    if (response.isSuccessful) {
+                        // 정상적으로 통신이 성공된 경우
+                        var result: SignUpResponseModel? = response.body()
+                        Log.d("##", "onResponse 성공: " + result?.toString())
+
+                        MyApplication.address.userId = result?.result!!.id
+                        Log.d("밋업", "${MyApplication.address.userId}")
+
+                        // 주소 설정 화면으로 전환
+                        val addressFragment = SignUpAddressFragment()
+
+                        val transaction = authActivity.supportFragmentManager.beginTransaction()
+                        transaction.replace(R.id.container_auth, addressFragment)
+                        transaction.commit()
+                    } else {
+                        // 통신이 실패한 경우(응답코드 3xx, 4xx 등)
+                        Log.d("##", "onResponse 실패: " + response.code())
+                        Log.d("##", "onResponse 실패: " + response.message())
+
+                        if (response.code() == 400) {
+                            val dialog = DialogSignUp(authActivity.supportFragmentManager)
+                            // 알림창이 띄워져있는 동안 배경 클릭 막기
+                            dialog.isCancelable = false
+                            authActivity?.let {
+                                dialog.show(
+                                    it.supportFragmentManager,
+                                    "SignUpDialog"
+                                )
+                            }
+                        }
+                    }
+                }
+
+                override fun onFailure(call: Call<SignUpResponseModel>, t: Throwable) {
+                    // 통신 실패
+                    Log.d("##", "onFailure 에러: " + t.message.toString());
+                }
+            })
+        }
+    }
+
+    fun checkNickName(nickName : String) {
+
+        var NickNameRequest = NickNameRequestModel(nickName)
+        Log.d("밋업", "닉네임 중복 확인 : ${NickNameRequest}")
+
+
+        APIS.checkNickName(NickNameRequest).enqueue(object :
+            Callback<BasicResponseModel> {
+            override fun onResponse(
+                call: Call<BasicResponseModel>,
+                response: Response<BasicResponseModel>
+            ) {
+                if (response.isSuccessful) {
+                    // 정상적으로 통신이 성공된 경우
+                    var result: BasicResponseModel? = response.body()
+                    Log.d("##", "onResponse 성공: " + result?.toString())
+
+                    isAvailableNickName = true
+                    binding.textviewNickNameError.visibility = View.GONE
+
+                } else {
+                    // 통신이 실패한 경우(응답코드 3xx, 4xx 등)
+                    Log.d("##", "onResponse 실패: " + response.code())
+                    Log.d("##", "onResponse 실패: " + response.body())
+
+                    if (response.code() == 400) {
+                        isAvailableNickName = false
+                        binding.textviewNickNameError.visibility = View.VISIBLE
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<BasicResponseModel>, t: Throwable) {
+                // 통신 실패
+                Log.d("##", "onFailure 에러: " + t.message.toString());
+            }
+        })
     }
 }

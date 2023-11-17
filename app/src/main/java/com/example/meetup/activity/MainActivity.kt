@@ -18,6 +18,7 @@ import com.example.meetup.model.PostKaKaoTokenResponseModel
 import com.example.meetup.retrofit2.APIS
 import com.example.meetup.retrofit2.RetrofitInstance
 import com.example.meetup.sharedPreference.MyApplication
+import com.example.meetup.sharedPreference.TokenManager
 import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.common.model.ClientError
 import com.kakao.sdk.common.model.ClientErrorCause
@@ -117,19 +118,24 @@ class MainActivity : AppCompatActivity() {
 
                         Log.d("PostKaKaoTokenResponseModel", response.body().toString())
 
+                        if(response.body()!!.result?.isSignUp == true) {
 
-                        MyApplication.preferences.setString("accessToken", response.body()!!.result.accessToken)
+                            MyApplication.address.userId = response.body()!!.result?.dto!!.id
 
+                            val authIntent = Intent(this@MainActivity,AuthActivity::class.java)
+                            authIntent.putExtra("auth", 2)
+                            startActivity(authIntent)
+                        }
+                        else {
+                            var tokenManager = TokenManager(this@MainActivity)
+                            tokenManager.saveTokens(response.body()!!.result?.dto!!.accessToken, response.body()!!.result?.dto!!.refreshToken)
+                            Log.d("밋업", "access token : ${tokenManager.getAccessToken()}")
+                            Log.d("밋업", "access token : ${tokenManager.getRefreshToken()}")
 
-                        //홈 화면으로 이동 코드
-                        val authIntent = Intent(this@MainActivity,AuthActivity::class.java)
-                        startActivity(authIntent)
-
-                        val addressFragment = SignUpAddressFragment()
-
-                        val transaction = authActivity.supportFragmentManager.beginTransaction()
-                        transaction.replace(R.id.container_auth, addressFragment)
-                        transaction.commit()
+                            //홈 화면으로 이동 코드
+                            val homeIntent = Intent(this@MainActivity,HomeActivity::class.java)
+                            startActivity(homeIntent)
+                        }
 
                     } else {
                         Log.d("PostKaKaoTokenResponseModel", "fail 1")

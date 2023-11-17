@@ -18,11 +18,22 @@ import com.example.meetup.R
 import com.example.meetup.activity.AuthActivity
 import com.example.meetup.activity.HomeActivity
 import com.example.meetup.databinding.FragmentLoginBinding
+import com.example.meetup.model.BasicResponseModel
+import com.example.meetup.model.SignInResponseModel
+import com.example.meetup.model.request.SignInRequestModel
+import com.example.meetup.retrofit2.RetrofitInstance
+import com.example.meetup.sharedPreference.TokenManager
+import com.google.android.material.snackbar.Snackbar
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class LoginFragment : Fragment() {
 
     lateinit var binding: FragmentLoginBinding
     lateinit var authActivity: AuthActivity
+
+    private val APIS = RetrofitInstance.retrofitInstance().create(com.example.meetup.retrofit2.APIS::class.java)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,9 +47,7 @@ class LoginFragment : Fragment() {
 
         binding.run {
             buttonLogin.setOnClickListener {
-                //홈 화면으로 이동 코드
-                val homeIntent = Intent(authActivity, HomeActivity::class.java)
-                startActivity(homeIntent)
+                login()
             }
         }
 
@@ -79,19 +88,7 @@ class LoginFragment : Fragment() {
                 }
 
                 override fun afterTextChanged(s: Editable?) {
-                    if(edittextEmail.text.isEmpty() || edittextPassword.text.isEmpty()) {
-                        buttonLogin.setBackgroundResource(R.drawable.button_login_background)
-                        buttonLogin.isEnabled = false
-                    } else {
-                        buttonLogin.setBackgroundResource(R.drawable.button_radius)
-                        buttonLogin.isEnabled = true
-                    }
-
-                    if(!edittextEmail.text.isEmpty()) {
-                        edittextEmail.setBackgroundResource(R.drawable.text_login_input_background)
-                    } else {
-                        edittextEmail.setBackgroundResource(R.drawable.text_login_background)
-                    }
+                    checkText()
                 }
             })
 
@@ -105,21 +102,72 @@ class LoginFragment : Fragment() {
                 }
 
                 override fun afterTextChanged(s: Editable?) {
-                    if(edittextEmail.text.isEmpty() || edittextPassword.text.isEmpty()) {
-                        buttonLogin.setBackgroundResource(R.drawable.button_login_background)
-                        buttonLogin.isEnabled = false
-                    } else {
-                        buttonLogin.setBackgroundResource(R.drawable.button_radius)
-                        buttonLogin.isEnabled = true
-                    }
-
-                    if(!edittextPassword.text.isEmpty()) {
-                        edittextPassword.setBackgroundResource(R.drawable.text_login_input_background)
-                    } else {
-                        edittextPassword.setBackgroundResource(R.drawable.text_login_background)
-                    }
+                    checkText()
                 }
             })
         }
+    }
+
+    fun checkText() {
+        binding.run {
+            if(edittextEmail.text.isEmpty() || edittextPassword.text.isEmpty()) {
+                buttonLogin.setBackgroundResource(R.drawable.button_login_background)
+                buttonLogin.isEnabled = false
+            } else {
+                buttonLogin.setBackgroundResource(R.drawable.button_radius)
+                buttonLogin.isEnabled = true
+            }
+
+            if(!edittextPassword.text.isEmpty()) {
+                edittextPassword.setBackgroundResource(R.drawable.text_login_input_background)
+            } else {
+                edittextPassword.setBackgroundResource(R.drawable.text_login_background)
+            }
+        }
+    }
+
+    fun login() {
+
+        var SignInRequest = SignInRequestModel(binding.edittextEmail.text.toString(), binding.edittextPassword.text.toString())
+
+        APIS.signIn(SignInRequest).enqueue(object :
+            Callback<SignInResponseModel> {
+            override fun onResponse(
+                call: Call<SignInResponseModel>,
+                response: Response<SignInResponseModel>
+            ) {
+                if (response.isSuccessful) {
+                    // 정상적으로 통신이 성공된 경우
+                    var result: SignInResponseModel? = response.body()
+                    Log.d("##", "onResponse 성공: " + result?.toString())
+
+                    var tokenManager = TokenManager(requireContext())
+                    tokenManager.saveTokens(response.body()?.result!!.accessToken, response.body()?.result!!.refreshToken)
+                    Log.d("##", "access token : ${tokenManager.getAccessToken()}")
+                    Log.d("##", "refresh token : ${tokenManager.getRefreshToken()}")
+
+                    //홈 화면으로 이동 코드
+                    val homeIntent = Intent(authActivity, HomeActivity::class.java)
+                    startActivity(homeIntent)
+                } else {
+                    // 통신이 실패한 경우(응답코드 3xx, 4xx 등)
+                    Log.d("##", "onResponse 실패: " + response.code())
+                    Log.d("##", "onResponse 실패: " + response.body())
+
+                    if (response.code() == 400) {
+                        Snackbar.make(
+                            binding.root,
+                            "존재하지 않는 이메일 정보입니다.",
+                            Snackbar.LENGTH_LONG
+                        ).show()
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<SignInResponseModel>, t: Throwable) {
+                // 통신 실패
+                Log.d("##", "onFailure 에러: " + t.message.toString());
+            }
+        })
     }
 }

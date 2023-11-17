@@ -1,20 +1,13 @@
 package com.example.meetup.model
 
-data class PostKaKaoTokenResponseModel(
-
+data class SignInResponseModel(
     val isSuccess: Boolean,
     val code: Long,
     val message: String,
-    val result: Result?
+    val result: SignInUser?
 )
 
-data class Result(
-    val dto: Info,
-    val isSignUp: Boolean,
-)
-
-data class Info(
-
+data class SignInUser(
     var id: Long,
     var email: String,
     var image: String,
@@ -23,5 +16,4 @@ data class Info(
     var refreshToken: String,
     var accessTokenRemainTime: Long,
     var refreshTokenRemainTime: Long
-
 )

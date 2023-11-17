@@ -12,11 +12,14 @@ import androidx.fragment.app.FragmentManager
 import com.example.meetup.R
 import com.example.meetup.databinding.ActivityHomeBinding
 import com.example.meetup.databinding.DialogSignUpAddressBinding
+import com.example.meetup.fragment.SignUpAddressCheckFragment
+import com.example.meetup.fragment.SignUpAddressDetailFragment
+import com.example.meetup.fragment.SignUpAddressFragment
 
 interface SignUpAddressDialogInterface {
     fun onClickYesButton(id: Int)
 }
-class DialogSignUpAddress(var manager: FragmentManager) : DialogFragment() {
+class DialogSignUpAddress(var manager: FragmentManager, var postNum: String) : DialogFragment() {
 
     // 뷰 바인딩 정의
     private var _binding: DialogSignUpAddressBinding? = null
@@ -34,7 +37,15 @@ class DialogSignUpAddress(var manager: FragmentManager) : DialogFragment() {
         dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT));
         dialog?.requestWindowFeature(Window.FEATURE_NO_TITLE)
 
+        binding.textviewPostNum.text = postNum
+
         binding.buttonComplete.setOnClickListener {
+            val addressFragment = SignUpAddressDetailFragment()
+
+            val transaction = manager.beginTransaction()
+            transaction.replace(R.id.container_auth, addressFragment)
+            transaction.commit()
+
             dismiss()
         }
 

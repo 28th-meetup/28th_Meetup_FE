@@ -11,6 +11,7 @@ import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
 import com.example.meetup.R
 import com.example.meetup.activity.CertificationActivity
+import com.example.meetup.databinding.ActivityAuthBinding
 import com.example.meetup.databinding.ActivityHomeBinding
 import com.example.meetup.databinding.DialogEnrollStoreBinding
 import com.example.meetup.databinding.DialogSignUpBinding
@@ -25,8 +26,6 @@ class DialogSignUp(var manager: FragmentManager) : DialogFragment() {
     private var _binding: DialogSignUpBinding? = null
     private val binding get() = _binding!!
 
-    lateinit var certificationActivity: CertificationActivity
-
     private var confirmDialogInterface: SignUpDialogInterface? = null
 
     override fun onCreateView(
@@ -35,7 +34,6 @@ class DialogSignUp(var manager: FragmentManager) : DialogFragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = DialogSignUpBinding.inflate(inflater)
-        certificationActivity = activity as CertificationActivity
 
         dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT));
         dialog?.requestWindowFeature(Window.FEATURE_NO_TITLE)
@@ -55,8 +53,8 @@ class DialogSignUp(var manager: FragmentManager) : DialogFragment() {
 
     override fun onStart() {
         super.onStart()
-        var activityHomeBinding = ActivityHomeBinding.inflate(layoutInflater)
+        var activityAuthBinding = ActivityAuthBinding.inflate(layoutInflater)
 
-        activityHomeBinding.root.setBackgroundResource(R.drawable.blur_background)
+        activityAuthBinding.root.setBackgroundResource(R.drawable.blur_background)
     }
 }
