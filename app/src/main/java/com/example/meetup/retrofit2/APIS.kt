@@ -5,6 +5,7 @@ import com.example.meetup.model.AddressesResponseModel
 import com.example.meetup.model.AddressesValidResponseModel
 import com.example.meetup.model.BasicResponseModel
 import com.example.meetup.model.PostKaKaoTokenResponseModel
+import com.example.meetup.model.PostReviewWriteResponseModel
 import com.example.meetup.model.SignInResponseModel
 import com.example.meetup.model.SignUpResponseModel
 import com.example.meetup.model.request.AddressesRequestModel
@@ -56,4 +57,10 @@ interface APIS {
     fun setAddresses(
         @Body parameters : AddressesRequestModel
     ) : Call<AddressesResponseModel>
+
+    //리뷰 작성
+    @POST("review")
+    fun postReviewWrite(
+        @Header ("token") token: String
+    ) : Call<PostReviewWriteResponseModel>
 }
