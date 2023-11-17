@@ -101,6 +101,7 @@ class SignUpFragment : Fragment() {
             }
 
             buttonLogin.setOnClickListener {
+                signUp()
             }
 
             edittextNickName.setOnEditorActionListener { v, actionId, event ->
@@ -369,6 +370,70 @@ class SignUpFragment : Fragment() {
             }
         }
     }
+
+    fun signUp() {
+
+        binding.run {
+            var SignUpRequest = SignUpRequestModel(
+                edittextEmail.text.toString(),
+                edittextPassword.text.toString(),
+                edittextNickName.text.toString(),
+                phoneNumberCode,
+                edittextPhoneNumber.text.toString(),
+                "USER",
+                ""
+            )
+
+            Log.d("밋업", "회원가입 : ${SignUpRequest}")
+
+
+            APIS.signUp(SignUpRequest).enqueue(object :
+                Callback<SignUpResponseModel> {
+                override fun onResponse(
+                    call: Call<SignUpResponseModel>,
+                    response: Response<SignUpResponseModel>
+                ) {
+                    if (response.isSuccessful) {
+                        // 정상적으로 통신이 성공된 경우
+                        var result: SignUpResponseModel? = response.body()
+                        Log.d("##", "onResponse 성공: " + result?.toString())
+
+                        MyApplication.address.userId = result?.result!!.id
+                        Log.d("밋업", "${MyApplication.address.userId}")
+
+                        // 주소 설정 화면으로 전환
+                        val addressFragment = SignUpAddressFragment()
+
+                        val transaction = authActivity.supportFragmentManager.beginTransaction()
+                        transaction.replace(R.id.container_auth, addressFragment)
+                        transaction.commit()
+                    } else {
+                        // 통신이 실패한 경우(응답코드 3xx, 4xx 등)
+                        Log.d("##", "onResponse 실패: " + response.code())
+                        Log.d("##", "onResponse 실패: " + response.message())
+
+                        if (response.code() == 400) {
+                            val dialog = DialogSignUp(authActivity.supportFragmentManager)
+                            // 알림창이 띄워져있는 동안 배경 클릭 막기
+                            dialog.isCancelable = false
+                            authActivity?.let {
+                                dialog.show(
+                                    it.supportFragmentManager,
+                                    "SignUpDialog"
+                                )
+                            }
+                        }
+                    }
+                }
+
+                override fun onFailure(call: Call<SignUpResponseModel>, t: Throwable) {
+                    // 통신 실패
+                    Log.d("##", "onFailure 에러: " + t.message.toString());
+                }
+            })
+        }
+    }
+
     fun checkNickName(nickName : String) {
 
         var NickNameRequest = NickNameRequestModel(nickName)
