@@ -5,6 +5,7 @@ import android.os.Bundle
 import com.example.meetup.R
 import com.example.meetup.databinding.ActivityAuthBinding
 import com.example.meetup.fragment.LoginFragment
+import com.example.meetup.fragment.SignUpAddressFragment
 import com.example.meetup.fragment.SignUpFragment
 
 
@@ -25,11 +26,17 @@ class AuthActivity : AppCompatActivity() {
             val transaction = supportFragmentManager.beginTransaction()
             transaction.replace(R.id.container_auth, loginFragment)
             transaction.commit()
-        } else {
+        } else if(auth == 0) {
             val signUpFragment = SignUpFragment()
 
             val transaction = supportFragmentManager.beginTransaction()
             transaction.replace(R.id.container_auth, signUpFragment)
+            transaction.commit()
+        } else {
+            val addressFragment = SignUpAddressFragment()
+
+            val transaction = supportFragmentManager.beginTransaction()
+            transaction.replace(R.id.container_auth, addressFragment)
             transaction.commit()
         }
     }
