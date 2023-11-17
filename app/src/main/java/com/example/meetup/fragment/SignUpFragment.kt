@@ -104,6 +104,8 @@ class SignUpFragment : Fragment() {
             }
 
             edittextNickName.setOnEditorActionListener { v, actionId, event ->
+                // 닉네임 중복 확인
+                checkNickName(edittextNickName.text.toString())
                 true
             }
 
@@ -366,5 +368,43 @@ class SignUpFragment : Fragment() {
                 }
             }
         }
+    }
+    fun checkNickName(nickName : String) {
+
+        var NickNameRequest = NickNameRequestModel(nickName)
+        Log.d("밋업", "닉네임 중복 확인 : ${NickNameRequest}")
+
+
+        APIS.checkNickName(NickNameRequest).enqueue(object :
+            Callback<BasicResponseModel> {
+            override fun onResponse(
+                call: Call<BasicResponseModel>,
+                response: Response<BasicResponseModel>
+            ) {
+                if (response.isSuccessful) {
+                    // 정상적으로 통신이 성공된 경우
+                    var result: BasicResponseModel? = response.body()
+                    Log.d("##", "onResponse 성공: " + result?.toString())
+
+                    isAvailableNickName = true
+                    binding.textviewNickNameError.visibility = View.GONE
+
+                } else {
+                    // 통신이 실패한 경우(응답코드 3xx, 4xx 등)
+                    Log.d("##", "onResponse 실패: " + response.code())
+                    Log.d("##", "onResponse 실패: " + response.body())
+
+                    if (response.code() == 400) {
+                        isAvailableNickName = false
+                        binding.textviewNickNameError.visibility = View.VISIBLE
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<BasicResponseModel>, t: Throwable) {
+                // 통신 실패
+                Log.d("##", "onFailure 에러: " + t.message.toString());
+            }
+        })
     }
 }
