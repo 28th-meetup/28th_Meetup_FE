@@ -14,4 +14,9 @@ interface APIS {
     fun postKakaoToken (
         @Body token : String
     ) : Call<PostKaKaoTokenResponseModel>
+    // 닉네임 중복 여부 확인
+    @POST("users/nickname")
+    fun checkNickName(
+        @Body parameters : NickNameRequestModel
+    ) : Call<BasicResponseModel>
 }
