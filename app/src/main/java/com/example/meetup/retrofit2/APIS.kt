@@ -1,14 +1,14 @@
 package com.example.meetup.retrofit2
 
-import androidx.core.os.BuildCompat.PrereleaseSdkCheck
 import com.example.meetup.model.AddressesResponseModel
 import com.example.meetup.model.AddressesValidResponseModel
 import com.example.meetup.model.BasicResponseModel
+import com.example.meetup.model.CategoryIdResponseModel
+import com.example.meetup.model.HomeResponseModel
 import com.example.meetup.model.PostKaKaoTokenResponseModel
 import com.example.meetup.model.SignInResponseModel
 import com.example.meetup.model.SignUpResponseModel
 import com.example.meetup.model.request.AddressesRequestModel
-import com.example.meetup.model.request.AddressesValidRequestModel
 import com.example.meetup.model.request.NickNameRequestModel
 import com.example.meetup.model.request.SignInRequestModel
 import com.example.meetup.model.request.SignUpRequestModel
@@ -17,6 +17,7 @@ import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.POST
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface APIS {
@@ -56,6 +57,13 @@ interface APIS {
     fun setAddresses(
         @Body parameters : AddressesRequestModel
     ) : Call<AddressesResponseModel>
+
+    // 홈 메뉴 조회하기
+    @GET("food/home")
+    fun getHomeFood(
+        @Header("Authorization") Authorization: String
+    ) : Call<HomeResponseModel>
+
     // 특정 카테고리 메뉴 조회하기
     @GET("food/category/{categoryId}")
     fun getCategoryFood(
