@@ -130,7 +130,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/button_dialog_main"
                 android:fontFamily="@font/pretendard_semi_bold"
-                android:text="주문 완료"
+                android:text="처리 완료"
                 android:textColor="@color/white"
                 android:textSize="20.55sp" />
         </LinearLayout>
