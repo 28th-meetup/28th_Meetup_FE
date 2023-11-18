@@ -7,13 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.meetup.R
 import android.graphics.Color
-import androidx.fragment.app.FragmentManager
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.meetup.activity.HomeActivity
 import com.example.meetup.adapter.StoreListAdapter
 
 import com.example.meetup.databinding.FragmentStoreBinding
-import com.example.meetup.model.StoreListResponseModel
+import com.example.meetup.model.store.StoreListResponseModel
+import com.example.meetup.viewmodel.StoreListViewModel
 
 
 class StoreFragment : Fragment() {
@@ -26,6 +27,7 @@ class StoreFragment : Fragment() {
 
     lateinit var homeActivity: HomeActivity
 
+    private lateinit var viewModel : StoreListViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -41,30 +43,40 @@ class StoreFragment : Fragment() {
 
         homeActivity = activity as HomeActivity
 
+        viewModel = ViewModelProvider(requireActivity()).get(StoreListViewModel::class.java)
 
-        val store_list = ArrayList<StoreListResponseModel>()
+//        val store_list = ArrayList<StoreListResponseModel>()
+//
+//        store_list.add(StoreListResponseModel("a", "a", "a", "가게1", "100000원", "4.8"))
+//        store_list.add(StoreListResponseModel("a", "a", "a", "가게2", "100000원", "4.8"))
+//        store_list.add(StoreListResponseModel("a", "a", "a", "가게3", "100000원", "4.8"))
 
-        store_list.add(StoreListResponseModel("a", "a", "a", "가게1", "100000원", "4.8"))
-        store_list.add(StoreListResponseModel("a", "a", "a", "가게2", "100000원", "4.8"))
-        store_list.add(StoreListResponseModel("a", "a", "a", "가게3", "100000원", "4.8"))
-
-        storeListAdapter = StoreListAdapter(store_list)
+        storeListAdapter = StoreListAdapter(ArrayList())
 
         binding.recyclerviewStoreList.adapter = storeListAdapter
         binding.recyclerviewStoreList.layoutManager = LinearLayoutManager(requireContext())
 
-        storeListAdapter.itemClick = object : StoreListAdapter.ItemClick {
+        viewModel.getStoreList(requireContext())
 
-            override fun onClick(view: View, position: Int) {
+        viewModel.storeList.observe(viewLifecycleOwner){
 
-                val storeDetailFragment = StoreDetailFragment()
-                fragmentManager?.beginTransaction()?.apply {
-                    replace(R.id.frameArea, storeDetailFragment)
-                    addToBackStack(null)
-                    commit()
+            storeListAdapter = StoreListAdapter(it)
+            binding.recyclerviewStoreList.adapter = storeListAdapter
+
+            storeListAdapter.itemClick = object : StoreListAdapter.ItemClick {
+
+                override fun onClick(view: View, position: Int) {
+
+                    val storeDetailFragment = StoreDetailFragment()
+                    fragmentManager?.beginTransaction()?.apply {
+                        replace(R.id.frameArea, storeDetailFragment)
+                        addToBackStack(null)
+                        commit()
+                    }
                 }
             }
         }
+
 
         homeActivity.hideBottomNavigation(false)
 
