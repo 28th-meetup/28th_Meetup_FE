@@ -64,8 +64,8 @@ android:gravity="center"
 
             <TextView
                 android:id="@+id/textview_store_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="64dp"
+                android:layout_height="26dp"
                 android:layout_marginLeft="14.3dp"
                 android:layout_marginTop="14.8dp"
                 android:fontFamily="@font/pretendard_semi_bold"

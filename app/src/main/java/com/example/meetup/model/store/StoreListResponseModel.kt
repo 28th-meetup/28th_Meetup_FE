@@ -1,4 +1,4 @@
-package com.example.meetup.model
+package com.example.meetup.model.store
 
 import android.widget.ImageView
 import android.widget.TextView
