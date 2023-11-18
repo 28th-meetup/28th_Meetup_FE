@@ -7,10 +7,11 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.meetup.R
+import com.example.meetup.model.chatting.ChatListResult
 import com.example.meetup.model.chatting.ChattingListResponseModel
 
 class ChattingListAdapter(
-     var chattingList: ArrayList<ChattingListResponseModel>
+     var chattingList: ArrayList<ChatListResult>
 ) :
     RecyclerView.Adapter<ChattingListAdapter.ViewHolder>() {
 
@@ -55,12 +56,12 @@ class ChattingListAdapter(
         var textview_chatting_time: TextView = view.findViewById(R.id.textview_chatting_time)
         var textview_chatting_num: TextView = view.findViewById(R.id.textview_chatting_num)
 
-        fun bind(item: ChattingListResponseModel) {
+        fun bind(item: ChatListResult) {
 
-            textview_chatting_name.text = item.textview_chatting_name
-            textview_chatting_content.text = item.textview_chatting_content
-            textview_chatting_time.text = item.textview_chatting_time
-            textview_chatting_num.text = item.textview_chatting_num
+            textview_chatting_name.text = item.sender
+            textview_chatting_content.text = item.message
+//            textview_chatting_time.text = item.
+//            textview_chatting_num.text = item.
 
             itemView.setOnClickListener {
 
