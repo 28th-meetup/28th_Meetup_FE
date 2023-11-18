@@ -8,9 +8,10 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.meetup.R
-import com.example.meetup.model.StoreListResponseModel
+import com.example.meetup.model.store.GetStoreListStores
+import com.example.meetup.model.store.StoreListResponseModel
 
-class StoreListAdapter(private var storeList : ArrayList<StoreListResponseModel>) :
+class StoreListAdapter(private var storeList : ArrayList<GetStoreListStores>) :
 RecyclerView.Adapter<StoreListAdapter.ViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StoreListAdapter.ViewHolder {
@@ -43,21 +44,22 @@ RecyclerView.Adapter<StoreListAdapter.ViewHolder>(){
         var textview_least_price : TextView = view.findViewById(R.id.textview_least_price)
         var textview_rate : TextView = view.findViewById(R.id.textview_rate)
 
-        fun bind(item: StoreListResponseModel) {
+        fun bind(item: GetStoreListStores) {
 
 
-//            Glide.with(itemView.context)
-//                .load(item.imageview_1)
-//                .into(imageview_1)
-//            Glide.with(itemView.context)
-//                .load(item.imageview_2)
-//                .into(imageview_2)
-//            Glide.with(itemView.context)
-//                .load(item.imageview_3)
-//                .into(imageview_3)
-            textview_store_name.text = item.textview_store_name
-            textview_least_price.text = item.textview_least_price
-            textview_rate.text = item.textview_rate
+            Glide.with(itemView.context)
+                .load(item.storeDto.images.get(0))
+                .into(imageview_1)
+            Glide.with(itemView.context)
+                .load(item.storeDto.images.get(1))
+                .into(imageview_2)
+            Glide.with(itemView.context)
+                .load(item.storeDto.images.get(2))
+                .into(imageview_3)
+
+            textview_store_name.text = item.storeDto.name
+            textview_least_price.text = item.storeDto.minOrderAmount.toString()
+            textview_rate.text = item.storeDto.avgRate.toString()
 
             itemView.setOnClickListener {
 

@@ -6,10 +6,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.example.meetup.R
-import com.example.meetup.model.StoreDetailMenuResponseModel
-import com.google.android.material.card.MaterialCardView
+import com.example.meetup.model.store.StoreDetailMenuResponseModel
 
 class StoreDetailMenuAdapter(private var storeDetailMenuList : ArrayList<StoreDetailMenuResponseModel>) :
     RecyclerView.Adapter<StoreDetailMenuAdapter.ViewHolder>() {

@@ -6,11 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.meetup.R
 import com.example.meetup.adapter.ReviewListAdapter
-import com.example.meetup.databinding.FragmentStoreDetailMenuBinding
 import com.example.meetup.databinding.FragmentStoreDetailReviewBinding
-import com.example.meetup.model.ReviewListResponseModel
+import com.example.meetup.model.review.ReviewListResponseModel
 
 
 class StoreDetailReviewFragment : Fragment() {
