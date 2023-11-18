@@ -1,5 +1,6 @@
 package com.example.meetup.adapter
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.graphics.Rect
@@ -8,18 +9,26 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentManager
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelStoreOwner
 import androidx.recyclerview.widget.RecyclerView
 import com.example.meetup.R
+import com.example.meetup.activity.HomeActivity
 import com.example.meetup.activity.MainActivity
 import com.example.meetup.databinding.RowCategoryBinding
 import com.example.meetup.fragment.HomeCategoryFragment
 import com.example.meetup.fragment.HomeFragment
 import com.example.meetup.sharedPreference.MyApplication
+import com.example.meetup.viewmodel.CategoryFoodViewModel
+import kotlin.math.acos
 
-class CategoryAdapter(var categoryNameList: Array<String>, var manager: FragmentManager) :
+class CategoryAdapter(var categoryNameList: Array<String>, var manager: FragmentManager, var activity: ViewModelStoreOwner) :
     RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() {
     private var onItemClickListener: ((Int) -> Unit)? = null
     private var context: Context? = null
+
+    lateinit var categoryViewModel: CategoryFoodViewModel
+    lateinit var homeActivity: HomeActivity
 
     fun setOnItemClickListener(listener: (Int) -> Unit) {
         onItemClickListener = listener
@@ -29,6 +38,9 @@ class CategoryAdapter(var categoryNameList: Array<String>, var manager: Fragment
         context = parent.context
         val binding =
             RowCategoryBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+
+        categoryViewModel = ViewModelProvider(activity)[CategoryFoodViewModel::class.java]
+
         return CategoryViewHolder(binding)
     }
 
@@ -45,6 +57,8 @@ class CategoryAdapter(var categoryNameList: Array<String>, var manager: Fragment
 
         init {
             binding.root.setOnClickListener {
+
+                categoryViewModel.getCategoryFoodInfo(context!!, adapterPosition+1)
 
                 val homeCategoryFragment = HomeCategoryFragment()
 
