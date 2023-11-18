@@ -92,8 +92,11 @@ interface APIS {
     //가게 리스트 검색
     @GET("store")
     fun getStoreList(
-        @Header("Authorization") Authorization: String
-    ) : Call<ArrayList<GetStoreListStores>>
+        @Header("Authorization") Authorization: String,
+        @Query("field") field : String,
+        @Query("direction") direction : String,
+
+    ) : Call<GetStoreListResponseModel>
 
     //가게 상세보기
     @GET("store/{storeId}")

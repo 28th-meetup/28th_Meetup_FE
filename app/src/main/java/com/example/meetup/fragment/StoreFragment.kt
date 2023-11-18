@@ -56,11 +56,12 @@ class StoreFragment : Fragment() {
         binding.recyclerviewStoreList.adapter = storeListAdapter
         binding.recyclerviewStoreList.layoutManager = LinearLayoutManager(requireContext())
 
-        viewModel.getStoreList(requireContext())
+        //초기 설정 전체
+        viewModel.getStoreList(requireContext(),"bookmark", "DESC" )
 
         viewModel.storeList.observe(viewLifecycleOwner){
 
-            storeListAdapter = StoreListAdapter(it)
+            storeListAdapter = StoreListAdapter(it.result.stores)
             binding.recyclerviewStoreList.adapter = storeListAdapter
 
             storeListAdapter.itemClick = object : StoreListAdapter.ItemClick {

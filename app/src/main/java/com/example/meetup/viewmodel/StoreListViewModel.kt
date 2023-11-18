@@ -22,14 +22,13 @@ class StoreListViewModel : ViewModel()
     private lateinit var API : APIS
 
 
-    private var _storeList = MutableLiveData<ArrayList<GetStoreListStores>>()
-    var storeList : LiveData<ArrayList<GetStoreListStores>> = _storeList
+    private var _storeList = MutableLiveData<GetStoreListResponseModel>()
+    var storeList : LiveData<GetStoreListResponseModel> = _storeList
 
 
 
-//val tokenManager = com.example.meetup.sharedPreference.TokenManager()
     //가게 목록 가져오기
-    fun getStoreList(context : Context) {
+    fun getStoreList(context : Context, field : String, direction : String) {
         API = RetrofitInstance.retrofitInstance().create(APIS::class.java)
 
         val tokenManager = com.example.meetup.sharedPreference.TokenManager(context)   //가게 목록 가져오기
@@ -39,13 +38,16 @@ class StoreListViewModel : ViewModel()
         Log.d("tokenManager", tokenManager.getAccessToken().toString())
         viewModelScope.launch {
             try{
-                API.getStoreList(tokenManager.getAccessToken().toString()).enqueue(
-                    object : Callback<ArrayList<GetStoreListStores>> {
+                API.getStoreList(tokenManager.getAccessToken().toString(),field,direction).enqueue(
+                    object : Callback<GetStoreListResponseModel> {
 
-                        override fun onResponse(call: Call<ArrayList<GetStoreListStores>>, response: Response<ArrayList<GetStoreListStores>>) {
+                        override fun onResponse(call: Call<GetStoreListResponseModel>, response: Response<GetStoreListResponseModel>) {
                             if (response.isSuccessful) {
 
+//                                _storeList.value = response.body()?.result?.stores
                                 _storeList.value = response.body()
+
+                                Log.d("_storeList : " , " success , ${_storeList.value}")
 
                                 Log.d("GetStoreListResponseModel : " , " success , ${response.body().toString()}")
                             } else {
@@ -54,7 +56,7 @@ class StoreListViewModel : ViewModel()
                             }
                         }
 
-                        override fun onFailure(call: Call<ArrayList<GetStoreListStores>>, t: Throwable) {
+                        override fun onFailure(call: Call<GetStoreListResponseModel>, t: Throwable) {
                             Log.d("GetStoreListResponseModel Response : ", " fail 2 , ${t.message.toString()}")
                         }
                     })
