@@ -7,15 +7,20 @@ import com.example.meetup.model.CategoryIdResponseModel
 import com.example.meetup.model.HomeResponseModel
 import com.example.meetup.model.PostKaKaoTokenResponseModel
 import com.example.meetup.model.PostReviewWriteResponseModel
+import com.example.meetup.model.PostStoreResponseModel
 import com.example.meetup.model.store.PostStoreDtoRequestModel
 import com.example.meetup.model.SignInResponseModel
 import com.example.meetup.model.SignUpResponseModel
+import com.example.meetup.model.chatting.ChatListResponseModel
+import com.example.meetup.model.chatting.ChatListResult
 import com.example.meetup.model.request.AddressesRequestModel
 import com.example.meetup.model.request.NickNameRequestModel
 import com.example.meetup.model.request.SignInRequestModel
 import com.example.meetup.model.request.SignUpRequestModel
+import com.example.meetup.model.store.GetStoreDetailListResult
 import com.example.meetup.model.store.GetStoreListResponseModel
 import com.example.meetup.model.store.GetStoreListStores
+
 import okhttp3.MultipartBody
 import retrofit2.Call
 import retrofit2.http.Body
@@ -90,6 +95,13 @@ interface APIS {
         @Header("Authorization") Authorization: String
     ) : Call<ArrayList<GetStoreListStores>>
 
+    //가게 상세보기
+    @GET("store/{storeId}")
+    fun getStoreIdList(
+        @Header("Authorization") Authorization: String,
+        @Path("storeId") storeId: Int
+    ) : Call<GetStoreDetailListResult>
+
     //가게 등록하기
     @Multipart
     @POST("store")
@@ -97,5 +109,12 @@ interface APIS {
         @Header("Authorization") Authorization: String,
         @Part("dto") dto: PostStoreDtoRequestModel,
         @Part image: List<MultipartBody.Part>
-    )
+    ) : Call<PostStoreResponseModel>
+
+    //채팅 리스트
+    @GET("chat/rooms")
+    fun getChatList(
+        @Header("Authorization") Authorization: String,
+
+        ) : Call<ChatListResponseModel>
 }

@@ -65,16 +65,7 @@ class MyPageSellerFragment : BaseFragment<FragmentMyPageSellerBinding>(R.layout.
             }
         }
 
-        //채팅 버튼 클릭
-        binding.imageviewChatting.setOnClickListener {
-            val chattingFragment = ChattingFragment()
-            fragmentManager?.beginTransaction()?.apply {
-                replace(R.id.frameArea, chattingFragment)
-                addToBackStack(null)
-                commit()
-            }
 
-        }
 
 
 

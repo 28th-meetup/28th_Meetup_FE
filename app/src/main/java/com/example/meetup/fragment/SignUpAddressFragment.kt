@@ -24,7 +24,6 @@ import com.example.meetup.dialog.DialogSignUp
 import com.example.meetup.dialog.DialogSignUpAddress
 import com.example.meetup.model.AddressesValidResponseModel
 import com.example.meetup.model.BasicResponseModel
-import com.example.meetup.model.request.AddressesValidRequestModel
 import com.example.meetup.retrofit2.RetrofitInstance
 import com.example.meetup.sharedPreference.MyApplication
 import com.google.android.material.snackbar.Snackbar
