@@ -8,15 +8,18 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.meetup.R
 import com.example.meetup.databinding.RowCategoryBinding
 import com.example.meetup.databinding.RowSetBinding
 import com.example.meetup.databinding.RowTop10Binding
 import com.example.meetup.fragment.HomeCategoryFragment
 import com.example.meetup.fragment.MenuFragment
+import com.example.meetup.model.Food
+import com.example.meetup.model.RecentSetFoodList
 import com.example.meetup.sharedPreference.MyApplication
 
-class HomeSetAdapter(var manager: FragmentManager) :
+class HomeSetAdapter(var manager: FragmentManager, var foodList: List<RecentSetFoodList>) :
     RecyclerView.Adapter<HomeSetAdapter.HomeSetViewHolder>() {
     private var onItemClickListener: ((Int) -> Unit)? = null
     private var context: Context? = null
@@ -39,14 +42,14 @@ class HomeSetAdapter(var manager: FragmentManager) :
     }
 
     override fun onBindViewHolder(holder: HomeSetViewHolder, position: Int) {
-        holder.image.setImageResource(R.drawable.food)
-        holder.storeName.text = "중국집"
-        holder.review.text = "⭐️ 4.8"
-        holder.foodName.text = "짬뽕"
-        holder.price.text = "10,000원"
+//        Glide.with(context!!).load(foodList.get(position).image).into(holder.image)
+        holder.storeName.text = "${foodList.get(position).storeName}"
+        holder.review.text = "⭐️ ${foodList.get(position).avgRate}"
+        holder.foodName.text = "${foodList.get(position).name}"
+        holder.price.text = "${foodList.get(position).dollarPrice}"
     }
 
-    override fun getItemCount() = 9
+    override fun getItemCount() = foodList.size
 
     inner class HomeSetViewHolder(val binding: RowSetBinding) : RecyclerView.ViewHolder(binding.root) {
         val image = binding.imageview
@@ -58,9 +61,9 @@ class HomeSetAdapter(var manager: FragmentManager) :
         init {
             binding.root.setOnClickListener {
 
-                val menuFragment = MenuFragment()
+                MyApplication.foodId = foodList.get(adapterPosition).foodId.toInt()
 
-//                MyApplication.category = categoryNameList.get(adapterPosition)
+                val menuFragment = MenuFragment()
 
                 val transaction = manager.beginTransaction()
                 transaction.replace(R.id.frameArea, menuFragment)

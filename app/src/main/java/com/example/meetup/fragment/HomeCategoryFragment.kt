@@ -1,5 +1,6 @@
 package com.example.meetup.fragment
 
+import android.content.Context
 import android.graphics.BlendMode
 import android.graphics.BlendModeColorFilter
 import android.graphics.Color
@@ -10,18 +11,27 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.meetup.R
 import com.example.meetup.adapter.HomeSetAdapter
 import com.example.meetup.databinding.FragmentHomeCategoryBinding
 import com.example.meetup.Util.fromDpToPx
 import com.example.meetup.activity.HomeActivity
+import com.example.meetup.adapter.CategorySetAdapter
+import com.example.meetup.model.Food
 import com.example.meetup.sharedPreference.MyApplication
+import com.example.meetup.viewmodel.CategoryFoodViewModel
 
 class HomeCategoryFragment : Fragment() {
 
     lateinit var binding: FragmentHomeCategoryBinding
     lateinit var homeActivity: HomeActivity
+
+    lateinit var viewModel: CategoryFoodViewModel
+
+    var categoryFoodList = mutableListOf<Food>()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -29,6 +39,26 @@ class HomeCategoryFragment : Fragment() {
 
         binding = FragmentHomeCategoryBinding.inflate(inflater)
         homeActivity = activity as HomeActivity
+
+        viewModel = ViewModelProvider(homeActivity)[CategoryFoodViewModel::class.java]
+
+        viewModel.run {
+            categoryFoodInfoList.observe(homeActivity) {
+                categoryFoodList = it
+
+                binding.run {
+                    recyclerview.run {
+                        adapter = CategorySetAdapter(homeActivity.manager, categoryFoodList)
+
+                        layoutManager = GridLayoutManager(homeActivity, 2)
+
+                        val spanCount = 2
+                        val space = 22.83f.fromDpToPx()
+                        addItemDecoration(HomeSetAdapter.GridSpacingItemDecoration(spanCount, space, false))
+                    }
+                }
+            }
+        }
 
         initView()
 
@@ -67,7 +97,9 @@ class HomeCategoryFragment : Fragment() {
                             transaction.commit()
                         }
 
-                        else -> { }
+                        else -> {
+
+                        }
                     }
                     true
                 }
@@ -86,16 +118,6 @@ class HomeCategoryFragment : Fragment() {
     fun initView() {
         binding.run {
             homeActivity.hideBottomNavigation(true)
-
-            recyclerview.run {
-                adapter = HomeSetAdapter(homeActivity.manager)
-
-                layoutManager = GridLayoutManager(requireContext(), 2)
-
-                val spanCount = 2
-                val space = 22.83f.fromDpToPx()
-                addItemDecoration(HomeSetAdapter.GridSpacingItemDecoration(spanCount, space, false))
-            }
         }
     }
 }

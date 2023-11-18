@@ -12,6 +12,8 @@ class MyApplication : Application() {
 
         var category = ""
 
+        var foodId = 0
+
         var address = AddressesRequestModel(0, 0, "", "", "")
     }
 

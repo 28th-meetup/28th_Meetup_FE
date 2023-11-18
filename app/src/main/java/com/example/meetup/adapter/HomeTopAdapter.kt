@@ -6,12 +6,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.meetup.R
 import com.example.meetup.databinding.RowCategoryBinding
 import com.example.meetup.databinding.RowTop10Binding
+import com.example.meetup.fragment.MenuFragment
+import com.example.meetup.model.BestSellingFoodList
+import com.example.meetup.sharedPreference.MyApplication
 
-class HomeTopAdapter() :
+class HomeTopAdapter(var manager: FragmentManager, var foodList: List<BestSellingFoodList>) :
     RecyclerView.Adapter<HomeTopAdapter.HomeTopViewHolder>() {
     private var onItemClickListener: ((Int) -> Unit)? = null
     private var context: Context? = null
@@ -29,13 +34,13 @@ class HomeTopAdapter() :
 
     override fun onBindViewHolder(holder: HomeTopViewHolder, position: Int) {
         holder.rank.text = "${position+1}"
-        holder.image.setImageResource(R.drawable.food)
-        holder.storeName.text = "중국집"
-        holder.foodName.text = "짬뽕"
-        holder.price.text = "10,000원"
+//        Glide.with(context!!).load(foodList.get(position).image).into(holder.image)
+        holder.storeName.text = "${foodList.get(position).storeName}"
+        holder.foodName.text = "${foodList.get(position).name}"
+        holder.price.text = "${foodList.get(position).dollarPrice}"
     }
 
-    override fun getItemCount() = 10
+    override fun getItemCount() = foodList.size
 
     inner class HomeTopViewHolder(val binding: RowTop10Binding) : RecyclerView.ViewHolder(binding.root) {
         val rank = binding.textviewRank
@@ -46,12 +51,13 @@ class HomeTopAdapter() :
 
         init {
             binding.root.setOnClickListener {
-//                val context = it.context
-//                val intent = Intent(context, PostActivity::class.java)
-//                intent.putExtra("제목", binding.tvTitle.text)
-//                intent.putExtra("내용", binding.tvContent.text)
-//                intent.putExtra("id", articleId)
-//                ContextCompat.startActivity(context, intent, null)
+                MyApplication.foodId = foodList.get(adapterPosition).foodId.toInt()
+
+                val menuFragment = MenuFragment()
+
+                val transaction = manager.beginTransaction()
+                transaction.replace(R.id.frameArea, menuFragment)
+                transaction.commit()
             }
         }
     }
