@@ -6,11 +6,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.example.meetup.R
-import com.example.meetup.model.ReviewListResponseModel
-import com.example.meetup.model.StoreDetailMenuResponseModel
-import org.w3c.dom.Text
+import com.example.meetup.model.review.ReviewListResponseModel
 
 class ReviewListAdapter (private var reviewList : ArrayList<ReviewListResponseModel>) :
     RecyclerView.Adapter<ReviewListAdapter.ViewHolder>() {

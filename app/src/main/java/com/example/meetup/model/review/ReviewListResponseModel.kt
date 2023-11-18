@@ -1,4 +1,4 @@
-package com.example.meetup.model
+package com.example.meetup.model.review
 
 data class ReviewListResponseModel(
     var reviewMenuOptionName : String,
