@@ -56,4 +56,10 @@ interface APIS {
     fun setAddresses(
         @Body parameters : AddressesRequestModel
     ) : Call<AddressesResponseModel>
+    // 특정 카테고리 메뉴 조회하기
+    @GET("food/category/{categoryId}")
+    fun getCategoryFood(
+        @Header("Authorization") Authorization: String,
+        @Path("categoryId") categoryId: Int
+    ) : Call<CategoryIdResponseModel>
 }
