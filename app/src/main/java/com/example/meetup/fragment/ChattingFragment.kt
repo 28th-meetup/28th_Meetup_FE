@@ -1,19 +1,15 @@
 package com.example.meetup.fragment
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.meetup.R
 import com.example.meetup.activity.HomeActivity
 import com.example.meetup.adapter.ChattingListAdapter
 import com.example.meetup.databinding.FragmentChattingBinding
-import com.example.meetup.databinding.FragmentOrderListBinding
-import com.example.meetup.model.ChattingListResponseModel
+import com.example.meetup.model.chatting.ChattingListResponseModel
 
 
 class ChattingFragment : Fragment() {

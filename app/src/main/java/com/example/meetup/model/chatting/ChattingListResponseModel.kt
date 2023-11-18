@@ -1,4 +1,4 @@
-package com.example.meetup.model
+package com.example.meetup.model.chatting
 
 data class ChattingListResponseModel(
     var imageview_chatting_image : String,

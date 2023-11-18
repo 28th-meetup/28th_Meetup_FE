@@ -6,11 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
-import com.example.meetup.R
 import com.example.meetup.adapter.StoreDetailMenuAdapter
-import com.example.meetup.databinding.FragmentStoreBinding
 import com.example.meetup.databinding.FragmentStoreDetailMenuBinding
-import com.example.meetup.model.StoreDetailMenuResponseModel
+import com.example.meetup.model.store.StoreDetailMenuResponseModel
 
 class StoreDetailMenuFragment : Fragment() {
 

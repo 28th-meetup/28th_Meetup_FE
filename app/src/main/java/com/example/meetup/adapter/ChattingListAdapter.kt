@@ -3,14 +3,11 @@ package com.example.meetup.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Filter
-import android.widget.Filterable
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.meetup.R
-import com.example.meetup.model.ChattingListResponseModel
-import com.example.meetup.model.StoreDetailMenuResponseModel
+import com.example.meetup.model.chatting.ChattingListResponseModel
 
 class ChattingListAdapter(
      var chattingList: ArrayList<ChattingListResponseModel>
