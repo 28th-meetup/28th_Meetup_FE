@@ -3,6 +3,8 @@ package com.example.meetup.retrofit2
 import com.example.meetup.model.AddressesResponseModel
 import com.example.meetup.model.AddressesValidResponseModel
 import com.example.meetup.model.BasicResponseModel
+import com.example.meetup.model.CategoryIdResponseModel
+import com.example.meetup.model.HomeResponseModel
 import com.example.meetup.model.PostKaKaoTokenResponseModel
 import com.example.meetup.model.PostReviewWriteResponseModel
 import com.example.meetup.model.store.PostStoreDtoRequestModel
@@ -21,6 +23,7 @@ import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.Multipart
 import retrofit2.http.POST
+import retrofit2.http.Path
 import retrofit2.http.Part
 import retrofit2.http.Query
 
@@ -59,8 +62,21 @@ interface APIS {
     // 사용자 주소 설정
     @POST("addresses")
     fun setAddresses(
-        @Body parameters: AddressesRequestModel
-    ): Call<AddressesResponseModel>
+        @Body parameters : AddressesRequestModel
+    ) : Call<AddressesResponseModel>
+
+    // 홈 메뉴 조회하기
+    @GET("food/home")
+    fun getHomeFood(
+        @Header("Authorization") Authorization: String
+    ) : Call<HomeResponseModel>
+
+    // 특정 카테고리 메뉴 조회하기
+    @GET("food/category/{categoryId}")
+    fun getCategoryFood(
+        @Header("Authorization") Authorization: String,
+        @Path("categoryId") categoryId: Int
+    ) : Call<CategoryIdResponseModel>
 
     //리뷰 작성
     @POST("review")
@@ -81,9 +97,5 @@ interface APIS {
         @Header("Authorization") Authorization: String,
         @Part("dto") dto: PostStoreDtoRequestModel,
         @Part image: List<MultipartBody.Part>
-
-
     )
-
-
 }

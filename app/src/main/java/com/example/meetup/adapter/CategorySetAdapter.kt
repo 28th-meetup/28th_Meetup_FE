@@ -5,22 +5,17 @@ import android.graphics.Rect
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.meetup.R
-import com.example.meetup.databinding.RowCategoryBinding
 import com.example.meetup.databinding.RowSetBinding
-import com.example.meetup.databinding.RowTop10Binding
-import com.example.meetup.fragment.HomeCategoryFragment
 import com.example.meetup.fragment.MenuFragment
 import com.example.meetup.model.Food
-import com.example.meetup.model.RecentSetFoodList
 import com.example.meetup.sharedPreference.MyApplication
 
-class HomeSetAdapter(var manager: FragmentManager, var foodList: List<RecentSetFoodList>) :
-    RecyclerView.Adapter<HomeSetAdapter.HomeSetViewHolder>() {
+class CategorySetAdapter(var manager: FragmentManager, var foodList: List<Food>) :
+    RecyclerView.Adapter<CategorySetAdapter.CategorySetViewHolder>() {
     private var onItemClickListener: ((Int) -> Unit)? = null
     private var context: Context? = null
 
@@ -28,7 +23,7 @@ class HomeSetAdapter(var manager: FragmentManager, var foodList: List<RecentSetF
         onItemClickListener = listener
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeSetViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategorySetViewHolder {
         context = parent.context
         val binding =
             RowSetBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -38,20 +33,20 @@ class HomeSetAdapter(var manager: FragmentManager, var foodList: List<RecentSetF
             ViewGroup.LayoutParams.WRAP_CONTENT
         )
 
-        return HomeSetViewHolder(binding)
+        return CategorySetViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: HomeSetViewHolder, position: Int) {
-//        Glide.with(context!!).load(foodList.get(position).image).into(holder.image)
-        holder.storeName.text = "${foodList.get(position).storeName}"
-        holder.review.text = "⭐️ ${foodList.get(position).avgRate}"
+    override fun onBindViewHolder(holder: CategorySetViewHolder, position: Int) {
+        Glide.with(context!!).load(foodList.get(position).image).into(holder.image)
+        holder.storeName.text = "${foodList.get(position).storeId}"
+        holder.review.text = "⭐️ 4.8"
         holder.foodName.text = "${foodList.get(position).name}"
         holder.price.text = "${foodList.get(position).dollarPrice}"
     }
 
     override fun getItemCount() = foodList.size
 
-    inner class HomeSetViewHolder(val binding: RowSetBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class CategorySetViewHolder(val binding: RowSetBinding) : RecyclerView.ViewHolder(binding.root) {
         val image = binding.imageview
         val storeName = binding.textviewStoreName
         val review = binding.textviewReview
@@ -61,7 +56,7 @@ class HomeSetAdapter(var manager: FragmentManager, var foodList: List<RecentSetF
         init {
             binding.root.setOnClickListener {
 
-                MyApplication.foodId = foodList.get(adapterPosition).foodId.toInt()
+                MyApplication.foodId = foodList.get(adapterPosition).id.toInt()
 
                 val menuFragment = MenuFragment()
 

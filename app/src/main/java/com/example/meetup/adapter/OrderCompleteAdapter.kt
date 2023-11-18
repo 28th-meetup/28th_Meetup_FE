@@ -40,13 +40,6 @@ class OrderCompleteAdapter() : RecyclerView.Adapter<OrderCompleteAdapter.OrderCo
             binding.root.setOnClickListener {
 
             }
-
-            binding.buttonOrderCancel.setOnClickListener {
-//                    val dialog = DialogOrderCancel()
-//                    // 알림창이 띄워져있는 동안 배경 클릭 막기
-//                    dialog.isCancelable = false
-//                    activity?.let { dialog.show(it.supportFragmentManager, "OrderDialog") }
-            }
         }
     }
 }
