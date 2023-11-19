@@ -10,6 +10,7 @@ import com.example.meetup.model.FoodOptionResponseList
 import com.example.meetup.model.HomeResponseModel
 import com.example.meetup.model.MenuAddRequestModelDto
 import com.example.meetup.model.MenuOptionResponseModel
+import com.example.meetup.model.MessageRequestDto
 import com.example.meetup.model.PostKaKaoTokenResponseModel
 import com.example.meetup.model.PostReviewWriteResponseModel
 import com.example.meetup.model.PostStoreResponseModel
@@ -18,6 +19,7 @@ import com.example.meetup.model.SignInResponseModel
 import com.example.meetup.model.SignUpResponseModel
 import com.example.meetup.model.chatting.ChatListResponseModel
 import com.example.meetup.model.chatting.ChatListResult
+import com.example.meetup.model.chatting.PostChatRoomResponseModel
 import com.example.meetup.model.food.MenuAddResponseModel
 import com.example.meetup.model.request.AddressesRequestModel
 import com.example.meetup.model.request.NickNameRequestModel
@@ -166,4 +168,11 @@ interface APIS {
         @Part image : MultipartBody.Part,
         @Part informationImage : MultipartBody.Part
         ) : Call<MenuAddResponseModel>
+
+    //채팅 room 생성
+    @POST("chat/room")
+    fun postChatRoom(
+        @Header("Authorization") Authorization: String,
+        @Body messageRequestDto : MessageRequestDto
+        ) : Call<PostChatRoomResponseModel>
 }

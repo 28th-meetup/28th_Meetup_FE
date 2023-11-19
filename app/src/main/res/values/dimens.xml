@@ -3,5 +3,6 @@
     <dimen name="bottom_sheet_height">523dp</dimen>
     <dimen name="design_fab_size_normal" tools:override="true">60dp</dimen>
     <dimen name="design_fab_image_size" tools:override="true">60dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
 
 </resources>

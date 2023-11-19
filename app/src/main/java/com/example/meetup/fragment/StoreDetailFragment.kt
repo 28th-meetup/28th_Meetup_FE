@@ -2,6 +2,7 @@ package com.example.meetup.fragment
 
 import android.app.Dialog
 import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
@@ -16,8 +17,11 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.bumptech.glide.Glide
 import com.example.meetup.R
+import com.example.meetup.activity.ChattingActivity
 import com.example.meetup.databinding.FragmentStoreBinding
 import com.example.meetup.databinding.FragmentStoreDetailBinding
+import com.example.meetup.model.MessageRequestDto
+import com.example.meetup.model.chatting.PostChatRoomResponseModel
 import com.example.meetup.model.store.GetStoreDetailResponseModel
 import com.example.meetup.retrofit2.APIS
 import com.example.meetup.retrofit2.RetrofitInstance
@@ -104,6 +108,47 @@ class StoreDetailFragment : Fragment() {
         //1대1 문의하기
         binding.imageviewChatting.setOnClickListener {
 
+
+
+            API = RetrofitInstance.retrofitInstance().create(APIS::class.java)
+
+            val tokenManager = com.example.meetup.sharedPreference.TokenManager(requireContext())
+
+
+            try{
+                API.postChatRoom(tokenManager.getAccessToken().toString(), MessageRequestDto(storeId)).enqueue(
+                    object : Callback<PostChatRoomResponseModel> {
+
+                        override fun onResponse(call: Call<PostChatRoomResponseModel>, response: Response<PostChatRoomResponseModel>) {
+                            if (response.isSuccessful) {
+
+
+//
+                                val roomId = response.body()!!.result.roomId
+                                val senderName = response.body()!!.result.sender
+                                Log.d("roomId", roomId.toString())
+                                val intent = Intent(requireContext(),ChattingActivity::class.java)
+
+                                intent.putExtra("roomId", roomId)
+                                intent.putExtra("senderName", senderName)
+                                startActivity(intent)
+                                Log.d("PostChatRoomResponseModel : " , " success, ${response.body().toString()}")
+
+                            } else {
+
+                                Log.d("PostChatRoomResponseModel : ", "fail 1 ${response.body().toString()} , ${response.message()}, ${response.errorBody().toString()}")
+                            }
+                        }
+
+                        override fun onFailure(call: Call<PostChatRoomResponseModel>, t: Throwable) {
+                            Log.d("PostChatRoomResponseModel Response : ", " fail 2 , ${t.message.toString()}")
+                        }
+                    })
+            } catch (e:Exception) {
+                Log.d("PostChatRoomResponseModel response : ", " fail 3 , ${e.message}")
+            }
+
+
         }
         //가게 정보 클릭
         binding.btnStoreInfo.setOnClickListener {
@@ -150,7 +195,7 @@ class StoreDetailFragment : Fragment() {
 
             API = RetrofitInstance.retrofitInstance().create(APIS::class.java)
 
-            val tokenManager = com.example.meetup.sharedPreference.TokenManager(requireContext())   //가게 목록 가져오기
+            val tokenManager = com.example.meetup.sharedPreference.TokenManager(requireContext())
 
 //        val accessToken = MyApplication.preferences.getString("accessToken", "")
 
