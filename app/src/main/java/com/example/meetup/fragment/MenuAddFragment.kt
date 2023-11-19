@@ -1,5 +1,7 @@
 package com.example.meetup.fragment
 
+import android.content.Intent
+import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.util.Log
@@ -13,13 +15,26 @@ import android.widget.Toast
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.ui.graphics.Color
+import androidx.core.net.toUri
 import com.bumptech.glide.Glide
 import com.example.meetup.R
 import com.example.meetup.activity.HomeActivity
 import com.example.meetup.base.BaseFragment
 import com.example.meetup.databinding.FragmentMenuAddBinding
 import com.example.meetup.databinding.FragmentStoreDetailBinding
+import com.example.meetup.model.MenuAddRequestModelDto
 import com.example.meetup.model.MenuAddRequestModelDtoFoodOptionRequestList
+import com.example.meetup.model.food.MenuAddResponseModel
+import com.example.meetup.retrofit2.APIS
+import com.example.meetup.retrofit2.RetrofitInstance
+import okhttp3.MediaType.Companion.toMediaType
+import okhttp3.MultipartBody
+import okhttp3.RequestBody.Companion.asRequestBody
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import java.io.ByteArrayOutputStream
+import java.io.File
 
 
 class MenuAddFragment : Fragment() {
@@ -28,16 +43,20 @@ class MenuAddFragment : Fragment() {
     private val binding get() = _binding!!
 
     lateinit var homeActivity: HomeActivity
+    private lateinit var API: APIS
 
     var menuName = ""
     var menuCategory = 0L
     var dollarPrice = 0L
     var canadaPrice = 0L
 
+    lateinit var bitmap1: Bitmap
+    lateinit var bitmap2: Bitmap
+
     var menuImageUrl = ""
     var description = ""
     var optionNum = 1
-    var foodPackage= ""
+    var foodPackage = ""
     var ingredient = ""
     var ischeck = false
     var informationImage = ""
@@ -72,7 +91,6 @@ class MenuAddFragment : Fragment() {
         binding.textviewAddOption.onItemSelectedListener =
             object : AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-
 
 
                 }
@@ -120,15 +138,37 @@ class MenuAddFragment : Fragment() {
                 if (uri != null) {
                     Log.d("PhotoPicker", "Selected URI: $uri")
 
-//                    bitmap = BitmapFactory.decodeStream(
-//                        requireContext().contentResolver.openInputStream(uri)
-//                    )
+                    bitmap1 = BitmapFactory.decodeStream(
+                        requireContext().contentResolver.openInputStream(uri)
+                    )
 
                     Glide.with(this)
                         .load(uri)
                         .into(binding.imageviewChooseRepresent)
 
                     menuImageUrl = uri.toString()
+
+                } else {
+                    Log.d("PhotoPicker", "No media selected")
+                }
+            }
+
+        val pickMedia2 =
+            registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->
+                // Callback is invoked after the user selects a media item or closes the
+                // photo picker.
+                if (uri != null) {
+                    Log.d("PhotoPicker", "Selected URI: $uri")
+
+                    bitmap2 = BitmapFactory.decodeStream(
+                        requireContext().contentResolver.openInputStream(uri)
+                    )
+
+                    Glide.with(this)
+                        .load(uri)
+                        .into(binding.imageviewInfoRepresent)
+
+                    informationImage = uri.toString()
 
                 } else {
                     Log.d("PhotoPicker", "No media selected")
@@ -143,6 +183,11 @@ class MenuAddFragment : Fragment() {
         //대표 메뉴 이미지 클릭
         binding.imageviewChooseRepresent.setOnClickListener {
             pickMedia.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
+
+        }
+
+        binding.imageviewInfoRepresent.setOnClickListener {
+            pickMedia2.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
 
         }
 
@@ -367,7 +412,7 @@ class MenuAddFragment : Fragment() {
     fun cardviewAdd() {
 
 
-optionArray()
+        optionArray()
 
         if (binding.edittextMenuName.text.toString() == "") {
             Toast.makeText(context, "빈칸이 있습니다.", Toast.LENGTH_SHORT).show()
@@ -380,62 +425,238 @@ optionArray()
         } else if (binding.edittextMenuExplain.text.toString() == "") {
             Toast.makeText(context, "빈칸이 있습니다.", Toast.LENGTH_SHORT).show()
 
-        }
-        else if (menuImageUrl == "") {
+        } else if (menuImageUrl == "") {
             Toast.makeText(context, "빈칸이 있습니다.", Toast.LENGTH_SHORT).show()
 
-        }else if (ischeck == false) {
+        } else if (ischeck == false) {
             Toast.makeText(context, "체크 표시 해주세요.", Toast.LENGTH_SHORT).show()
 
         } else {
             //이동
+            var dto = MenuAddRequestModelDto( menuCategory,
+                binding.edittextMenuName.text.toString(),
+                binding.edittextPrice.text.toString().toLong(),
+                0L,
+                binding.edittextMenuExplain.toString(),
+                foodOptionRequestList,
+                foodPackage,
+                binding.edittextMenuIngredient.text.toString())
 
 
+            postMenu(dto, bitmap1, bitmap2)
 
-
-                val menuAddSuccessFragment = MenuAddSuccessFragment()
-                fragmentManager?.beginTransaction()?.apply {
-                    replace(R.id.frameArea, menuAddSuccessFragment)
-                    commit()
-                }
 
 
         }
     }
 
 
-    fun optionArray(){
-        when(optionNum){
+    fun optionArray() {
+        when (optionNum) {
             0 -> {
-                foodOptionRequestList.add(MenuAddRequestModelDtoFoodOptionRequestList(binding.edittextOptionName.text.toString(),binding.edittextPrice.text.toString().toLong(),0L))
+                foodOptionRequestList.add(
+                    MenuAddRequestModelDtoFoodOptionRequestList(
+                        binding.edittextOptionName.text.toString(),
+                        binding.edittextPrice.text.toString().toLong(),
+                        0L
+                    )
+                )
             }
-            1-> {
-                foodOptionRequestList.add(MenuAddRequestModelDtoFoodOptionRequestList(binding.edittextOptionName.text.toString(),binding.edittextPrice.text.toString().toLong(),0L))
-                foodOptionRequestList.add(MenuAddRequestModelDtoFoodOptionRequestList(binding.edittextOptionName2.text.toString(),binding.edittextPrice1.text.toString().toLong(),0L))
 
-            }
-            2->{
-                foodOptionRequestList.add(MenuAddRequestModelDtoFoodOptionRequestList(binding.edittextOptionName.text.toString(),binding.edittextPrice.text.toString().toLong(),0L))
-                foodOptionRequestList.add(MenuAddRequestModelDtoFoodOptionRequestList(binding.edittextOptionName2.text.toString(),binding.edittextPrice1.text.toString().toLong(),0L))
-                foodOptionRequestList.add(MenuAddRequestModelDtoFoodOptionRequestList(binding.edittextOptionName3.text.toString(),binding.edittextPrice2.text.toString().toLong(),0L))
-
-            }
-            3->{
-                foodOptionRequestList.add(MenuAddRequestModelDtoFoodOptionRequestList(binding.edittextOptionName.text.toString(),binding.edittextPrice.text.toString().toLong(),0L))
-                foodOptionRequestList.add(MenuAddRequestModelDtoFoodOptionRequestList(binding.edittextOptionName2.text.toString(),binding.edittextPrice1.text.toString().toLong(),0L))
-                foodOptionRequestList.add(MenuAddRequestModelDtoFoodOptionRequestList(binding.edittextOptionName3.text.toString(),binding.edittextPrice2.text.toString().toLong(),0L))
-                foodOptionRequestList.add(MenuAddRequestModelDtoFoodOptionRequestList(binding.edittextOptionName4.text.toString(),binding.edittextPrice3.text.toString().toLong(),0L))
-
-            }
-            4->{
-                foodOptionRequestList.add(MenuAddRequestModelDtoFoodOptionRequestList(binding.edittextOptionName.text.toString(),binding.edittextPrice.text.toString().toLong(),0L))
-                foodOptionRequestList.add(MenuAddRequestModelDtoFoodOptionRequestList(binding.edittextOptionName2.text.toString(),binding.edittextPrice1.text.toString().toLong(),0L))
-                foodOptionRequestList.add(MenuAddRequestModelDtoFoodOptionRequestList(binding.edittextOptionName3.text.toString(),binding.edittextPrice2.text.toString().toLong(),0L))
-                foodOptionRequestList.add(MenuAddRequestModelDtoFoodOptionRequestList(binding.edittextOptionName4.text.toString(),binding.edittextPrice3.text.toString().toLong(),0L))
-                foodOptionRequestList.add(MenuAddRequestModelDtoFoodOptionRequestList(binding.edittextOptionName5.text.toString(),binding.edittextPrice4.text.toString().toLong(),0L))
+            1 -> {
+                foodOptionRequestList.add(
+                    MenuAddRequestModelDtoFoodOptionRequestList(
+                        binding.edittextOptionName.text.toString(),
+                        binding.edittextPrice.text.toString().toLong(),
+                        0L
+                    )
+                )
+                foodOptionRequestList.add(
+                    MenuAddRequestModelDtoFoodOptionRequestList(
+                        binding.edittextOptionName2.text.toString(),
+                        binding.edittextPrice1.text.toString().toLong(),
+                        0L
+                    )
+                )
 
             }
 
+            2 -> {
+                foodOptionRequestList.add(
+                    MenuAddRequestModelDtoFoodOptionRequestList(
+                        binding.edittextOptionName.text.toString(),
+                        binding.edittextPrice.text.toString().toLong(),
+                        0L
+                    )
+                )
+                foodOptionRequestList.add(
+                    MenuAddRequestModelDtoFoodOptionRequestList(
+                        binding.edittextOptionName2.text.toString(),
+                        binding.edittextPrice1.text.toString().toLong(),
+                        0L
+                    )
+                )
+                foodOptionRequestList.add(
+                    MenuAddRequestModelDtoFoodOptionRequestList(
+                        binding.edittextOptionName3.text.toString(),
+                        binding.edittextPrice2.text.toString().toLong(),
+                        0L
+                    )
+                )
+
+            }
+
+            3 -> {
+                foodOptionRequestList.add(
+                    MenuAddRequestModelDtoFoodOptionRequestList(
+                        binding.edittextOptionName.text.toString(),
+                        binding.edittextPrice.text.toString().toLong(),
+                        0L
+                    )
+                )
+                foodOptionRequestList.add(
+                    MenuAddRequestModelDtoFoodOptionRequestList(
+                        binding.edittextOptionName2.text.toString(),
+                        binding.edittextPrice1.text.toString().toLong(),
+                        0L
+                    )
+                )
+                foodOptionRequestList.add(
+                    MenuAddRequestModelDtoFoodOptionRequestList(
+                        binding.edittextOptionName3.text.toString(),
+                        binding.edittextPrice2.text.toString().toLong(),
+                        0L
+                    )
+                )
+                foodOptionRequestList.add(
+                    MenuAddRequestModelDtoFoodOptionRequestList(
+                        binding.edittextOptionName4.text.toString(),
+                        binding.edittextPrice3.text.toString().toLong(),
+                        0L
+                    )
+                )
+
+            }
+
+            4 -> {
+                foodOptionRequestList.add(
+                    MenuAddRequestModelDtoFoodOptionRequestList(
+                        binding.edittextOptionName.text.toString(),
+                        binding.edittextPrice.text.toString().toLong(),
+                        0L
+                    )
+                )
+                foodOptionRequestList.add(
+                    MenuAddRequestModelDtoFoodOptionRequestList(
+                        binding.edittextOptionName2.text.toString(),
+                        binding.edittextPrice1.text.toString().toLong(),
+                        0L
+                    )
+                )
+                foodOptionRequestList.add(
+                    MenuAddRequestModelDtoFoodOptionRequestList(
+                        binding.edittextOptionName3.text.toString(),
+                        binding.edittextPrice2.text.toString().toLong(),
+                        0L
+                    )
+                )
+                foodOptionRequestList.add(
+                    MenuAddRequestModelDtoFoodOptionRequestList(
+                        binding.edittextOptionName4.text.toString(),
+                        binding.edittextPrice3.text.toString().toLong(),
+                        0L
+                    )
+                )
+                foodOptionRequestList.add(
+                    MenuAddRequestModelDtoFoodOptionRequestList(
+                        binding.edittextOptionName5.text.toString(),
+                        binding.edittextPrice4.text.toString().toLong(),
+                        0L
+                    )
+                )
+
+            }
+
+        }
+
+    }
+
+    private fun postMenu(
+
+
+        dto: MenuAddRequestModelDto,
+        image: Bitmap,
+        informationImage: Bitmap
+    ) {
+        val mediaType = "image/jpeg".toMediaType()
+
+        // Bitmap을 파일로 저장
+        val file1 = File(requireContext().cacheDir, "image.jpg")
+        val file2 = File(requireContext().cacheDir, "image.jpg")
+
+        val stream = ByteArrayOutputStream()
+        image.compress(Bitmap.CompressFormat.JPEG, 100, stream)
+        informationImage.compress(Bitmap.CompressFormat.JPEG, 100, stream)
+        val byteArray = stream.toByteArray()
+        file1.writeBytes(byteArray)
+        file2.writeBytes(byteArray)
+
+
+        val requestBody1 = file1.asRequestBody(mediaType)
+        val requestBody2 = file2.asRequestBody(mediaType)
+
+
+        val imagePart1 =
+            MultipartBody.Part.createFormData("businessLicense", file1.name, requestBody1)
+        val imagePart2 =
+            MultipartBody.Part.createFormData("businessLicense", file2.name, requestBody2)
+
+
+        Log.d("imagePart1", imagePart1.toString())
+        Log.d("imagePart2", imagePart2.toString())
+
+
+        API = RetrofitInstance.retrofitInstance().create(APIS::class.java)
+        val tokenManager = com.example.meetup.sharedPreference.TokenManager(requireContext())
+
+
+
+        try {
+            API.postMenu(tokenManager.getAccessToken().toString(),dto,imagePart1,imagePart2).enqueue(
+                object : Callback<MenuAddResponseModel> {
+
+                    override fun onResponse(call: Call<MenuAddResponseModel>, response: Response<MenuAddResponseModel>) {
+                        if (response.isSuccessful) {
+                            val menuAddSuccessFragment = MenuAddSuccessFragment()
+                            fragmentManager?.beginTransaction()?.apply {
+                                replace(R.id.frameArea, menuAddSuccessFragment)
+                                commit()
+                            }
+
+
+                            Log.d(
+                                "MenuAddResponseModel : ",
+                                " success , ${response.body().toString()}"
+                            )
+
+
+                        } else {
+
+                            Log.d(
+                                "MenuAddResponseModel Response : ",
+                                "fail 1 ${
+                                    response.body().toString()
+                                } , ${response.message()}, ${response.errorBody().toString()}"
+                            )
+                        }
+                    }
+
+                    override fun onFailure(call: Call<MenuAddResponseModel>, t: Throwable) {
+                        Log.d("MenuAddResponseModel Response : ", " fail 2 , ${t.message.toString()}")
+                    }
+                })
+        } catch (e: Exception) {
+            Log.d("MenuAddResponseModel response : ", " fail 3 , ${e.message}")
         }
 
     }

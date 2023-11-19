@@ -8,6 +8,7 @@ import com.example.meetup.model.GetHeartListResponseModel
 import com.example.meetup.model.FoodIdResponseModel
 import com.example.meetup.model.FoodOptionResponseList
 import com.example.meetup.model.HomeResponseModel
+import com.example.meetup.model.MenuAddRequestModelDto
 import com.example.meetup.model.MenuOptionResponseModel
 import com.example.meetup.model.PostKaKaoTokenResponseModel
 import com.example.meetup.model.PostReviewWriteResponseModel
@@ -17,6 +18,7 @@ import com.example.meetup.model.SignInResponseModel
 import com.example.meetup.model.SignUpResponseModel
 import com.example.meetup.model.chatting.ChatListResponseModel
 import com.example.meetup.model.chatting.ChatListResult
+import com.example.meetup.model.food.MenuAddResponseModel
 import com.example.meetup.model.request.AddressesRequestModel
 import com.example.meetup.model.request.NickNameRequestModel
 import com.example.meetup.model.request.SignInRequestModel
@@ -154,4 +156,14 @@ interface APIS {
         @Header("Authorization") Authorization: String,
 
         ) : Call<ChatListResponseModel>
+
+    //메뉴 등록
+    @Multipart
+    @POST("food")
+    fun postMenu(
+        @Header("Authorization") Authorization: String,
+        @Part("dto") dto : MenuAddRequestModelDto,
+        @Part image : MultipartBody.Part,
+        @Part informationImage : MultipartBody.Part
+        ) : Call<MenuAddResponseModel>
 }

@@ -377,6 +377,76 @@
 
             </com.google.android.material.card.MaterialCardView>
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="22.83dp"
+                android:layout_marginTop="22.83dp"
+                android:fontFamily="@font/pretendard_semi_bold"
+                android:text="상품 정보 이미지"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardview_image_info"
+                android:layout_width="123dp"
+                android:layout_height="123dp"
+                android:layout_marginLeft="22.83dp"
+                android:layout_marginTop="22.83dp"
+                android:theme="@style/Theme.MaterialComponents.Light"
+                app:cardCornerRadius="6.58dp"
+                app:cardElevation="0dp"
+                app:strokeColor="@color/gray_blue"
+                app:strokeWidth="1dp">
+
+                <ImageView
+                    android:id="@+id/imageview_info_represent"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ic_choose_represent_img" />
+
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="22.83dp"
+                android:layout_marginTop="22.83dp"
+                android:fontFamily="@font/pretendard_semi_bold"
+                android:text="구성 성분표"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="22.83dp"
+                android:layout_marginTop="11.42dp"
+                android:layout_marginRight="22.83dp"
+                android:theme="@style/Theme.MaterialComponents.Light"
+                app:cardCornerRadius="6.85dp"
+                app:cardElevation="0dp"
+                app:strokeColor="@color/gray_blue"
+                app:strokeWidth="1dp">
+
+                <EditText
+                    android:id="@+id/edittext_menu_ingredient"
+                    android:layout_width="match_parent"
+                    android:layout_height="106dp"
+                    android:layout_marginLeft="22.83dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="15dp"
+                    android:background="@color/transparent"
+                    android:fontFamily="@font/pretendard_regular"
+                    android:gravity="top"
+                    android:hint="내용을 입력하세요. (최소 20자)"
+                    android:textSize="18.27sp" />
+
+
+            </com.google.android.material.card.MaterialCardView>
+
 
             <LinearLayout
                 android:layout_width="match_parent"
