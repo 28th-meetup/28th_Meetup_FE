@@ -1,5 +1,6 @@
 package com.example.meetup.fragment
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,18 +10,29 @@ import com.example.meetup.R
 import android.graphics.Color
 import android.util.Log
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.meetup.activity.HomeActivity
 import com.example.meetup.adapter.StoreListAdapter
 
 import com.example.meetup.databinding.FragmentStoreBinding
+import com.example.meetup.model.store.GetStoreDetailResponseModel
+import com.example.meetup.model.store.GetStoreListResponseModel
 import com.example.meetup.model.store.GetStoreListStoreDto
 import com.example.meetup.model.store.GetStoreListStores
 import com.example.meetup.model.store.StoreListResponseModel
+import com.example.meetup.retrofit2.APIS
+import com.example.meetup.retrofit2.RetrofitInstance
+import com.example.meetup.sharedPreference.MyApplication
 import com.example.meetup.viewmodel.StoreListViewModel
+import kotlinx.coroutines.launch
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class StoreFragment : Fragment() {
+    private lateinit var API : APIS
 
 
     private var _binding: FragmentStoreBinding? = null
@@ -69,76 +81,74 @@ class StoreFragment : Fragment() {
                 override fun onClick(view: View, position: Int) {
                     Log.d("storeId", it.result.stores[position].storeDto.id.toString())
 
-                    val storeDetailFragment = StoreDetailFragment()
-                    fragmentManager?.beginTransaction()?.apply {
-                        replace(R.id.frameArea, storeDetailFragment)
-                        addToBackStack(null)
-                        commit()
-                    }
+
+                    MyApplication.preferences.setString("storeId", it.result.stores[position].storeDto.id.toString())
+                    goToStoreDetail(it.result.stores[position].storeDto.id)
+
                 }
             }
         }
 
 
         //전체 클릭
-        binding.btnAll.setOnClickListener {
-            Log.d("btnAll", "click")
-
-            viewModel.getStoreList(requireContext(), "", "bookmark", "DESC")
-
-            viewModel.storeList.observe(viewLifecycleOwner) {
-
-                storeListAdapter = StoreListAdapter(it.result.stores)
-                binding.recyclerviewStoreList.adapter = storeListAdapter
-
-                storeListAdapter.itemClick = object : StoreListAdapter.ItemClick {
-
-                    override fun onClick(view: View, position: Int) {
-                        Log.d("storeId", it.result.stores[position].storeDto.id.toString())
-
-                        val storeDetailFragment = StoreDetailFragment()
-                        fragmentManager?.beginTransaction()?.apply {
-                            replace(R.id.frameArea, storeDetailFragment)
-                            addToBackStack(null)
-                            commit()
-                        }
-                    }
-                }
-            }
-        }
-
-        //메뉴변경형 클릭
-        binding.btnMenuChange.setOnClickListener {
-
-            Log.d("btnMenuChange", "click")
-            viewModel.getStoreList(requireContext(), "", "bookmark", "DESC")
-
-            viewModel.storeList.observe(viewLifecycleOwner) {
-
-                for (i in 0..it.result.stores.size) {
-                    if (it.result.stores[i].isFoodChangeable == true) {
-                        menuchangelist = it.result.stores
-                    }
-                }
-                storeListAdapter = StoreListAdapter(menuchangelist)
-
-                binding.recyclerviewStoreList.adapter = storeListAdapter
-
-                storeListAdapter.itemClick = object : StoreListAdapter.ItemClick {
-
-                    override fun onClick(view: View, position: Int) {
-
-                        Log.d("storeId", it.result.stores[position].storeDto.id.toString())
-                        val storeDetailFragment = StoreDetailFragment()
-                        fragmentManager?.beginTransaction()?.apply {
-                            replace(R.id.frameArea, storeDetailFragment)
-                            addToBackStack(null)
-                            commit()
-                        }
-                    }
-                }
-            }
-        }
+//        binding.btnAll.setOnClickListener {
+//            Log.d("btnAll", "click")
+//
+//            viewModel.getStoreList(requireContext(), "", "bookmark", "DESC")
+//
+//            viewModel.storeList.observe(viewLifecycleOwner) {
+//
+//                storeListAdapter = StoreListAdapter(it.result.stores)
+//                binding.recyclerviewStoreList.adapter = storeListAdapter
+//
+//                storeListAdapter.itemClick = object : StoreListAdapter.ItemClick {
+//
+//                    override fun onClick(view: View, position: Int) {
+//                        Log.d("storeId", it.result.stores[position].storeDto.id.toString())
+//
+//                        val storeDetailFragment = StoreDetailFragment()
+//                        fragmentManager?.beginTransaction()?.apply {
+//                            replace(R.id.frameArea, storeDetailFragment)
+//                            addToBackStack(null)
+//                            commit()
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//
+//        //메뉴변경형 클릭
+//        binding.btnMenuChange.setOnClickListener {
+//
+//            Log.d("btnMenuChange", "click")
+//            viewModel.getStoreList(requireContext(), "", "bookmark", "DESC")
+//
+//            viewModel.storeList.observe(viewLifecycleOwner) {
+//
+//                for (i in 0..it.result.stores.size) {
+//                    if (it.result.stores[i].isFoodChangeable == true) {
+//                        menuchangelist = it.result.stores
+//                    }
+//                }
+//                storeListAdapter = StoreListAdapter(menuchangelist)
+//
+//                binding.recyclerviewStoreList.adapter = storeListAdapter
+//
+//                storeListAdapter.itemClick = object : StoreListAdapter.ItemClick {
+//
+//                    override fun onClick(view: View, position: Int) {
+//
+//                        Log.d("storeId", it.result.stores[position].storeDto.id.toString())
+//                        val storeDetailFragment = StoreDetailFragment()
+//                        fragmentManager?.beginTransaction()?.apply {
+//                            replace(R.id.frameArea, storeDetailFragment)
+//                            addToBackStack(null)
+//                            commit()
+//                        }
+//                    }
+//                }
+//            }
+//        }
 
         binding.btnAlarm.setOnClickListener {
 
@@ -208,5 +218,15 @@ class StoreFragment : Fragment() {
 
     }
 
+
+    fun goToStoreDetail(storeId : Long){
+
+        val storeDetailFragment = StoreDetailFragment()
+        fragmentManager?.beginTransaction()?.apply {
+            replace(R.id.frameArea, storeDetailFragment)
+            addToBackStack(null)
+            commit()
+        }
+    }
 
 }
