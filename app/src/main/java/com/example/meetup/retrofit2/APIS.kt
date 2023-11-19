@@ -29,6 +29,7 @@ import com.example.meetup.model.store.GetStoreDetailListResult
 import com.example.meetup.model.store.GetStoreDetailResponseModel
 import com.example.meetup.model.store.GetStoreListResponseModel
 import com.example.meetup.model.store.GetStoreListStores
+import com.example.meetup.model.store.GetStoreMenuResponseModel
 
 import okhttp3.MultipartBody
 import retrofit2.Call
@@ -168,6 +169,14 @@ interface APIS {
         @Part image : MultipartBody.Part,
         @Part informationImage : MultipartBody.Part
         ) : Call<MenuAddResponseModel>
+
+    //가게 메뉴 가져오기
+    @GET("store/{storeId}/menu")
+    fun getStoreMenu(
+        @Header("Authorization") Authorization: String,
+        @Path("storeId") storeId : Int
+
+        ) : Call<GetStoreMenuResponseModel>
 
     //채팅 room 생성
     @POST("chat/room")

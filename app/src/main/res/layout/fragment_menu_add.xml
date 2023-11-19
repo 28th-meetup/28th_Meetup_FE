@@ -617,7 +617,6 @@
                         android:theme="@style/Theme.MaterialComponents.Light"
                         app:cardCornerRadius="6.85dp"
                         app:cardElevation="0dp"
-                        android:inputType="number"
 
                         app:layout_constraintBottom_toBottomOf="@+id/textview_add_option"
                         app:layout_constraintStart_toEndOf="@+id/textview_add_option"
@@ -629,6 +628,7 @@
                             android:id="@+id/edittext_price_1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:inputType="number"
                             android:layout_marginLeft="22.83dp"
                             android:layout_marginTop="10.8dp"
                             android:layout_marginRight="66dp"
@@ -1323,7 +1323,6 @@
                             android:layout_marginBottom="15dp"
                             android:background="@color/transparent"
                             android:fontFamily="@font/pretendard_regular"
-                            android:hint="옵션 작성"
                             android:inputType="number"
 
                             android:textColor="@color/black"
@@ -1405,6 +1404,7 @@
                             android:layout_marginBottom="10.8dp"
                             android:background="@color/transparent"
                             android:hint="3,000"
+                            android:inputType="number"
                             android:textColor="@color/black"
                             android:textSize="16sp" />
 

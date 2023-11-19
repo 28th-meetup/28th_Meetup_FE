@@ -3,7 +3,7 @@ package com.example.meetup.model.chatting
 data class ChatListResponseModel(
     val isSuccess: Boolean,
     val code: Long,
-    val message: String,
+    var message: String,
     val result: ArrayList<ChatListResult>,
 )
 

@@ -6,16 +6,15 @@ val isSuccess: Boolean,
 val code: Long,
 val message: String,
 val result: ArrayList<GetStoreMenuResponseModelResult>,
-
 )
 
 data class GetStoreMenuResponseModelResult(
     val id: Long,
-    val user: Long,
-    val food: Long,
-    val orderCount: Long,
-    val totalPrice: Long,
-    val orderedAt: String,
-    val status: String,
+    val categoryId: Long,
+    val name: String,
+    val dollarPrice: Long,
+    val canadaPrice: Long,
+    val description: String,
+    val recommendCount: Long,
+    val image: String,
 )
-
