@@ -48,7 +48,7 @@ class HomeCategoryFragment : Fragment() {
 
                 binding.run {
                     recyclerview.run {
-                        adapter = CategorySetAdapter(homeActivity.manager, categoryFoodList)
+                        adapter = CategorySetAdapter(homeActivity.manager, homeActivity, categoryFoodList)
 
                         layoutManager = GridLayoutManager(homeActivity, 2)
 

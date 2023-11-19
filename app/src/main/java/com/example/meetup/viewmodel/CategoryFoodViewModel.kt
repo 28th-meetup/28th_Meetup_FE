@@ -50,16 +50,16 @@ class CategoryFoodViewModel : ViewModel() {
                         categoryFoodInfoList.value = tempZeroList
                     } else {
                         for (i in 0 until result.result!!.size) {
-                            var id = result?.result!!.get(i).id
-                            var storeId = result?.result!!.get(i).storeId
-                            var categoryId = result?.result!!.get(i).categoryId
+                            var id = result?.result!!.get(i).foodId
                             var name = result?.result!!.get(i).name
+                            var storeId = result?.result!!.get(i).storeId
+                            var storeName = result?.result!!.get(i).storeName
                             var dollarPrice = result?.result!!.get(i).dollarPrice
                             var canadaPrice = result?.result!!.get(i).canadaPrice
-                            var description = result?.result!!.get(i).description
                             var image = result?.result!!.get(i).image
+                            var avgRate = result?.result!!.get(i).avgRate
 
-                            var food = Food(id, storeId, categoryId, name, dollarPrice, canadaPrice, description, image)
+                            var food = Food(id, name, storeId, storeName, dollarPrice, canadaPrice, image, avgRate)
 
                             tempList.add(food)
                         }
