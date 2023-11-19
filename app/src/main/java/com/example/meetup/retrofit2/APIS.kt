@@ -5,7 +5,10 @@ import com.example.meetup.model.AddressesValidResponseModel
 import com.example.meetup.model.BasicResponseModel
 import com.example.meetup.model.CategoryIdResponseModel
 import com.example.meetup.model.GetHeartListResponseModel
+import com.example.meetup.model.FoodIdResponseModel
+import com.example.meetup.model.FoodOptionResponseList
 import com.example.meetup.model.HomeResponseModel
+import com.example.meetup.model.MenuOptionResponseModel
 import com.example.meetup.model.PostKaKaoTokenResponseModel
 import com.example.meetup.model.PostReviewWriteResponseModel
 import com.example.meetup.model.PostStoreResponseModel
@@ -84,6 +87,20 @@ interface APIS {
         @Header("Authorization") Authorization: String,
         @Path("categoryId") categoryId: Int
     ) : Call<CategoryIdResponseModel>
+
+    // 메뉴 1개 상세 조회
+    @GET("food/{foodId}")
+    fun getFoodMenu(
+        @Header("Authorization") Authorization: String,
+        @Path("foodId") foodId: Int
+    ) : Call<FoodIdResponseModel>
+
+    // 메뉴 1개 옵션 조회
+    @GET("food/{foodId}/option")
+    fun getFoodMenuOption(
+        @Header("Authorization") Authorization: String,
+        @Path("foodId") foodId: Int
+    ) : Call<MenuOptionResponseModel>
 
     //리뷰 작성
     @POST("review")

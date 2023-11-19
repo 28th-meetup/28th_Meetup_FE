@@ -6,12 +6,13 @@
     android:layout_width="match_parent"
     android:layout_height="750dp"
     android:background="@drawable/bottom_sheet_border"
+    android:orientation="vertical"
+    android:paddingHorizontal="22.83dp"
+    android:paddingBottom="11.42dp"
     app:behavior_hideable="true"
     app:behavior_peekHeight="523dp"
     app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
-    android:orientation="vertical"
-    android:paddingBottom="11.42dp"
-    android:paddingHorizontal="22.83dp">
+    tools:behavior_peekHeight="523dp">
 
     <ImageView
         android:layout_width="match_parent"

@@ -16,18 +16,22 @@ data class HomeResult(
 data class BestSellingFoodList(
     val foodId: Long,
     val name: String,
+    val storeId: Long,
     val storeName: String,
     val dollarPrice: Long,
     val canadaPrice: Long,
+    val image: String?,
     val avgRate: Long,
 )
 
 data class RecentSetFoodList(
     val foodId: Long,
     val name: String,
+    val storeId: Long,
     val storeName: String,
     val dollarPrice: Long,
     val canadaPrice: Long,
+    val image: String?,
     val avgRate: Long,
 )
 

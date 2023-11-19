@@ -50,12 +50,14 @@ class HomeFoodViewModel : ViewModel() {
                     for (i in 0 until result?.result!!.bestSellingFoodList.size) {
                         var id = result?.result!!.bestSellingFoodList.get(i).foodId
                         var name = result?.result!!.bestSellingFoodList.get(i).name
+                        var storeId = result?.result!!.bestSellingFoodList.get(i).storeId
                         var storeName = result?.result!!.bestSellingFoodList.get(i).storeName
                         var dollarPrice = result?.result!!.bestSellingFoodList.get(i).dollarPrice
                         var canadaPrice = result?.result!!.bestSellingFoodList.get(i).canadaPrice
+                        var image = result?.result!!.bestSellingFoodList.get(i).image
                         var avgRate = result?.result!!.bestSellingFoodList.get(i).avgRate
 
-                        var topFood = BestSellingFoodList(id, name, storeName, dollarPrice, canadaPrice, avgRate)
+                        var topFood = BestSellingFoodList(id, name, storeId, storeName, dollarPrice, canadaPrice, image, avgRate)
                         tempTopList.add(topFood)
                     }
 
@@ -65,12 +67,14 @@ class HomeFoodViewModel : ViewModel() {
                     for (i in 0 until result?.result!!.recentSetFoodList.size) {
                         var id = result?.result!!.recentSetFoodList.get(i).foodId
                         var name = result?.result!!.recentSetFoodList.get(i).name
+                        var storeId = result?.result!!.recentSetFoodList.get(i).storeId
                         var storeName = result?.result!!.recentSetFoodList.get(i).storeName
                         var dollarPrice = result?.result!!.recentSetFoodList.get(i).dollarPrice
                         var canadaPrice = result?.result!!.recentSetFoodList.get(i).canadaPrice
+                        var image = result?.result!!.recentSetFoodList.get(i).image
                         var avgRate = result?.result!!.recentSetFoodList.get(i).avgRate
 
-                        var setFood = RecentSetFoodList(id, name, storeName, dollarPrice, canadaPrice, avgRate)
+                        var setFood = RecentSetFoodList(id, name, storeId, storeName, dollarPrice, canadaPrice, image, avgRate)
                         tempSetList.add(setFood)
                     }
 

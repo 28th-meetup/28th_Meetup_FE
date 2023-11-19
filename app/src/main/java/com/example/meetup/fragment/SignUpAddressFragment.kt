@@ -19,8 +19,6 @@ import android.widget.Spinner
 import com.example.meetup.R
 import com.example.meetup.activity.AuthActivity
 import com.example.meetup.databinding.FragmentSignUpAddressBinding
-import com.example.meetup.databinding.FragmentSignUpAddressDetailBinding
-import com.example.meetup.dialog.DialogSignUp
 import com.example.meetup.dialog.DialogSignUpAddress
 import com.example.meetup.model.AddressesValidResponseModel
 import com.example.meetup.model.BasicResponseModel
