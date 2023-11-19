@@ -36,7 +36,7 @@ class StoreDetailFragment : Fragment() {
     private var _binding: FragmentStoreDetailBinding? = null
     private val binding get() = _binding!!
     private lateinit var viewModel: StoreListViewModel
-    private lateinit var API : APIS
+    private lateinit var API: APIS
 
     var isHeartCheck = false
 
@@ -51,18 +51,18 @@ class StoreDetailFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        _binding = FragmentStoreDetailBinding.inflate(inflater,container,false)
+        _binding = FragmentStoreDetailBinding.inflate(inflater, container, false)
         val view = binding.root
 
 
-        storeId = MyApplication.preferences.getString("storeId","").toLong()
+        storeId = MyApplication.preferences.getString("storeId", "").toLong()
         Log.d("storeID", storeId.toString())
 
         viewModel = ViewModelProvider(requireActivity()).get(StoreListViewModel::class.java)
 
-        viewModel.getStoreDetail(requireContext(),storeId)
+        viewModel.getStoreDetail(requireContext(), storeId)
 
-        viewModel.storeDetail.observe(viewLifecycleOwner){
+        viewModel.storeDetail.observe(viewLifecycleOwner) {
 
             Glide.with(this)
                 .load(it.result.storeDto.images[0])
@@ -74,12 +74,12 @@ class StoreDetailFragment : Fragment() {
 
             binding.textviewRate.text = it.result.storeDto.avgRate.toString()
 
-            if(it.result.isBookmarked==true){
+            if (it.result.isBookmarked == true) {
                 binding.imageviewHeart.setImageResource(R.drawable.ic_heart_fill)
-                isHeartCheck=true
+                isHeartCheck = true
             } else {
                 binding.imageviewHeart.setImageResource(R.drawable.ic_heart)
-                isHeartCheck=false
+                isHeartCheck = false
             }
 
         }
@@ -109,17 +109,22 @@ class StoreDetailFragment : Fragment() {
         binding.imageviewChatting.setOnClickListener {
 
 
-
             API = RetrofitInstance.retrofitInstance().create(APIS::class.java)
 
             val tokenManager = com.example.meetup.sharedPreference.TokenManager(requireContext())
 
 
-            try{
-                API.postChatRoom(tokenManager.getAccessToken().toString(), MessageRequestDto(storeId)).enqueue(
+            try {
+                API.postChatRoom(
+                    tokenManager.getAccessToken().toString(),
+                    MessageRequestDto(storeId)
+                ).enqueue(
                     object : Callback<PostChatRoomResponseModel> {
 
-                        override fun onResponse(call: Call<PostChatRoomResponseModel>, response: Response<PostChatRoomResponseModel>) {
+                        override fun onResponse(
+                            call: Call<PostChatRoomResponseModel>,
+                            response: Response<PostChatRoomResponseModel>
+                        ) {
                             if (response.isSuccessful) {
 
 
@@ -127,24 +132,39 @@ class StoreDetailFragment : Fragment() {
                                 val roomId = response.body()!!.result.roomId
                                 val senderName = response.body()!!.result.sender
                                 Log.d("roomId", roomId.toString())
-                                val intent = Intent(requireContext(),ChattingActivity::class.java)
+                                val intent = Intent(requireContext(), ChattingActivity::class.java)
 
                                 intent.putExtra("roomId", roomId)
                                 intent.putExtra("senderName", senderName)
                                 startActivity(intent)
-                                Log.d("PostChatRoomResponseModel : " , " success, ${response.body().toString()}")
+                                onDestroy()
+                                Log.d(
+                                    "PostChatRoomResponseModel : ",
+                                    " success, ${response.body().toString()}"
+                                )
 
                             } else {
 
-                                Log.d("PostChatRoomResponseModel : ", "fail 1 ${response.body().toString()} , ${response.message()}, ${response.errorBody().toString()}")
+                                Log.d(
+                                    "PostChatRoomResponseModel : ",
+                                    "fail 1 ${
+                                        response.body().toString()
+                                    } , ${response.message()}, ${response.errorBody().toString()}"
+                                )
                             }
                         }
 
-                        override fun onFailure(call: Call<PostChatRoomResponseModel>, t: Throwable) {
-                            Log.d("PostChatRoomResponseModel Response : ", " fail 2 , ${t.message.toString()}")
+                        override fun onFailure(
+                            call: Call<PostChatRoomResponseModel>,
+                            t: Throwable
+                        ) {
+                            Log.d(
+                                "PostChatRoomResponseModel Response : ",
+                                " fail 2 , ${t.message.toString()}"
+                            )
                         }
                     })
-            } catch (e:Exception) {
+            } catch (e: Exception) {
                 Log.d("PostChatRoomResponseModel response : ", " fail 3 , ${e.message}")
             }
 
@@ -180,14 +200,14 @@ class StoreDetailFragment : Fragment() {
     fun textviewHeartCLick() {
 
 
-        if(isHeartCheck==true){
+        if (isHeartCheck == true) {
 
         } else {
             val customDialogHeartFragment = CustomDialogHeartFragment()
 
-            customDialogHeartFragment.show(requireFragmentManager(),"CustomDialogHeartFragment")
+            customDialogHeartFragment.show(requireFragmentManager(), "CustomDialogHeartFragment")
 
-        isHeartCheck = true
+            isHeartCheck = true
 
 
             binding.imageviewHeart.setImageResource(R.drawable.ic_heart_fill)
@@ -201,36 +221,47 @@ class StoreDetailFragment : Fragment() {
 
             Log.d("tokenManager", tokenManager.getAccessToken().toString())
 
-            try{
-                API.postHeart(tokenManager.getAccessToken().toString(),storeId.toInt()).enqueue(
+            try {
+                API.postHeart(tokenManager.getAccessToken().toString(), storeId.toInt()).enqueue(
                     object : Callback<GetStoreDetailResponseModel> {
 
-                        override fun onResponse(call: Call<GetStoreDetailResponseModel>, response: Response<GetStoreDetailResponseModel>) {
+                        override fun onResponse(
+                            call: Call<GetStoreDetailResponseModel>,
+                            response: Response<GetStoreDetailResponseModel>
+                        ) {
                             if (response.isSuccessful) {
 
 //
 
-                                Log.d("click heart : " , " success")
+                                Log.d("click heart : ", " success")
 
                             } else {
 
-                                Log.d("click heart Response : ", "fail 1 ${response.body().toString()} , ${response.message()}, ${response.errorBody().toString()}")
+                                Log.d(
+                                    "click heart Response : ",
+                                    "fail 1 ${
+                                        response.body().toString()
+                                    } , ${response.message()}, ${response.errorBody().toString()}"
+                                )
                             }
                         }
 
-                        override fun onFailure(call: Call<GetStoreDetailResponseModel>, t: Throwable) {
+                        override fun onFailure(
+                            call: Call<GetStoreDetailResponseModel>,
+                            t: Throwable
+                        ) {
                             Log.d("click heart Response : ", " fail 2 , ${t.message.toString()}")
                         }
                     })
-            } catch (e:Exception) {
+            } catch (e: Exception) {
                 Log.d("click heart response : ", " fail 3 , ${e.message}")
             }
 
         }
 
 
-
     }
+
     fun btnBackClick() {
         val storeFragment = StoreFragment()
         fragmentManager?.beginTransaction()?.apply {
@@ -239,6 +270,7 @@ class StoreDetailFragment : Fragment() {
             commit()
         }
     }
+
     fun btnMenuClick() {
 
         binding.btnMenu.setTextColor(Color.parseColor("#000000"))
@@ -255,11 +287,11 @@ class StoreDetailFragment : Fragment() {
         val storeDetailMenuFragment = StoreDetailMenuFragment()
         fragmentManager?.beginTransaction()?.apply {
             replace(R.id.store_detail_frame_area, storeDetailMenuFragment)
-            addToBackStack(null)
             commit()
         }
 
     }
+
     fun btnStoreInfoClick() {
 
         binding.btnMenu.setTextColor(Color.parseColor("#6E7178"))
@@ -275,7 +307,6 @@ class StoreDetailFragment : Fragment() {
         val storeDetailInfoFragment = StoreDetailInfoFragment()
         fragmentManager?.beginTransaction()?.apply {
             replace(R.id.store_detail_frame_area, storeDetailInfoFragment)
-            addToBackStack(null)
             commit()
         }
 
@@ -297,7 +328,6 @@ class StoreDetailFragment : Fragment() {
         val storeDetailNoticeFragment = StoreDetailNoticeFragment()
         fragmentManager?.beginTransaction()?.apply {
             replace(R.id.store_detail_frame_area, storeDetailNoticeFragment)
-            addToBackStack(null)
             commit()
         }
 
@@ -318,10 +348,12 @@ class StoreDetailFragment : Fragment() {
         val storeDetailReviewFragment = StoreDetailReviewFragment()
         fragmentManager?.beginTransaction()?.apply {
             replace(R.id.store_detail_frame_area, storeDetailReviewFragment)
-            addToBackStack(null)
             commit()
         }
     }
 
 
+    override fun onDestroy() {
+        super.onDestroy()
+    }
 }

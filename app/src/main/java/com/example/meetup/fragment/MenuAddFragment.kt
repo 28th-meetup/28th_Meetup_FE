@@ -607,9 +607,9 @@ class MenuAddFragment : Fragment() {
 
 
         val imagePart1 =
-            MultipartBody.Part.createFormData("businessLicense", file1.name, requestBody1)
+            MultipartBody.Part.createFormData("image", file1.name, requestBody1)
         val imagePart2 =
-            MultipartBody.Part.createFormData("businessLicense", file2.name, requestBody2)
+            MultipartBody.Part.createFormData("informationDescriptionImage", file2.name, requestBody2)
 
 
         Log.d("imagePart1", imagePart1.toString())
