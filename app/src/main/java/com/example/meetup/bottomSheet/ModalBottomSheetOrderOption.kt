@@ -8,6 +8,7 @@ import android.graphics.Color
 import android.graphics.Typeface
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +16,7 @@ import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.meetup.R
@@ -23,22 +25,47 @@ import com.example.meetup.databinding.BottomSheetOrderBinding
 import com.example.meetup.databinding.DialogOrderBinding
 import com.example.meetup.databinding.RowOrderFoodBinding
 import com.example.meetup.databinding.RowOrderOptionBinding
+import com.example.meetup.model.FoodIdResult
+import com.example.meetup.model.MenuOptionResult
+import com.example.meetup.viewmodel.FoodMenuDetailViewModel
+import com.example.meetup.viewmodel.HomeFoodViewModel
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
-class ModalBottomSheetOrderOption : BottomSheetDialogFragment() {
+class ModalBottomSheetOrderOption(foodInfo: List<FoodIdResult>) : BottomSheetDialogFragment() {
 
     lateinit var binding: BottomSheetOrderBinding
     var deliveryOption = ""
     lateinit var homeActivity: HomeActivity
+    lateinit var viewModel: FoodMenuDetailViewModel
+
+    var foodMenuOptionList = mutableListOf<MenuOptionResult>()
 
     override fun getTheme(): Int = R.style.AppBottomSheetDialogTheme
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
 
         homeActivity = activity as HomeActivity
+        binding = BottomSheetOrderBinding.inflate(layoutInflater)
+        viewModel = ViewModelProvider(homeActivity)[FoodMenuDetailViewModel::class.java]
+
+        viewModel.run {
+            foodMenuOptionInfoList.observe(homeActivity) {
+                binding.run {
+                    foodMenuOptionList = it
+
+                    Log.d("밋업", "${foodMenuOptionList}")
+
+                    recyclerviewOption.run {
+                        adapter = OptionRecyclerViewAdapter()
+
+                        layoutManager = LinearLayoutManager(requireContext())
+                    }
+                }
+            }
+        }
 
         val bottomSheetDialog = BottomSheetDialog(requireContext(), theme)
         val contentView = View.inflate(context, R.layout.bottom_sheet_order, null)
@@ -89,6 +116,9 @@ class ModalBottomSheetOrderOption : BottomSheetDialogFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.run {
+
+            textviewOptionValue.text = ""
+
             buttonOption.setOnClickListener {
                 buttonOption.visibility = View.GONE
                 layoutOption.visibility = View.VISIBLE
@@ -147,12 +177,6 @@ class ModalBottomSheetOrderOption : BottomSheetDialogFragment() {
             divider.visibility = View.INVISIBLE
             layoutTotal.visibility = View.INVISIBLE
             buttonGoToCart.visibility = View.INVISIBLE
-
-            recyclerviewOption.run {
-                adapter = OptionRecyclerViewAdapter()
-
-                layoutManager = LinearLayoutManager(requireContext())
-            }
         }
     }
 
@@ -173,7 +197,7 @@ class ModalBottomSheetOrderOption : BottomSheetDialogFragment() {
                         layoutDeliveryOption.visibility = View.VISIBLE
                         buttonOption.run {
                             visibility = View.VISIBLE
-                            text = "기본 A 세트 [나물+김치]"
+                            text = "${foodMenuOptionList.get(adapterPosition).name}"
                             setTextSize(18.27f)
                             // 폰트 파일을 로드하여 Typeface 객체로 변환
                             val fontTypeface = resources.getFont(R.font.pretendard_semi_bold)
@@ -199,12 +223,16 @@ class ModalBottomSheetOrderOption : BottomSheetDialogFragment() {
         }
 
         override fun getItemCount(): Int {
-            return 4
+            return foodMenuOptionList.size
         }
 
         override fun onBindViewHolder(holder: ViewHolderClass, position: Int) {
-            holder.rowOptionName.text = "기본 A 세트 [나물+김치]"
-            holder.rowPrice.text = "10,000원"
+            holder.rowOptionName.text = "${foodMenuOptionList.get(position).name}"
+            if(foodMenuOptionList.get(position).dollarPrice.toInt() == 0) {
+                holder.rowPrice.text = "${foodMenuOptionList.get(position).canadaPrice}"
+            } else {
+                holder.rowPrice.text = "$ ${foodMenuOptionList.get(position).dollarPrice}"
+            }
         }
     }
 
@@ -221,6 +249,7 @@ class ModalBottomSheetOrderOption : BottomSheetDialogFragment() {
             val rowCountPlusButton : ImageButton
             val rowCountMinusButton : ImageButton
             val rowCloseButton : ImageButton
+            val rowDeliveryOptionButton : Button
 
             init {
                 rowFoodName = rowBinding.textviewFoodName
@@ -230,22 +259,11 @@ class ModalBottomSheetOrderOption : BottomSheetDialogFragment() {
                 rowCountPlusButton = rowBinding.buttonPlus
                 rowCountMinusButton = rowBinding.buttonMinus
                 rowCloseButton = rowBinding.buttonClose
+                rowDeliveryOptionButton = rowBinding.buttonDeliveryOption
                 count = rowBinding.textviewFoodNum.text.toString().toInt()
 
                 rowBinding.root.setOnClickListener {
-                    binding.run {
-                        layoutOption.visibility = View.GONE
-                        buttonOption.run {
-                            visibility = View.VISIBLE
-                            text = "기본 A 세트 [나물+김치]"
-                            setTextSize(18.27f)
-                            // 폰트 파일을 로드하여 Typeface 객체로 변환
-                            val fontTypeface = resources.getFont(R.font.pretendard_semi_bold)
-                            typeface = fontTypeface
-                            setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
-                            setBackgroundResource(R.drawable.layout_order_background)
-                        }
-                    }
+
                 }
 
                 rowCountMinusButton.setOnClickListener {
@@ -266,6 +284,11 @@ class ModalBottomSheetOrderOption : BottomSheetDialogFragment() {
                 rowCloseButton.setOnClickListener {
                     // 해당 주문 내역 선택지 삭제
                 }
+
+//                rowDeliveryOptionButton.text = "${deliveryOption}"
+//                if(deliveryOption == "포장") {
+//
+//                }
             }
         }
 
