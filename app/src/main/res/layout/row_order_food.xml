@@ -38,6 +38,7 @@
                     android:textSize="20.55sp" />
 
                 <Button
+                    android:id="@+id/button_delivery_option"
                     android:layout_width="45.67dp"
                     android:layout_height="22.83dp"
                     android:layout_gravity="center"
