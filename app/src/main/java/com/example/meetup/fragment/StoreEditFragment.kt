@@ -47,9 +47,6 @@ import java.io.File
 class StoreEditFragment : Fragment() {
 
 
-//    lateinit var bitmap0: Bitmap
-//    lateinit var bitmap1: Bitmap
-//    lateinit var bitmap2: Bitmap
    private lateinit var API : APIS
 
     var name = ""
@@ -65,6 +62,7 @@ class StoreEditFragment : Fragment() {
     var foodChangeYn = false
     var koreanYn = false
 
+    var isClickSpinner = false
     var imageNum = 0
 
     private val imagesList: MutableList<Uri> = mutableListOf()
@@ -210,7 +208,63 @@ class StoreEditFragment : Fragment() {
                 }
             }
 
-        //뒤로가기
+        binding.spinnerPhoneNumber.onItemSelectedListener= object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                when (position) {
+                    0 -> {
+                        isClickSpinner = false
+
+                    }
+
+                    1 -> {
+                        isClickSpinner = true
+                        countryPhoneCode = "KOREA"
+                    }
+
+                    2 -> {
+                        isClickSpinner = true
+                        countryPhoneCode = "USA"
+                    }
+
+                    3 -> {
+                        isClickSpinner = true
+                        countryPhoneCode = "CANADA"
+                    }
+                }
+            }
+
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+                TODO("Not yet implemented")
+            }
+        }
+
+        binding.spinnerLocation.onItemSelectedListener= object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                when(position) {
+                    0 -> {
+                        isClickSpinner = false
+
+                    }
+                    else -> {
+                        isClickSpinner = true
+                        globalRegionId = position.toLong()
+
+                    }
+                }
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+        }
+
+
+            //뒤로가기
         binding.btnBack.setOnClickListener {
             fragmentManager?.popBackStack()
         }
@@ -276,6 +330,9 @@ class StoreEditFragment : Fragment() {
 
             } else if (!isCheck) {
                 Toast.makeText(context, "체크 표시 해주세요.", Toast.LENGTH_SHORT).show()
+
+            } else if (!isClickSpinner) {
+                Toast.makeText(context, "국가 번호 및 지역을 선택 해주세요.", Toast.LENGTH_SHORT).show()
 
             } else {
 
