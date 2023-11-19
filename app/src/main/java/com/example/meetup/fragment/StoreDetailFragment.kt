@@ -70,8 +70,10 @@ class StoreDetailFragment : Fragment() {
 
             if(it.result.isBookmarked==true){
                 binding.imageviewHeart.setImageResource(R.drawable.ic_heart_fill)
+                isHeartCheck=true
             } else {
                 binding.imageviewHeart.setImageResource(R.drawable.ic_heart)
+                isHeartCheck=false
             }
 
         }
@@ -127,14 +129,17 @@ class StoreDetailFragment : Fragment() {
     fun textviewHeartCLick() {
 
 
-        val customDialogHeartFragment = CustomDialogHeartFragment()
+        if(isHeartCheck==true){
 
-        customDialogHeartFragment.show(requireFragmentManager(),"CustomDialogHeartFragment")
+        } else {
+            val customDialogHeartFragment = CustomDialogHeartFragment()
 
-//        isHeartCheck = true
+            customDialogHeartFragment.show(requireFragmentManager(),"CustomDialogHeartFragment")
+
+        isHeartCheck = true
 
 
-        binding.imageviewHeart.setImageResource(R.drawable.ic_heart_fill)
+            binding.imageviewHeart.setImageResource(R.drawable.ic_heart_fill)
 
 
             API = RetrofitInstance.retrofitInstance().create(APIS::class.java)
@@ -145,30 +150,33 @@ class StoreDetailFragment : Fragment() {
 
             Log.d("tokenManager", tokenManager.getAccessToken().toString())
 
-                try{
-                    API.postHeart(tokenManager.getAccessToken().toString(),storeId.toInt()).enqueue(
-                        object : Callback<GetStoreDetailResponseModel> {
+            try{
+                API.postHeart(tokenManager.getAccessToken().toString(),storeId.toInt()).enqueue(
+                    object : Callback<GetStoreDetailResponseModel> {
 
-                            override fun onResponse(call: Call<GetStoreDetailResponseModel>, response: Response<GetStoreDetailResponseModel>) {
-                                if (response.isSuccessful) {
+                        override fun onResponse(call: Call<GetStoreDetailResponseModel>, response: Response<GetStoreDetailResponseModel>) {
+                            if (response.isSuccessful) {
 
 //
 
-                                    Log.d("click heart : " , " success")
+                                Log.d("click heart : " , " success")
 
-                                } else {
+                            } else {
 
-                                    Log.d("click heart Response : ", "fail 1 ${response.body().toString()} , ${response.message()}, ${response.errorBody().toString()}")
-                                }
+                                Log.d("click heart Response : ", "fail 1 ${response.body().toString()} , ${response.message()}, ${response.errorBody().toString()}")
                             }
+                        }
 
-                            override fun onFailure(call: Call<GetStoreDetailResponseModel>, t: Throwable) {
-                                Log.d("click heart Response : ", " fail 2 , ${t.message.toString()}")
-                            }
-                        })
-                } catch (e:Exception) {
-                    Log.d("click heart response : ", " fail 3 , ${e.message}")
-                }
+                        override fun onFailure(call: Call<GetStoreDetailResponseModel>, t: Throwable) {
+                            Log.d("click heart Response : ", " fail 2 , ${t.message.toString()}")
+                        }
+                    })
+            } catch (e:Exception) {
+                Log.d("click heart response : ", " fail 3 , ${e.message}")
+            }
+
+        }
+
 
 
     }

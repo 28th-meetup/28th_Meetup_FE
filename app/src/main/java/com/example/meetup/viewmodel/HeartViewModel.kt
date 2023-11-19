@@ -7,7 +7,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.meetup.model.GetHeartListResponseModel
-import com.example.meetup.model.store.GetStoreListResponseModel
 import com.example.meetup.retrofit2.APIS
 import com.example.meetup.retrofit2.RetrofitInstance
 import kotlinx.coroutines.launch

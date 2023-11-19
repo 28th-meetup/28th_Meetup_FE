@@ -60,18 +60,18 @@ class HeartFragment : Fragment() {
 
             binding.recyclerviewHeart.adapter = heartAdapter
 
-            heartAdapter.itemClick = object : HeartAdapter.ItemClick {
-
-                override fun onClick(view: View, position: Int) {
-                    Log.d("storeId", it.result.stores[position].id.toString())
-
-
-                    MyApplication.preferences.setString("storeId", it.result.stores[position].id.toString())
-                    Log.d("storeId",it.result.stores[position].id.toString())
-                    goToStoreDetail(it.result.stores[position].id.toLong())
-
-                }
-            }
+//            heartAdapter.itemClick = object : HeartAdapter.ItemClick {
+//
+//                override fun onClick(view: View, position: Int) {
+//                    Log.d("storeId", it.result.stores[position].id.toString())
+//
+//
+//                    MyApplication.preferences.setString("storeId", it.result.stores[position].id.toString())
+//                    Log.d("storeId",it.result.stores[position].id.toString())
+//                    goToStoreDetail(it.result.stores[position].id.toLong())
+//
+//                }
+//            }
 
         }
 

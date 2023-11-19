@@ -4,6 +4,7 @@ import com.example.meetup.model.AddressesResponseModel
 import com.example.meetup.model.AddressesValidResponseModel
 import com.example.meetup.model.BasicResponseModel
 import com.example.meetup.model.CategoryIdResponseModel
+import com.example.meetup.model.GetHeartListResponseModel
 import com.example.meetup.model.HomeResponseModel
 import com.example.meetup.model.PostKaKaoTokenResponseModel
 import com.example.meetup.model.PostReviewWriteResponseModel
@@ -18,6 +19,7 @@ import com.example.meetup.model.request.NickNameRequestModel
 import com.example.meetup.model.request.SignInRequestModel
 import com.example.meetup.model.request.SignUpRequestModel
 import com.example.meetup.model.store.GetStoreDetailListResult
+import com.example.meetup.model.store.GetStoreDetailResponseModel
 import com.example.meetup.model.store.GetStoreListResponseModel
 import com.example.meetup.model.store.GetStoreListStores
 
@@ -93,6 +95,7 @@ interface APIS {
     @GET("store")
     fun getStoreList(
         @Header("Authorization") Authorization: String,
+        @Query("keyword") keyword : String,
         @Query("field") field : String,
         @Query("direction") direction : String,
 
@@ -100,10 +103,10 @@ interface APIS {
 
     //가게 상세보기
     @GET("store/{storeId}")
-    fun getStoreIdList(
+    fun getStoreDetail(
         @Header("Authorization") Authorization: String,
-        @Path("storeId") storeId: Int
-    ) : Call<GetStoreDetailListResult>
+        @Path("storeId") storeId: Long
+    ) : Call<GetStoreDetailResponseModel>
 
     //가게 등록하기
     @Multipart
@@ -114,6 +117,20 @@ interface APIS {
         @Part image: List<MultipartBody.Part>
     ) : Call<PostStoreResponseModel>
 
+
+    //찜하기
+    @POST("store/bookmark/{storeId}")
+    fun postHeart(
+        @Header("Authorization") Authorization: String,
+        @Path("storeId") storeId : Int
+        ) :  Call<GetStoreDetailResponseModel>
+
+    //찜한 가게 가져오기
+    @GET("store/bookmark")
+    fun getHeartList(
+        @Header("Authorization") Authorization: String,
+
+        ) : Call<GetHeartListResponseModel>
     //채팅 리스트
     @GET("chat/rooms")
     fun getChatList(
