@@ -9,15 +9,17 @@
         android:id="@+id/imageview_heart_list"
         android:layout_width="85.62dp"
         android:layout_height="85.62dp"
+        android:layout_marginLeft="22.83dp"
         android:layout_marginTop="11.42dp"
         android:layout_marginBottom="11.42dp"
+        android:scaleType="fitXY"
         android:background="@color/gray_blue2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textview_food_name"
+        android:id="@+id/textview_store_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/pretendard_semi_bold"
@@ -37,7 +39,7 @@
 
         android:layout_marginTop="11.42dp"
         app:layout_constraintStart_toEndOf="@+id/imageview_heart_list"
-        app:layout_constraintTop_toBottomOf="@+id/textview_food_name">
+        app:layout_constraintTop_toBottomOf="@+id/textview_store_name">
 
         <ImageView
             android:layout_width="18.27dp"
@@ -46,6 +48,7 @@
             android:src="@drawable/ic_star" />
 
         <TextView
+            android:id="@+id/textview_rate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/pretendard_light"
@@ -73,7 +76,7 @@
             android:textSize="16sp" />
 
         <TextView
-            android:id="@+id/textview_food_price"
+            android:id="@+id/textview_min_order_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/pretendard_light"
@@ -87,7 +90,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/pretendard_light"
-            android:text="원"
+            android:text="$"
             android:textColor="@color/gray"
             android:textSize="16sp" />
 
