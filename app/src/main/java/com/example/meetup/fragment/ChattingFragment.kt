@@ -5,11 +5,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.meetup.activity.HomeActivity
 import com.example.meetup.adapter.ChattingListAdapter
 import com.example.meetup.databinding.FragmentChattingBinding
 import com.example.meetup.model.chatting.ChattingListResponseModel
+import com.example.meetup.viewmodel.ChattingViewModel
+import com.example.meetup.viewmodel.StoreListViewModel
 
 
 class ChattingFragment : Fragment() {
@@ -18,6 +21,8 @@ class ChattingFragment : Fragment() {
     private val binding get() = _binding!!
 
     lateinit var homeActivity : HomeActivity
+
+    lateinit var viewModel : ChattingViewModel
 
     private lateinit var chattingListAdapter: ChattingListAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,21 +42,31 @@ class ChattingFragment : Fragment() {
         _binding = FragmentChattingBinding.inflate(inflater, container, false)
         val view = binding.root
 
+        viewModel = ViewModelProvider(requireActivity()).get(ChattingViewModel::class.java)
 
-        var chattingList = ArrayList<ChattingListResponseModel>()
-
-        chattingList.add(ChattingListResponseModel("111", "111", "1111", "1111", "1"))
-        chattingList.add(ChattingListResponseModel("22", "22", "222", "222", "2"))
-        chattingList.add(ChattingListResponseModel("22", "333", "333", "333", "3"))
-
+//        var chattingList = ArrayList<ChattingListResponseModel>()
+//
+//        chattingList.add(ChattingListResponseModel("111", "111", "1111", "1111", "1"))
+//        chattingList.add(ChattingListResponseModel("22", "22", "222", "222", "2"))
+//        chattingList.add(ChattingListResponseModel("22", "333", "333", "333", "3"))
+//
 
 //        binding.searchview.setOnQueryTextListener(searchViewTextListener)
-        chattingListAdapter = ChattingListAdapter(chattingList)
+        chattingListAdapter = ChattingListAdapter(ArrayList())
 
         binding.recyclerviewChattingList.adapter = chattingListAdapter
 
         binding.recyclerviewChattingList.layoutManager = LinearLayoutManager(requireContext())
 
+        viewModel.getChatList(requireContext())
+
+        viewModel.chatList.observe(viewLifecycleOwner){
+
+            chattingListAdapter = ChattingListAdapter(it.result)
+            binding.recyclerviewChattingList.adapter = chattingListAdapter
+
+
+        }
 
         return view
     }

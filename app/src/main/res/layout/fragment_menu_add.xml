@@ -553,6 +553,7 @@
                         app:strokeWidth="1dp">
 
                         <EditText
+                            android:id="@+id/edittext_price_1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="22.83dp"
@@ -742,6 +743,7 @@
                         app:strokeWidth="1dp">
 
                         <EditText
+                            android:id="@+id/edittext_price_2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="22.83dp"
@@ -932,6 +934,7 @@
                         app:strokeWidth="1dp">
 
                         <EditText
+                            android:id="@+id/edittext_price_3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="22.83dp"
@@ -1122,6 +1125,7 @@
                         app:strokeWidth="1dp">
 
                         <EditText
+                            android:id="@+id/edittext_price_4"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="22.83dp"
@@ -1311,6 +1315,7 @@
                         app:strokeWidth="1dp">
 
                         <EditText
+                            android:id="@+id/edittext_price_5"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="22.83dp"

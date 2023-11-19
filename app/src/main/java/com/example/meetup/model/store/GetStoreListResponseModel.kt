@@ -17,6 +17,8 @@ data class GetStoreListStores(
 
     var storeDto : GetStoreListStoreDto,
     var isBookmarked : Boolean,
+    var isFoodChangeable: Boolean
+
 
 )
 data class GetStoreListFoods(

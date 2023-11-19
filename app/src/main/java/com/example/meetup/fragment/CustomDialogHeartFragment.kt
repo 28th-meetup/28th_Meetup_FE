@@ -18,7 +18,6 @@ class CustomDialogHeartFragment : DialogFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-
     }
 
     override fun onCreateView(
@@ -47,6 +46,16 @@ class CustomDialogHeartFragment : DialogFragment() {
         val btnX = view.findViewById<ImageView>(R.id.btn_x)
 //        val btnShowHeartList = view.findViewById<TextView>(R.id.btn_show_heart_list)
 
+        val goHeart = view.findViewById<TextView>(R.id.btn_show_heart_list)
+
+        goHeart.setOnClickListener {
+            val heartFragment = HeartFragment()
+            fragmentManager?.beginTransaction()?.apply {
+                replace(R.id.frameArea, heartFragment)
+                commit()
+                dismiss()
+            }
+        }
 
         builder.setView(view)
         btnX.setOnClickListener {

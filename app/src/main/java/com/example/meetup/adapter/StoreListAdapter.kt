@@ -48,15 +48,14 @@ RecyclerView.Adapter<StoreListAdapter.ViewHolder>(){
 
 
             Glide.with(itemView.context)
-                .load(item.storeDto.images.get(0))
+                .load(item.storeDto.images[0])
                 .into(imageview_1)
             Glide.with(itemView.context)
-                .load(item.storeDto.images.get(1))
+                .load(item.storeDto.images[1])
                 .into(imageview_2)
             Glide.with(itemView.context)
-                .load(item.storeDto.images.get(2))
+                .load(item.storeDto.images[2])
                 .into(imageview_3)
-
             textview_store_name.text = item.storeDto.name
             textview_least_price.text = item.storeDto.minOrderAmount.toString()
             textview_rate.text = item.storeDto.avgRate.toString()
