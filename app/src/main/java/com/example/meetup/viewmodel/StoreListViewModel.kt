@@ -28,7 +28,7 @@ class StoreListViewModel : ViewModel()
 
 
     //가게 목록 가져오기
-    fun getStoreList(context : Context, field : String, direction : String) {
+    fun getStoreList(context : Context, keyword :String, field : String, direction : String) {
         API = RetrofitInstance.retrofitInstance().create(APIS::class.java)
 
         val tokenManager = com.example.meetup.sharedPreference.TokenManager(context)   //가게 목록 가져오기
@@ -38,7 +38,7 @@ class StoreListViewModel : ViewModel()
         Log.d("tokenManager", tokenManager.getAccessToken().toString())
         viewModelScope.launch {
             try{
-                API.getStoreList(tokenManager.getAccessToken().toString(),field,direction).enqueue(
+                API.getStoreList(tokenManager.getAccessToken().toString(),keyword,field,direction).enqueue(
                     object : Callback<GetStoreListResponseModel> {
 
                         override fun onResponse(call: Call<GetStoreListResponseModel>, response: Response<GetStoreListResponseModel>) {
