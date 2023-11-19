@@ -91,64 +91,75 @@ class StoreFragment : Fragment() {
 
 
         //전체 클릭
-//        binding.btnAll.setOnClickListener {
-//            Log.d("btnAll", "click")
-//
-//            viewModel.getStoreList(requireContext(), "", "bookmark", "DESC")
-//
-//            viewModel.storeList.observe(viewLifecycleOwner) {
-//
-//                storeListAdapter = StoreListAdapter(it.result.stores)
-//                binding.recyclerviewStoreList.adapter = storeListAdapter
-//
-//                storeListAdapter.itemClick = object : StoreListAdapter.ItemClick {
-//
-//                    override fun onClick(view: View, position: Int) {
-//                        Log.d("storeId", it.result.stores[position].storeDto.id.toString())
-//
-//                        val storeDetailFragment = StoreDetailFragment()
-//                        fragmentManager?.beginTransaction()?.apply {
-//                            replace(R.id.frameArea, storeDetailFragment)
-//                            addToBackStack(null)
-//                            commit()
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//
-//        //메뉴변경형 클릭
-//        binding.btnMenuChange.setOnClickListener {
-//
-//            Log.d("btnMenuChange", "click")
-//            viewModel.getStoreList(requireContext(), "", "bookmark", "DESC")
-//
-//            viewModel.storeList.observe(viewLifecycleOwner) {
-//
-//                for (i in 0..it.result.stores.size) {
-//                    if (it.result.stores[i].isFoodChangeable == true) {
-//                        menuchangelist = it.result.stores
-//                    }
-//                }
-//                storeListAdapter = StoreListAdapter(menuchangelist)
-//
-//                binding.recyclerviewStoreList.adapter = storeListAdapter
-//
-//                storeListAdapter.itemClick = object : StoreListAdapter.ItemClick {
-//
-//                    override fun onClick(view: View, position: Int) {
-//
-//                        Log.d("storeId", it.result.stores[position].storeDto.id.toString())
-//                        val storeDetailFragment = StoreDetailFragment()
-//                        fragmentManager?.beginTransaction()?.apply {
-//                            replace(R.id.frameArea, storeDetailFragment)
-//                            addToBackStack(null)
-//                            commit()
-//                        }
-//                    }
-//                }
-//            }
-//        }
+        binding.btnAll.setOnClickListener {
+            Log.d("btnAll", "click")
+            binding.btnAll.setBackgroundResource(R.drawable.store_select_border)
+            binding.btnAll.setTextColor(Color.parseColor("#1E1F23"))
+
+            binding.btnMenuChange.setBackgroundResource(R.drawable.store_not_select_border)
+            binding.btnMenuChange.setTextColor(Color.parseColor("#6E7178"))
+            viewModel.getStoreList(requireContext(), "", "bookmark", "DESC")
+
+            viewModel.storeList.observe(viewLifecycleOwner) {
+
+                storeListAdapter = StoreListAdapter(it.result.stores)
+                binding.recyclerviewStoreList.adapter = storeListAdapter
+
+                storeListAdapter.itemClick = object : StoreListAdapter.ItemClick {
+
+                    override fun onClick(view: View, position: Int) {
+                        Log.d("storeId", it.result.stores[position].storeDto.id.toString())
+
+                        val storeDetailFragment = StoreDetailFragment()
+                        fragmentManager?.beginTransaction()?.apply {
+                            replace(R.id.frameArea, storeDetailFragment)
+                            addToBackStack(null)
+                            commit()
+                        }
+                    }
+                }
+            }
+        }
+
+        //메뉴변경형 클릭
+        binding.btnMenuChange.setOnClickListener {
+            binding.btnMenuChange.setTextColor(Color.parseColor("#1E1F23"))
+            binding.btnMenuChange.setBackgroundResource(R.drawable.store_select_border)
+
+
+            binding.btnAll.setTextColor(Color.parseColor("#6E7178"))
+            binding.btnAll.setBackgroundResource(R.drawable.store_not_select_border)
+            Log.d("btnMenuChange", "click")
+            viewModel.getStoreList(requireContext(), "", "bookmark", "DESC")
+
+            viewModel.storeList.observe(viewLifecycleOwner) {
+
+                for (i in 0..it.result.stores.size-1) {
+                    if (it.result.stores[i].isFoodChangeable == true) {
+                        menuchangelist.add(it.result.stores[i])
+                    }
+                }
+
+                Log.d("menuchangelist",menuchangelist.toString())
+                storeListAdapter = StoreListAdapter(menuchangelist)
+
+                binding.recyclerviewStoreList.adapter = storeListAdapter
+
+                storeListAdapter.itemClick = object : StoreListAdapter.ItemClick {
+
+                    override fun onClick(view: View, position: Int) {
+
+                        Log.d("storeId", it.result.stores[position].storeDto.id.toString())
+                        val storeDetailFragment = StoreDetailFragment()
+                        fragmentManager?.beginTransaction()?.apply {
+                            replace(R.id.frameArea, storeDetailFragment)
+                            addToBackStack(null)
+                            commit()
+                        }
+                    }
+                }
+            }
+        }
 
         binding.btnAlarm.setOnClickListener {
 
@@ -168,16 +179,16 @@ class StoreFragment : Fragment() {
                 commit()
             }
         }
-        binding.btnAll.setOnClickListener {
-
-            btnAll()
-        }
-
-        binding.btnMenuChange.setOnClickListener {
-
-
-            btnMenuChange()
-        }
+//        binding.btnAll.setOnClickListener {
+//
+//            btnAll()
+//        }
+//
+//        binding.btnMenuChange.setOnClickListener {
+//
+//
+//            btnMenuChange()
+//        }
 
         binding.btnFilter.setOnClickListener {
             val modalBottomSheet = ModalBottomSheetFragment()

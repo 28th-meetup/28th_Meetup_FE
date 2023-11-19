@@ -19,6 +19,7 @@ import com.example.meetup.activity.HomeActivity
 import com.example.meetup.base.BaseFragment
 import com.example.meetup.databinding.FragmentMenuAddBinding
 import com.example.meetup.databinding.FragmentStoreDetailBinding
+import com.example.meetup.model.MenuAddRequestModelDtoFoodOptionRequestList
 
 
 class MenuAddFragment : Fragment() {
@@ -29,14 +30,19 @@ class MenuAddFragment : Fragment() {
     lateinit var homeActivity: HomeActivity
 
     var menuName = ""
-    var menuCategory = ""
-    var menuPrice = 0L
-    var menuImageUrl = ""
-    var menuContext = ""
-    var deliverTogo = ""
-    var optionNum = 1
+    var menuCategory = 0L
+    var dollarPrice = 0L
+    var canadaPrice = 0L
 
+    var menuImageUrl = ""
+    var description = ""
+    var optionNum = 1
+    var foodPackage= ""
+    var ingredient = ""
     var ischeck = false
+    var informationImage = ""
+    var foodOptionRequestList = ArrayList<MenuAddRequestModelDtoFoodOptionRequestList>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -66,6 +72,7 @@ class MenuAddFragment : Fragment() {
         binding.textviewAddOption.onItemSelectedListener =
             object : AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+
 
 
                 }
@@ -236,43 +243,62 @@ class MenuAddFragment : Fragment() {
         binding.textviewCaterogy1.setOnClickListener {
             binding.textviewMenuCategory.text = binding.textviewCaterogy1.text
             binding.linearLayoutCategory.visibility = View.GONE
+            menuCategory = 1L
         }
 
         binding.textviewCaterogy2.setOnClickListener {
             binding.textviewMenuCategory.text = binding.textviewCaterogy2.text
             binding.linearLayoutCategory.visibility = View.GONE
+            menuCategory = 2L
+
         }
         binding.textviewCaterogy3.setOnClickListener {
             binding.textviewMenuCategory.text = binding.textviewCaterogy3.text
             binding.linearLayoutCategory.visibility = View.GONE
+            menuCategory = 3L
+
         }
         binding.textviewCaterogy4.setOnClickListener {
             binding.textviewMenuCategory.text = binding.textviewCaterogy4.text
             binding.linearLayoutCategory.visibility = View.GONE
+            menuCategory = 4L
+
         }
         binding.textviewCaterogy5.setOnClickListener {
             binding.textviewMenuCategory.text = binding.textviewCaterogy5.text
             binding.linearLayoutCategory.visibility = View.GONE
+            menuCategory = 5L
+
         }
         binding.textviewCaterogy6.setOnClickListener {
             binding.textviewMenuCategory.text = binding.textviewCaterogy7.text
             binding.linearLayoutCategory.visibility = View.GONE
+            menuCategory = 6L
+
         }
         binding.textviewCaterogy7.setOnClickListener {
             binding.textviewMenuCategory.text = binding.textviewCaterogy8.text
             binding.linearLayoutCategory.visibility = View.GONE
+            menuCategory = 7L
+
         }
         binding.textviewCaterogy8.setOnClickListener {
             binding.textviewMenuCategory.text = binding.textviewCaterogy8.text
             binding.linearLayoutCategory.visibility = View.GONE
+            menuCategory = 8L
+
         }
         binding.textviewCaterogy9.setOnClickListener {
             binding.textviewMenuCategory.text = binding.textviewCaterogy9.text
             binding.linearLayoutCategory.visibility = View.GONE
+            menuCategory = 9L
+
         }
         binding.textviewCaterogy10.setOnClickListener {
             binding.textviewMenuCategory.text = binding.textviewCaterogy10.text
             binding.linearLayoutCategory.visibility = View.GONE
+            menuCategory = 10L
+
         }
 
     }
@@ -294,6 +320,7 @@ class MenuAddFragment : Fragment() {
 
         ischeck = true
 
+        foodPackage = "ALL"
     }
 
     fun btnOptionOnlyDelivery() {
@@ -313,6 +340,7 @@ class MenuAddFragment : Fragment() {
         binding.btnAddColor.setBackgroundColor(android.graphics.Color.parseColor("#E60051"))
 
         ischeck = true
+        foodPackage = "DELIVERY"
 
     }
 
@@ -332,9 +360,15 @@ class MenuAddFragment : Fragment() {
         binding.btnAddColor.setBackgroundColor(android.graphics.Color.parseColor("#E60051"))
         ischeck = true
 
+        foodPackage = "PACKAGE"
+
     }
 
     fun cardviewAdd() {
+
+
+optionArray()
+
         if (binding.edittextMenuName.text.toString() == "") {
             Toast.makeText(context, "빈칸이 있습니다.", Toast.LENGTH_SHORT).show()
         } else if (binding.textviewMenuCategory.text.toString() == "") {
@@ -357,6 +391,8 @@ class MenuAddFragment : Fragment() {
             //이동
 
 
+
+
                 val menuAddSuccessFragment = MenuAddSuccessFragment()
                 fragmentManager?.beginTransaction()?.apply {
                     replace(R.id.frameArea, menuAddSuccessFragment)
@@ -367,5 +403,41 @@ class MenuAddFragment : Fragment() {
         }
     }
 
+
+    fun optionArray(){
+        when(optionNum){
+            0 -> {
+                foodOptionRequestList.add(MenuAddRequestModelDtoFoodOptionRequestList(binding.edittextOptionName.text.toString(),binding.edittextPrice.text.toString().toLong(),0L))
+            }
+            1-> {
+                foodOptionRequestList.add(MenuAddRequestModelDtoFoodOptionRequestList(binding.edittextOptionName.text.toString(),binding.edittextPrice.text.toString().toLong(),0L))
+                foodOptionRequestList.add(MenuAddRequestModelDtoFoodOptionRequestList(binding.edittextOptionName2.text.toString(),binding.edittextPrice1.text.toString().toLong(),0L))
+
+            }
+            2->{
+                foodOptionRequestList.add(MenuAddRequestModelDtoFoodOptionRequestList(binding.edittextOptionName.text.toString(),binding.edittextPrice.text.toString().toLong(),0L))
+                foodOptionRequestList.add(MenuAddRequestModelDtoFoodOptionRequestList(binding.edittextOptionName2.text.toString(),binding.edittextPrice1.text.toString().toLong(),0L))
+                foodOptionRequestList.add(MenuAddRequestModelDtoFoodOptionRequestList(binding.edittextOptionName3.text.toString(),binding.edittextPrice2.text.toString().toLong(),0L))
+
+            }
+            3->{
+                foodOptionRequestList.add(MenuAddRequestModelDtoFoodOptionRequestList(binding.edittextOptionName.text.toString(),binding.edittextPrice.text.toString().toLong(),0L))
+                foodOptionRequestList.add(MenuAddRequestModelDtoFoodOptionRequestList(binding.edittextOptionName2.text.toString(),binding.edittextPrice1.text.toString().toLong(),0L))
+                foodOptionRequestList.add(MenuAddRequestModelDtoFoodOptionRequestList(binding.edittextOptionName3.text.toString(),binding.edittextPrice2.text.toString().toLong(),0L))
+                foodOptionRequestList.add(MenuAddRequestModelDtoFoodOptionRequestList(binding.edittextOptionName4.text.toString(),binding.edittextPrice3.text.toString().toLong(),0L))
+
+            }
+            4->{
+                foodOptionRequestList.add(MenuAddRequestModelDtoFoodOptionRequestList(binding.edittextOptionName.text.toString(),binding.edittextPrice.text.toString().toLong(),0L))
+                foodOptionRequestList.add(MenuAddRequestModelDtoFoodOptionRequestList(binding.edittextOptionName2.text.toString(),binding.edittextPrice1.text.toString().toLong(),0L))
+                foodOptionRequestList.add(MenuAddRequestModelDtoFoodOptionRequestList(binding.edittextOptionName3.text.toString(),binding.edittextPrice2.text.toString().toLong(),0L))
+                foodOptionRequestList.add(MenuAddRequestModelDtoFoodOptionRequestList(binding.edittextOptionName4.text.toString(),binding.edittextPrice3.text.toString().toLong(),0L))
+                foodOptionRequestList.add(MenuAddRequestModelDtoFoodOptionRequestList(binding.edittextOptionName5.text.toString(),binding.edittextPrice4.text.toString().toLong(),0L))
+
+            }
+
+        }
+
+    }
 
 }
