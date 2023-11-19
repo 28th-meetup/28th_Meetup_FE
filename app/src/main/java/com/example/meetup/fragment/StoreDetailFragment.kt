@@ -52,6 +52,8 @@ class StoreDetailFragment : Fragment() {
 
 
         storeId = MyApplication.preferences.getString("storeId","").toLong()
+        Log.d("storeID", storeId.toString())
+
         viewModel = ViewModelProvider(requireActivity()).get(StoreListViewModel::class.java)
 
         viewModel.getStoreDetail(requireContext(),storeId)
@@ -99,6 +101,10 @@ class StoreDetailFragment : Fragment() {
             btnMenuClick()
         }
 
+        //1대1 문의하기
+        binding.imageviewChatting.setOnClickListener {
+
+        }
         //가게 정보 클릭
         binding.btnStoreInfo.setOnClickListener {
 

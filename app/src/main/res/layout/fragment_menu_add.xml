@@ -290,6 +290,7 @@
                         android:background="@color/transparent"
                         android:fontFamily="@font/pretendard_regular"
                         android:hint="100,000"
+                        android:inputType="number"
                         android:textSize="18.27sp" />
 
 
@@ -616,6 +617,8 @@
                         android:theme="@style/Theme.MaterialComponents.Light"
                         app:cardCornerRadius="6.85dp"
                         app:cardElevation="0dp"
+                        android:inputType="number"
+
                         app:layout_constraintBottom_toBottomOf="@+id/textview_add_option"
                         app:layout_constraintStart_toEndOf="@+id/textview_add_option"
                         app:layout_constraintTop_toTopOf="@+id/textview_add_option"
@@ -806,6 +809,8 @@
                         android:theme="@style/Theme.MaterialComponents.Light"
                         app:cardCornerRadius="6.85dp"
                         app:cardElevation="0dp"
+                        android:inputType="number"
+
                         app:layout_constraintBottom_toBottomOf="@+id/textview_add_option2"
                         app:layout_constraintStart_toEndOf="@+id/textview_add_option2"
                         app:layout_constraintTop_toTopOf="@+id/textview_add_option2"
@@ -997,6 +1002,8 @@
                         android:theme="@style/Theme.MaterialComponents.Light"
                         app:cardCornerRadius="6.85dp"
                         app:cardElevation="0dp"
+                        android:inputType="number"
+
                         app:layout_constraintBottom_toBottomOf="@+id/textview_add_option3"
                         app:layout_constraintStart_toEndOf="@+id/textview_add_option3"
                         app:layout_constraintTop_toTopOf="@+id/textview_add_option3"
@@ -1188,6 +1195,8 @@
                         android:theme="@style/Theme.MaterialComponents.Light"
                         app:cardCornerRadius="6.85dp"
                         app:cardElevation="0dp"
+                        android:inputType="number"
+
                         app:layout_constraintBottom_toBottomOf="@+id/textview_add_option4"
                         app:layout_constraintStart_toEndOf="@+id/textview_add_option4"
                         app:layout_constraintTop_toTopOf="@+id/textview_add_option4"
@@ -1315,6 +1324,8 @@
                             android:background="@color/transparent"
                             android:fontFamily="@font/pretendard_regular"
                             android:hint="옵션 작성"
+                            android:inputType="number"
+
                             android:textColor="@color/black"
                             android:textSize="16sp" />
 
