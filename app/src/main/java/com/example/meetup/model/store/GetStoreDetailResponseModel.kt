@@ -10,7 +10,9 @@ var result: GetStoreDetailListResult
 
 data class GetStoreDetailListResult(
     var storeDto : GetStoreDetailStoreDto,
-    var isBookmarked : Boolean
+    var isBookmarked : Boolean,
+    var isFoodChangeable : Boolean
+
 )
 
 data class GetStoreDetailStoreDto(

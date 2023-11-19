@@ -41,6 +41,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="205dp"
                 android:layout_marginTop="57dp"
+                android:scaleType="fitXY"
                 android:src="@drawable/ic_mountain"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -108,6 +109,7 @@
                     android:textSize="16sp" />
 
                 <TextView
+                    android:id="@+id/textview_min_order_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="3dp"
@@ -131,6 +133,7 @@
                     android:src="@drawable/ic_star" />
 
                 <TextView
+                    android:id="@+id/textview_rate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="3dp"
