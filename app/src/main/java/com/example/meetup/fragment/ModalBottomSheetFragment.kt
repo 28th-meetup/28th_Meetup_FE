@@ -1,16 +1,18 @@
 package com.example.meetup.fragment
 
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.example.meetup.R
+import com.example.meetup.databinding.BottomSheetsLayoutBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+
 
 class ModalBottomSheetFragment : BottomSheetDialogFragment() {
 
-
+    lateinit var binding: BottomSheetsLayoutBinding
     override fun onStart() {
         super.onStart()
 
@@ -29,12 +31,14 @@ class ModalBottomSheetFragment : BottomSheetDialogFragment() {
         savedInstanceState: Bundle?
     ): View?{
 
+        binding = BottomSheetsLayoutBinding.inflate(inflater)
+
 // 배경 어두운 효과 추가
         val dialog = dialog
         dialog?.window?.setDimAmount(0.5f)
 
 
-        return inflater.inflate(R.layout.bottom_sheets_layout, container, false)
+        return binding.root
     }
 
     companion object {
@@ -46,6 +50,23 @@ class ModalBottomSheetFragment : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.run {
+            textviewTopReview.setOnClickListener {
+                dismiss()
+            }
+            textviewTopRate.setOnClickListener {
+                dismiss()
+            }
+            textviewHighPrice.setOnClickListener {
+                dismiss()
+            }
+            textviewLowPrice.setOnClickListener {
+                dismiss()
+            }
+            textviewRecent.setOnClickListener {
+                dismiss()
+            }
+        }
     }
 
 

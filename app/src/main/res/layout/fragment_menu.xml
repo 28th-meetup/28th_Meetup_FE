@@ -217,7 +217,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="11.42dp"
                     android:fontFamily="@font/pretendard_regular"
-                    android:text="@string/food_info"
                     android:textSize="13.7sp" />
             </LinearLayout>
 

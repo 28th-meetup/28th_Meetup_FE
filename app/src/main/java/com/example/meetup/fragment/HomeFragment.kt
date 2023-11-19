@@ -49,7 +49,7 @@ class HomeFragment : Fragment() {
 
                 binding.run {
                     recyclerviewTop10.run {
-                        adapter = HomeTopAdapter(homeActivity.manager, topFoodList)
+                        adapter = HomeTopAdapter(homeActivity.manager, homeActivity, topFoodList)
                         layoutManager = LinearLayoutManager(homeActivity, RecyclerView.HORIZONTAL, false)
                     }
                 }
@@ -59,14 +59,20 @@ class HomeFragment : Fragment() {
 
                 binding.run {
                     recyclerviewSet.run {
-                        adapter = HomeSetAdapter(homeActivity.manager, setFoodList)
-                        layoutManager = GridLayoutManager(requireContext(),2)
+                        adapter = HomeSetAdapter(homeActivity.manager, homeActivity, setFoodList)
+                        layoutManager = GridLayoutManager(homeActivity,2)
 
 //                        val spanCount = 2
 //                        val space = 22.83f.fromDpToPx()
 //                        addItemDecoration(HomeSetAdapter.GridSpacingItemDecoration(spanCount, space, false))
 
                     }
+                }
+            }
+            regionId.observe(homeActivity) {
+                binding.run {
+                    var region = resources.getStringArray(R.array.location_array).get(it)
+                    textviewRegion.text = region
                 }
             }
         }
