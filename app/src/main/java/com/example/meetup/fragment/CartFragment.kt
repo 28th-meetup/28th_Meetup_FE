@@ -15,6 +15,7 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.meetup.R
@@ -23,13 +24,21 @@ import com.example.meetup.bottomSheet.ModalBottomSheetOrderOption
 import com.example.meetup.databinding.FragmentCartBinding
 import com.example.meetup.databinding.RowCartBinding
 import com.example.meetup.databinding.RowOrderOptionBinding
+import com.example.meetup.model.FoodIdResult
+import com.example.meetup.model.MenuOptionResult
 import com.example.meetup.sharedPreference.MyApplication
+import com.example.meetup.viewmodel.FoodMenuDetailViewModel
 import kotlin.concurrent.fixedRateTimer
 
 class CartFragment : Fragment() {
 
     lateinit var binding: FragmentCartBinding
     lateinit var homeActivity: HomeActivity
+
+    lateinit var viewModel: FoodMenuDetailViewModel
+
+    var optionList = mutableListOf<MenuOptionResult>()
+    var foodInfo = mutableListOf<FoodIdResult>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,6 +47,18 @@ class CartFragment : Fragment() {
 
         binding = FragmentCartBinding.inflate(inflater)
         homeActivity = activity as HomeActivity
+
+        viewModel = ViewModelProvider(homeActivity)[FoodMenuDetailViewModel::class.java]
+        viewModel.run {
+            foodMenuOptionInfoList.observe(homeActivity) {
+                optionList = it
+
+                modalBottomSheet()
+            }
+            foodMenuInfoList.observe(homeActivity) {
+                foodInfo = it
+            }
+        }
 
         initView()
 
@@ -124,7 +145,8 @@ class CartFragment : Fragment() {
                 }
 
                 rowOptionChange.setOnClickListener {
-                    modalBottomSheet()
+                    viewModel.getFoodMenuInfo(homeActivity, MyApplication.foodId)
+                    viewModel.getFoodMenuOptionList(homeActivity, MyApplication.foodId)
                 }
 
                 rowMinus.setOnClickListener {
@@ -171,7 +193,7 @@ class CartFragment : Fragment() {
     }
 
     private fun modalBottomSheet() {
-        val modal = ModalBottomSheetOrderOption()
+        val modal = ModalBottomSheetOrderOption(foodInfo)
         modal.show(homeActivity.supportFragmentManager, "주문하기 옵션")
     }
 }
