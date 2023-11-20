@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginBottom="13.7dp"
+    android:orientation="vertical">
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/search_cardview_background">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/imageView7"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/food" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="13.7dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textview_store_name"
+                        android:layout_width="64dp"
+                        android:layout_height="26dp"
+                        android:layout_gravity="center|center_vertical"
+                        android:fontFamily="@font/pretendard_semi_bold"
+                        android:text="가게이름"
+                        android:textColor="@color/black"
+                        android:textSize="18.27sp" />
+
+                    <ImageView
+                        android:id="@+id/imageview_badge"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center|center_vertical"
+                        android:layout_marginLeft="4.57dp"
+                        android:src="@drawable/ic_badge" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/textview"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/pretendard_regular"
+                        android:text="최소주문"
+                        android:textColor="#6E7178"
+                        android:textSize="13.7sp" />
+
+                    <TextView
+                        android:id="@+id/textview_least_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="2dp"
+                        android:fontFamily="@font/pretendard_regular"
+                        android:text="100,000원"
+                        android:textColor="@color/black"
+                        android:textSize="13.7sp" />
+
+                    <LinearLayout
+                        android:layout_width="1dp"
+                        android:layout_height="12dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="3dp"
+                        android:background="@color/black" />
+
+                    <TextView
+                        android:id="@+id/textview_rate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="3dp"
+                        android:drawableLeft="@drawable/ic_star"
+                        android:drawablePadding="1dp"
+                        android:fontFamily="@font/pretendard_regular"
+                        android:text="4.8"
+                        android:textSize="13.7sp" />
+
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</LinearLayout>
