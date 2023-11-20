@@ -125,11 +125,7 @@ class MenuFragment : Fragment() {
 
                 setNavigationOnClickListener {
                     // 유저 인입경로별 뒤로가기 기능 구현
-                    val homeFragment = HomeFragment()
-
-                    val transaction = homeActivity.manager.beginTransaction()
-                    transaction.replace(R.id.frameArea, homeFragment)
-                    transaction.commit()
+                    fragmentManager?.popBackStack()
                 }
 
                 inflateMenu(R.menu.main_cart_menu)
@@ -141,6 +137,7 @@ class MenuFragment : Fragment() {
 
                             val transaction = homeActivity.manager.beginTransaction()
                             transaction.replace(R.id.frameArea, cartFragment)
+                            transaction.addToBackStack("")
                             transaction.commit()
                         }
 

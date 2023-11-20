@@ -74,6 +74,7 @@ class HomeTopAdapter(var manager: FragmentManager, var activity:ViewModelStoreOw
 
                     val transaction = manager.beginTransaction()
                     transaction.replace(R.id.frameArea, menuFragment)
+                    transaction.addToBackStack("")
                     transaction.commit()
                 },1000)
             }
