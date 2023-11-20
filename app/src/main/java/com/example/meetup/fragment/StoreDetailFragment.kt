@@ -41,10 +41,6 @@ class StoreDetailFragment : Fragment() {
     var isHeartCheck = false
 
     var storeId = 0L
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -86,7 +82,7 @@ class StoreDetailFragment : Fragment() {
         //초기 설정
         val storeDetailMenuFragment = StoreDetailMenuFragment()
         fragmentManager?.beginTransaction()?.apply {
-            replace(R.id.store_detail_frame_area, storeDetailMenuFragment)
+            replace(R.id.store_detail_frame_area1, storeDetailMenuFragment)
             addToBackStack(null)
             commit()
         }
@@ -137,7 +133,6 @@ class StoreDetailFragment : Fragment() {
                                 intent.putExtra("roomId", roomId)
                                 intent.putExtra("senderName", senderName)
                                 startActivity(intent)
-                                onDestroy()
                                 Log.d(
                                     "PostChatRoomResponseModel : ",
                                     " success, ${response.body().toString()}"
@@ -286,7 +281,7 @@ class StoreDetailFragment : Fragment() {
 
         val storeDetailMenuFragment = StoreDetailMenuFragment()
         fragmentManager?.beginTransaction()?.apply {
-            replace(R.id.store_detail_frame_area, storeDetailMenuFragment)
+            replace(R.id.store_detail_frame_area1, storeDetailMenuFragment)
             commit()
         }
 
@@ -306,7 +301,7 @@ class StoreDetailFragment : Fragment() {
 
         val storeDetailInfoFragment = StoreDetailInfoFragment()
         fragmentManager?.beginTransaction()?.apply {
-            replace(R.id.store_detail_frame_area, storeDetailInfoFragment)
+            replace(R.id.store_detail_frame_area1, storeDetailInfoFragment)
             commit()
         }
 
@@ -327,7 +322,7 @@ class StoreDetailFragment : Fragment() {
 
         val storeDetailNoticeFragment = StoreDetailNoticeFragment()
         fragmentManager?.beginTransaction()?.apply {
-            replace(R.id.store_detail_frame_area, storeDetailNoticeFragment)
+            replace(R.id.store_detail_frame_area1, storeDetailNoticeFragment)
             commit()
         }
 
@@ -347,7 +342,7 @@ class StoreDetailFragment : Fragment() {
 
         val storeDetailReviewFragment = StoreDetailReviewFragment()
         fragmentManager?.beginTransaction()?.apply {
-            replace(R.id.store_detail_frame_area, storeDetailReviewFragment)
+            replace(R.id.store_detail_frame_area1, storeDetailReviewFragment)
             commit()
         }
     }

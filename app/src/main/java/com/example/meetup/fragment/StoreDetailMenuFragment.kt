@@ -23,10 +23,6 @@ class StoreDetailMenuFragment : Fragment() {
     lateinit var viewModel: StoreDetailMenuViewModel
 
     private lateinit var storeDetailMenuAdapter: StoreDetailMenuAdapter
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,6 +31,7 @@ class StoreDetailMenuFragment : Fragment() {
 
         _binding = FragmentStoreDetailMenuBinding.inflate(inflater,container,false)
         val view = binding.root
+
         viewModel = ViewModelProvider(requireActivity()).get(StoreDetailMenuViewModel::class.java)
 
 //        val store_detail_menu_list = ArrayList<StoreDetailMenuResponseModel>()
@@ -60,8 +57,6 @@ class StoreDetailMenuFragment : Fragment() {
         viewModel.storeDetailMenuList.observe(viewLifecycleOwner){
             storeDetailMenuAdapter = StoreDetailMenuAdapter(it.result)
             binding.recyclerviewStoreDetailMenu.adapter = storeDetailMenuAdapter
-
-
 
 
         }
