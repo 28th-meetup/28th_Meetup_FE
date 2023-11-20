@@ -25,16 +25,16 @@
         android:textAlignment="center"
         android:textSize="25.12dp" />
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="105dp"
+        android:layout_marginTop="29.05dp">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerview_food"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="29.05dp" />
-    </ScrollView>
+            android:layout_height="wrap_content" />
+    </androidx.core.widget.NestedScrollView>
 
     <Button
         android:id="@+id/button_add_food"

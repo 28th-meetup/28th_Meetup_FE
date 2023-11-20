@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="top"
             android:background="@color/transparent"
-            android:src="@drawable/checkbox" />
+            android:src="@drawable/checkbox_fill" />
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/imageview"
@@ -151,7 +151,6 @@
                 android:layout_marginLeft="22.69dp"
                 android:layout_weight="1"
                 android:fontFamily="@font/pretendard_semi_bold"
-                android:text="1"
                 android:textColor="@color/black"
                 android:textSize="20.55sp" />
 

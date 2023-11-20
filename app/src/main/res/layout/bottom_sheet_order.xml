@@ -38,6 +38,8 @@
         android:paddingHorizontal="18.27dp"
         android:paddingVertical="11.42dp"
         android:text="옵션을 선택해주세요"
+        android:fontFamily="@font/pretendard_regular"
+        android:textSize="15.98sp"
         android:textAlignment="textStart"
         android:textColor="@color/gray4"
         tools:drawableTint="@color/gray3" />
@@ -141,6 +143,7 @@
             android:textSize="18.27sp" />
 
         <com.google.android.material.divider.MaterialDivider
+            android:id="@+id/divider_delivery_option"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             app:dividerColor="@color/gray_blue2"></com.google.android.material.divider.MaterialDivider>
@@ -162,7 +165,8 @@
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="120dp">
+        android:layout_height="120dp"
+        android:layout_marginTop="22.83dp">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerview_food"
