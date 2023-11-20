@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingVertical="18.27dp">
+
+        <TextView
+            android:id="@+id/textview_food_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/pretendard_semi_bold"
+            android:text="TextView"
+            android:textColor="@color/black"
+            android:textSize="20.55sp" />
+
+        <TextView
+            android:id="@+id/textview_option_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6.85dp"
+            android:fontFamily="@font/pretendard_regular"
+            android:text="TextView"
+            android:textColor="@color/black"
+            android:textSize="15.98sp" />
+
+        <TextView
+            android:id="@+id/textview_count"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6.85dp"
+            android:fontFamily="@font/pretendard_regular"
+            android:text="TextView"
+            android:textColor="@color/black"
+            android:textSize="15.98sp" />
+    </LinearLayout>
+
+    <com.google.android.material.divider.MaterialDivider
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        app:dividerColor="@color/gray_blue2" />
+
+</LinearLayout>
