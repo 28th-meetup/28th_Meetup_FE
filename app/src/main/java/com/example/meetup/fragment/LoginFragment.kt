@@ -118,6 +118,12 @@ class LoginFragment : Fragment() {
                 buttonLogin.isEnabled = true
             }
 
+            if(!edittextEmail.text.isEmpty()) {
+                edittextEmail.setBackgroundResource(R.drawable.text_login_input_background)
+            } else {
+                edittextEmail.setBackgroundResource(R.drawable.text_login_background)
+            }
+
             if(!edittextPassword.text.isEmpty()) {
                 edittextPassword.setBackgroundResource(R.drawable.text_login_input_background)
             } else {
