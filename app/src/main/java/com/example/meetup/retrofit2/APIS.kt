@@ -9,6 +9,7 @@ import com.example.meetup.model.FoodIdResponseModel
 import com.example.meetup.model.FoodOptionResponseList
 import com.example.meetup.model.HomeResponseModel
 import com.example.meetup.model.MenuOptionResponseModel
+import com.example.meetup.model.OrderFoodResponseModel
 import com.example.meetup.model.PostKaKaoTokenResponseModel
 import com.example.meetup.model.PostReviewWriteResponseModel
 import com.example.meetup.model.PostStoreResponseModel
@@ -19,6 +20,7 @@ import com.example.meetup.model.chatting.ChatListResponseModel
 import com.example.meetup.model.chatting.ChatListResult
 import com.example.meetup.model.request.AddressesRequestModel
 import com.example.meetup.model.request.NickNameRequestModel
+import com.example.meetup.model.request.OrderFoodRequestModel
 import com.example.meetup.model.request.SignInRequestModel
 import com.example.meetup.model.request.SignUpRequestModel
 import com.example.meetup.model.store.GetStoreDetailListResult
@@ -154,4 +156,11 @@ interface APIS {
         @Header("Authorization") Authorization: String,
 
         ) : Call<ChatListResponseModel>
+
+    // 음식 주문하기
+    @POST("order/food")
+    fun orderFood(
+        @Header("Authorization") Authorization: String,
+        @Body parameters : OrderFoodRequestModel
+    ) : Call<OrderFoodResponseModel>
 }
