@@ -13,6 +13,8 @@ import com.example.meetup.model.OrderFoodResponseModel
 import com.example.meetup.model.PostKaKaoTokenResponseModel
 import com.example.meetup.model.PostReviewWriteResponseModel
 import com.example.meetup.model.PostStoreResponseModel
+import com.example.meetup.model.SellerOrderHistoryMenuResponseModel
+import com.example.meetup.model.SellerOrderHistoryResponseModel
 import com.example.meetup.model.store.PostStoreDtoRequestModel
 import com.example.meetup.model.SignInResponseModel
 import com.example.meetup.model.SignUpResponseModel
@@ -35,6 +37,7 @@ import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.Multipart
 import retrofit2.http.POST
+import retrofit2.http.PUT
 import retrofit2.http.Path
 import retrofit2.http.Part
 import retrofit2.http.Query
@@ -176,4 +179,12 @@ interface APIS {
     fun getSellerOrderHistoryMenu(
         @Header("Authorization") Authorization: String
     ) : Call<SellerOrderHistoryMenuResponseModel>
+
+    // 주문 내역 주문 상태 변경
+    @PUT("order/{orderId}/process")
+    fun setOrderStatus(
+        @Header("Authorization") Authorization: String,
+        @Path("orderId") orderId: Int,
+        @Query("new-status") newStatus: String
+    ) : Call<BasicResponseModel>
 }
