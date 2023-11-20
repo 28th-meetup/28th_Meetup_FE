@@ -11,6 +11,7 @@ import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
 import com.example.meetup.R
 import com.example.meetup.activity.CertificationActivity
+import com.example.meetup.activity.HomeActivity
 import com.example.meetup.databinding.ActivityHomeBinding
 import com.example.meetup.databinding.DialogEnrollStoreBinding
 import com.example.meetup.fragment.CertificationCompleteFragment
@@ -24,7 +25,7 @@ class DialogEnrollStore(var manager: FragmentManager) : DialogFragment() {
     private var _binding: DialogEnrollStoreBinding? = null
     private val binding get() = _binding!!
 
-    lateinit var certificationActivity: CertificationActivity
+    lateinit var homeActivity: HomeActivity
 
     private var confirmDialogInterface: EnrollStoreDialogInterface? = null
 
@@ -34,7 +35,7 @@ class DialogEnrollStore(var manager: FragmentManager) : DialogFragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = DialogEnrollStoreBinding.inflate(inflater)
-        certificationActivity = activity as CertificationActivity
+        homeActivity = activity as HomeActivity
 
         dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT));
         dialog?.requestWindowFeature(Window.FEATURE_NO_TITLE)
@@ -45,14 +46,14 @@ class DialogEnrollStore(var manager: FragmentManager) : DialogFragment() {
         }
 
         // 확인 버튼 클릭
-        binding.buttonAddFood.setOnClickListener {
+        binding.buttonAddStore.setOnClickListener {
             this.confirmDialogInterface?.onClickYesButton(id!!)
             dismiss()
 
             val completeFragment = CertificationCompleteFragment()
 
             val transaction = manager.beginTransaction()
-            transaction.replace(R.id.container, completeFragment)
+            transaction.replace(R.id.frameArea, completeFragment)
             transaction.commit()
         }
 
