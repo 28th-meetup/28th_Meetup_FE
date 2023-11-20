@@ -37,7 +37,7 @@
         android:textSize="18.27sp"/>
 
     <Button
-        android:id="@+id/button_add_food"
+        android:id="@+id/button_add_store"
         android:layout_width="255dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
