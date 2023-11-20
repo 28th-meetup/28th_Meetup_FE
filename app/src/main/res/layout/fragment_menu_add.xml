@@ -1543,7 +1543,7 @@
                         android:layout_marginTop="12.56dp"
                         android:layout_marginBottom="12.56dp"
                         android:fontFamily="@font/pretendard_regular"
-                        android:text="배달 포장 모두 가능"
+                        android:text="배달만 가능            "
                         android:textColor="@color/black"
                         android:textSize="18.27sp" />
 
@@ -1587,7 +1587,7 @@
                         android:layout_marginTop="12.56dp"
                         android:layout_marginBottom="12.56dp"
                         android:fontFamily="@font/pretendard_regular"
-                        android:text="배달 포장 모두 가능"
+                        android:text="포장만 가능            "
                         android:textColor="@color/black"
                         android:textSize="18.27sp" />
 
