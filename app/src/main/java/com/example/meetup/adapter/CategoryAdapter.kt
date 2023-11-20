@@ -30,6 +30,19 @@ class CategoryAdapter(var categoryNameList: Array<String>, var manager: Fragment
     lateinit var categoryViewModel: CategoryFoodViewModel
     lateinit var homeActivity: HomeActivity
 
+    var categoryImageList = listOf<Int>(
+        R.drawable.ic_category0,
+        R.drawable.ic_category1,
+        R.drawable.ic_category2,
+        R.drawable.ic_category3,
+        R.drawable.ic_category4,
+        R.drawable.ic_category5,
+        R.drawable.ic_category6,
+        R.drawable.ic_category7,
+        R.drawable.ic_category8,
+        R.drawable.ic_category9
+    )
+
     fun setOnItemClickListener(listener: (Int) -> Unit) {
         onItemClickListener = listener
     }
@@ -45,7 +58,7 @@ class CategoryAdapter(var categoryNameList: Array<String>, var manager: Fragment
     }
 
     override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) {
-        holder.image.setImageResource(R.drawable.ic_category1)
+        holder.image.setImageResource(categoryImageList.get(position))
         holder.name.text = categoryNameList.get(position)
     }
 
