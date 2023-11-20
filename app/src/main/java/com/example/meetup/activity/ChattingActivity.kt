@@ -24,6 +24,7 @@ import okhttp3.OkHttpClient
 import org.json.JSONObject
 import ua.naiksoftware.stomp.Stomp
 import ua.naiksoftware.stomp.StompClient
+import java.util.ArrayList
 
 class ChattingActivity : AppCompatActivity() {
     private lateinit var viewModel: ChattingRoomViewModel
@@ -43,6 +44,8 @@ class ChattingActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_chatting)
 
 
+
+
         viewModel = ViewModelProvider(this).get(ChattingRoomViewModel::class.java)
 
         chattingAdapter = ChattingAdapter(ArrayList())
@@ -55,7 +58,7 @@ class ChattingActivity : AppCompatActivity() {
 
         var senderName = intent.getStringExtra("senderName")
 
-        Log.d("roomId","$roomId")
+        Log.d("roomId", "$roomId")
 
 
 
@@ -67,8 +70,6 @@ class ChattingActivity : AppCompatActivity() {
 
         viewModel.chattingData.observe(this, Observer {
 
-
-
             chattingAdapter = ChattingAdapter(it)
 
             binding.recyclerViewChatting.adapter = chattingAdapter
@@ -76,38 +77,47 @@ class ChattingActivity : AppCompatActivity() {
         })
         // Subscribe to the chat topic
         stompClient.topic("/sub/chat/room/${roomId}")
-            .subscribe ({ topicMessage ->
+            .subscribe({ topicMessage ->
                 // Handle received messages here
                 val receivedMessage = topicMessage.payload
 
 
-                Log.d("receivedMessage",receivedMessage.toString())
+                Log.d("receivedMessage", receivedMessage.toString())
                 // Update UI or handle the message
             }, { throwable ->
-            // Handle errors here
-            throwable.printStackTrace()
-            // Add your custom error handling logic here
-        })
+                // Handle errors here
+                throwable.printStackTrace()
+                // Add your custom error handling logic here
+            })
 
 
 
         binding.imageviewSendChatting.setOnClickListener {
 
             val sendData = JSONObject()
-            sendData.put("senderName","${senderName}")
-            sendData.put("roomId","${roomId}")
-            sendData.put("message",binding.edittextWriteChattingText.text.toString())
-            sendData.put("sendTime","")
+            sendData.put("senderName", "${senderName}")
+            sendData.put("roomId", "${roomId}")
+            sendData.put("message", binding.edittextWriteChattingText.text.toString())
+            sendData.put("sendTime", "")
 
 //            viewModel.chattingData.value!!.add(ChattingDataModel("$senderName","$roomId",binding.edittextWriteChattingText.text.toString(),""))
             Log.d("SendData", sendData.toString())
-//            viewModel.chattingData.value!!.message = binding.edittextWriteChattingText.text.toString()
-//            viewModel.addData(ChattingDataModel("${senderName}","${roomId}",binding.edittextWriteChattingText.text.toString(),""))
+
+
+//            viewModel.addData(
+//                ChattingDataModel(
+//                    "${senderName}",
+//                    "${roomId}",
+//                    binding.edittextWriteChattingText.text.toString(),
+//                    ""
+//                )
+//            )
+            Log.d("SendData viewmodel", sendData.toString())
+
             stompClient.send("/pub/message", sendData.toString()).subscribe()
             binding.edittextWriteChattingText.text.clear()
 
         }
-
 
 
     }

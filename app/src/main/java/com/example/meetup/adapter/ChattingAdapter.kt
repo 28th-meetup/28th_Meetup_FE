@@ -26,7 +26,7 @@ class ChattingAdapter(var chattingData: ArrayList<ChattingDataModel>) :  Recycle
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
-        var textview_chatting: TextView = view.findViewById(R.id.textview_chatting)
+        var textview_chatting: TextView = view.findViewById(R.id.textview_chatting_live)
 
 
         fun bind(item: ChattingDataModel) {

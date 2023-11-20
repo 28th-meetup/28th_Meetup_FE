@@ -34,30 +34,30 @@ class MenuEditFragment : Fragment() {
         _binding = FragmentMenuEditBinding.inflate(inflater,container,false)
         val view = binding.root
 
-
-        var menulist = ArrayList<MenuListResponseModel>()
-
-        menulist.add(MenuListResponseModel("a","aaa","aa","1,000"))
-        menulist.add(MenuListResponseModel("a","bbb","bbb","2,000"))
-        menulist.add(MenuListResponseModel("a","cc","cc","3,000"))
+//
+//        var menulist = ArrayList<MenuListResponseModel>()
+//
+//        menulist.add(MenuListResponseModel("a","aaa","aa","1,000"))
+//        menulist.add(MenuListResponseModel("a","bbb","bbb","2,000"))
+//        menulist.add(MenuListResponseModel("a","cc","cc","3,000"))
 
 
 //        menuListAdapter = MenuListAdapter(menulist)
-
-        menuListAdapter = MenuListAdapter(menulist,
-            itemClickListener1 ={
-
-                                Log.d("menu_edit_itemclick",it.toString())
-
-            } ,
-            itemClickListener2 = {
-                Log.d("menu_delete_itemclick",it.toString())
-
-            })
-
-        binding.recyclerviewMenuList.adapter = menuListAdapter
-
-binding.recyclerviewMenuList.layoutManager = LinearLayoutManager(requireContext())
+//
+//        menuListAdapter = MenuListAdapter(menulist,
+//            itemClickListener1 ={
+//
+//                                Log.d("menu_edit_itemclick",it.toString())
+//
+//            } ,
+//            itemClickListener2 = {
+//                Log.d("menu_delete_itemclick",it.toString())
+//
+//            })
+//
+//        binding.recyclerviewMenuList.adapter = menuListAdapter
+//
+//binding.recyclerviewMenuList.layoutManager = LinearLayoutManager(requireContext())
 
 
         return view

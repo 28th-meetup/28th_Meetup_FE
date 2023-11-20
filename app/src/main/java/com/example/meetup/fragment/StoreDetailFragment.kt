@@ -26,6 +26,7 @@ import com.example.meetup.model.store.GetStoreDetailResponseModel
 import com.example.meetup.retrofit2.APIS
 import com.example.meetup.retrofit2.RetrofitInstance
 import com.example.meetup.sharedPreference.MyApplication
+import com.example.meetup.viewmodel.ChattingRoomViewModel
 import com.example.meetup.viewmodel.StoreListViewModel
 import kotlinx.coroutines.launch
 import retrofit2.Call
@@ -36,6 +37,7 @@ class StoreDetailFragment : Fragment() {
     private var _binding: FragmentStoreDetailBinding? = null
     private val binding get() = _binding!!
     private lateinit var viewModel: StoreListViewModel
+    private lateinit var chattingRoomViewModel: ChattingRoomViewModel
     private lateinit var API: APIS
 
     var isHeartCheck = false
@@ -56,6 +58,7 @@ class StoreDetailFragment : Fragment() {
 
         viewModel = ViewModelProvider(requireActivity()).get(StoreListViewModel::class.java)
 
+        chattingRoomViewModel = ViewModelProvider(requireActivity()).get(ChattingRoomViewModel::class.java)
         viewModel.getStoreDetail(requireContext(), storeId)
 
         viewModel.storeDetail.observe(viewLifecycleOwner) {
@@ -128,15 +131,29 @@ class StoreDetailFragment : Fragment() {
                                 val roomId = response.body()!!.result.roomId
                                 val senderName = response.body()!!.result.sender
                                 Log.d("roomId", roomId.toString())
-                                val intent = Intent(requireContext(), ChattingActivity::class.java)
 
-                                intent.putExtra("roomId", roomId)
-                                intent.putExtra("senderName", senderName)
-                                startActivity(intent)
-                                Log.d(
-                                    "PostChatRoomResponseModel : ",
-                                    " success, ${response.body().toString()}"
-                                )
+//                                chattingRoomViewModel.senderName.value = senderName
+//                                chattingRoomViewModel.roomId.value = roomId
+
+                                MyApplication.preferences.setString("roomId","$roomId")
+                                MyApplication.preferences.setString("senderName","$senderName")
+
+
+                                val chattingRoomFragment = ChattingRoomFragment()
+                                fragmentManager?.beginTransaction()?.apply {
+                                    replace(R.id.frameArea, chattingRoomFragment)
+                                    commit()
+                                }
+
+//                                val intent = Intent(context, ChattingActivity::class.java)
+//
+//                                intent.putExtra("roomId", roomId)
+//                                intent.putExtra("senderName", senderName)
+//                                startActivity(intent)
+//                                Log.d(
+//                                    "PostChatRoomResponseModel : ",
+//                                    " success, ${response.body().toString()}"
+//                                )
 
                             } else {
 
