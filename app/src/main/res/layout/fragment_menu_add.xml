@@ -290,6 +290,7 @@
                         android:background="@color/transparent"
                         android:fontFamily="@font/pretendard_regular"
                         android:hint="100,000"
+                        android:inputType="number"
                         android:textSize="18.27sp" />
 
 
@@ -363,6 +364,76 @@
 
                 <EditText
                     android:id="@+id/edittext_menu_explain"
+                    android:layout_width="match_parent"
+                    android:layout_height="106dp"
+                    android:layout_marginLeft="22.83dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="15dp"
+                    android:background="@color/transparent"
+                    android:fontFamily="@font/pretendard_regular"
+                    android:gravity="top"
+                    android:hint="내용을 입력하세요. (최소 20자)"
+                    android:textSize="18.27sp" />
+
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="22.83dp"
+                android:layout_marginTop="22.83dp"
+                android:fontFamily="@font/pretendard_semi_bold"
+                android:text="상품 정보 이미지"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardview_image_info"
+                android:layout_width="123dp"
+                android:layout_height="123dp"
+                android:layout_marginLeft="22.83dp"
+                android:layout_marginTop="22.83dp"
+                android:theme="@style/Theme.MaterialComponents.Light"
+                app:cardCornerRadius="6.58dp"
+                app:cardElevation="0dp"
+                app:strokeColor="@color/gray_blue"
+                app:strokeWidth="1dp">
+
+                <ImageView
+                    android:id="@+id/imageview_info_represent"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ic_choose_represent_img" />
+
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="22.83dp"
+                android:layout_marginTop="22.83dp"
+                android:fontFamily="@font/pretendard_semi_bold"
+                android:text="구성 성분표"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="22.83dp"
+                android:layout_marginTop="11.42dp"
+                android:layout_marginRight="22.83dp"
+                android:theme="@style/Theme.MaterialComponents.Light"
+                app:cardCornerRadius="6.85dp"
+                app:cardElevation="0dp"
+                app:strokeColor="@color/gray_blue"
+                app:strokeWidth="1dp">
+
+                <EditText
+                    android:id="@+id/edittext_menu_ingredient"
                     android:layout_width="match_parent"
                     android:layout_height="106dp"
                     android:layout_marginLeft="22.83dp"
@@ -546,6 +617,7 @@
                         android:theme="@style/Theme.MaterialComponents.Light"
                         app:cardCornerRadius="6.85dp"
                         app:cardElevation="0dp"
+
                         app:layout_constraintBottom_toBottomOf="@+id/textview_add_option"
                         app:layout_constraintStart_toEndOf="@+id/textview_add_option"
                         app:layout_constraintTop_toTopOf="@+id/textview_add_option"
@@ -556,6 +628,7 @@
                             android:id="@+id/edittext_price_1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:inputType="number"
                             android:layout_marginLeft="22.83dp"
                             android:layout_marginTop="10.8dp"
                             android:layout_marginRight="66dp"
@@ -736,6 +809,8 @@
                         android:theme="@style/Theme.MaterialComponents.Light"
                         app:cardCornerRadius="6.85dp"
                         app:cardElevation="0dp"
+                        android:inputType="number"
+
                         app:layout_constraintBottom_toBottomOf="@+id/textview_add_option2"
                         app:layout_constraintStart_toEndOf="@+id/textview_add_option2"
                         app:layout_constraintTop_toTopOf="@+id/textview_add_option2"
@@ -927,6 +1002,8 @@
                         android:theme="@style/Theme.MaterialComponents.Light"
                         app:cardCornerRadius="6.85dp"
                         app:cardElevation="0dp"
+                        android:inputType="number"
+
                         app:layout_constraintBottom_toBottomOf="@+id/textview_add_option3"
                         app:layout_constraintStart_toEndOf="@+id/textview_add_option3"
                         app:layout_constraintTop_toTopOf="@+id/textview_add_option3"
@@ -1118,6 +1195,8 @@
                         android:theme="@style/Theme.MaterialComponents.Light"
                         app:cardCornerRadius="6.85dp"
                         app:cardElevation="0dp"
+                        android:inputType="number"
+
                         app:layout_constraintBottom_toBottomOf="@+id/textview_add_option4"
                         app:layout_constraintStart_toEndOf="@+id/textview_add_option4"
                         app:layout_constraintTop_toTopOf="@+id/textview_add_option4"
@@ -1244,7 +1323,8 @@
                             android:layout_marginBottom="15dp"
                             android:background="@color/transparent"
                             android:fontFamily="@font/pretendard_regular"
-                            android:hint="옵션 작성"
+                            android:inputType="number"
+
                             android:textColor="@color/black"
                             android:textSize="16sp" />
 
@@ -1324,6 +1404,7 @@
                             android:layout_marginBottom="10.8dp"
                             android:background="@color/transparent"
                             android:hint="3,000"
+                            android:inputType="number"
                             android:textColor="@color/black"
                             android:textSize="16sp" />
 
@@ -1462,7 +1543,7 @@
                         android:layout_marginTop="12.56dp"
                         android:layout_marginBottom="12.56dp"
                         android:fontFamily="@font/pretendard_regular"
-                        android:text="배달 포장 모두 가능"
+                        android:text="배달만 가능            "
                         android:textColor="@color/black"
                         android:textSize="18.27sp" />
 
@@ -1506,7 +1587,7 @@
                         android:layout_marginTop="12.56dp"
                         android:layout_marginBottom="12.56dp"
                         android:fontFamily="@font/pretendard_regular"
-                        android:text="배달 포장 모두 가능"
+                        android:text="포장만 가능            "
                         android:textColor="@color/black"
                         android:textSize="18.27sp" />
 

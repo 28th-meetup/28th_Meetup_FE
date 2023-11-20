@@ -8,10 +8,11 @@
         <item name="android:windowBackground">@color/white</item>
         <item name="android:textColor">@color/black</item>
         <item name="android:textColorPrimary">@color/black</item>
-<!--        <item name="android:background">@drawable/bottom_sheet_border</item>-->
+        <!--        <item name="android:background">@drawable/bottom_sheet_border</item>-->
         <item name="bottomSheetStyle">@style/AppModalStyle</item>
 
     </style>
+
     <style name="ToolbarTheme" parent="ThemeOverlay.AppCompat.Light">
         <item name="android:fontFamily">@font/pretendard_semi_bold</item>
         <item name="android:textSize">16sp</item>
@@ -24,8 +25,14 @@
     <style name="AppModalStyle" parent="Widget.Design.BottomSheet.Modal">
         <item name="android:background">@drawable/bottom_sheet_border</item>
     </style>
+
     <style name="AppBottomSheetDialogTheme" parent="Theme.MaterialComponents.Light.BottomSheetDialog">
         <item name="bottomSheetStyle">@style/AppModalStyle</item>
+    </style>
+    <!-- Base application theme. -->
+    <style name="Base.Theme.Meetup" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 
 

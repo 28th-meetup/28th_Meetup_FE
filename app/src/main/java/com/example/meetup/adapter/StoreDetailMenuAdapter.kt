@@ -6,10 +6,13 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.meetup.R
+import com.example.meetup.model.store.GetStoreMenuResponseModel
+import com.example.meetup.model.store.GetStoreMenuResponseModelResult
 import com.example.meetup.model.store.StoreDetailMenuResponseModel
 
-class StoreDetailMenuAdapter(private var storeDetailMenuList : ArrayList<StoreDetailMenuResponseModel>) :
+class StoreDetailMenuAdapter(private var storeDetailMenuList : ArrayList<GetStoreMenuResponseModelResult>) :
     RecyclerView.Adapter<StoreDetailMenuAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StoreDetailMenuAdapter.ViewHolder {
@@ -38,15 +41,15 @@ class StoreDetailMenuAdapter(private var storeDetailMenuList : ArrayList<StoreDe
         var textview_menu_name : TextView = view.findViewById(R.id.textview_menu_name)
         var textview_menu_price : TextView = view.findViewById(R.id.textview_menu_price)
 
-        fun bind(item: StoreDetailMenuResponseModel) {
+        fun bind(item: GetStoreMenuResponseModelResult) {
 
-//            Glide.with(itemView.context)
-//                .load(item.menuImageView)
-//                .into(imageview_menu)
+            Glide.with(itemView.context)
+                .load(item.image)
+                .into(imageview_menu)
 
 
-            textview_menu_name.text = item.menuName
-            textview_menu_price.text = item.menuPrice
+            textview_menu_name.text = item.name
+            textview_menu_price.text = item.dollarPrice.toString()
 
             itemView.setOnClickListener {
 
