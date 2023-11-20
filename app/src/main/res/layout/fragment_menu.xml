@@ -243,7 +243,7 @@
                         android:textSize="13.7sp" />
 
                     <TextView
-                        android:id="@+id/textview_order_total_price"
+                        android:id="@+id/textview_min_order_price"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/pretendard_semi_bold"

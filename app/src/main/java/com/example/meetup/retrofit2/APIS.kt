@@ -11,10 +11,13 @@ import com.example.meetup.model.HomeResponseModel
 import com.example.meetup.model.MenuAddRequestModelDto
 import com.example.meetup.model.MenuListResponseModel
 import com.example.meetup.model.MenuOptionResponseModel
+import com.example.meetup.model.OrderFoodResponseModel
 import com.example.meetup.model.MessageRequestDto
 import com.example.meetup.model.PostKaKaoTokenResponseModel
 import com.example.meetup.model.PostReviewWriteResponseModel
 import com.example.meetup.model.PostStoreResponseModel
+import com.example.meetup.model.SellerOrderHistoryMenuResponseModel
+import com.example.meetup.model.SellerOrderHistoryResponseModel
 import com.example.meetup.model.store.PostStoreDtoRequestModel
 import com.example.meetup.model.SignInResponseModel
 import com.example.meetup.model.SignUpResponseModel
@@ -24,6 +27,7 @@ import com.example.meetup.model.chatting.PostChatRoomResponseModel
 import com.example.meetup.model.food.MenuAddResponseModel
 import com.example.meetup.model.request.AddressesRequestModel
 import com.example.meetup.model.request.NickNameRequestModel
+import com.example.meetup.model.request.OrderFoodRequestModel
 import com.example.meetup.model.request.SignInRequestModel
 import com.example.meetup.model.request.SignUpRequestModel
 import com.example.meetup.model.store.GetStoreDetailListResult
@@ -40,6 +44,7 @@ import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.Multipart
 import retrofit2.http.POST
+import retrofit2.http.PUT
 import retrofit2.http.Path
 import retrofit2.http.Part
 import retrofit2.http.Query
@@ -161,6 +166,34 @@ interface APIS {
         @Header("Authorization") Authorization: String,
 
         ) : Call<ChatListResponseModel>
+
+    // 음식 주문하기
+    @POST("order/food")
+    fun orderFood(
+        @Header("Authorization") Authorization: String,
+        @Body parameters : OrderFoodRequestModel
+    ) : Call<OrderFoodResponseModel>
+
+    // 판매자 - 주문관리
+    @GET("store/order-history/{orderStatus}")
+    fun getSellerOrderHistory(
+        @Header("Authorization") Authorization: String,
+        @Path("orderStatus") orderStatus: String
+    ) : Call<SellerOrderHistoryResponseModel>
+
+    // 판매자 - 주문관리 (메뉴별)
+    @GET("order/processing")
+    fun getSellerOrderHistoryMenu(
+        @Header("Authorization") Authorization: String
+    ) : Call<SellerOrderHistoryMenuResponseModel>
+
+    // 주문 내역 주문 상태 변경
+    @PUT("order/{orderId}/process")
+    fun setOrderStatus(
+        @Header("Authorization") Authorization: String,
+        @Path("orderId") orderId: Int,
+        @Query("new-status") newStatus: String
+    ) : Call<BasicResponseModel>
 
     //메뉴 등록
     @Multipart

@@ -83,6 +83,7 @@ class HomeSetAdapter(var manager: FragmentManager, var activity: ViewModelStoreO
 
                     val transaction = manager.beginTransaction()
                     transaction.replace(R.id.frameArea, menuFragment)
+                    transaction.addToBackStack("")
                     transaction.commit()
                 },1000)
                 true

@@ -78,6 +78,7 @@ class CategorySetAdapter(var manager: FragmentManager, var activity: ViewModelSt
 
                     val transaction = manager.beginTransaction()
                     transaction.replace(R.id.frameArea, menuFragment)
+                    transaction.addToBackStack("")
                     transaction.commit()
                 },1000)
 

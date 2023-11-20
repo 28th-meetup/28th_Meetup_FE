@@ -25,6 +25,7 @@ import com.example.meetup.databinding.BottomSheetOrderBinding
 import com.example.meetup.databinding.DialogOrderBinding
 import com.example.meetup.databinding.RowOrderFoodBinding
 import com.example.meetup.databinding.RowOrderOptionBinding
+import com.example.meetup.model.CartFood
 import com.example.meetup.model.FoodIdResult
 import com.example.meetup.model.MenuOptionResult
 import com.example.meetup.viewmodel.FoodMenuDetailViewModel
@@ -34,14 +35,21 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
-class ModalBottomSheetOrderOption(foodInfo: List<FoodIdResult>) : BottomSheetDialogFragment() {
+class ModalBottomSheetOrderOption(var foodInfo: List<FoodIdResult>) : BottomSheetDialogFragment() {
 
     lateinit var binding: BottomSheetOrderBinding
-    var deliveryOption = ""
     lateinit var homeActivity: HomeActivity
     lateinit var viewModel: FoodMenuDetailViewModel
 
     var foodMenuOptionList = mutableListOf<MenuOptionResult>()
+    var selectFoodOptionList = mutableListOf<CartFood>()
+
+    var deliveryOption = ""
+    var selectedOptionName = ""
+    var selectedOptionPrice = ""
+    var selectedOptionId = 0L
+
+    var foodInfoList = foodInfo
 
     override fun getTheme(): Int = R.style.AppBottomSheetDialogTheme
 
@@ -61,7 +69,7 @@ class ModalBottomSheetOrderOption(foodInfo: List<FoodIdResult>) : BottomSheetDia
                     recyclerviewOption.run {
                         adapter = OptionRecyclerViewAdapter()
 
-                        layoutManager = LinearLayoutManager(requireContext())
+                        layoutManager = LinearLayoutManager(context)
                     }
                 }
             }
@@ -117,7 +125,7 @@ class ModalBottomSheetOrderOption(foodInfo: List<FoodIdResult>) : BottomSheetDia
 
         binding.run {
 
-            textviewOptionValue.text = ""
+            textviewOptionValue.text = "${foodInfoList.get(0).name} 구성"
 
             buttonOption.setOnClickListener {
                 buttonOption.visibility = View.GONE
@@ -134,7 +142,26 @@ class ModalBottomSheetOrderOption(foodInfo: List<FoodIdResult>) : BottomSheetDia
                 divider.visibility = View.VISIBLE
                 layoutTotal.visibility = View.VISIBLE
                 buttonGoToCart.visibility = View.VISIBLE
+                buttonOption.run {
+                    visibility = View.VISIBLE
+                    text = "옵션을 선택해주세요"
+                    setTextSize(15.98f)
+                    // 폰트 파일을 로드하여 Typeface 객체로 변환
+                    val fontTypeface = resources.getFont(R.font.pretendard_regular)
+                    typeface = fontTypeface
+                    setTextColor(ContextCompat.getColor(requireContext(), R.color.gray4))
+                    setBackgroundResource(R.drawable.button_order_background)
+                }
 
+                var cartItem = CartFood(foodInfoList.get(0).storeId, foodInfoList.get(0).categoryId, foodInfoList.get(0).image, foodInfoList.get(0).name, foodInfoList.get(0).id, selectedOptionName, selectedOptionId, deliveryOption, 1, selectedOptionPrice.toLong(), true)
+                selectFoodOptionList.add(cartItem)
+                var totalFoodPrice = 0.0
+                for(i in 0 until selectFoodOptionList.size) {
+                    totalFoodPrice += (selectFoodOptionList.get(i).orderEachPrice.toDouble() * selectFoodOptionList.get(i).orderCount)
+                }
+                textviewTotalFoodPrice.text = "총 ${totalFoodPrice}"
+                foodInfoList.get(0).foodPackage = "DELIVERY"
+                Log.d("밋업", "foodInfo : ${foodInfoList}")
                 recyclerviewFood.run {
                     adapter = FoodRecyclerViewAdapter()
 
@@ -148,7 +175,25 @@ class ModalBottomSheetOrderOption(foodInfo: List<FoodIdResult>) : BottomSheetDia
                 divider.visibility = View.VISIBLE
                 layoutTotal.visibility = View.VISIBLE
                 buttonGoToCart.visibility = View.VISIBLE
-
+                buttonOption.run {
+                    visibility = View.VISIBLE
+                    text = "옵션을 선택해주세요"
+                    setTextSize(15.98f)
+                    // 폰트 파일을 로드하여 Typeface 객체로 변환
+                    val fontTypeface = resources.getFont(R.font.pretendard_regular)
+                    typeface = fontTypeface
+                    setTextColor(ContextCompat.getColor(requireContext(), R.color.gray4))
+                    setBackgroundResource(R.drawable.button_order_background)
+                }
+                var cartItem = CartFood(foodInfoList.get(0).storeId, foodInfoList.get(0).categoryId, foodInfoList.get(0).image, foodInfoList.get(0).name, foodInfoList.get(0).id, selectedOptionName, selectedOptionId, deliveryOption, 1, selectedOptionPrice.toLong(), true)
+                selectFoodOptionList.add(cartItem)
+                var totalFoodPrice = 0.0
+                for(i in 0 until selectFoodOptionList.size) {
+                    totalFoodPrice += (selectFoodOptionList.get(i).orderEachPrice.toDouble() * selectFoodOptionList.get(i).orderCount)
+                }
+                textviewTotalFoodPrice.text = "총 ${totalFoodPrice}"
+                foodInfoList.get(0).foodPackage = "PACKAGE"
+                Log.d("밋업", "foodInfo : ${foodInfoList}")
                 recyclerviewFood.run {
                     adapter = FoodRecyclerViewAdapter()
 
@@ -161,7 +206,8 @@ class ModalBottomSheetOrderOption(foodInfo: List<FoodIdResult>) : BottomSheetDia
 
                 dismiss()
 
-                val dialog = DialogOrder()
+                Log.d("밋업", "장바구니 : ${selectFoodOptionList}")
+                val dialog = DialogOrder(selectFoodOptionList)
                 // 알림창이 띄워져있는 동안 배경 클릭 막기
                 dialog.isCancelable = false
                 activity?.let { dialog.show(it.supportFragmentManager, "OrderDialog") }
@@ -193,11 +239,25 @@ class ModalBottomSheetOrderOption(foodInfo: List<FoodIdResult>) : BottomSheetDia
 
                 rowBinding.root.setOnClickListener {
                     binding.run {
+                        selectedOptionName = foodMenuOptionList.get(adapterPosition).name.toString()
+                        if(foodMenuOptionList.get(adapterPosition).dollarPrice.toInt() == 0) {
+                            selectedOptionPrice = foodMenuOptionList.get(adapterPosition).canadaPrice.toString()
+                        } else {
+                            selectedOptionPrice = foodMenuOptionList.get(adapterPosition).dollarPrice.toString()
+                        }
+                        selectedOptionId = foodMenuOptionList.get(adapterPosition).id
                         layoutOption.visibility = View.GONE
                         layoutDeliveryOption.visibility = View.VISIBLE
+                        if(foodInfoList.get(0).foodPackage == "DELIVERY") {
+                            buttonPickupOption.visibility = View.GONE
+                            dividerDeliveryOption.visibility = View.GONE
+                        } else if(foodInfoList.get(0).foodPackage == "PACKAGE") {
+                            buttonDeliveryOption.visibility = View.GONE
+                            dividerDeliveryOption.visibility = View.GONE
+                        }
                         buttonOption.run {
                             visibility = View.VISIBLE
-                            text = "${foodMenuOptionList.get(adapterPosition).name}"
+                            text = "${selectedOptionName}"
                             setTextSize(18.27f)
                             // 폰트 파일을 로드하여 Typeface 객체로 변환
                             val fontTypeface = resources.getFont(R.font.pretendard_semi_bold)
@@ -270,25 +330,37 @@ class ModalBottomSheetOrderOption(foodInfo: List<FoodIdResult>) : BottomSheetDia
                     if(count > 1) {
                         count--
                     }
+                    selectFoodOptionList.get(adapterPosition).orderCount = count.toLong()
                     rowBinding.run {
                         textviewFoodNum.text = count.toString()
+                        textviewFoodPrice.text = (count * selectFoodOptionList.get(adapterPosition).orderEachPrice).toString()
                     }
+                    var totalFoodPrice = 0.0
+                    for(i in 0 until selectFoodOptionList.size) {
+                        totalFoodPrice += (selectFoodOptionList.get(i).orderEachPrice.toDouble() * selectFoodOptionList.get(i).orderCount)
+                    }
+                    binding.textviewTotalFoodPrice.text = "총 ${totalFoodPrice}"
                 }
                 rowCountPlusButton.setOnClickListener {
                     count++
+                    selectFoodOptionList.get(adapterPosition).orderCount = count.toLong()
                     rowBinding.run {
                         textviewFoodNum.text = count.toString()
+                        textviewFoodPrice.text = (count * selectFoodOptionList.get(adapterPosition).orderEachPrice).toString()
                     }
+                    var totalFoodPrice = 0.0
+                    for(i in 0 until selectFoodOptionList.size) {
+                        totalFoodPrice += (selectFoodOptionList.get(i).orderEachPrice.toDouble() * selectFoodOptionList.get(i).orderCount)
+                    }
+                    binding.textviewTotalFoodPrice.text = "총 ${totalFoodPrice}"
                 }
 
                 rowCloseButton.setOnClickListener {
                     // 해당 주문 내역 선택지 삭제
+                    selectFoodOptionList.removeAt(adapterPosition)
+                    var adapter = binding.recyclerviewFood.adapter as FoodRecyclerViewAdapter
+                    adapter.notifyDataSetChanged()
                 }
-
-//                rowDeliveryOptionButton.text = "${deliveryOption}"
-//                if(deliveryOption == "포장") {
-//
-//                }
             }
         }
 
@@ -305,14 +377,21 @@ class ModalBottomSheetOrderOption(foodInfo: List<FoodIdResult>) : BottomSheetDia
         }
 
         override fun getItemCount(): Int {
-            return 4
+            return selectFoodOptionList.size
         }
 
         override fun onBindViewHolder(holder: ViewHolderClass, position: Int) {
-            holder.rowFoodName.text = "밑반찬 세트"
-            holder.rowOptionName.text = "기본 A 세트 [나물+김치]"
-            holder.rowPrice.text = "10,000원"
-            holder.rowCount.text = "1"
+            holder.rowFoodName.text = "${selectFoodOptionList.get(position).foodName}"
+            holder.rowOptionName.text = "${selectFoodOptionList.get(position).foodOptionName}"
+            var totalPrice = selectFoodOptionList.get(position).orderCount * selectFoodOptionList.get(position).orderEachPrice
+            holder.rowPrice.text = "${totalPrice}"
+            holder.rowCount.text = "${selectFoodOptionList.get(position).orderCount}"
+            holder.rowDeliveryOptionButton.text = "${selectFoodOptionList.get(position).orderDeliveryOption}"
+            if(selectFoodOptionList.get(position).orderDeliveryOption == "포장") {
+                holder.rowDeliveryOptionButton.setBackgroundResource(R.drawable.button_pickup_background)
+            } else {
+                holder.rowDeliveryOptionButton.setBackgroundResource(R.drawable.button_delivery_background)
+            }
         }
     }
 }

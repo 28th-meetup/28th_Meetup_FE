@@ -51,10 +51,11 @@ class MenuFragment : Fragment() {
                     if(it.get(0).dollarPrice.toInt() == 0) {
                         textviewFoodPrice.text = it.get(0).canadaPrice.toString()
                     } else {
-                        textviewFoodPrice.text = it.get(0).dollarPrice.toString()
+                        textviewFoodPrice.text = "$" + it.get(0).dollarPrice.toString()
                     }
                     textviewFoodInfoSummary.text = it.get(0).description
                     textviewFoodInfo2.text = it.get(0).ingredient
+                    textviewMinOrderPrice.text = "$" + it.get(0).minOrderAmount.toString()
                     Glide.with(homeActivity).load(it.get(0).image).into(imageviewFood)
                     Glide.with(homeActivity).load(it.get(0).informationDescription).into(imageviewFoodInfo)
                 }
@@ -88,21 +89,21 @@ class MenuFragment : Fragment() {
                 }
             }
 
-            var fullText = textviewFoodPrice.text
-
-            val spannableString = SpannableString(fullText)
-
-            // 시작 인덱스와 끝 인덱스 사이의 텍스트에 다른 색상 적용
-            val startIndex = textviewFoodPrice.text.length -1
-            val endIndex = textviewFoodPrice.text.length
-            spannableString.setSpan(
-                ForegroundColorSpan(Color.parseColor("#FF000000")), // 색상 설정
-                startIndex, // 시작 인덱스
-                endIndex, // 끝 인덱스 (exclusive)
-                SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE // 스타일 적용 범위 설정
-            )
-
-            textviewFoodPrice.text = spannableString
+//            var fullText = textviewFoodPrice.text
+//
+//            val spannableString = SpannableString(fullText)
+//
+//            // 시작 인덱스와 끝 인덱스 사이의 텍스트에 다른 색상 적용
+//            val startIndex = textviewFoodPrice.text.length -1
+//            val endIndex = textviewFoodPrice.text.length
+//            spannableString.setSpan(
+//                ForegroundColorSpan(Color.parseColor("#FF000000")), // 색상 설정
+//                startIndex, // 시작 인덱스
+//                endIndex, // 끝 인덱스 (exclusive)
+//                SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE // 스타일 적용 범위 설정
+//            )
+//
+//            textviewFoodPrice.text = spannableString
         }
 
         return binding.root
@@ -125,11 +126,7 @@ class MenuFragment : Fragment() {
 
                 setNavigationOnClickListener {
                     // 유저 인입경로별 뒤로가기 기능 구현
-                    val homeFragment = HomeFragment()
-
-                    val transaction = homeActivity.manager.beginTransaction()
-                    transaction.replace(R.id.frameArea, homeFragment)
-                    transaction.commit()
+                    fragmentManager?.popBackStack()
                 }
 
                 inflateMenu(R.menu.main_cart_menu)
@@ -141,6 +138,7 @@ class MenuFragment : Fragment() {
 
                             val transaction = homeActivity.manager.beginTransaction()
                             transaction.replace(R.id.frameArea, cartFragment)
+                            transaction.addToBackStack("")
                             transaction.commit()
                         }
 

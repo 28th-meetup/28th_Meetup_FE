@@ -101,7 +101,7 @@ class HomeFragment : Fragment() {
                 adapter = CategoryAdapter(categoryNameList, homeActivity.manager, homeActivity)
                 layoutManager = GridLayoutManager(requireContext(),5)
 
-                addItemDecoration(CategoryAdapter.GridSpaceItemDecoration(5,20))
+//                addItemDecoration(CategoryAdapter.GridSpaceItemDecoration(5,20))
             }
 
             homeActivity.hideBottomNavigation(false)

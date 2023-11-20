@@ -16,9 +16,10 @@ data class FoodIdResult(
     val canadaPrice: Long,
     val image: String?,
     val description: String,  // 상세 설명
-    val foodPackage: String,  // 배달/포장 가능
+    var foodPackage: String,  // 배달/포장 가능
     val informationDescription: String?, // 상품 정보 이미지
     val ingredient: String?,  // 구성성분표
+    val minOrderAmount: Long,   // 최소주문금액
     val foodOptionResponseList: List<FoodOptionResponseList>,
 )
 

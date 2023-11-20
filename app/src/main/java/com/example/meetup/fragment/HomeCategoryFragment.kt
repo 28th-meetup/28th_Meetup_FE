@@ -94,6 +94,7 @@ class HomeCategoryFragment : Fragment() {
 
                             val transaction = homeActivity.manager.beginTransaction()
                             transaction.replace(R.id.frameArea, cartFragment)
+                            transaction.addToBackStack("")
                             transaction.commit()
                         }
 

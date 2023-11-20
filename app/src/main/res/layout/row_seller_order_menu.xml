@@ -34,10 +34,12 @@
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:background="@color/black"
+            android:fontFamily="@font/pretendard_semi_bold"
             android:gravity="center|right"
             android:text="개"
             android:textAlignment="center"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:textSize="18.27sp" />
     </LinearLayout>
 
     <com.google.android.material.divider.MaterialDivider

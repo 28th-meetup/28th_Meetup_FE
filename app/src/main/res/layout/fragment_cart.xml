@@ -68,7 +68,7 @@
                 app:dividerColor="@color/gray_blue"></com.google.android.material.divider.MaterialDivider>
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerview"
+                android:id="@+id/recyclerview_cart"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 

@@ -56,6 +56,7 @@ class FoodMenuDetailViewModel : ViewModel() {
                     var foodPackage = result?.result!!.foodPackage
                     var informationDescription = result?.result!!.informationDescription
                     var ingredient = result?.result!!.ingredient
+                    var minOrderPrice = result?.result!!.minOrderAmount
 
                     for (i in 0 until result?.result!!.foodOptionResponseList.size) {
                         var id = result?.result!!.foodOptionResponseList.get(i).id
@@ -67,7 +68,7 @@ class FoodMenuDetailViewModel : ViewModel() {
                         tempOptionList.add(option1)
                     }
 
-                    var food = FoodIdResult(id, storeId, categoryId, name, dollarPrice, canadaPrice, image, description, foodPackage, informationDescription, ingredient, tempOptionList)
+                    var food = FoodIdResult(id, storeId, categoryId, name, dollarPrice, canadaPrice, image, description, foodPackage, informationDescription, ingredient, minOrderPrice, tempOptionList)
                     tempList.add(food)
 
                     foodMenuInfoList.value = tempList

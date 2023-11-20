@@ -1,15 +1,24 @@
 package com.example.meetup.fragment
 
+import android.graphics.BlendMode
+import android.graphics.BlendModeColorFilter
+import android.graphics.Color
+import android.graphics.PorterDuff
+import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.FragmentActivity
+import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.meetup.R
 import com.example.meetup.activity.HomeActivity
 import com.example.meetup.databinding.FragmentSellerOrderCheckBinding
+import com.example.meetup.model.SellerOrderHistoryMenuResponseModel
+import com.example.meetup.viewmodel.SellerOrderHistoryMenuViewModel
+import com.example.meetup.viewmodel.SellerOrderHistoryViewModel
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
@@ -19,6 +28,8 @@ class SellerOrderCheckFragment : Fragment() {
     lateinit var homeActivity: HomeActivity
 
     val fragmentList = mutableListOf<Fragment>()
+
+    lateinit var viewModel: SellerOrderHistoryMenuViewModel
 
     // 탭에 표시할 이름
     val tabName = arrayOf(
@@ -32,7 +43,9 @@ class SellerOrderCheckFragment : Fragment() {
         binding = FragmentSellerOrderCheckBinding.inflate(inflater)
         homeActivity = activity as HomeActivity
 
-        homeActivity.hideBottomNavigation(true)
+        viewModel = ViewModelProvider(homeActivity)[SellerOrderHistoryMenuViewModel::class.java]
+
+        initView()
 
         fragmentList.clear()
         fragmentList.add(SellerOrderInProgressFragment())
@@ -62,6 +75,31 @@ class SellerOrderCheckFragment : Fragment() {
         fragmentList.add(SellerOrderMenuFragment())
         fragmentList.add(SellerOrderCompleteFragment())
         binding.pager.requestLayout()
+    }
+
+    fun initView() {
+
+        homeActivity.hideBottomNavigation(true)
+
+        binding.run {
+            toolbar.run {
+                title = "주문 확인"
+
+                // back 버튼 설정
+                setNavigationIcon(R.drawable.ic_back)
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                    navigationIcon?.colorFilter =
+                        BlendModeColorFilter(Color.DKGRAY, BlendMode.SRC_ATOP)
+                } else {
+                    navigationIcon?.setColorFilter(Color.DKGRAY, PorterDuff.Mode.SRC_ATOP)
+                }
+
+                setNavigationOnClickListener {
+                    fragmentManager?.popBackStack()
+                }
+            }
+        }
     }
 
     // adapter 클래스
