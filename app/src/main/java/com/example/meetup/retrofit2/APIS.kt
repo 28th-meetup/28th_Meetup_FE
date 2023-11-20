@@ -170,4 +170,10 @@ interface APIS {
         @Header("Authorization") Authorization: String,
         @Path("orderStatus") orderStatus: String
     ) : Call<SellerOrderHistoryResponseModel>
+
+    // 판매자 - 주문관리 (메뉴별)
+    @GET("order/processing")
+    fun getSellerOrderHistoryMenu(
+        @Header("Authorization") Authorization: String
+    ) : Call<SellerOrderHistoryMenuResponseModel>
 }
