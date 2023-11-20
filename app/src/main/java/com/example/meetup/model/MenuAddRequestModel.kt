@@ -7,7 +7,6 @@ val informationImage: String,
 )
 
 data class MenuAddRequestModelDto(
-    val storeId: Long,
     val categoryId: Long,
     val name: String,
     val dollarPrice: Long,

@@ -6,12 +6,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.meetup.R
 import com.example.meetup.adapter.MenuListAdapter
 import com.example.meetup.databinding.FragmentMenuEditBinding
 import com.example.meetup.databinding.FragmentStoreDetailBinding
 import com.example.meetup.model.MenuListResponseModel
+import com.example.meetup.viewmodel.MenuListViewModel
+import com.example.meetup.viewmodel.StoreListViewModel
+import java.util.ArrayList
 
 
 class MenuEditFragment : Fragment() {
@@ -21,10 +25,8 @@ class MenuEditFragment : Fragment() {
 
     private lateinit var menuListAdapter: MenuListAdapter
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    private lateinit var viewModel: MenuListViewModel
 
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,31 +36,30 @@ class MenuEditFragment : Fragment() {
         _binding = FragmentMenuEditBinding.inflate(inflater,container,false)
         val view = binding.root
 
-
-        var menulist = ArrayList<MenuListResponseModel>()
-
-        menulist.add(MenuListResponseModel("a","aaa","aa","1,000"))
-        menulist.add(MenuListResponseModel("a","bbb","bbb","2,000"))
-        menulist.add(MenuListResponseModel("a","cc","cc","3,000"))
+        viewModel = ViewModelProvider(requireActivity()).get(MenuListViewModel::class.java)
 
 
-//        menuListAdapter = MenuListAdapter(menulist)
 
-        menuListAdapter = MenuListAdapter(menulist,
-            itemClickListener1 ={
-
-                                Log.d("menu_edit_itemclick",it.toString())
-
-            } ,
-            itemClickListener2 = {
-                Log.d("menu_delete_itemclick",it.toString())
-
-            })
+        menuListAdapter = MenuListAdapter(ArrayList(),
+            itemClickListener1 = {},
+            itemClickListener2 = {})
 
         binding.recyclerviewMenuList.adapter = menuListAdapter
 
 binding.recyclerviewMenuList.layoutManager = LinearLayoutManager(requireContext())
 
+
+        viewModel.getMenu(requireContext())
+
+        viewModel.storeDetailMenuList.observe(viewLifecycleOwner){
+
+            menuListAdapter = MenuListAdapter(it.result,
+                itemClickListener1 = {},
+                itemClickListener2 = {})
+
+            binding.recyclerviewMenuList.adapter = menuListAdapter
+
+        }
 
         return view
 
