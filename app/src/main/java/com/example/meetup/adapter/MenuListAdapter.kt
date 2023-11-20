@@ -6,12 +6,14 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.meetup.R
 import com.example.meetup.model.MenuListResponseModel
+import com.example.meetup.model.store.GetStoreMenuResponseModelResult
 
 
 class MenuListAdapter(
-    private var menuList: ArrayList<MenuListResponseModel>,
+    private var menuList: ArrayList<GetStoreMenuResponseModelResult>,
     private val itemClickListener1: (Int) -> Unit,
     private val itemClickListener2: (Int) -> Unit,
 
@@ -56,11 +58,14 @@ class MenuListAdapter(
         var btn_delete : ImageView = view.findViewById(R.id.btn_delete)
 
 
-        fun bind(item: MenuListResponseModel) {
+        fun bind(item: GetStoreMenuResponseModelResult) {
 
-            textview_menu_name.text = item.menuName
-            textview_menu_category.text = item.menuCategory
-            textview_menu_price.text = item.menuPrice
+            Glide.with(itemView.context)
+                .load(item.image)
+                .into(imageview_menu_image)
+            textview_menu_name.text = item.name
+            textview_menu_category.text = item.categoryId.toString()
+            textview_menu_price.text = item.dollarPrice.toString()
 
         }
     }

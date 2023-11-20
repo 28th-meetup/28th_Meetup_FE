@@ -9,6 +9,7 @@ import com.example.meetup.model.FoodIdResponseModel
 import com.example.meetup.model.FoodOptionResponseList
 import com.example.meetup.model.HomeResponseModel
 import com.example.meetup.model.MenuAddRequestModelDto
+import com.example.meetup.model.MenuListResponseModel
 import com.example.meetup.model.MenuOptionResponseModel
 import com.example.meetup.model.MessageRequestDto
 import com.example.meetup.model.PostKaKaoTokenResponseModel
@@ -30,6 +31,7 @@ import com.example.meetup.model.store.GetStoreDetailResponseModel
 import com.example.meetup.model.store.GetStoreListResponseModel
 import com.example.meetup.model.store.GetStoreListStores
 import com.example.meetup.model.store.GetStoreMenuResponseModel
+import com.example.meetup.model.store.StoreDetailMenuResponseModel
 
 import okhttp3.MultipartBody
 import retrofit2.Call
@@ -184,4 +186,11 @@ interface APIS {
         @Header("Authorization") Authorization: String,
         @Body messageRequestDto : MessageRequestDto
         ) : Call<PostChatRoomResponseModel>
+
+    //마이페이지 메뉴 가져오기
+    @GET("store/menu")
+    fun getMenu(
+        @Header("Authorization") Authorization: String,
+
+        ) : Call<GetStoreMenuResponseModel>
 }
