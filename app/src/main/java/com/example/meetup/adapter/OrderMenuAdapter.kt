@@ -1,6 +1,7 @@
 package com.example.meetup.adapter
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,8 +15,9 @@ import com.example.meetup.databinding.RowOrderFoodBinding
 import com.example.meetup.databinding.RowSellerOrderInProgressBinding
 import com.example.meetup.databinding.RowSellerOrderMenuBinding
 import com.example.meetup.databinding.RowSellerOrderOptionBinding
+import com.example.meetup.model.ProcessingFoodList
 
-class OrderMenuAdapter() : RecyclerView.Adapter<OrderMenuAdapter.OrderMenuViewHolder>() {
+class OrderMenuAdapter(var orderHistory: List<ProcessingFoodList>) : RecyclerView.Adapter<OrderMenuAdapter.OrderMenuViewHolder>() {
     private var onItemClickListener: ((Int) -> Unit)? = null
     private var context: Context? = null
 
@@ -31,34 +33,25 @@ class OrderMenuAdapter() : RecyclerView.Adapter<OrderMenuAdapter.OrderMenuViewHo
     }
 
     override fun onBindViewHolder(holder: OrderMenuViewHolder, position: Int) {
-        holder.foodName.text = ""
+        holder.foodName.text = "${orderHistory.get(position).foodName}"
+        holder.foodCount.text = "${orderHistory.get(position).totalOrderCount}개"
+        holder.recyclerView.run {
+            adapter = OrderMenuOptionRecyclerViewAdapter(position)
+
+            layoutManager = LinearLayoutManager(context)
+        }
     }
 
-    override fun getItemCount() = 10
+    override fun getItemCount() = orderHistory.size
 
     inner class OrderMenuViewHolder(val binding: RowSellerOrderMenuBinding) :
         RecyclerView.ViewHolder(binding.root) {
         val foodName = binding.textviewFoodName
         val foodCount = binding.textviewFoodCount
         val recyclerView = binding.recyclerviewOption
-
-        init {
-            binding.root.setOnClickListener {
-
-            }
-
-            binding.run {
-                recyclerviewOption.run {
-                    adapter = OrderMenuOptionRecyclerViewAdapter()
-
-                    layoutManager = LinearLayoutManager(context)
-                }
-            }
-
-        }
     }
 
-    inner class OrderMenuOptionRecyclerViewAdapter : RecyclerView.Adapter<OrderMenuOptionRecyclerViewAdapter.ViewHolderClass>() {
+    inner class OrderMenuOptionRecyclerViewAdapter(var foodPosition: Int) : RecyclerView.Adapter<OrderMenuOptionRecyclerViewAdapter.ViewHolderClass>() {
         inner class ViewHolderClass(rowBinding: RowSellerOrderOptionBinding) :
             RecyclerView.ViewHolder(rowBinding.root) {
 
@@ -84,12 +77,13 @@ class OrderMenuAdapter() : RecyclerView.Adapter<OrderMenuAdapter.OrderMenuViewHo
         }
 
         override fun getItemCount(): Int {
-            return 4
+            return orderHistory.get(foodPosition).processingFoodDetailList.size
         }
 
         override fun onBindViewHolder(holder: ViewHolderClass, position: Int) {
-            holder.rowOptionCount.text = "10개"
-            holder.rowOptionName.text = "기본 A 세트 [나물+김치]"
+            Log.d("밋업", "${position} : ${orderHistory.get(foodPosition).processingFoodDetailList.get(position)}")
+            holder.rowOptionCount.text = "${orderHistory.get(foodPosition).processingFoodDetailList.get(position).orderCount}개"
+            holder.rowOptionName.text = "${orderHistory.get(foodPosition).processingFoodDetailList.get(position).foodOptionName}"
         }
     }
 }
