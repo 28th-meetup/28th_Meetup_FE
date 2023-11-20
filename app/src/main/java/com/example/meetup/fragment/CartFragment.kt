@@ -97,6 +97,7 @@ class CartFragment : Fragment() {
             }
 
             buttonOrder.setOnClickListener {
+                orderFood()
             }
         }
 
@@ -286,6 +287,43 @@ class CartFragment : Fragment() {
         }
     }
 
+    fun orderFood() {
+
+        var tokenManager = TokenManager(homeActivity)
+
+        APIS.orderFood(tokenManager.getAccessToken().toString(), checkOrder()).enqueue(object :
+            Callback<OrderFoodResponseModel> {
+            override fun onResponse(
+                call: Call<OrderFoodResponseModel>,
+                response: Response<OrderFoodResponseModel>
+            ) {
+                if (response.isSuccessful) {
+                    // 정상적으로 통신이 성공된 경우
+                    var result: OrderFoodResponseModel? = response.body()
+                    Log.d("##", "onResponse 성공: " + result?.toString())
+
+                    val completeFragment = OrderCompleteFragment()
+
+                    val transaction = homeActivity.manager.beginTransaction()
+                    transaction.replace(R.id.frameArea, completeFragment)
+                    transaction.commit()
+                } else {
+                    // 통신이 실패한 경우(응답코드 3xx, 4xx 등)
+                    Log.d("##", "onResponse 실패: " + response.code())
+                    Log.d("##", "onResponse 실패: " + response.body())
+
+                    if (response.code() == 400) {
+
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<OrderFoodResponseModel>, t: Throwable) {
+                // 통신 실패
+                Log.d("##", "onFailure 에러: " + t.message.toString());
+            }
+        })
+    }
 
     fun checkOrder(): OrderFoodRequestModel {
         var totalCount = 0
