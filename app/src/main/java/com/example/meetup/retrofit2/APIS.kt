@@ -16,6 +16,7 @@ import com.example.meetup.model.MessageRequestDto
 import com.example.meetup.model.PostKaKaoTokenResponseModel
 import com.example.meetup.model.PostReviewWriteResponseModel
 import com.example.meetup.model.PostStoreResponseModel
+import com.example.meetup.model.SearchResponseModel
 import com.example.meetup.model.SellerOrderHistoryMenuResponseModel
 import com.example.meetup.model.SellerOrderHistoryResponseModel
 import com.example.meetup.model.store.PostStoreDtoRequestModel
@@ -224,6 +225,14 @@ interface APIS {
     @GET("store/menu")
     fun getMenu(
         @Header("Authorization") Authorization: String,
-
         ) : Call<GetStoreMenuResponseModel>
+
+    // 검색
+    @GET("store")
+    fun search(
+        @Header("Authorization") Authorization: String,
+        @Query("keyword") keyword: String,
+        @Query("field") field: String,
+        @Query("direction") direction: String,
+    ) : Call<SearchResponseModel>
 }
