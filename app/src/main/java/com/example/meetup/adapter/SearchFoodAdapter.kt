@@ -48,8 +48,8 @@ class SearchFoodAdapter(var manager: FragmentManager, var activity: ViewModelSto
 
     override fun onBindViewHolder(holder: SearchFoodViewHolder, position: Int) {
         Glide.with(context!!).load(foodList.get(position).image).into(holder.image)
-        holder.storeName.text = "${foodList.get(position).storeId}"
-//        holder.review.text = "⭐️ ${foodList.get(position).avgRate}"
+        holder.storeName.text = "${foodList.get(position).storeName}"
+        holder.review.text = "⭐️ ${foodList.get(position).avgRate}"
         holder.foodName.text = "${foodList.get(position).name}"
         if (foodList.get(position).dollarPrice.toInt() == 0) {
             holder.price.text = "${foodList.get(position).canadaPrice}"
@@ -71,7 +71,7 @@ class SearchFoodAdapter(var manager: FragmentManager, var activity: ViewModelSto
         init {
             binding.root.setOnClickListener {
 
-                MyApplication.foodId = foodList.get(adapterPosition).id.toInt()
+                MyApplication.foodId = foodList.get(adapterPosition).foodId.toInt()
 
                 viewModel.getFoodMenuInfo(context!!, MyApplication.foodId)
 

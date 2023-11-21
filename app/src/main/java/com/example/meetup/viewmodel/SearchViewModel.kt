@@ -69,16 +69,16 @@ class SearchViewModel : ViewModel() {
 
                     // 음식 검색 결과
                     for (i in 0 until result?.result!!.foods.size) {
-                        var foodId = result?.result!!.foods.get(i).id
+                        var foodId = result?.result!!.foods.get(i).foodId
+                        var foodName = result?.result!!.foods.get(i).name
                         var storeId = result?.result!!.foods.get(i).storeId
-                        var categoryId = result?.result!!.foods.get(i).categoryId
-                        var name = result?.result!!.foods.get(i).name
+                        var storeName = result?.result!!.foods.get(i).storeName
                         var dollarPrice = result?.result!!.foods.get(i).dollarPrice
                         var canadaPrice = result?.result!!.foods.get(i).canadaPrice
-                        var description = result?.result!!.foods.get(i).description
                         var image = result?.result!!.foods.get(i).image
+                        var avgRate = result?.result!!.foods.get(i).avgRate
 
-                        var searchFood = SearchFood(foodId, storeId, categoryId, name, dollarPrice, canadaPrice, description, image)
+                        var searchFood = SearchFood(foodId, foodName, storeId, storeName, dollarPrice, canadaPrice, image, avgRate)
 
                         tempFoodList.add(searchFood)
                     }
@@ -87,6 +87,7 @@ class SearchViewModel : ViewModel() {
 
                     isExist.value =
                         !(searchFoodList.value!!.size == 0 && searchStoreList.value!!.size == 0)
+                    Log.d("밋업", "${isExist.value}")
                 } else {
                     // 통신이 실패한 경우(응답코드 3xx, 4xx 등)
                     Log.d("##", "onResponse 실패: " + response.code())

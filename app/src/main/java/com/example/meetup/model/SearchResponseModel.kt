@@ -29,12 +29,12 @@ data class StoreDto(
 )
 
 data class SearchFood(
-    val id: Long,
-    val storeId: Long,
-    val categoryId: Long,
+    val foodId: Long,
     val name: String,
+    val storeId: Long,
+    val storeName: String,
     val dollarPrice: Long,
     val canadaPrice: Long,
-    val description: String,
     val image: String?,
+    val avgRate: Long,
 )
