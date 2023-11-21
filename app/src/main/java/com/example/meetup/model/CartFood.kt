@@ -2,6 +2,7 @@ package com.example.meetup.model
 
 data class CartFood(
     var storeId: Long,
+    var storeName: String,
     var categoryId: Long,
     var foodImage: String?,
     var foodName: String,

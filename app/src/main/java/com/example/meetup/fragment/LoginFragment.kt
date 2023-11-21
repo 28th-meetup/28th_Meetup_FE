@@ -22,6 +22,7 @@ import com.example.meetup.model.BasicResponseModel
 import com.example.meetup.model.SignInResponseModel
 import com.example.meetup.model.request.SignInRequestModel
 import com.example.meetup.retrofit2.RetrofitInstance
+import com.example.meetup.sharedPreference.MyApplication
 import com.example.meetup.sharedPreference.TokenManager
 import com.google.android.material.snackbar.Snackbar
 import retrofit2.Call
@@ -151,6 +152,8 @@ class LoginFragment : Fragment() {
                     tokenManager.saveTokens(response.body()?.result!!.accessToken, response.body()?.result!!.refreshToken)
                     Log.d("##", "access token : ${tokenManager.getAccessToken()}")
                     Log.d("##", "refresh token : ${tokenManager.getRefreshToken()}")
+
+                    MyApplication.userName = result?.result!!.username
 
                     //홈 화면으로 이동 코드
                     val homeIntent = Intent(authActivity, HomeActivity::class.java)

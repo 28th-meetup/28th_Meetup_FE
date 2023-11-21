@@ -9,6 +9,7 @@ import com.example.meetup.R
 import com.example.meetup.activity.HomeActivity
 import com.example.meetup.base.BaseFragment
 import com.example.meetup.databinding.FragmentMyPageBinding
+import com.example.meetup.sharedPreference.MyApplication
 
 class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_page) {
 
@@ -36,6 +37,8 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.textviewMyName.text = MyApplication.userName
 
 
         binding.imageviewAlarm.setOnClickListener {

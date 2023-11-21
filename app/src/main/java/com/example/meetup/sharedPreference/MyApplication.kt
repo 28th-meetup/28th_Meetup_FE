@@ -11,6 +11,8 @@ class MyApplication : Application() {
     companion object{
         lateinit var preferences: PreferenceUtil
 
+        var userName = ""
+
         var category = ""
 
         var foodId = 0

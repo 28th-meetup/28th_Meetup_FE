@@ -10,6 +10,7 @@ data class SignInResponseModel(
 data class SignInUser(
     var id: Long,
     var email: String,
+    var username: String,
     var image: String,
     var role: String,
     var accessToken: String,

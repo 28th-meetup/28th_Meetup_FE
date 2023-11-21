@@ -103,7 +103,7 @@
                     android:textSize="13.7sp" />
 
                 <TextView
-                    android:id="@+id/textview_least_price"
+                    android:id="@+id/textview_min_order_amount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="2dp"
