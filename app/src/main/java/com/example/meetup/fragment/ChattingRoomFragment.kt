@@ -21,6 +21,8 @@ import com.google.gson.Gson
 import com.google.gson.JsonObject
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.decodeFromJsonElement
+import okhttp3.internal.notify
+import okhttp3.internal.notifyAll
 import org.json.JSONObject
 import ua.naiksoftware.stomp.Stomp
 import ua.naiksoftware.stomp.StompClient
@@ -38,6 +40,7 @@ class ChattingRoomFragment : Fragment() {
     private lateinit var stompClient: StompClient
 
     var chatArray = ArrayList<ChattingDataModel>()
+    var receiveChatArray = ArrayList<ChattingDataModel>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -67,66 +70,138 @@ class ChattingRoomFragment : Fragment() {
 //        Log.d("roomId", "$roomId")
 
 
-
-        var roomId = MyApplication.preferences.getString("roomId","")
-        var senderName = MyApplication.preferences.getString("senderName","")
+        var roomId = MyApplication.preferences.getString("roomId", "")
+        var senderName = MyApplication.preferences.getString("senderName", "")
 
 
         stompClient = Stomp.over(Stomp.ConnectionProvider.OKHTTP, "ws://3.39.37.33:8080/ws-stomp")
         stompClient.connect()
 
-        viewModel.chattingData.observe(viewLifecycleOwner){
-            chattingAdapter = ChattingAdapter(it)
 
-            binding.recyclerViewChatting.adapter = chattingAdapter
-
-        }
 
         stompClient.topic("/sub/chat/room/${roomId}")
             .subscribe({ topicMessage ->
                 // Handle received messages here
                 val receivedMessage = topicMessage.payload
 
-                Log.d("receivedMessage", topicMessage.toString())
+                viewModel =
+                    ViewModelProvider(requireActivity()).get(ChattingRoomViewModel::class.java)
+//                val chatResponse = Json.decodeFromString<ChattingDataModel>(receivedMessage)
+//
+//                Log.d("receivedMessage", receivedMessage.toString())
+                Log.d("receivedMessage", receivedMessage)
+
+                val chat = """${receivedMessage}""".trimIndent()
+
+                var chatResponse = Gson().fromJson(chat, ChattingDataModel::class.java)
+
+                Log.d(" received chatResponse", chatResponse.toString())
+                if(chatResponse.senderName == senderName){
+                    Log.d(" chatResponse sendername", "Same!")
+//
+//
+
+                } else {
+                chatArray.add(chatResponse)
+
+
+//                    viewModel.addData(chatArray)
+//                    Log.d(" received viewModel", viewModel.chattingData.value.toString())
+
+                }
+
+
+                Log.d(" received chatArray", chatArray.toString())
+
+
                 // Update UI or handle the message
-            }, { throwable ->
-                // Handle errors here
-                throwable.printStackTrace()
-                // Add your custom error handling logic here
-            })
+            },
+                { throwable ->
+                    // Handle errors here
+                    throwable.printStackTrace()
+                    // Add your custom error handling logic here
+                }
+
+
+
+            ) {
+                viewModel.addData(chatArray)
+                Log.d(" received viewModel", viewModel.chattingData.value.toString())
+
+
+//                notifyAll()
+//                notify()
+                viewModel.chattingData.observe(viewLifecycleOwner) {
+                    chattingAdapter = ChattingAdapter(it)
+
+                    binding.recyclerViewChatting.adapter = chattingAdapter
+
+                }
+                return@subscribe
+            }
+
+//        viewModel.addData(chatArray)
 
         binding.imageviewSendChatting.setOnClickListener {
 
-            val sendData = JSONObject()
-            sendData.put("senderName", "${senderName}")
-            sendData.put("roomId", "${roomId}")
-            sendData.put("message", binding.edittextWriteChattingText.text.toString())
-            sendData.put("sendTime", "0")
+
+            if (binding.edittextWriteChattingText.text.toString() != "") {
+                val sendData = JSONObject()
+                sendData.put("senderName", "${senderName}")
+                sendData.put("roomId", "${roomId}")
+                sendData.put("message", binding.edittextWriteChattingText.text.toString())
+//            sendData.put("sendTime", "0")
 
 
-
-            chatArray.add(ChattingDataModel("${senderName}","${roomId}",binding.edittextWriteChattingText.text.toString(),"0"))
-
-
-            Log.d("chatArray", chatArray.toString())
-
-
-
-            viewModel.addData(chatArray)
-
-            Log.d("SendData", sendData.toString())
-
-            Log.d("viewmodel SendData", viewModel.chattingData.value.toString())
+                chatArray.add(
+                    ChattingDataModel(
+                        "${senderName}",
+                        "${roomId}",
+                        binding.edittextWriteChattingText.text.toString()
+                    )
+                )
 
 
-            stompClient.send("/pub/message", sendData.toString()).subscribe()
-            binding.edittextWriteChattingText.text.clear()
+                Log.d("chatArray", chatArray.toString())
 
+
+                viewModel.addData(chatArray)
+
+                Log.d("SendData", sendData.toString())
+
+                Log.d("viewmodel SendData", viewModel.chattingData.value.toString())
+
+
+                stompClient.send("/pub/message", sendData.toString()).subscribe()
+                binding.edittextWriteChattingText.text.clear()
+
+            } else {
+
+                viewModel.addData(chatArray)
+
+            }
+
+        }
+
+        viewModel.chattingData.observe(viewLifecycleOwner) {
+            chattingAdapter = ChattingAdapter(it)
+
+            binding.recyclerViewChatting.adapter = chattingAdapter
+
+        }
+
+        binding.btnBack.setOnClickListener {
+            fragmentManager?.popBackStack()
         }
 
 
         return view
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+
+    }
 
 }

@@ -142,6 +142,7 @@ class StoreDetailFragment : Fragment() {
                                 val chattingRoomFragment = ChattingRoomFragment()
                                 fragmentManager?.beginTransaction()?.apply {
                                     replace(R.id.frameArea, chattingRoomFragment)
+                                    addToBackStack(null)
                                     commit()
                                 }
 
