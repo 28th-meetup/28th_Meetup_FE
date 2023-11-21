@@ -29,13 +29,13 @@ class CategoryFoodViewModel : ViewModel() {
         categoryFoodInfoList.value = mutableListOf<Food>()
     }
 
-    fun getCategoryFoodInfo(context: Context, categoryId : Int) {
+    fun getCategoryFoodInfo(context: Context, sorting: String, categoryId : Int) {
 
         var tempList = mutableListOf<Food>()
         var tempZeroList = mutableListOf<Food>()
         var tokenManager = TokenManager(context)
 
-        APIS.getCategoryFood(tokenManager.getAccessToken().toString(), categoryId).enqueue(object :
+        APIS.getCategoryFood(tokenManager.getAccessToken().toString(), categoryId, sorting).enqueue(object :
             Callback<CategoryIdResponseModel> {
             override fun onResponse(
                 call: Call<CategoryIdResponseModel>,
