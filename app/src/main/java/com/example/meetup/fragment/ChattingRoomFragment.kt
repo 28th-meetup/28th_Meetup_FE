@@ -98,16 +98,16 @@ class ChattingRoomFragment : Fragment() {
                 Log.d(" received chatResponse", chatResponse.toString())
 
 
-//                if(chatResponse.senderName == senderName){
-//                    Log.d(" chatResponse sendername", "Same!")
-//
-//
-//
-//                } else {
+                if(chatResponse.senderName == senderName){
+                    Log.d(" chatResponse sendername", "Same!")
+
+
+
+                } else {
                 chatArray.add(chatResponse)
 
 
-//                }
+                }
 
 
                 Log.d(" received chatArray", chatArray.toString())
