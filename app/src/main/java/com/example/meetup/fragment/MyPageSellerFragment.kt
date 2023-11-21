@@ -11,6 +11,7 @@ import com.example.meetup.activity.HomeActivity
 import com.example.meetup.base.BaseFragment
 import com.example.meetup.databinding.FragmentMyPageBinding
 import com.example.meetup.databinding.FragmentMyPageSellerBinding
+import com.example.meetup.sharedPreference.MyApplication
 
 
 class MyPageSellerFragment : BaseFragment<FragmentMyPageSellerBinding>(R.layout.fragment_my_page_seller) {
@@ -42,6 +43,8 @@ class MyPageSellerFragment : BaseFragment<FragmentMyPageSellerBinding>(R.layout.
             replace(R.id.framelayout_mypage_seller, mypageSellerStoreManageFragment)
             commit()
         }
+
+        binding.textviewMyName.text = MyApplication.userName
 
         binding.imageviewAlarm.setOnClickListener {
             val alarmFragment = AlarmFragment()
