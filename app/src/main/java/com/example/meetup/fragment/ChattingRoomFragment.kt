@@ -96,19 +96,18 @@ class ChattingRoomFragment : Fragment() {
                 var chatResponse = Gson().fromJson(chat, ChattingDataModel::class.java)
 
                 Log.d(" received chatResponse", chatResponse.toString())
-                if(chatResponse.senderName == senderName){
-                    Log.d(" chatResponse sendername", "Same!")
-//
-//
 
-                } else {
+
+//                if(chatResponse.senderName == senderName){
+//                    Log.d(" chatResponse sendername", "Same!")
+//
+//
+//
+//                } else {
                 chatArray.add(chatResponse)
 
 
-//                    viewModel.addData(chatArray)
-//                    Log.d(" received viewModel", viewModel.chattingData.value.toString())
-
-                }
+//                }
 
 
                 Log.d(" received chatArray", chatArray.toString())
@@ -157,7 +156,8 @@ class ChattingRoomFragment : Fragment() {
                     ChattingDataModel(
                         "${senderName}",
                         "${roomId}",
-                        binding.edittextWriteChattingText.text.toString()
+                        binding.edittextWriteChattingText.text.toString(),
+                        true
                     )
                 )
 
