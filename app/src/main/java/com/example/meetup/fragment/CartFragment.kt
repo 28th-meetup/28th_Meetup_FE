@@ -130,7 +130,7 @@ class CartFragment : Fragment() {
             }
 
             if(MyApplication.cartItem.size != 0) {
-                textviewStoreName.text = MyApplication.cartItem[0].storeId.toString()
+                textviewStoreName.text = MyApplication.cartItem[0].storeName.toString()
             } else {
                 textviewStoreName.text = ""
             }
