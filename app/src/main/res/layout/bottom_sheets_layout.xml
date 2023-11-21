@@ -40,6 +40,24 @@
             android:background="#EBEFF7" />
 
         <TextView
+            android:id="@+id/textview_recommended"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:fontFamily="@font/pretendard_regular"
+            android:gravity="center"
+            android:paddingTop="18dp"
+            android:paddingBottom="18dp"
+            android:text="추천순"
+            android:textColor="#4B4D53"
+            android:textSize="20.55sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#EBEFF7" />
+
+        <TextView
             android:id="@+id/textview_top_review"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
