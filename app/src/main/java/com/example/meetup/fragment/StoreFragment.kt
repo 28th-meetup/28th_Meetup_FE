@@ -191,7 +191,7 @@ class StoreFragment : Fragment() {
 //        }
 
         binding.btnFilter.setOnClickListener {
-            val modalBottomSheet = ModalBottomSheetFragment()
+            val modalBottomSheet = ModalBottomSheetFragment(homeActivity)
 
 
             modalBottomSheet.show(requireFragmentManager(), ModalBottomSheetFragment.TAG)

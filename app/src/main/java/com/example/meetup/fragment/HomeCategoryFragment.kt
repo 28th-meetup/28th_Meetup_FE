@@ -44,6 +44,8 @@ class HomeCategoryFragment : Fragment() {
 
         viewModel.run {
             categoryFoodInfoList.observe(homeActivity) {
+                binding.buttonFilter.text = MyApplication.filtering
+
                 categoryFoodList = it
 
                 binding.run {
@@ -106,11 +108,13 @@ class HomeCategoryFragment : Fragment() {
                 }
             }
 
-            binding.buttonFilter.setOnClickListener {
-                val modalBottomSheet = ModalBottomSheetFragment()
+            binding.buttonFilter.run {
+                setOnClickListener {
+                    val modalBottomSheet = ModalBottomSheetFragment(homeActivity)
 
 
-                modalBottomSheet.show(requireFragmentManager(), ModalBottomSheetFragment.TAG)
+                    modalBottomSheet.show(requireFragmentManager(), ModalBottomSheetFragment.TAG)
+                }
             }
         }
         return binding.root
@@ -120,5 +124,10 @@ class HomeCategoryFragment : Fragment() {
         binding.run {
             homeActivity.hideBottomNavigation(true)
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        binding.buttonFilter.text = MyApplication.filtering
     }
 }

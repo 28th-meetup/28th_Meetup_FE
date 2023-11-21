@@ -98,7 +98,8 @@ interface APIS {
     @GET("food/category/{categoryId}")
     fun getCategoryFood(
         @Header("Authorization") Authorization: String,
-        @Path("categoryId") categoryId: Int
+        @Path("categoryId") categoryId: Int,
+        @Query("sorting") sorting : String
     ) : Call<CategoryIdResponseModel>
 
     // 메뉴 1개 상세 조회

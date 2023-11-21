@@ -71,10 +71,11 @@ class CategoryAdapter(var categoryNameList: Array<String>, var manager: Fragment
         init {
             binding.root.setOnClickListener {
 
-                categoryViewModel.getCategoryFoodInfo(context!!, adapterPosition+1)
+                categoryViewModel.getCategoryFoodInfo(context!!, "RECOMMENDED", adapterPosition+1)
 
                 val homeCategoryFragment = HomeCategoryFragment()
 
+                MyApplication.categoryId = adapterPosition+1
                 MyApplication.category = categoryNameList.get(adapterPosition)
 
                 val transaction = manager.beginTransaction()
