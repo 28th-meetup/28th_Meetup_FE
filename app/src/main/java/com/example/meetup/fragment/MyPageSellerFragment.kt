@@ -7,12 +7,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.meetup.R
+import com.example.meetup.activity.HomeActivity
 import com.example.meetup.base.BaseFragment
 import com.example.meetup.databinding.FragmentMyPageBinding
 import com.example.meetup.databinding.FragmentMyPageSellerBinding
+import com.example.meetup.sharedPreference.MyApplication
 
 
 class MyPageSellerFragment : BaseFragment<FragmentMyPageSellerBinding>(R.layout.fragment_my_page_seller) {
+
+    lateinit var homeActivity: HomeActivity
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,11 +35,16 @@ class MyPageSellerFragment : BaseFragment<FragmentMyPageSellerBinding>(R.layout.
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        homeActivity = activity as HomeActivity
+        homeActivity.hideBottomNavigation(false)
+
         val mypageSellerStoreManageFragment = MypageSellerStoreManageFragment()
         fragmentManager?.beginTransaction()?.apply {
             replace(R.id.framelayout_mypage_seller, mypageSellerStoreManageFragment)
             commit()
         }
+
+        binding.textviewMyName.text = MyApplication.userName
 
         binding.imageviewAlarm.setOnClickListener {
             val alarmFragment = AlarmFragment()

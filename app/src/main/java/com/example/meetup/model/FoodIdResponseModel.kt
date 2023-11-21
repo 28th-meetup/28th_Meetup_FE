@@ -10,6 +10,7 @@ data class FoodIdResponseModel(
 data class FoodIdResult(
     val id: Long,
     val storeId: Long,
+    val storeName: String,
     val categoryId: Long,
     val name: String,
     val dollarPrice: Long,

@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -20,7 +21,9 @@ import com.example.meetup.model.BestSellingFoodList
 import com.example.meetup.model.Food
 import com.example.meetup.model.RecentSetFoodList
 import com.example.meetup.viewmodel.CategoryFoodViewModel
+import com.example.meetup.viewmodel.FoodMenuDetailViewModel
 import com.example.meetup.viewmodel.HomeFoodViewModel
+import com.example.meetup.viewmodel.SearchViewModel
 
 
 class HomeFragment : Fragment() {
@@ -29,6 +32,7 @@ class HomeFragment : Fragment() {
     lateinit var homeActivity: HomeActivity
 
     lateinit var viewModel: HomeFoodViewModel
+    lateinit var searchViewModel: SearchViewModel
 
     var topFoodList = mutableListOf<BestSellingFoodList>()
     var setFoodList = mutableListOf<RecentSetFoodList>()
@@ -42,6 +46,7 @@ class HomeFragment : Fragment() {
         homeActivity = activity as HomeActivity
 
         viewModel = ViewModelProvider(homeActivity)[HomeFoodViewModel::class.java]
+        searchViewModel = ViewModelProvider(homeActivity)[SearchViewModel::class.java]
 
         viewModel.run {
             topFoodInfoList.observe(homeActivity) {
@@ -90,6 +95,24 @@ class HomeFragment : Fragment() {
                 transaction.addToBackStack("")
                 transaction.commit()
             }
+
+            searchview.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+                override fun onQueryTextSubmit(query: String?): Boolean {
+                    searchViewModel.getSearchList(homeActivity, query!!)
+
+                    val searchFragment = SearchFragment()
+
+                    val transaction = homeActivity.manager.beginTransaction()
+                    transaction.replace(R.id.frameArea, searchFragment)
+                    transaction.addToBackStack("")
+                    transaction.commit()
+                    return false
+                }
+
+                override fun onQueryTextChange(newText: String?): Boolean {
+                    return false
+                }
+            })
         }
         return binding.root
     }

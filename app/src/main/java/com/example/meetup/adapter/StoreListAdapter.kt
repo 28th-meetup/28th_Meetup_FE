@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.meetup.R
 import com.example.meetup.model.store.GetStoreListStores
-import com.example.meetup.model.store.StoreListResponseModel
 
 class StoreListAdapter(private var storeList : ArrayList<GetStoreListStores>) :
 RecyclerView.Adapter<StoreListAdapter.ViewHolder>(){
@@ -41,7 +40,7 @@ RecyclerView.Adapter<StoreListAdapter.ViewHolder>(){
         var imageview_2 : ImageView = view.findViewById(R.id.imageview_2)
         var imageview_3 : ImageView = view.findViewById(R.id.imageview_3)
         var textview_store_name :TextView = view.findViewById(R.id.textview_store_name)
-        var textview_least_price : TextView = view.findViewById(R.id.textview_least_price)
+        var textview_least_price : TextView = view.findViewById(R.id.textview_min_order_amount)
         var textview_rate : TextView = view.findViewById(R.id.textview_rate)
 
         fun bind(item: GetStoreListStores) {

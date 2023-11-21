@@ -98,7 +98,8 @@ interface APIS {
     @GET("food/category/{categoryId}")
     fun getCategoryFood(
         @Header("Authorization") Authorization: String,
-        @Path("categoryId") categoryId: Int
+        @Path("categoryId") categoryId: Int,
+        @Query("sorting") sorting : String
     ) : Call<CategoryIdResponseModel>
 
     // 메뉴 1개 상세 조회
@@ -225,8 +226,16 @@ interface APIS {
     @GET("store/menu")
     fun getMenu(
         @Header("Authorization") Authorization: String,
-
         ) : Call<GetStoreMenuResponseModel>
+
+    // 검색
+    @GET("store")
+    fun search(
+        @Header("Authorization") Authorization: String,
+        @Query("keyword") keyword: String,
+        @Query("field") field: String,
+        @Query("direction") direction: String,
+    ) : Call<SearchResponseModel>
     @GET("store/info/{storeId}")
     fun getStoreDetailMenu(
         @Header("Authorization") Authorization: String,

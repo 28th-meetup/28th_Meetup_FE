@@ -47,6 +47,7 @@ class FoodMenuDetailViewModel : ViewModel() {
 
                     var id = result?.result!!.id
                     var storeId = result?.result!!.storeId
+                    var storeName = result?.result!!.storeName
                     var categoryId = result?.result!!.categoryId
                     var name = result?.result!!.name
                     var dollarPrice = result?.result!!.dollarPrice
@@ -68,7 +69,7 @@ class FoodMenuDetailViewModel : ViewModel() {
                         tempOptionList.add(option1)
                     }
 
-                    var food = FoodIdResult(id, storeId, categoryId, name, dollarPrice, canadaPrice, image, description, foodPackage, informationDescription, ingredient, minOrderPrice, tempOptionList)
+                    var food = FoodIdResult(id, storeId, storeName, categoryId, name, dollarPrice, canadaPrice, image, description, foodPackage, informationDescription, ingredient, minOrderPrice, tempOptionList)
                     tempList.add(food)
 
                     foodMenuInfoList.value = tempList

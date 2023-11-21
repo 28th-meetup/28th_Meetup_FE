@@ -11,7 +11,12 @@ class MyApplication : Application() {
     companion object{
         lateinit var preferences: PreferenceUtil
 
+        var userName = ""
+
         var category = ""
+        var categoryId = 0
+
+        var filtering = "추천순"
 
         var foodId = 0
 

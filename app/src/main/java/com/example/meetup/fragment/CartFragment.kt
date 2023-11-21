@@ -85,7 +85,7 @@ class CartFragment : Fragment() {
         binding.run {
             buttonGoToStore.setOnClickListener {
                 // 상품 선택(목록) 페이지로 이동
-                homeViewModel.getCategoryFoodInfo(homeActivity,
+                homeViewModel.getCategoryFoodInfo(homeActivity, "RECOMMENDED",
                     MyApplication.cartItem.get(0).categoryId.toInt()
                 )
                 MyApplication.category = resources.getStringArray(R.array.category_name).get(MyApplication.cartItem.get(0).categoryId.toInt())
@@ -130,7 +130,7 @@ class CartFragment : Fragment() {
             }
 
             if(MyApplication.cartItem.size != 0) {
-                textviewStoreName.text = MyApplication.cartItem[0].storeId.toString()
+                textviewStoreName.text = MyApplication.cartItem[0].storeName.toString()
             } else {
                 textviewStoreName.text = ""
             }
