@@ -38,13 +38,17 @@ class StoreDetailInfoFragment : Fragment() {
 
 
 
-        viewModel.getStoreDetail(requireContext(), storeId)
+        viewModel.getStoreDetailMenu(requireContext(), storeId)
 
-        viewModel.storeDetail.observe(viewLifecycleOwner){
+        viewModel.storeDatailMenu.observe(viewLifecycleOwner){
 
 
-            binding.textviewStoreName.text = it.result.storeDto.name
-            binding.textviewStoreInfo.text = it.result.storeDto.description
+            binding.textviewStoreName.text = it.result.storeInfoDto.name
+            binding.textviewStoreInfo.text = it.result.storeInfoDto.description
+            binding.textviewStoreNumber.text = it.result.storeInfoDto.phoneNum
+            binding.textviewStoreAddress.text = it.result.storeInfoDto.address
+            binding.textviewTime.text = it.result.storeInfoDto.operationTime
+            binding.textviewDeliveryegion.text = it.result.storeInfoDto.deliveryRegion
 
         }
 
