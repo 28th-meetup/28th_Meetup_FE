@@ -45,7 +45,7 @@ class SellerOrderHistoryViewModel : ViewModel() {
                     var result: SellerOrderHistoryResponseModel? = response.body()
                     Log.d("##", "onResponse 성공: " + result?.toString())
                     if(result?.result!!.orderPreviewResponseList.size == 0) {
-                        Toast.makeText(context, "해당 카테고리에 해당하는 메뉴가 없습니다.", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, "해당하는 주문이 없습니다.", Toast.LENGTH_SHORT).show()
                         orderCount.value = 0
                         orderHistoryList.value = tempZeroList
                     } else {
