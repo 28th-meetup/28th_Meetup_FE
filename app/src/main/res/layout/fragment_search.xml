@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
+    android:background="@color/white"
     tools:context=".fragment.SearchFragment">
 
     <com.google.android.material.appbar.MaterialToolbar
@@ -35,51 +36,101 @@
         android:layout_height="1dp"
         app:dividerColor="@color/gray_blue"/>
 
-    <LinearLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="22.83dp">
+        android:layout_height="match_parent" >
 
-        <TextView
-            android:id="@+id/textview_search_store"
+        <LinearLayout
+            android:id="@+id/layout_search_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="22.83dp"
-            android:fontFamily="@font/pretendard_semi_bold"
-            android:text="가게 검색 결과"
-            android:textSize="18.27sp" />
+            android:orientation="vertical">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerview_search_store"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="22.83dp">
 
-    <com.google.android.material.divider.MaterialDivider
-        android:layout_width="match_parent"
-        android:layout_height="13.7dp"
-        app:dividerColor="@color/gray_blue2"/>
+                <TextView
+                    android:id="@+id/textview_search_store"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="22.83dp"
+                    android:fontFamily="@font/pretendard_semi_bold"
+                    android:text="가게 검색 결과"
+                    android:textColor="@color/black"
+                    android:textSize="18.27sp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerview_search_store"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <com.google.android.material.divider.MaterialDivider
+                android:layout_width="match_parent"
+                android:layout_height="13.7dp"
+                app:dividerColor="@color/gray_blue2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="22.83dp">
+
+                <TextView
+                    android:id="@+id/textview_search_food"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="22.83dp"
+                    android:fontFamily="@font/pretendard_semi_bold"
+                    android:text="상품 검색 결과"
+                    android:textColor="@color/black"
+                    android:textSize="18.27sp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerview_search_food"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 
     <LinearLayout
+        android:id="@+id/layout_no_search_list"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="22.83dp">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <TextView
-            android:id="@+id/textview_search_food"
-            android:layout_width="match_parent"
+            android:layout_marginTop="80dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="22.83dp"
-            android:fontFamily="@font/pretendard_semi_bold"
-            android:text="상품 검색 결과"
-            android:textSize="18.27sp" />
+            android:text="검색 결과가 없어요"
+            android:layout_gravity="center"
+            android:fontFamily="@font/pretendard_bold"
+            android:textSize="25.12sp"
+            android:textColor="@color/black"/>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerview_search_food"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_marginTop="11dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="다른 검색어를\n입력해보세요!"
+            android:fontFamily="@font/pretendard_regular"
+            android:textSize="18.27sp"
+            android:textColor="@color/gray3"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_no_alarm"
+            android:layout_gravity="center"/>
     </LinearLayout>
+
 
 </LinearLayout>
