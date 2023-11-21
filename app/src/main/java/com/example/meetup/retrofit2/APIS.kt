@@ -17,6 +17,7 @@ import com.example.meetup.model.MessageRequestDto
 import com.example.meetup.model.PostKaKaoTokenResponseModel
 import com.example.meetup.model.PostReviewWriteResponseModel
 import com.example.meetup.model.PostStoreResponseModel
+import com.example.meetup.model.SearchResponseModel
 import com.example.meetup.model.SellerOrderHistoryMenuResponseModel
 import com.example.meetup.model.SellerOrderHistoryResponseModel
 import com.example.meetup.model.store.PostStoreDtoRequestModel
