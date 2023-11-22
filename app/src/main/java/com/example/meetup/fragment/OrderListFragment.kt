@@ -71,6 +71,7 @@ class OrderListFragment : Fragment() {
 
 
         viewModel.orderList.observe(viewLifecycleOwner) {
+            viewModel.setStoreId(it.result[clickPosition].id)
 
 
             orderListAdapter = OrderListAdapter(it.result, {
@@ -90,9 +91,8 @@ class OrderListFragment : Fragment() {
 
             )
 
-            viewModel.setStoreId(it.result[clickPosition].id)
 
-            Log.d("setStoreId", "${viewModel.storeId}")
+            Log.d("setStoreId", "${viewModel.storeId.value}")
             binding.recyclerviewOrderList.adapter = orderListAdapter
 
 

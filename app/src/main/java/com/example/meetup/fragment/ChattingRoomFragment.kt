@@ -98,44 +98,44 @@ class ChattingRoomFragment : Fragment() {
 
 
 
-        val tokenManager = com.example.meetup.sharedPreference.TokenManager(requireContext())   //가게 목록 가져오기
-
-//        val accessToken = MyApplication.preferences.getString("accessToken", "")
-
-        Log.d("tokenManager", tokenManager.getAccessToken().toString())
-
-        try{
-            API.getChattingMessage(tokenManager.getAccessToken().toString(),roomId).enqueue(
-                object : Callback<GetChattingMessage> {
-
-                    override fun onResponse(call: Call<GetChattingMessage>, response: Response<GetChattingMessage>) {
-                        if (response.isSuccessful) {
-
-//                                _storeList.value = response.body()?.result?.stores
-
-                            alreadychatList = response.body()!!.result
-                            r = alreadychatList[0].roomId
-                           m =  alreadychatList[0].message
-                            s = alreadychatList[0].senderName
-
-                            chatArray.add(ChattingDataModel(s,r,m,false))
-
-//                                Log.d("_storeList : " , " success , ${_storeList.value}")
-
-                            Log.d("GetChattingMessage : " , " success , ${response.body().toString()}")
-                        } else {
-
-                            Log.d("GetChattingMessage Response : ", "fail 1 ${response.body().toString()} , ${response.message()}, ${response.errorBody().toString()}")
-                        }
-                    }
-
-                    override fun onFailure(call: Call<GetChattingMessage>, t: Throwable) {
-                        Log.d("GetChattingMessage Response : ", " fail 2 , ${t.message.toString()}")
-                    }
-                })
-        } catch (e:Exception) {
-            Log.d("GetChattingMessage response : ", " fail 3 , ${e.message}")
-        }
+//        val tokenManager = com.example.meetup.sharedPreference.TokenManager(requireContext())   //가게 목록 가져오기
+//
+////        val accessToken = MyApplication.preferences.getString("accessToken", "")
+//
+//        Log.d("tokenManager", tokenManager.getAccessToken().toString())
+//
+//        try{
+//            API.getChattingMessage(tokenManager.getAccessToken().toString(),roomId).enqueue(
+//                object : Callback<GetChattingMessage> {
+//
+//                    override fun onResponse(call: Call<GetChattingMessage>, response: Response<GetChattingMessage>) {
+//                        if (response.isSuccessful) {
+//
+////                                _storeList.value = response.body()?.result?.stores
+//
+//                            alreadychatList = response.body()!!.result
+//                            r = alreadychatList[0].roomId
+//                           m =  alreadychatList[0].message
+//                            s = alreadychatList[0].senderName
+//
+//                            chatArray.add(ChattingDataModel(s,r,m,false))
+//
+////                                Log.d("_storeList : " , " success , ${_storeList.value}")
+//
+//                            Log.d("GetChattingMessage : " , " success , ${response.body().toString()}")
+//                        } else {
+//
+//                            Log.d("GetChattingMessage Response : ", "fail 1 ${response.body().toString()} , ${response.message()}, ${response.errorBody().toString()}")
+//                        }
+//                    }
+//
+//                    override fun onFailure(call: Call<GetChattingMessage>, t: Throwable) {
+//                        Log.d("GetChattingMessage Response : ", " fail 2 , ${t.message.toString()}")
+//                    }
+//                })
+//        } catch (e:Exception) {
+//            Log.d("GetChattingMessage response : ", " fail 3 , ${e.message}")
+//        }
 
 
 
@@ -149,8 +149,6 @@ class ChattingRoomFragment : Fragment() {
         Log.d("senderNameMine ", senderNameMine)
         stompClient = Stomp.over(Stomp.ConnectionProvider.OKHTTP, "ws://3.39.37.33:8080/ws-stomp")
         stompClient.connect()
-
-
 
         stompClient.topic("/sub/chat/room/${roomId}")
             .subscribe({ topicMessage ->

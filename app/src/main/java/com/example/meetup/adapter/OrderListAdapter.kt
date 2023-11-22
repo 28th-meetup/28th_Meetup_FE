@@ -11,6 +11,7 @@ import com.example.meetup.R
 import com.example.meetup.model.GetOrderListResponseModelResult
 import com.example.meetup.model.OrderListResponseModel
 import com.google.android.material.card.MaterialCardView
+import org.w3c.dom.Text
 
 
 class OrderListAdapter(
@@ -49,8 +50,10 @@ class OrderListAdapter(
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
+
+
         var orderListImage : ImageView = view.findViewById(R.id.imageview_store)
-        var orderListTime : TextView = view.findViewById(R.id.textview_time)
+
         var orderListPrice : TextView = view.findViewById(R.id.textview_order_price)
         var textview_order_list_menu_1 : TextView = view.findViewById(R.id.textview_order_list_menu_1)
         var textview_order_list_menu_1_count : TextView = view.findViewById(R.id.textview_order_list_menu_1_count)
@@ -61,14 +64,18 @@ class OrderListAdapter(
         var btn_write_review : MaterialCardView = view.findViewById(R.id.btn_write_review)
 
         var textview_store_name : TextView = view.findViewById(R.id.textview_store_name)
-
+        var imageview_store : ImageView = view.findViewById(R.id.imageview_store)
+        var textview_time : TextView = view.findViewById(R.id.textview_time)
 
         fun bind(item: GetOrderListResponseModelResult) {
 
 
             Glide.with(itemView.context)
                 .load(item.storeImage)
-                .into(orderListImage)
+                .into(imageview_store)
+
+            textview_store_name.text = item.storeName
+            textview_time.text = item.orderedAt
 
             orderListPrice.text = item.totalPrice.toString()
             textview_order_list_menu_1.text = item.orderFoodDetailList[0].foodName
