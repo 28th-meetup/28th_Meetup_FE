@@ -454,6 +454,10 @@ class SignUpFragment : Fragment() {
                     isAvailableNickName = true
                     binding.textviewNickNameError.visibility = View.GONE
 
+                    Toast.makeText(authActivity, "사용 가능한 닉네임입니다.", Toast.LENGTH_LONG).show()
+
+                    checkClick()
+
                 } else {
                     // 통신이 실패한 경우(응답코드 3xx, 4xx 등)
                     Log.d("##", "onResponse 실패: " + response.code())

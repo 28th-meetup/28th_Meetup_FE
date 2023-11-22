@@ -13,4 +13,11 @@ class PreferenceUtil(context: Context) {
     fun setString(key: String, defValue: String){
         preferences.edit().putString(key, defValue).apply()
     }
+
+    fun setFCMToken(token: String){
+        preferences.edit().putString("FCM_TOKEN", token).apply()
+    }
+
+    fun getFCMToken(): String? =
+        preferences.getString("FCM_TOKEN", null)
 }

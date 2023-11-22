@@ -65,8 +65,16 @@ class DialogOrder(var cartFoodList: List<CartFood>) : DialogFragment() {
             this.confirmDialogInterface?.onClickYesButton(id!!)
             if(MyApplication.cartItem.size != 0) {
                 if(cartFoodList.get(0).storeId == MyApplication.cartItem.get(0).storeId) {
-                    for(i in 0 until cartFoodList.size) {
-                        MyApplication.cartItem.add(cartFoodList.get(i))
+                    if(cartFoodList.get(0).orderDeliveryOption == MyApplication.cartItem.get(0).orderDeliveryOption) {
+                        for(i in 0 until cartFoodList.size) {
+                            MyApplication.cartItem.add(cartFoodList.get(i))
+                        }
+                    } else {
+                        MyApplication.cartItem.clear()
+                        for(i in 0 until cartFoodList.size) {
+                            MyApplication.cartItem.add(cartFoodList[i])
+                        }
+                        Toast.makeText(homeActivity, "배달과 포장은 같은 장바구니에 담을 수 없습니다!", Toast.LENGTH_LONG).show()
                     }
                 } else {
                     MyApplication.cartItem.clear()

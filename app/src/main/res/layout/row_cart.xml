@@ -24,11 +24,12 @@
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/imageview"
-            app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Small"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
             android:layout_marginLeft="9.13dp"
-            android:src="@drawable/food" />
+            android:scaleType="centerCrop"
+            android:src="@drawable/food"
+            app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Small" />
 
         <LinearLayout
             android:id="@+id/layout_option_selected"
