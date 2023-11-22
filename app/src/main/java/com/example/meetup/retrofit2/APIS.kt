@@ -7,6 +7,7 @@ import com.example.meetup.model.CategoryIdResponseModel
 import com.example.meetup.model.GetHeartListResponseModel
 import com.example.meetup.model.FoodIdResponseModel
 import com.example.meetup.model.FoodOptionResponseList
+import com.example.meetup.model.GetOrderListResponseModel
 import com.example.meetup.model.GetStoreDetailMenuInfoResponseModel
 import com.example.meetup.model.HomeResponseModel
 import com.example.meetup.model.MenuAddRequestModelDto
@@ -237,10 +238,17 @@ interface APIS {
         @Query("field") field: String,
         @Query("direction") direction: String,
     ) : Call<SearchResponseModel>
+
+    //가게 상세 정보
     @GET("store/info/{storeId}")
     fun getStoreDetailMenu(
         @Header("Authorization") Authorization: String,
         @Path("storeId") storeId : Int
-
         ) : Call<GetStoreDetailMenuInfoResponseModel>
+
+    //주문 목록
+    @GET("order/history")
+    fun getOrderList(
+        @Header("Authorization") Authorization: String,
+        ) : Call<GetOrderListResponseModel>
 }
