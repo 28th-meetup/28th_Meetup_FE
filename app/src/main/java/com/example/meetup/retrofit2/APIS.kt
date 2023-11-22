@@ -70,6 +70,12 @@ interface APIS {
         @Body parameters: SignUpRequestModel
     ): Call<SignUpResponseModel>
 
+    // accessToken 재발급
+    @POST("users/reissue")
+    fun renewAccessToken(
+        @Header("Authorization") Authorization: String
+    ): Call<RenewAccessTokenResponseModel>
+
     // 닉네임 중복 여부 확인
     @POST("auth/nickname/duplicate")
     fun checkNickName(
