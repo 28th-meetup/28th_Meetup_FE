@@ -17,7 +17,7 @@ data class GetHeartListResponseModelStore(
     val name: String,
     val description: String,
     val koreanYn: Boolean,
-    val avgRate: Long,
+    val avgRate: Double,
     val minOrderAmount: Long,
     val images: ArrayList<String>,
 )

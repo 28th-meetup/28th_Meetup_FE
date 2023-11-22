@@ -151,7 +151,7 @@
             android:layout_weight="1"
             android:background="@drawable/button_radius"
             android:fontFamily="@font/pretendard_semi_bold"
-            android:text="구매하기"
+            android:text="주문하기"
             android:textColor="@color/white"
             android:textSize="20.55sp"
             app:cornerRadius="9dp" />

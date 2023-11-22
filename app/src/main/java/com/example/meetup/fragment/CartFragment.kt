@@ -328,7 +328,7 @@ class CartFragment : Fragment() {
     fun checkOrder(): OrderFoodRequestModel {
         var totalCount = 0
         var store = 0L
-        var totalPrice = 0L
+        var totalPrice = 0.0
         var selectedOption = ""
         var foodList = mutableListOf<OrderFoodDetailList>()
         for(i in 0 until MyApplication.cartItem.size) {

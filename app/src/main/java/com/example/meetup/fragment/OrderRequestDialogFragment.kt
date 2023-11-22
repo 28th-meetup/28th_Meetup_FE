@@ -1,60 +1,151 @@
 package com.example.meetup.fragment
 
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window
+import androidx.fragment.app.DialogFragment
 import com.example.meetup.R
+import com.example.meetup.databinding.ActivityAuthBinding
+import com.example.meetup.databinding.DialogSignUpBinding
+import com.example.meetup.databinding.FragmentOrderRequestDialogBinding
+import com.example.meetup.dialog.SignUpDialogInterface
+import com.example.meetup.model.BasicResponseModel
+import com.example.meetup.model.OrderPreviewResponseList
+import com.example.meetup.retrofit2.RetrofitInstance
+import com.example.meetup.sharedPreference.TokenManager
+import com.google.android.material.snackbar.Snackbar
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+class OrderRequestDialogFragment(var orderHistory: List<OrderPreviewResponseList>) : DialogFragment() {
 
-/**
- * A simple [Fragment] subclass.
- * Use the [OrderRequestDialogFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class OrderRequestDialogFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    // 뷰 바인딩 정의
+    private var _binding: FragmentOrderRequestDialogBinding? = null
+    private val binding get() = _binding!!
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private var confirmDialogInterface: SignUpDialogInterface? = null
+
+    private val APIS = RetrofitInstance.retrofitInstance().create(com.example.meetup.retrofit2.APIS::class.java)
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_order_request_dialog, container, false)
+    ): View {
+        _binding = FragmentOrderRequestDialogBinding.inflate(inflater)
+
+        dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT));
+        dialog?.requestWindowFeature(Window.FEATURE_NO_TITLE)
+
+
+        binding.run {
+            textviewMenuName.text = orderHistory.get(0).orderDetailPreviewList.get(0).foodName
+            textviewTime.text = orderHistory.get(0).orderedAt
+            textviewLocation.text = orderHistory.get(0).addressAndPostalCode
+            textviewOptionName.text = orderHistory.get(0).orderDetailPreviewList.get(0).foodOptionName
+        }
+
+        binding.buttonAccepted.setOnClickListener {
+            acceptOrder()
+        }
+
+        binding.buttonRejected.setOnClickListener {
+            cancelOrder()
+        }
+
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment OrderRequestDialogFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            OrderRequestDialogFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
+    override fun onStart() {
+        super.onStart()
+        var activityAuthBinding = ActivityAuthBinding.inflate(layoutInflater)
+
+        activityAuthBinding.root.setBackgroundResource(R.drawable.blur_background)
+    }
+
+    fun cancelOrder() {
+
+        var tokenManager = TokenManager(requireContext())
+
+        APIS.setOrderStatus(tokenManager.getAccessToken().toString(), orderHistory.get(0).orderId.toInt(), "rejected").enqueue(object :
+            Callback<BasicResponseModel> {
+            override fun onResponse(
+                call: Call<BasicResponseModel>,
+                response: Response<BasicResponseModel>
+            ) {
+                if (response.isSuccessful) {
+                    // 정상적으로 통신이 성공된 경우
+                    var result: BasicResponseModel? = response.body()
+                    Log.d("##", "onResponse 성공: " + result?.toString())
+                    dismiss()
+                } else {
+                    // 통신이 실패한 경우(응답코드 3xx, 4xx 등)
+                    Log.d("##", "onResponse 실패: " + response.code())
+                    Log.d("##", "onResponse 실패: " + response.body())
+
+                    if (response.code() == 400) {
+                        Snackbar.make(
+                            binding.root,
+                            "다시 시도해주세요.",
+                            Snackbar.LENGTH_LONG
+                        ).show()
+                    }
                 }
             }
+
+            override fun onFailure(call: Call<BasicResponseModel>, t: Throwable) {
+                // 통신 실패
+                Log.d("##", "onFailure 에러: " + t.message.toString());
+            }
+        })
+    }
+
+    fun acceptOrder() {
+
+        var tokenManager = TokenManager(requireContext())
+
+        APIS.setOrderStatus(tokenManager.getAccessToken().toString(), orderHistory.get(0).orderId.toInt(), "accepted").enqueue(object :
+            Callback<BasicResponseModel> {
+            override fun onResponse(
+                call: Call<BasicResponseModel>,
+                response: Response<BasicResponseModel>
+            ) {
+                if (response.isSuccessful) {
+                    // 정상적으로 통신이 성공된 경우
+                    var result: BasicResponseModel? = response.body()
+                    Log.d("##", "onResponse 성공: " + result?.toString())
+                    dismiss()
+                } else {
+                    // 통신이 실패한 경우(응답코드 3xx, 4xx 등)
+                    Log.d("##", "onResponse 실패: " + response.code())
+                    Log.d("##", "onResponse 실패: " + response.body())
+
+                    if (response.code() == 400) {
+                        Snackbar.make(
+                            binding.root,
+                            "다시 시도해주세요.",
+                            Snackbar.LENGTH_LONG
+                        ).show()
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<BasicResponseModel>, t: Throwable) {
+                // 통신 실패
+                Log.d("##", "onFailure 에러: " + t.message.toString());
+            }
+        })
     }
 }

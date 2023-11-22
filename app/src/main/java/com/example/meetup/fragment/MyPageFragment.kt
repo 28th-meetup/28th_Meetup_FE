@@ -1,45 +1,49 @@
 package com.example.meetup.fragment
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
 import com.example.meetup.R
 import com.example.meetup.activity.HomeActivity
 import com.example.meetup.base.BaseFragment
 import com.example.meetup.databinding.FragmentMyPageBinding
 import com.example.meetup.sharedPreference.MyApplication
+import com.example.meetup.viewmodel.MypageViewModel
 
-class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_page) {
+class MyPageFragment : Fragment() {
 
     lateinit var homeActivity: HomeActivity
+    lateinit var viewModel: MypageViewModel
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
+    lateinit var binding: FragmentMyPageBinding
 
     override fun onResume() {
         super.onResume()
-        homeActivity = activity as HomeActivity
 
         homeActivity.hideBottomNavigation(false)
     }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
-        return super.onCreateView(inflater, container, savedInstanceState)
-    }
+        homeActivity = activity as HomeActivity
+        binding = FragmentMyPageBinding.inflate(inflater)
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        binding.textviewMyName.text = MyApplication.userName
-
+        viewModel = ViewModelProvider(this)[MypageViewModel::class.java]
+        viewModel.run {
+            userName.observe(homeActivity) {
+                Log.d("밋업", "viewModel : ${it.toString()}")
+                binding.textviewMyName.text = it.toString()
+            }
+        }
+        viewModel.getMypageData(homeActivity)
 
         binding.imageviewAlarm.setOnClickListener {
             val alarmFragment = AlarmFragment()
@@ -52,7 +56,7 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_
         binding.btnChangeSeller.setOnClickListener {
             val storeEnrollDialogFragment = StoreEnrollDialogFragment()
 
-            storeEnrollDialogFragment.show(requireFragmentManager(),"StoreEnrollDialogFragment")
+            storeEnrollDialogFragment.show(requireFragmentManager(), "StoreEnrollDialogFragment")
 
         }
         binding.imageviewCart.setOnClickListener {
@@ -88,7 +92,7 @@ class MyPageFragment : BaseFragment<FragmentMyPageBinding>(R.layout.fragment_my_
                 commit()
             }
         }
+
+        return binding.root
     }
-
-
 }

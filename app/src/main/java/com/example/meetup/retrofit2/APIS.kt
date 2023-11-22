@@ -16,12 +16,14 @@ import com.example.meetup.model.MenuListResponseModel
 import com.example.meetup.model.MenuOptionResponseModel
 import com.example.meetup.model.OrderFoodResponseModel
 import com.example.meetup.model.MessageRequestDto
+import com.example.meetup.model.MypageResponseModel
 import com.example.meetup.model.PostKaKaoTokenResponseModel
 import com.example.meetup.model.PostReivewRequestModel
 import com.example.meetup.model.PostReviewResponseModel
 import com.example.meetup.model.PostReviewResponseModelResult
 import com.example.meetup.model.PostReviewWriteResponseModel
 import com.example.meetup.model.PostStoreResponseModel
+import com.example.meetup.model.RenewAccessTokenResponseModel
 import com.example.meetup.model.SearchResponseModel
 import com.example.meetup.model.SellerOrderHistoryMenuResponseModel
 import com.example.meetup.model.SellerOrderHistoryResponseModel
@@ -76,8 +78,14 @@ interface APIS {
         @Body parameters: SignUpRequestModel
     ): Call<SignUpResponseModel>
 
+    // accessToken 재발급
+    @POST("users/reissue")
+    fun renewAccessToken(
+        @Header("Authorization") Authorization: String
+    ): Call<RenewAccessTokenResponseModel>
+
     // 닉네임 중복 여부 확인
-    @POST("users/nickname")
+    @POST("auth/nickname/duplicate")
     fun checkNickName(
         @Body parameters: NickNameRequestModel
     ): Call<BasicResponseModel>
@@ -242,6 +250,12 @@ interface APIS {
         @Query("field") field: String,
         @Query("direction") direction: String,
     ) : Call<SearchResponseModel>
+
+    // 마이페이지 데이터 받아오기
+    @GET("users/nickname")
+    fun getMypageData(
+        @Header("Authorization") Authorization: String
+    ) : Call<MypageResponseModel>
 
     //가게 상세 정보
     @GET("store/info/{storeId}")

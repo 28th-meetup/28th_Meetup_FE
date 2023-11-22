@@ -15,17 +15,20 @@ import com.example.meetup.R
 import com.example.meetup.databinding.RowSearchStoreBinding
 import com.example.meetup.databinding.RowSetBinding
 import com.example.meetup.fragment.MenuFragment
+import com.example.meetup.fragment.OrderCompleteFragment
+import com.example.meetup.fragment.StoreDetailFragment
 import com.example.meetup.model.SearchFood
 import com.example.meetup.model.StoreDto
 import com.example.meetup.sharedPreference.MyApplication
 import com.example.meetup.viewmodel.FoodMenuDetailViewModel
+import com.example.meetup.viewmodel.StoreListViewModel
 
 class SearchStoreAdapter(var manager: FragmentManager, var activity: ViewModelStoreOwner, var storeList: List<StoreDto>) :
     RecyclerView.Adapter<SearchStoreAdapter.SearchViewHolder>() {
     private var onItemClickListener: ((Int) -> Unit)? = null
     private var context: Context? = null
 
-//    lateinit var viewModel: FoodMenuDetailViewModel
+    lateinit var viewModel: StoreListViewModel
 
     fun setOnItemClickListener(listener: (Int) -> Unit) {
         onItemClickListener = listener
@@ -36,7 +39,7 @@ class SearchStoreAdapter(var manager: FragmentManager, var activity: ViewModelSt
         val binding =
             RowSearchStoreBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
-//        viewModel = ViewModelProvider(activity)[FoodMenuDetailViewModel::class.java]
+        viewModel = ViewModelProvider(activity)[StoreListViewModel::class.java]
 
         binding.root.layoutParams = ViewGroup.LayoutParams(
             ViewGroup.LayoutParams.MATCH_PARENT,
@@ -72,8 +75,13 @@ class SearchStoreAdapter(var manager: FragmentManager, var activity: ViewModelSt
             binding.root.setOnClickListener {
                 // 가게 상세 정보 화면으로 이동
                 Handler().postDelayed({
+                    viewModel.getStoreDetail(context!!, storeList.get(adapterPosition).id)
 
+                    val storeFragment = StoreDetailFragment()
 
+                    val transaction = manager.beginTransaction()
+                    transaction.replace(R.id.frameArea, storeFragment)
+                    transaction.commit()
                 }, 1000)
                 true
             }
