@@ -73,16 +73,8 @@ class SearchFoodAdapter(var manager: FragmentManager, var activity: ViewModelSto
 
                 MyApplication.foodId = foodList.get(adapterPosition).foodId.toInt()
 
-                viewModel.getFoodMenuInfo(context!!, MyApplication.foodId)
+                viewModel.getFoodMenuInfo(context!!, manager, MyApplication.foodId)
 
-                Handler().postDelayed({
-                    val menuFragment = MenuFragment()
-
-                    val transaction = manager.beginTransaction()
-                    transaction.replace(R.id.frameArea, menuFragment)
-                    transaction.addToBackStack("")
-                    transaction.commit()
-                }, 1000)
                 true
             }
         }

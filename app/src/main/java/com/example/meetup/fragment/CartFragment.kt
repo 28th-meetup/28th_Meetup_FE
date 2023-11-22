@@ -202,7 +202,7 @@ class CartFragment : Fragment() {
                 }
 
                 rowOptionChange.setOnClickListener {
-                    viewModel.getFoodMenuInfo(homeActivity, MyApplication.cartItem.get(adapterPosition).foodId.toInt())
+                    viewModel.getFoodMenuInfo(homeActivity, homeActivity.manager, MyApplication.cartItem.get(adapterPosition).foodId.toInt())
                     viewModel.getFoodMenuOptionList(homeActivity, MyApplication.cartItem.get(adapterPosition).foodId.toInt())
                     modalBottomSheet(MyApplication.cartItem.get(adapterPosition).foodName, adapterPosition)
 

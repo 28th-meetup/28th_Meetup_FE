@@ -67,16 +67,8 @@ class HomeTopAdapter(var manager: FragmentManager, var activity:ViewModelStoreOw
             binding.root.setOnClickListener {
                 MyApplication.foodId = foodList.get(adapterPosition).foodId.toInt()
 
-                viewModel.getFoodMenuInfo(context!!, MyApplication.foodId)
+                viewModel.getFoodMenuInfo(context!!, manager, MyApplication.foodId)
 
-                Handler().postDelayed({
-                    val menuFragment = MenuFragment()
-
-                    val transaction = manager.beginTransaction()
-                    transaction.replace(R.id.frameArea, menuFragment)
-                    transaction.addToBackStack("")
-                    transaction.commit()
-                },1000)
             }
         }
     }

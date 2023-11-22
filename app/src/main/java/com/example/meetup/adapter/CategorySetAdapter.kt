@@ -71,16 +71,7 @@ class CategorySetAdapter(var manager: FragmentManager, var activity: ViewModelSt
 
                 MyApplication.foodId = foodList.get(adapterPosition).foodId.toInt()
 
-                viewModel.getFoodMenuInfo(context!!, MyApplication.foodId)
-
-                Handler().postDelayed({
-                    val menuFragment = MenuFragment()
-
-                    val transaction = manager.beginTransaction()
-                    transaction.replace(R.id.frameArea, menuFragment)
-                    transaction.addToBackStack("")
-                    transaction.commit()
-                },1000)
+                viewModel.getFoodMenuInfo(context!!, manager, MyApplication.foodId)
 
                 true
             }
