@@ -3,6 +3,7 @@ package com.example.meetup.activity
 import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.core.content.ContextCompat
 import com.example.meetup.R
@@ -11,7 +12,9 @@ import com.example.meetup.databinding.FragmentHomeBinding
 import com.example.meetup.fragment.HeartFragment
 import com.example.meetup.fragment.HomeFragment
 import com.example.meetup.fragment.MyPageFragment
+import com.example.meetup.fragment.MyPageSellerFragment
 import com.example.meetup.fragment.StoreFragment
+import com.example.meetup.sharedPreference.MyApplication
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class HomeActivity : AppCompatActivity() {
@@ -40,6 +43,7 @@ class HomeActivity : AppCompatActivity() {
         val storeFragment = StoreFragment()
         val heartFragment = HeartFragment()
         val myPageFragment = MyPageFragment()
+        val sellerMyPageFragment = MyPageSellerFragment()
 
         transaction.replace(R.id.frameArea, homeFragment)
         transaction.addToBackStack(null)
@@ -74,9 +78,16 @@ class HomeActivity : AppCompatActivity() {
                 }
 
                 R.id.tab4 -> {
-                    val transaction = manager.beginTransaction()
-                    transaction.replace(R.id.frameArea, myPageFragment)
-                    transaction.commit()
+                    Log.d("밋업", "mypage : ${MyApplication.mypageSeller}")
+                    if(MyApplication.mypageSeller) {
+                        val transaction = manager.beginTransaction()
+                        transaction.replace(R.id.frameArea, sellerMyPageFragment)
+                        transaction.commit()
+                    } else {
+                        val transaction = manager.beginTransaction()
+                        transaction.replace(R.id.frameArea, myPageFragment)
+                        transaction.commit()
+                    }
                     true
                 }
 
