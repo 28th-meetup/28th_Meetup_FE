@@ -12,6 +12,7 @@ import com.example.meetup.model.HomeResponseModel
 import com.example.meetup.model.MypageResponseModel
 import com.example.meetup.model.RecentSetFoodList
 import com.example.meetup.model.RenewAccessTokenResponseModel
+import com.example.meetup.model.StoreManageResponseModel
 import com.example.meetup.retrofit2.RetrofitInstance
 import com.example.meetup.sharedPreference.TokenManager
 import retrofit2.Call
@@ -22,6 +23,8 @@ class MypageViewModel : ViewModel() {
     private val APIS = RetrofitInstance.retrofitInstance().create(com.example.meetup.retrofit2.APIS::class.java)
 
     var userName = MutableLiveData<String>()
+    var storeProcessingOrderCount = MutableLiveData<Long>()
+    var storeTodayOrderCount = MutableLiveData<Long>()
 
     fun checkData(context: Context) {
 
@@ -127,6 +130,41 @@ class MypageViewModel : ViewModel() {
             }
 
             override fun onFailure(call: Call<RenewAccessTokenResponseModel>, t: Throwable) {
+                // 통신 실패
+                Log.d("##", "onFailure 에러: " + t.message.toString());
+            }
+        })
+    }
+
+    fun getStoreManageData(context: Context) {
+
+        var tokenManager = TokenManager(context)
+
+        APIS.getStoreManageData(tokenManager.getAccessToken().toString()).enqueue(object :
+            Callback<StoreManageResponseModel> {
+            override fun onResponse(
+                call: Call<StoreManageResponseModel>,
+                response: Response<StoreManageResponseModel>
+            ) {
+                if (response.isSuccessful) {
+                    // 정상적으로 통신이 성공된 경우
+                    var result: StoreManageResponseModel? = response.body()
+                    Log.d("##", "onResponse 성공: " + result?.toString())
+
+                    storeProcessingOrderCount.value = result?.result!!.processingOrderCount
+                    storeTodayOrderCount.value = result?.result!!.todayOrderCount
+                } else {
+                    // 통신이 실패한 경우(응답코드 3xx, 4xx 등)
+                    Log.d("##", "onResponse 실패: " + response.code())
+                    Log.d("##", "onResponse 실패: " + response.message())
+
+                    if(response.code() == 400) {
+                        Toast.makeText(context, "다시 시도해주세요.", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<StoreManageResponseModel>, t: Throwable) {
                 // 통신 실패
                 Log.d("##", "onFailure 에러: " + t.message.toString());
             }
