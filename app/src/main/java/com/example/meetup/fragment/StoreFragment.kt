@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import com.example.meetup.R
 import android.graphics.Color
 import android.util.Log
+import android.widget.SearchView
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -24,6 +25,7 @@ import com.example.meetup.model.store.StoreListResponseModel
 import com.example.meetup.retrofit2.APIS
 import com.example.meetup.retrofit2.RetrofitInstance
 import com.example.meetup.sharedPreference.MyApplication
+import com.example.meetup.viewmodel.SearchViewModel
 import com.example.meetup.viewmodel.StoreListViewModel
 import kotlinx.coroutines.launch
 import retrofit2.Call
@@ -43,8 +45,11 @@ class StoreFragment : Fragment() {
     lateinit var homeActivity: HomeActivity
 
     private lateinit var viewModel: StoreListViewModel
+    lateinit var searchViewModel: SearchViewModel
 
     private var menuchangelist = ArrayList<GetStoreListStores>()
+
+    var locationList = listOf<String>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -62,8 +67,11 @@ class StoreFragment : Fragment() {
         homeActivity.hideBottomNavigation(false)
 
         viewModel = ViewModelProvider(requireActivity()).get(StoreListViewModel::class.java)
+        searchViewModel = ViewModelProvider(homeActivity)[SearchViewModel::class.java]
 
         storeListAdapter = StoreListAdapter(ArrayList())
+
+        locationList = homeActivity.resources!!.getStringArray(R.array.location_array).toList()
 
         binding.recyclerviewStoreList.adapter = storeListAdapter
         binding.recyclerviewStoreList.layoutManager = LinearLayoutManager(requireContext())
@@ -88,6 +96,8 @@ class StoreFragment : Fragment() {
                 }
             }
         }
+
+        binding.textView.text = locationList.get(MyApplication.regionId)
 
 
         //전체 클릭

@@ -20,6 +20,8 @@ class MyApplication : Application() {
 
         var foodId = 0
 
+        var regionId = 0
+
         var address = AddressesRequestModel(0, 0, "", "", "", "")
 
         var cartItem = mutableListOf<CartFood>()
