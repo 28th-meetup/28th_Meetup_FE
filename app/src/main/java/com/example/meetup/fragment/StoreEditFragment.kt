@@ -32,6 +32,7 @@ import com.example.meetup.model.store.PostStoreDtoRequestModel
 import com.example.meetup.retrofit2.APIS
 import com.example.meetup.retrofit2.RetrofitInstance
 import com.example.meetup.sharedPreference.TokenManager
+import com.google.android.material.snackbar.Snackbar
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
@@ -134,17 +135,15 @@ class StoreEditFragment : Fragment() {
                 if (uris != null) {
                     Log.d("PhotoPicker", "Selected URI: $uris")
 
-//
-
-//
-//
 //                    Glide.with(this)
 //                        .load(uri)
 //                        .into(binding.imageviewChooseRepresent)
 
                     imageNum = uris.size
 
-                    for(i in 0 until imageNum){
+                    imagesList.clear()
+
+                    for(i in 0 until imageNum) {
                         imagesList.add(uris.get(i))
                     }
 
@@ -375,55 +374,64 @@ class StoreEditFragment : Fragment() {
     }
 
 
-fun postStore(){
-    val mediaType = "image/jpeg".toMediaType()
-    API = RetrofitInstance.retrofitInstance().create(APIS::class.java)
+    fun postStore() {
+        val mediaType = "image/jpeg".toMediaType()
+        API = RetrofitInstance.retrofitInstance().create(APIS::class.java)
 
 
-    val tokenManager = TokenManager(requireContext())
+        val tokenManager = TokenManager(requireContext())
 
-    val imagesParts: MutableList<MultipartBody.Part> = mutableListOf()
-    val contentResolver: ContentResolver = requireContext().contentResolver
+        val imagesParts: MutableList<MultipartBody.Part> = mutableListOf()
+        val contentResolver: ContentResolver = requireContext().contentResolver
 
-    for (imageUri in imagesList) {
-        val file = File(getRealPathFromURI(imageUri, contentResolver))
-        val requestFile: RequestBody =
-            RequestBody.create("multipart/form-data".toMediaTypeOrNull(), file)
-        val body: MultipartBody.Part =
-            MultipartBody.Part.createFormData("image", file.name, requestFile)
+        Log.d("밋업", "가게등록 이미지 : ${imagesList}")
 
-        imagesParts.add(body)
+        for (imageUri in imagesList) {
+            val file = File(getRealPathFromURI(imageUri, contentResolver))
+            val requestFile: RequestBody =
+                RequestBody.create("multipart/form-data".toMediaTypeOrNull(), file)
+            val body: MultipartBody.Part =
+                MultipartBody.Part.createFormData("image", file.name, requestFile)
 
+            imagesParts.add(body)
+        }
+        try {
 
-}
-    try{
-        API.postStore(tokenManager.getAccessToken().toString(), PostStoreDtoRequestModel(name,minOrderAmount,description,countryPhoneCode,phoneNum,globalRegionId,address,detailAddress,deliveryRegion,operationTime,foodChangeYn, koreanYn),imagesParts).enqueue(
-            object : Callback<PostStoreResponseModel> {
+            API.postStore(tokenManager.getAccessToken().toString(), PostStoreDtoRequestModel(name,minOrderAmount,description,countryPhoneCode,phoneNum,globalRegionId,address,detailAddress,deliveryRegion,operationTime,foodChangeYn, koreanYn),imagesParts).enqueue(
+                object : Callback<PostStoreResponseModel> {
 
-                override fun onResponse(call: Call<PostStoreResponseModel>, response: Response<PostStoreResponseModel>) {
-                    if (response.isSuccessful) {
+                    override fun onResponse(call: Call<PostStoreResponseModel>, response: Response<PostStoreResponseModel>) {
+                        if (response.isSuccessful) {
 
-                        val storeAddSuccessFragment = StoreAddSuccessFragment()
-                        fragmentManager?.beginTransaction()?.apply {
-                            replace(R.id.frameArea, storeAddSuccessFragment)
-                            commit()
+                            val storeAddSuccessFragment = StoreAddSuccessFragment()
+                            fragmentManager?.beginTransaction()?.apply {
+                                replace(R.id.frameArea, storeAddSuccessFragment)
+                                commit()
+                            }
+
+                            Log.d("PostStoreResponseModel : " , " success , ${response.body().toString()}")
+                        } else {
+
+                            if (response.code() == 400) {
+                                Snackbar.make(
+                                    binding.root,
+                                    "이미 존재하는 가게이거나,\n이미 가게를 생성한 유저입니다.",
+                                    Snackbar.LENGTH_LONG
+                                ).show()
+                            }
+
+                            Log.d("PostStoreResponseModel Response : ", "fail 1 ${response.body().toString()} , ${response.message()}, ${response.errorBody().toString()}")
                         }
-
-                        Log.d("PostStoreResponseModel : " , " success , ${response.body().toString()}")
-                    } else {
-
-                        Log.d("PostStoreResponseModel Response : ", "fail 1 ${response.body().toString()} , ${response.message()}, ${response.errorBody().toString()}")
                     }
-                }
 
-                override fun onFailure(call: Call<PostStoreResponseModel>, t: Throwable) {
-                    Log.d("PostStoreResponseModel Response : ", " fail 2 , ${t.message.toString()}")
-                }
-            })
-    } catch (e:Exception) {
-        Log.d("PostStoreResponseModel response : ", " fail 3 , ${e.message}")
+                    override fun onFailure(call: Call<PostStoreResponseModel>, t: Throwable) {
+                        Log.d("PostStoreResponseModel Response : ", " fail 2 , ${t.message.toString()}")
+                    }
+                })
+        } catch (e:Exception) {
+            Log.d("PostStoreResponseModel response : ", " fail 3 , ${e.message}")
+        }
     }
-}
 
 
     private fun getRealPathFromURI(uri: Uri, contentResolver: ContentResolver): String {
