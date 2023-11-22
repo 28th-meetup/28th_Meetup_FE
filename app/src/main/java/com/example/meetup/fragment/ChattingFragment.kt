@@ -102,10 +102,10 @@ class ChattingFragment : Fragment() {
 
 //
                                         val roomId = response.body()!!.result.roomId
-//                                        val senderName = response.body()!!.result.senderName
+                                        val senderName = response.body()!!.result.senderName
 
                                         MyApplication.preferences.setString("roomId", roomId)
-//                                        MyApplication.preferences.setString("senderName",senderName)
+                                        MyApplication.preferences.setString("senderName",senderName)
                                         Log.d("roomId real", roomId.toString())
 
 //
