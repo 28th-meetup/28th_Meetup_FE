@@ -16,6 +16,7 @@ import com.example.meetup.adapter.StoreListAdapter
 import com.example.meetup.databinding.FragmentOrderListBinding
 import com.example.meetup.databinding.FragmentStoreDetailBinding
 import com.example.meetup.model.OrderListResponseModel
+import com.example.meetup.sharedPreference.MyApplication
 import com.example.meetup.viewmodel.OrderListViewModel
 import com.example.meetup.viewmodel.StoreListViewModel
 
@@ -28,6 +29,7 @@ class OrderListFragment : Fragment() {
     lateinit var homeActivity: HomeActivity
     var clickPosition = 0
 
+    var a = 0
     private lateinit var orderListAdapter: OrderListAdapter
     private lateinit var viewModel: OrderListViewModel
 
@@ -76,7 +78,13 @@ class OrderListFragment : Fragment() {
 
             orderListAdapter = OrderListAdapter(it.result, {
 
-                clickPosition = it
+
+//                clickPosition = it
+                MyApplication.preferences.setString("reviewKey",it.toString())
+
+                Log.d("position",                "$it"
+                )
+//                MyApplication.preferences.getString("reviewKey","").toInt()
 
 
 //                Log.d("clickPosition", "$it")
@@ -90,7 +98,14 @@ class OrderListFragment : Fragment() {
 
 
             )
+//            viewModel.setStoreId(it.result[MyApplication.preferences.getString("reviewKey","").toInt()].id)
+//            var a = MyApplication.preferences.getString("reviewKey","").toInt()
+            MyApplication.preferences.setString("reviewstoreId","${it.result[a].storeId}")
 
+            MyApplication.preferences.setString("reviewName","${it.result[a].storeName}")
+            MyApplication.preferences.setString("reviewimage","${it.result[a].storeImage}")
+
+            MyApplication.preferences.setString("reviewTime","${it.result[a].orderedAt}")
 
             Log.d("setStoreId", "${viewModel.storeId.value}")
             binding.recyclerviewOrderList.adapter = orderListAdapter
