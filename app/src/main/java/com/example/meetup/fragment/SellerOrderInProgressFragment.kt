@@ -52,6 +52,6 @@ class SellerOrderInProgressFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        viewModel.getSellerOrderHistory(homeActivity, "pending")
+        viewModel.getSellerOrderHistory(homeActivity, "accepted")
     }
 }

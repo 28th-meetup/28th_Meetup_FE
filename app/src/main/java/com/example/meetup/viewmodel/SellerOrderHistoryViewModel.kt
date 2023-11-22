@@ -98,4 +98,74 @@ class SellerOrderHistoryViewModel : ViewModel() {
             }
         })
     }
+
+    fun getHomeSellerOrderHistory(context: Context, orderStatus : String) {
+
+        var tempZeroList = mutableListOf<OrderPreviewResponseList>()
+        var tempPreviewList = mutableListOf<OrderPreviewResponseList>()
+        var tokenManager = TokenManager(context)
+
+        APIS.getSellerOrderHistory(tokenManager.getAccessToken().toString(), orderStatus).enqueue(object :
+            Callback<SellerOrderHistoryResponseModel> {
+            override fun onResponse(
+                call: Call<SellerOrderHistoryResponseModel>,
+                response: Response<SellerOrderHistoryResponseModel>
+            ) {
+                if (response.isSuccessful) {
+                    // 정상적으로 통신이 성공된 경우
+                    var result: SellerOrderHistoryResponseModel? = response.body()
+                    Log.d("##", "onResponse 성공: " + result?.toString())
+                    if(result?.result!!.orderPreviewResponseList.size == 0) {
+                        orderCount.value = 0
+                        orderHistoryList.value = tempZeroList
+                    } else {
+                        orderCount.value = result.result!!.orderCount
+                        for (i in 0 until result.result!!.orderPreviewResponseList.size) {
+                            var tempDetailList = mutableListOf<OrderDetailPreviewList>()
+                            var id = result?.result!!.orderPreviewResponseList.get(i).orderId
+                            var userName = result?.result!!.orderPreviewResponseList.get(i).userName
+                            var addressAndPostalCode = result?.result!!.orderPreviewResponseList.get(i).addressAndPostalCode
+                            var detailAddress = result?.result!!.orderPreviewResponseList.get(i).detailAddress
+                            var selectedOption = result?.result!!.orderPreviewResponseList.get(i).selectedOption
+                            var orderedAt = result?.result!!.orderPreviewResponseList.get(i).orderedAt
+                            for (j in 0 until result.result!!.orderPreviewResponseList.get(i).orderDetailPreviewList.size) {
+                                var orderDeatailId = result?.result!!.orderPreviewResponseList.get(i).orderDetailPreviewList.get(j).orderDetailId
+                                var foodId = result?.result!!.orderPreviewResponseList.get(i).orderDetailPreviewList.get(j).foodId
+                                var foodName = result?.result!!.orderPreviewResponseList.get(i).orderDetailPreviewList.get(j).foodName
+                                var foodOptionId = result?.result!!.orderPreviewResponseList.get(i).orderDetailPreviewList.get(j).foodOptionId
+                                var foodOptionName = result?.result!!.orderPreviewResponseList.get(i).orderDetailPreviewList.get(j).foodOptionName
+                                var orderCount = result?.result!!.orderPreviewResponseList.get(i).orderDetailPreviewList.get(j).orderCount
+
+                                var detail = OrderDetailPreviewList(orderDeatailId, foodId, foodName, foodOptionId, foodOptionName, orderCount)
+                                tempDetailList.add(detail)
+                            }
+
+                            var orderHistory = OrderPreviewResponseList(id, userName, addressAndPostalCode, detailAddress, selectedOption, orderedAt, tempDetailList)
+
+                            tempPreviewList.add(orderHistory)
+                        }
+
+                        orderHistoryList.value = tempPreviewList
+
+                        Log.d("밋업", "${orderHistoryList.value}")
+                    }
+                } else {
+                    // 통신이 실패한 경우(응답코드 3xx, 4xx 등)
+                    Log.d("##", "onResponse 실패: " + response.code())
+                    Log.d("##", "onResponse 실패: " + response.message())
+
+                    if (response.code() == 400) {
+                        Toast.makeText(context, "존재하지 않는 가게입니다.", Toast.LENGTH_SHORT).show()
+                        orderCount.value = 0
+                        orderHistoryList.value = tempZeroList
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<SellerOrderHistoryResponseModel>, t: Throwable) {
+                // 통신 실패
+                Log.d("##", "onFailure 에러: " + t.message.toString());
+            }
+        })
+    }
 }

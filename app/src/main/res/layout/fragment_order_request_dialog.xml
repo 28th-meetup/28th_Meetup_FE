@@ -64,6 +64,7 @@
                         android:textSize="20.55sp" />
 
                     <TextView
+                        android:id="@+id/textview_option_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="29.37dp"
@@ -75,6 +76,7 @@
                         android:textSize="16sp" />
 
                     <TextView
+                        android:id="@+id/textview_time"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="11.42dp"
@@ -84,6 +86,7 @@
                         android:textSize="16sp" />
 
                     <TextView
+                        android:id="@+id/textview_location"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="6.45dp"
@@ -100,6 +103,7 @@
             </com.google.android.material.card.MaterialCardView>
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/button_accepted"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="50.23dp"
@@ -123,6 +127,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/button_rejected"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="50.23dp"

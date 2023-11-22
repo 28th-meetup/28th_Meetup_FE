@@ -17,13 +17,16 @@ import com.example.meetup.adapter.HomeTopAdapter
 import com.example.meetup.databinding.FragmentHomeBinding
 import com.example.meetup.Util.fromDpToPx
 import com.example.meetup.activity.HomeActivity
+import com.example.meetup.dialog.DialogOrderCancel
 import com.example.meetup.model.BestSellingFoodList
 import com.example.meetup.model.Food
+import com.example.meetup.model.OrderPreviewResponseList
 import com.example.meetup.model.RecentSetFoodList
 import com.example.meetup.viewmodel.CategoryFoodViewModel
 import com.example.meetup.viewmodel.FoodMenuDetailViewModel
 import com.example.meetup.viewmodel.HomeFoodViewModel
 import com.example.meetup.viewmodel.SearchViewModel
+import com.example.meetup.viewmodel.SellerOrderHistoryViewModel
 
 
 class HomeFragment : Fragment() {
@@ -33,12 +36,14 @@ class HomeFragment : Fragment() {
 
     lateinit var viewModel: HomeFoodViewModel
     lateinit var searchViewModel: SearchViewModel
+    lateinit var orderHistoryViewModel: SellerOrderHistoryViewModel
 
     var topFoodList = mutableListOf<BestSellingFoodList>()
     var setFoodList = mutableListOf<RecentSetFoodList>()
 
     var categoryNameList = listOf<String>()
     var locationList = listOf<String>()
+    var orderHistory = mutableListOf<OrderPreviewResponseList>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -53,6 +58,7 @@ class HomeFragment : Fragment() {
 
         viewModel = ViewModelProvider(homeActivity)[HomeFoodViewModel::class.java]
         searchViewModel = ViewModelProvider(homeActivity)[SearchViewModel::class.java]
+        orderHistoryViewModel = ViewModelProvider(homeActivity)[SellerOrderHistoryViewModel::class.java]
 
         viewModel.run {
             topFoodInfoList.observe(homeActivity) {
@@ -87,7 +93,21 @@ class HomeFragment : Fragment() {
             }
         }
 
+        orderHistoryViewModel.run {
+            orderHistoryList.observe(homeActivity) {
+                orderHistory = it
+
+                if(orderHistory.size != 0) {
+                    val dialog = OrderRequestDialogFragment(orderHistory)
+                    // 알림창이 띄워져있는 동안 배경 클릭 막기
+                    dialog.isCancelable = false
+                    activity?.let { dialog.show(homeActivity.manager, "OrderDialog") }
+                }
+            }
+        }
+
         viewModel.getHomeFoodInfo(homeActivity)
+        orderHistoryViewModel.getHomeSellerOrderHistory(homeActivity, "pending")
 
         initView()
 
