@@ -71,7 +71,7 @@ interface APIS {
     ): Call<SignUpResponseModel>
 
     // 닉네임 중복 여부 확인
-    @POST("users/nickname")
+    @POST("auth/nickname/duplicate")
     fun checkNickName(
         @Body parameters: NickNameRequestModel
     ): Call<BasicResponseModel>

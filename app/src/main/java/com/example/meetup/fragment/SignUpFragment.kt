@@ -104,10 +104,9 @@ class SignUpFragment : Fragment() {
                 signUp()
             }
 
-            edittextNickName.setOnEditorActionListener { v, actionId, event ->
+            buttonCheckNickname.setOnClickListener {
                 // 닉네임 중복 확인
                 checkNickName(edittextNickName.text.toString())
-                true
             }
 
             spinnerPhoneNumber.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
