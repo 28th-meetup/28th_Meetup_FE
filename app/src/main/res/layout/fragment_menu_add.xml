@@ -665,9 +665,9 @@
                 android:layout_marginTop="11.42dp"
                 android:layout_marginRight="22.83dp"
                 android:theme="@style/Theme.MaterialComponents.Light"
-                android:visibility="gone"
                 app:cardCornerRadius="6.85dp"
                 app:cardElevation="0dp"
+                android:visibility="gone"
                 app:strokeColor="@color/gray_blue"
                 app:strokeWidth="1dp">
 
@@ -796,6 +796,8 @@
                         android:layout_width="100dp"
                         android:layout_height="45.67dp"
                         android:layout_marginTop="16.5dp"
+                        android:background="@drawable/text_login_background"
+
                         android:layout_marginBottom="26.26dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="@+id/textView181"

@@ -25,6 +25,7 @@ import com.example.meetup.model.PostReivewRequestModel
 import com.example.meetup.model.PostReviewResponseModel
 import com.example.meetup.retrofit2.APIS
 import com.example.meetup.retrofit2.RetrofitInstance
+import com.example.meetup.sharedPreference.MyApplication
 import com.example.meetup.viewmodel.OrderListViewModel
 import com.kakao.sdk.talk.model.Order
 import kotlinx.coroutines.launch
@@ -48,6 +49,8 @@ class ReviewWriteFragment :
 
     lateinit var bitmap1: Bitmap
 
+    var storeName = ""
+    var time = ""
 
     lateinit var homeActivity: HomeActivity
     var imageUrl = ""
@@ -76,6 +79,12 @@ class ReviewWriteFragment :
         storeId = viewModel.storeId.value!!.toLong()
         Log.d("storeId","$storeId")
 
+
+        binding.textviewStoreName.text = MyApplication.preferences.getString("reviewName","")
+        binding.textviewTime.text = MyApplication.preferences.getString("reviewTime","")
+        Glide.with(this)
+            .load(MyApplication.preferences.getString("reviewimage",""))
+            .into(binding.imageviewStore)
 
         val pickMedia =
             registerForActivityResult(ActivityResultContracts.PickVisualMedia()) { uri ->

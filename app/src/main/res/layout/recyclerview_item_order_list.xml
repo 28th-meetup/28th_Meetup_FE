@@ -156,7 +156,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="22.83dp"
             android:fontFamily="@font/pretendard_regular"
-            android:text="소고기 미역국"
+            android:text=""
             android:textColor="@color/black"
             android:textSize="18.27sp" />
 
@@ -166,7 +166,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="12.56dp"
             android:fontFamily="@font/pretendard_regular"
-            android:text="1개"
+            android:text=""
             android:textColor="@color/gray"
             android:textSize="18.27sp" />
 
