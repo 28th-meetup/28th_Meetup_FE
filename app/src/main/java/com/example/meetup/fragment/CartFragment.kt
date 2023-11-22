@@ -151,6 +151,17 @@ class CartFragment : Fragment() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        if(MyApplication.cartItem.size == 0) {
+            binding.scrollView.visibility = View.GONE
+            binding.layoutNoCartList.visibility = View.VISIBLE
+        } else {
+            binding.layoutNoCartList.visibility = View.GONE
+            binding.scrollView.visibility = View.VISIBLE
+        }
+    }
+
     inner class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.ViewHolderClass>() {
         inner class ViewHolderClass(rowBinding: RowCartBinding) :
             RecyclerView.ViewHolder(rowBinding.root) {
