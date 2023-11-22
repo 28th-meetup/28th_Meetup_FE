@@ -9,6 +9,7 @@ import com.example.meetup.model.FoodIdResponseModel
 import com.example.meetup.model.FoodOptionResponseList
 import com.example.meetup.model.GetChatRoom
 import com.example.meetup.model.GetChatRoomResult
+import com.example.meetup.model.GetChattingMessage
 import com.example.meetup.model.GetOrderListResponseModel
 import com.example.meetup.model.GetStoreDetailMenuInfoResponseModel
 import com.example.meetup.model.GetStoreDetailReviewResponseModel
@@ -307,5 +308,11 @@ interface APIS {
 
         ) : Call<GetChatRoom>
 
-    //
+    //채팅 목록 가져오기
+    @GET("chat/room/{roomId}/message")
+    fun getChattingMessage(
+        @Header("Authorization") Authorization: String,
+        @Path("roomId") roomId : String
+
+        ) : Call<GetChattingMessage>
 }

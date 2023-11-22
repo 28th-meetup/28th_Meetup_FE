@@ -9,27 +9,38 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.meetup.R
 import com.example.meetup.adapter.ChattingAdapter
 import com.example.meetup.databinding.FragmentChattingBinding
 import com.example.meetup.databinding.FragmentChattingRoomBinding
+import com.example.meetup.model.GetChattingMessage
+import com.example.meetup.model.GetChattingMessageResult
 import com.example.meetup.model.chatting.ChattingDataModel
+import com.example.meetup.retrofit2.APIS
 import com.example.meetup.sharedPreference.MyApplication
 import com.example.meetup.viewmodel.ChattingRoomViewModel
 import com.google.gson.Gson
 import com.google.gson.JsonObject
+import kotlinx.coroutines.launch
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.decodeFromJsonElement
 import okhttp3.internal.notify
 import okhttp3.internal.notifyAll
 import org.json.JSONObject
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import ua.naiksoftware.stomp.Stomp
 import ua.naiksoftware.stomp.StompClient
 import kotlin.collections.ArrayList
 
 
 class ChattingRoomFragment : Fragment() {
+
+    private lateinit var API : APIS
+
     private var _binding: FragmentChattingRoomBinding? = null
     private val binding get() = _binding!!
 
@@ -40,7 +51,10 @@ class ChattingRoomFragment : Fragment() {
     private lateinit var stompClient: StompClient
 
     var chatArray = ArrayList<ChattingDataModel>()
-    var receiveChatArray = ArrayList<ChattingDataModel>()
+     var s = ""
+    var m = ""
+    var r = ""
+    var alreadychatList = ArrayList<GetChattingMessageResult>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -62,7 +76,8 @@ class ChattingRoomFragment : Fragment() {
         binding.recyclerViewChatting.adapter = chattingAdapter
         binding.recyclerViewChatting.layoutManager = LinearLayoutManager(requireContext())
 
-//
+
+
 //        var roomId = intent.getStringExtra("roomId")
 //
 //        var senderName = intent.getStringExtra("senderName")
@@ -74,6 +89,60 @@ class ChattingRoomFragment : Fragment() {
         var senderName = MyApplication.preferences.getString("senderName", "")
 
         var senderNameMine =  MyApplication.preferences.getString("senderNameMine","")
+
+
+        //-------------------------------------------------------------------------
+
+
+
+
+
+
+        val tokenManager = com.example.meetup.sharedPreference.TokenManager(requireContext())   //가게 목록 가져오기
+
+//        val accessToken = MyApplication.preferences.getString("accessToken", "")
+
+        Log.d("tokenManager", tokenManager.getAccessToken().toString())
+
+        try{
+            API.getChattingMessage(tokenManager.getAccessToken().toString(),roomId).enqueue(
+                object : Callback<GetChattingMessage> {
+
+                    override fun onResponse(call: Call<GetChattingMessage>, response: Response<GetChattingMessage>) {
+                        if (response.isSuccessful) {
+
+//                                _storeList.value = response.body()?.result?.stores
+
+                            alreadychatList = response.body()!!.result
+                            r = alreadychatList[0].roomId
+                           m =  alreadychatList[0].message
+                            s = alreadychatList[0].senderName
+
+                            chatArray.add(ChattingDataModel(s,r,m,false))
+
+//                                Log.d("_storeList : " , " success , ${_storeList.value}")
+
+                            Log.d("GetChattingMessage : " , " success , ${response.body().toString()}")
+                        } else {
+
+                            Log.d("GetChattingMessage Response : ", "fail 1 ${response.body().toString()} , ${response.message()}, ${response.errorBody().toString()}")
+                        }
+                    }
+
+                    override fun onFailure(call: Call<GetChattingMessage>, t: Throwable) {
+                        Log.d("GetChattingMessage Response : ", " fail 2 , ${t.message.toString()}")
+                    }
+                })
+        } catch (e:Exception) {
+            Log.d("GetChattingMessage response : ", " fail 3 , ${e.message}")
+        }
+
+
+
+
+
+
+        //-------------------------------------------------------------------------
 
         Log.d("roomId real", roomId)
         Log.d("senderName ", senderName)
