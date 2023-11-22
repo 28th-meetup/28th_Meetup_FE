@@ -131,6 +131,26 @@ class StoreFragment : Fragment() {
             }
         }
 
+        binding.run {
+            searchview.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+                override fun onQueryTextSubmit(query: String?): Boolean {
+                    searchViewModel.getSearchList(homeActivity, query!!)
+
+                    val searchFragment = SearchFragment()
+
+                    val transaction = homeActivity.manager.beginTransaction()
+                    transaction.replace(R.id.frameArea, searchFragment)
+                    transaction.addToBackStack("")
+                    transaction.commit()
+                    return false
+                }
+
+                override fun onQueryTextChange(newText: String?): Boolean {
+                    return false
+                }
+            })
+        }
+
         //메뉴변경형 클릭
         binding.btnMenuChange.setOnClickListener {
             binding.btnMenuChange.setTextColor(Color.parseColor("#1E1F23"))
