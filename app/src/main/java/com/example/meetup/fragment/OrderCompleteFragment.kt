@@ -35,11 +35,11 @@ class OrderCompleteFragment : Fragment() {
 
             buttonOrderList.setOnClickListener {
                 // 마이페이지 주문내역 페이지로 이동
-//                val homeFragment = HomeFragment()
-//
-//                val transaction = homeActivity.manager.beginTransaction()
-//                transaction.replace(R.id.frameArea, homeFragment)
-//                transaction.commit()
+                val orderListFragment = OrderListFragment()
+
+                val transaction = homeActivity.manager.beginTransaction()
+                transaction.replace(R.id.frameArea, orderListFragment)
+                transaction.commit()
             }
         }
 

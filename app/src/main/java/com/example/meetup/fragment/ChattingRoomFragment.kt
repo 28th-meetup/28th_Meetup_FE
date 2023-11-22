@@ -105,7 +105,11 @@ class ChattingRoomFragment : Fragment() {
 
                 } else {
                 chatArray.add(chatResponse)
+                    chattingAdapter = ChattingAdapter(chatArray)
 
+                    binding.recyclerViewChatting.adapter = chattingAdapter
+
+                    chattingAdapter.notifyDataSetChanged()
 
                 }
 
@@ -124,19 +128,23 @@ class ChattingRoomFragment : Fragment() {
 
 
             ) {
-                viewModel.addData(chatArray)
-                Log.d(" received viewModel", viewModel.chattingData.value.toString())
+                chattingAdapter = ChattingAdapter(chatArray)
+
+                binding.recyclerViewChatting.adapter = chattingAdapter
+
+                chattingAdapter.notifyDataSetChanged()
+//                viewModel.addData(chatArray)
+//                Log.d(" received viewModel", viewModel.chattingData.value.toString())
 
 
 //                notifyAll()
 //                notify()
-                viewModel.chattingData.observe(viewLifecycleOwner) {
-                    chattingAdapter = ChattingAdapter(it)
-
-                    binding.recyclerViewChatting.adapter = chattingAdapter
-
-                }
-                return@subscribe
+//                viewModel.chattingData.observe(viewLifecycleOwner) {
+//                    chattingAdapter = ChattingAdapter(it)
+//
+//                    binding.recyclerViewChatting.adapter = chattingAdapter
+//
+//                }
             }
 
 //        viewModel.addData(chatArray)
@@ -165,7 +173,7 @@ class ChattingRoomFragment : Fragment() {
                 Log.d("chatArray", chatArray.toString())
 
 
-                viewModel.addData(chatArray)
+//                viewModel.addData(chatArray)
 
                 Log.d("SendData", sendData.toString())
 
@@ -174,21 +182,30 @@ class ChattingRoomFragment : Fragment() {
 
                 stompClient.send("/pub/message", sendData.toString()).subscribe()
                 binding.edittextWriteChattingText.text.clear()
+                chattingAdapter = ChattingAdapter(chatArray)
+
+                binding.recyclerViewChatting.adapter = chattingAdapter
+
+                chattingAdapter.notifyDataSetChanged()
 
             } else {
 
-                viewModel.addData(chatArray)
+//                viewModel.addData(chatArray)
 
             }
 
         }
 
-        viewModel.chattingData.observe(viewLifecycleOwner) {
-            chattingAdapter = ChattingAdapter(it)
+//        viewModel.chattingData.observe(viewLifecycleOwner) {
+
+
+            chattingAdapter = ChattingAdapter(chatArray)
 
             binding.recyclerViewChatting.adapter = chattingAdapter
 
-        }
+            chattingAdapter.notifyDataSetChanged()
+//        }
+
 
         binding.btnBack.setOnClickListener {
             fragmentManager?.popBackStack()

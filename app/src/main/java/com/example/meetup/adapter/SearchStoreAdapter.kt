@@ -73,6 +73,7 @@ class SearchStoreAdapter(var manager: FragmentManager, var activity: ViewModelSt
                 // 가게 상세 정보 화면으로 이동
                 Handler().postDelayed({
 
+
                 }, 1000)
                 true
             }

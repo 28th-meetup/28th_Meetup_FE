@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.bumptech.glide.Glide
 import com.example.meetup.R
@@ -51,7 +52,7 @@ class ReviewWriteFragment :
     lateinit var homeActivity: HomeActivity
     var imageUrl = ""
 
-    var star_rate = 0
+    var star_rate = 0L
     var review_content = ""
     var storeId = 0L
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -69,6 +70,7 @@ class ReviewWriteFragment :
 
         _binding = FragmentReviewWriteBinding.inflate(inflater, container, false)
         val view = binding.root
+        viewModel = ViewModelProvider(requireActivity()).get(OrderListViewModel::class.java)
 
 
         storeId = viewModel.storeId.value!!.toLong()
@@ -114,7 +116,7 @@ class ReviewWriteFragment :
             binding.imageviewStar4.setImageResource(R.drawable.ic_star_gray)
             binding.imageviewStar5.setImageResource(R.drawable.ic_star_gray)
 
-            star_rate = 1
+            star_rate = 1L
 
         }
         binding.imageviewStar2.setOnClickListener {
@@ -124,7 +126,7 @@ class ReviewWriteFragment :
             binding.imageviewStar4.setImageResource(R.drawable.ic_star_gray)
             binding.imageviewStar5.setImageResource(R.drawable.ic_star_gray)
 
-            star_rate = 2
+            star_rate = 2L
 
         }
         binding.imageviewStar3.setOnClickListener {
@@ -134,7 +136,7 @@ class ReviewWriteFragment :
             binding.imageviewStar4.setImageResource(R.drawable.ic_star_gray)
             binding.imageviewStar5.setImageResource(R.drawable.ic_star_gray)
 
-            star_rate = 3
+            star_rate = 3L
 
         }
         binding.imageviewStar4.setOnClickListener {
@@ -144,7 +146,7 @@ class ReviewWriteFragment :
             binding.imageviewStar4.setImageResource(R.drawable.ic_star)
             binding.imageviewStar5.setImageResource(R.drawable.ic_star_gray)
 
-            star_rate = 4
+            star_rate = 4L
 
         }
         binding.imageviewStar5.setOnClickListener {
@@ -154,7 +156,7 @@ class ReviewWriteFragment :
             binding.imageviewStar4.setImageResource(R.drawable.ic_star)
             binding.imageviewStar5.setImageResource(R.drawable.ic_star)
 
-            star_rate = 5
+            star_rate = 5L
 
         }
 
@@ -185,7 +187,7 @@ class ReviewWriteFragment :
         review_content = binding.edittextReviewContent.text.toString()
 
 
-        if (star_rate == 0) {
+        if (star_rate == 0L) {
             Toast.makeText(context, "별점을 선택해주세요.", Toast.LENGTH_SHORT).show()
         } else if (binding.edittextReviewContent.length() < 20) {
             Toast.makeText(context, "내용을 최소 20자 이상 작성해주세요.", Toast.LENGTH_SHORT).show()

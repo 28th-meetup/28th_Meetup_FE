@@ -15,5 +15,5 @@ data class Food(
     val dollarPrice: Long,
     val canadaPrice: Long,
     val image: String?,
-    val avgRate: Long,
+    val avgRate: Double,
 )

@@ -37,7 +37,7 @@ data class GetStoreListStoreDto(
     var name: String,
     var description: String,
     var koreanYn: Boolean,
-    var avgRate: Long,
+    var avgRate: Double,
     var minOrderAmount: Long,
     var images: ArrayList<String>
 )
