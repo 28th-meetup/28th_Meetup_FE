@@ -153,7 +153,7 @@ class ModalBottomSheetOrderOption(var foodInfo: List<FoodIdResult>) : BottomShee
                     setBackgroundResource(R.drawable.button_order_background)
                 }
 
-                var cartItem = CartFood(foodInfoList.get(0).storeId, foodInfoList.get(0).storeName, foodInfoList.get(0).categoryId, foodInfoList.get(0).image, foodInfoList.get(0).name, foodInfoList.get(0).id, selectedOptionName, selectedOptionId, deliveryOption, 1, selectedOptionPrice.toLong(), true)
+                var cartItem = CartFood(foodInfoList.get(0).storeId, foodInfoList.get(0).storeName, foodInfoList.get(0).categoryId, foodInfoList.get(0).image, foodInfoList.get(0).name, foodInfoList.get(0).id, selectedOptionName, selectedOptionId, deliveryOption, 1, selectedOptionPrice.toDouble(), true)
                 selectFoodOptionList.add(cartItem)
                 var totalFoodPrice = 0.0
                 for(i in 0 until selectFoodOptionList.size) {
@@ -185,7 +185,7 @@ class ModalBottomSheetOrderOption(var foodInfo: List<FoodIdResult>) : BottomShee
                     setTextColor(ContextCompat.getColor(requireContext(), R.color.gray4))
                     setBackgroundResource(R.drawable.button_order_background)
                 }
-                var cartItem = CartFood(foodInfoList.get(0).storeId, foodInfoList.get(0).storeName, foodInfoList.get(0).categoryId, foodInfoList.get(0).image, foodInfoList.get(0).name, foodInfoList.get(0).id, selectedOptionName, selectedOptionId, deliveryOption, 1, selectedOptionPrice.toLong(), true)
+                var cartItem = CartFood(foodInfoList.get(0).storeId, foodInfoList.get(0).storeName, foodInfoList.get(0).categoryId, foodInfoList.get(0).image, foodInfoList.get(0).name, foodInfoList.get(0).id, selectedOptionName, selectedOptionId, deliveryOption, 1, selectedOptionPrice.toDouble(), true)
                 selectFoodOptionList.add(cartItem)
                 var totalFoodPrice = 0.0
                 for(i in 0 until selectFoodOptionList.size) {
@@ -359,6 +359,7 @@ class ModalBottomSheetOrderOption(var foodInfo: List<FoodIdResult>) : BottomShee
                     // 해당 주문 내역 선택지 삭제
                     selectFoodOptionList.removeAt(adapterPosition)
                     var adapter = binding.recyclerviewFood.adapter as FoodRecyclerViewAdapter
+
                     adapter.notifyDataSetChanged()
                 }
             }

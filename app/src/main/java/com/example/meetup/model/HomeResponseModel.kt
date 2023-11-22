@@ -18,10 +18,10 @@ data class BestSellingFoodList(
     val name: String,
     val storeId: Long,
     val storeName: String,
-    val dollarPrice: Long,
-    val canadaPrice: Long,
+    val dollarPrice: Double,
+    val canadaPrice: Double,
     val image: String?,
-    val avgRate: Long,
+    val avgRate: Double,
 )
 
 data class RecentSetFoodList(
@@ -29,9 +29,9 @@ data class RecentSetFoodList(
     val name: String,
     val storeId: Long,
     val storeName: String,
-    val dollarPrice: Long,
-    val canadaPrice: Long,
+    val dollarPrice: Double,
+    val canadaPrice: Double,
     val image: String?,
-    val avgRate: Long,
+    val avgRate: Double,
 )
 

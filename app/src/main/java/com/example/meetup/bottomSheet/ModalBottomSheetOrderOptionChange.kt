@@ -48,7 +48,7 @@ class ModalBottomSheetOrderOptionChange(var foodName: String, var cartNum: Int) 
     var selectFoodOptionList = mutableListOf<CartFood>()
 
     var selectedOptionName = ""
-    var selectedOptionPrice = 0L
+    var selectedOptionPrice = 0.0
     var selectedOptionId = 0L
 
     override fun getTheme(): Int = R.style.AppBottomSheetDialogTheme

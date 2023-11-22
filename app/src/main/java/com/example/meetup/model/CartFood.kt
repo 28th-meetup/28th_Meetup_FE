@@ -11,6 +11,6 @@ data class CartFood(
     var foodOptionId: Long,
     var orderDeliveryOption: String,
     var orderCount: Long,
-    var orderEachPrice: Long,
+    var orderEachPrice: Double,
     var isChecked: Boolean
 )

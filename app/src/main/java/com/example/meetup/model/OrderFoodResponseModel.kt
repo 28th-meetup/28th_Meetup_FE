@@ -12,7 +12,7 @@ data class OrderFoodResult(
     val userId: Long,
     val storeId: Long,
     val totalCount: Long,
-    val totalPrice: Long,
+    val totalPrice: Double,
     val selectedOption: String,
     val orderedAt: String,
     val status: String,

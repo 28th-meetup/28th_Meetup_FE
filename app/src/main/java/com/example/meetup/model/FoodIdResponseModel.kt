@@ -13,8 +13,8 @@ data class FoodIdResult(
     val storeName: String,
     val categoryId: Long,
     val name: String,
-    val dollarPrice: Long,
-    val canadaPrice: Long,
+    val dollarPrice: Double,
+    val canadaPrice: Double,
     val image: String?,
     val description: String,  // 상세 설명
     var foodPackage: String,  // 배달/포장 가능
@@ -27,6 +27,6 @@ data class FoodIdResult(
 data class FoodOptionResponseList(
     val id: Long,
     val name: String,
-    val dollarPrice: Long,
-    val canadaPrice: Long,
+    val dollarPrice: Double,
+    val canadaPrice: Double,
 )

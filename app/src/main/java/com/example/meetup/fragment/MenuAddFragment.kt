@@ -435,8 +435,8 @@ class MenuAddFragment : Fragment() {
             //이동
             var dto = MenuAddRequestModelDto( menuCategory,
                 binding.edittextMenuName.text.toString(),
-                binding.edittextPrice.text.toString().toLong(),
-                0L,
+                binding.edittextPrice.text.toString().toDouble(),
+                0.0,
                 binding.edittextMenuExplain.toString(),
                 foodOptionRequestList,
                 foodPackage,
@@ -457,8 +457,8 @@ class MenuAddFragment : Fragment() {
                 foodOptionRequestList.add(
                     MenuAddRequestModelDtoFoodOptionRequestList(
                         binding.edittextOptionName.text.toString(),
-                        binding.edittextPrice.text.toString().toLong(),
-                        0L
+                        binding.edittextPrice.text.toString().toDouble(),
+                        0.0
                     )
                 )
             }
@@ -467,15 +467,15 @@ class MenuAddFragment : Fragment() {
                 foodOptionRequestList.add(
                     MenuAddRequestModelDtoFoodOptionRequestList(
                         binding.edittextOptionName.text.toString(),
-                        binding.edittextPrice.text.toString().toLong(),
-                        0L
+                        binding.edittextPrice.text.toString().toDouble(),
+                        0.0
                     )
                 )
                 foodOptionRequestList.add(
                     MenuAddRequestModelDtoFoodOptionRequestList(
                         binding.edittextOptionName2.text.toString(),
-                        binding.edittextPrice1.text.toString().toLong(),
-                        0L
+                        binding.edittextPrice1.text.toString().toDouble(),
+                        0.0
                     )
                 )
 
@@ -485,22 +485,22 @@ class MenuAddFragment : Fragment() {
                 foodOptionRequestList.add(
                     MenuAddRequestModelDtoFoodOptionRequestList(
                         binding.edittextOptionName.text.toString(),
-                        binding.edittextPrice.text.toString().toLong(),
-                        0L
+                        binding.edittextPrice.text.toString().toDouble(),
+                        0.0
                     )
                 )
                 foodOptionRequestList.add(
                     MenuAddRequestModelDtoFoodOptionRequestList(
                         binding.edittextOptionName2.text.toString(),
-                        binding.edittextPrice1.text.toString().toLong(),
-                        0L
+                        binding.edittextPrice1.text.toString().toDouble(),
+                        0.0
                     )
                 )
                 foodOptionRequestList.add(
                     MenuAddRequestModelDtoFoodOptionRequestList(
                         binding.edittextOptionName3.text.toString(),
-                        binding.edittextPrice2.text.toString().toLong(),
-                        0L
+                        binding.edittextPrice2.text.toString().toDouble(),
+                        0.0
                     )
                 )
 
@@ -510,29 +510,29 @@ class MenuAddFragment : Fragment() {
                 foodOptionRequestList.add(
                     MenuAddRequestModelDtoFoodOptionRequestList(
                         binding.edittextOptionName.text.toString(),
-                        binding.edittextPrice.text.toString().toLong(),
-                        0L
+                        binding.edittextPrice.text.toString().toDouble(),
+                        0.0
                     )
                 )
                 foodOptionRequestList.add(
                     MenuAddRequestModelDtoFoodOptionRequestList(
                         binding.edittextOptionName2.text.toString(),
-                        binding.edittextPrice1.text.toString().toLong(),
-                        0L
+                        binding.edittextPrice1.text.toString().toDouble(),
+                        0.0
                     )
                 )
                 foodOptionRequestList.add(
                     MenuAddRequestModelDtoFoodOptionRequestList(
                         binding.edittextOptionName3.text.toString(),
-                        binding.edittextPrice2.text.toString().toLong(),
-                        0L
+                        binding.edittextPrice2.text.toString().toDouble(),
+                        0.0
                     )
                 )
                 foodOptionRequestList.add(
                     MenuAddRequestModelDtoFoodOptionRequestList(
                         binding.edittextOptionName4.text.toString(),
-                        binding.edittextPrice3.text.toString().toLong(),
-                        0L
+                        binding.edittextPrice3.text.toString().toDouble(),
+                        0.0
                     )
                 )
 
@@ -542,36 +542,36 @@ class MenuAddFragment : Fragment() {
                 foodOptionRequestList.add(
                     MenuAddRequestModelDtoFoodOptionRequestList(
                         binding.edittextOptionName.text.toString(),
-                        binding.edittextPrice.text.toString().toLong(),
-                        0L
+                        binding.edittextPrice.text.toString().toDouble(),
+                        0.0
                     )
                 )
                 foodOptionRequestList.add(
                     MenuAddRequestModelDtoFoodOptionRequestList(
                         binding.edittextOptionName2.text.toString(),
-                        binding.edittextPrice1.text.toString().toLong(),
-                        0L
+                        binding.edittextPrice1.text.toString().toDouble(),
+                        0.0
                     )
                 )
                 foodOptionRequestList.add(
                     MenuAddRequestModelDtoFoodOptionRequestList(
                         binding.edittextOptionName3.text.toString(),
-                        binding.edittextPrice2.text.toString().toLong(),
-                        0L
+                        binding.edittextPrice2.text.toString().toDouble(),
+                        0.0
                     )
                 )
                 foodOptionRequestList.add(
                     MenuAddRequestModelDtoFoodOptionRequestList(
                         binding.edittextOptionName4.text.toString(),
-                        binding.edittextPrice3.text.toString().toLong(),
-                        0L
+                        binding.edittextPrice3.text.toString().toDouble(),
+                        0.0
                     )
                 )
                 foodOptionRequestList.add(
                     MenuAddRequestModelDtoFoodOptionRequestList(
                         binding.edittextOptionName5.text.toString(),
-                        binding.edittextPrice4.text.toString().toLong(),
-                        0L
+                        binding.edittextPrice4.text.toString().toDouble(),
+                        0.0
                     )
                 )
 

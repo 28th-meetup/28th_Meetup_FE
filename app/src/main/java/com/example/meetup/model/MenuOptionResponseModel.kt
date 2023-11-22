@@ -10,6 +10,6 @@ data class MenuOptionResponseModel(
 data class MenuOptionResult(
     val id: Long,
     val name: String?,
-    val dollarPrice: Long,
-    val canadaPrice: Long,
+    val dollarPrice: Double,
+    val canadaPrice: Double,
 )
