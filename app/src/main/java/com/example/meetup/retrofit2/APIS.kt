@@ -16,6 +16,9 @@ import com.example.meetup.model.MenuOptionResponseModel
 import com.example.meetup.model.OrderFoodResponseModel
 import com.example.meetup.model.MessageRequestDto
 import com.example.meetup.model.PostKaKaoTokenResponseModel
+import com.example.meetup.model.PostReivewRequestModel
+import com.example.meetup.model.PostReviewResponseModel
+import com.example.meetup.model.PostReviewResponseModelResult
 import com.example.meetup.model.PostReviewWriteResponseModel
 import com.example.meetup.model.PostStoreResponseModel
 import com.example.meetup.model.SearchResponseModel
@@ -251,4 +254,14 @@ interface APIS {
     fun getOrderList(
         @Header("Authorization") Authorization: String,
         ) : Call<GetOrderListResponseModel>
+
+    //리뷰 작성
+    @Multipart
+    @POST("review")
+    fun postReview(
+        @Header("Authorization") Authorization: String,
+        @Part("dto") dto : PostReivewRequestModel,
+        @Part image : MultipartBody.Part
+
+        ) : Call<PostReviewResponseModel>
 }

@@ -77,7 +77,8 @@ class OrderListFragment : Fragment() {
 
                 clickPosition = it
 
-                Log.d("clickPosition", "$it")
+
+//                Log.d("clickPosition", "$it")
 
                 val reviewWriteFragment = ReviewWriteFragment()
                 fragmentManager?.beginTransaction()?.apply {
