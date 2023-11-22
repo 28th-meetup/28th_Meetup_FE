@@ -68,12 +68,15 @@ class ChattingRoomFragment : Fragment() {
 //        var senderName = intent.getStringExtra("senderName")
 //
 //        Log.d("roomId", "$roomId")
+        MyApplication.preferences.setString("senderNametest", "신승균")
 
 
         var roomId = MyApplication.preferences.getString("roomId", "")
         var senderName = MyApplication.preferences.getString("senderName", "")
 
 
+        Log.d("roomId real", roomId)
+        Log.d("roomId real", senderName)
         stompClient = Stomp.over(Stomp.ConnectionProvider.OKHTTP, "ws://3.39.37.33:8080/ws-stomp")
         stompClient.connect()
 
@@ -98,21 +101,17 @@ class ChattingRoomFragment : Fragment() {
                 Log.d(" received chatResponse", chatResponse.toString())
 
 
-                if (chatResponse.senderName == senderName) {
+                if (chatResponse.senderName == MyApplication.preferences.getString("senderNametest","")) {
                     Log.d(" chatResponse sendername", "Same!")
 
                 } else {
                     chatArray.add(chatResponse)
-                    chattingAdapter = ChattingAdapter(chatArray)
+                    Log.d(" received chatArray", chatArray.toString())
 
-                    binding.recyclerViewChatting.adapter = chattingAdapter
-
-                    chattingAdapter.notifyDataSetChanged()
 
                 }
 
 
-                Log.d(" received chatArray", chatArray.toString())
 
 
                 // Update UI or handle the message
@@ -129,19 +128,19 @@ class ChattingRoomFragment : Fragment() {
 
                 binding.recyclerViewChatting.adapter = chattingAdapter
 
-                chattingAdapter.notifyDataSetChanged()
-//                viewModel.addData(chatArray)
+//                chattingAdapter.notifyDataSetChanged()
+                viewModel.addData(chatArray)
 //                Log.d(" received viewModel", viewModel.chattingData.value.toString())
 
 
 //                notifyAll()
 //                notify()
-//                viewModel.chattingData.observe(viewLifecycleOwner) {
-//                    chattingAdapter = ChattingAdapter(it)
-//
-//                    binding.recyclerViewChatting.adapter = chattingAdapter
-//
-//                }
+                viewModel.chattingData.observe(viewLifecycleOwner) {
+                    chattingAdapter = ChattingAdapter(it)
+
+                    binding.recyclerViewChatting.adapter = chattingAdapter
+
+                }
             }
 
 //        viewModel.addData(chatArray)
@@ -182,13 +181,13 @@ class ChattingRoomFragment : Fragment() {
 
             } else {
 
-//                viewModel.addData(chatArray)
+                viewModel.addData(chatArray)
 
             }
 
         }
 
-//        viewModel.chattingData.observe(viewLifecycleOwner) {
+        viewModel.chattingData.observe(viewLifecycleOwner) {
 
 
         chattingAdapter = ChattingAdapter(chatArray)
@@ -196,7 +195,7 @@ class ChattingRoomFragment : Fragment() {
         binding.recyclerViewChatting.adapter = chattingAdapter
 
         chattingAdapter.notifyDataSetChanged()
-//        }
+        }
 
 
         binding.btnBack.setOnClickListener {
