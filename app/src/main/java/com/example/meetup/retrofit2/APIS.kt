@@ -16,6 +16,8 @@ import com.example.meetup.model.MenuListResponseModel
 import com.example.meetup.model.MenuOptionResponseModel
 import com.example.meetup.model.OrderFoodResponseModel
 import com.example.meetup.model.MessageRequestDto
+import com.example.meetup.model.MyStoreIdResponseModel
+import com.example.meetup.model.MyStoreIdResult
 import com.example.meetup.model.MypageResponseModel
 import com.example.meetup.model.PostKaKaoTokenResponseModel
 import com.example.meetup.model.PostReivewRequestModel
@@ -162,7 +164,6 @@ interface APIS {
         @Part image: List<MultipartBody.Part>
     ) : Call<PostStoreResponseModel>
 
-
     //찜하기
     @POST("store/bookmark/{storeId}")
     fun postHeart(
@@ -176,6 +177,7 @@ interface APIS {
         @Header("Authorization") Authorization: String,
 
         ) : Call<GetHeartListResponseModel>
+
     //채팅 리스트
     @GET("chat/rooms")
     fun getChatList(
@@ -288,4 +290,10 @@ interface APIS {
         @Path("storeId") storeId : Int
 
     ) : Call<GetStoreDetailReviewResponseModel>
+
+    //내 가게 아이디 조회
+    @GET("store/my-store-id")
+    fun getMyStoreId(
+        @Header("Authorization") Authorization: String,
+    ) : Call<MyStoreIdResponseModel>
 }
