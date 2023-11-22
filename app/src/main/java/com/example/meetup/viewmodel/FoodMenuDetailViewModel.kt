@@ -3,6 +3,7 @@ package com.example.meetup.viewmodel
 import android.content.Context
 import android.util.Log
 import android.widget.Toast
+import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.meetup.R
@@ -31,7 +32,7 @@ class FoodMenuDetailViewModel : ViewModel() {
         foodMenuOptionInfoList.value = mutableListOf<MenuOptionResult>()
     }
 
-    fun getFoodMenuInfo(context: Context, foodId: Int) {
+    fun getFoodMenuInfo(context: Context, manager: FragmentManager, foodId: Int) {
         var tempList = mutableListOf<FoodIdResult>()
         var tempOptionList = mutableListOf<FoodOptionResponseList>()
 
@@ -81,6 +82,14 @@ class FoodMenuDetailViewModel : ViewModel() {
 
 
                     Log.d("밋업", "${foodMenuInfoList.value}")
+
+                    val menuFragment = MenuFragment()
+
+                    val transaction = manager.beginTransaction()
+                    transaction.replace(R.id.frameArea, menuFragment)
+                    transaction.addToBackStack("")
+                    transaction.commit()
+
                 } else {
                     // 통신이 실패한 경우(응답코드 3xx, 4xx 등)
                     Log.d("##", "onResponse 실패: " + response.code())

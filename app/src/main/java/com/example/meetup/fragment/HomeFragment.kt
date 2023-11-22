@@ -22,6 +22,7 @@ import com.example.meetup.model.BestSellingFoodList
 import com.example.meetup.model.Food
 import com.example.meetup.model.OrderPreviewResponseList
 import com.example.meetup.model.RecentSetFoodList
+import com.example.meetup.sharedPreference.MyApplication
 import com.example.meetup.viewmodel.CategoryFoodViewModel
 import com.example.meetup.viewmodel.FoodMenuDetailViewModel
 import com.example.meetup.viewmodel.HomeFoodViewModel
@@ -88,6 +89,7 @@ class HomeFragment : Fragment() {
             }
             regionId.observe(homeActivity) {
                 binding.run {
+                    MyApplication.regionId = it.toInt()
                     textviewRegion.text = locationList.get(it)
                 }
             }

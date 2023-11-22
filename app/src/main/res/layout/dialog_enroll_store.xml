@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="15.98dp"
         android:fontFamily="@font/pretendard_bold"
-        android:text="생성된 가게가 없습니다.\n가게를 등록하시겠습니까?"
+        android:text="촬영을 완료했습니다.\n사진을 제출하시겠습니까?"
         android:textAlignment="center"
         android:textSize="25.12dp" />
 
@@ -44,7 +44,7 @@
         android:layout_marginTop="22.83dp"
         android:background="@drawable/button_dialog_main"
         android:fontFamily="@font/pretendard_semi_bold"
-        android:text="가게 등록"
+        android:text="제출하기"
         android:textColor="@color/white"
         android:textSize="20.55sp" />
 

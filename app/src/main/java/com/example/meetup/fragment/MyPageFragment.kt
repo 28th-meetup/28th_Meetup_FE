@@ -1,5 +1,6 @@
 package com.example.meetup.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -11,8 +12,17 @@ import com.example.meetup.R
 import com.example.meetup.activity.HomeActivity
 import com.example.meetup.base.BaseFragment
 import com.example.meetup.databinding.FragmentMyPageBinding
+import com.example.meetup.model.MyStoreIdResponseModel
+import com.example.meetup.model.SignInResponseModel
+import com.example.meetup.retrofit2.RetrofitInstance
 import com.example.meetup.sharedPreference.MyApplication
+import com.example.meetup.sharedPreference.TokenManager
 import com.example.meetup.viewmodel.MypageViewModel
+import com.google.android.material.snackbar.Snackbar
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import kotlin.concurrent.fixedRateTimer
 
 class MyPageFragment : Fragment() {
 
@@ -54,7 +64,7 @@ class MyPageFragment : Fragment() {
             }
         }
         binding.btnChangeSeller.setOnClickListener {
-            val storeEnrollDialogFragment = StoreEnrollDialogFragment()
+            val storeEnrollDialogFragment = StoreEnrollDialogFragment(homeActivity.manager)
 
             storeEnrollDialogFragment.show(requireFragmentManager(), "StoreEnrollDialogFragment")
 

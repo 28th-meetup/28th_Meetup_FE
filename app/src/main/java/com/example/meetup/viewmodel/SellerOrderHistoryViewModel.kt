@@ -153,12 +153,6 @@ class SellerOrderHistoryViewModel : ViewModel() {
                     // 통신이 실패한 경우(응답코드 3xx, 4xx 등)
                     Log.d("##", "onResponse 실패: " + response.code())
                     Log.d("##", "onResponse 실패: " + response.message())
-
-                    if (response.code() == 400) {
-                        Toast.makeText(context, "존재하지 않는 가게입니다.", Toast.LENGTH_SHORT).show()
-                        orderCount.value = 0
-                        orderHistoryList.value = tempZeroList
-                    }
                 }
             }
 

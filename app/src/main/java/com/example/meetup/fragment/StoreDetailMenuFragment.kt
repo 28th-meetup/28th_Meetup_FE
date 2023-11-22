@@ -18,6 +18,7 @@ import com.example.meetup.sharedPreference.MyApplication
 import com.example.meetup.viewmodel.FoodMenuDetailViewModel
 import com.example.meetup.viewmodel.StoreDetailMenuViewModel
 import com.example.meetup.viewmodel.StoreListViewModel
+import kotlin.concurrent.fixedRateTimer
 
 class StoreDetailMenuFragment : Fragment() {
 
@@ -25,6 +26,7 @@ class StoreDetailMenuFragment : Fragment() {
     private val binding get() = _binding!!
 
     lateinit var viewModel: StoreDetailMenuViewModel
+    lateinit var menuViewModel: FoodMenuDetailViewModel
 
     private lateinit var storeDetailMenuAdapter: StoreDetailMenuAdapter
 
@@ -38,6 +40,7 @@ class StoreDetailMenuFragment : Fragment() {
         val view = binding.root
 
         viewModel = ViewModelProvider(requireActivity()).get(StoreDetailMenuViewModel::class.java)
+        menuViewModel = ViewModelProvider(requireActivity()).get(FoodMenuDetailViewModel::class.java)
         viewModel2 = ViewModelProvider(requireActivity())[FoodMenuDetailViewModel::class.java]
 
 //        val store_detail_menu_list = ArrayList<StoreDetailMenuResponseModel>()
@@ -63,15 +66,14 @@ class StoreDetailMenuFragment : Fragment() {
             storeDetailMenuAdapter = StoreDetailMenuAdapter(it.result)
             binding.recyclerviewStoreDetailMenu.adapter = storeDetailMenuAdapter
 
-            storeDetailMenuAdapter.itemClick = object : StoreDetailMenuAdapter.ItemClick {
 
+            storeDetailMenuAdapter.itemClick = object  : StoreDetailMenuAdapter.ItemClick {
                 override fun onClick(view: View, position: Int) {
+                    MyApplication.foodId = it.result[position].id.toInt()
 
-
-
+                    menuViewModel.getFoodMenuInfo(context!!, fragmentManager!!, MyApplication.foodId)
                 }
             }
-
         }
         return view
     }

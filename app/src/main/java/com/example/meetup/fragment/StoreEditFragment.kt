@@ -253,7 +253,6 @@ class StoreEditFragment : Fragment() {
                     else -> {
                         isClickSpinner = true
                         globalRegionId = position.toLong()
-
                     }
                 }
             }
@@ -264,7 +263,7 @@ class StoreEditFragment : Fragment() {
         }
 
 
-            //뒤로가기
+        //뒤로가기
         binding.btnBack.setOnClickListener {
             fragmentManager?.popBackStack()
         }
