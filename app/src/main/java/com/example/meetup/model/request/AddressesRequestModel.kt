@@ -5,5 +5,6 @@ data class AddressesRequestModel(
     var globalRegionId : Long,
     var address : String,
     var detailAddress : String,
-    var postalCode : String
+    var postalCode : String,
+    var fcmToken: String
 )

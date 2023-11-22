@@ -40,6 +40,8 @@ class HomeCategoryFragment : Fragment() {
         binding = FragmentHomeCategoryBinding.inflate(inflater)
         homeActivity = activity as HomeActivity
 
+        MyApplication.filtering = "추천순"
+
         viewModel = ViewModelProvider(homeActivity)[CategoryFoodViewModel::class.java]
 
         viewModel.run {

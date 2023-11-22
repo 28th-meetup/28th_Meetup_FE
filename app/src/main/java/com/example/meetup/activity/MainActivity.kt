@@ -3,22 +3,18 @@ package com.example.meetup.activity
 import android.content.ContentValues
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.ImageView
-import com.example.meetup.R
+import androidx.appcompat.app.AppCompatActivity
 import com.example.meetup.databinding.ActivityMainBinding
-import com.example.meetup.fragment.CartFragment
-import com.example.meetup.fragment.HomeFragment
-import com.example.meetup.fragment.LoginFragment
-import com.example.meetup.fragment.SignUpAddressFragment
-import com.example.meetup.fragment.SignUpFragment
 import com.example.meetup.model.PostKaKaoTokenResponseModel
 import com.example.meetup.retrofit2.APIS
 import com.example.meetup.retrofit2.RetrofitInstance
 import com.example.meetup.sharedPreference.MyApplication
+import com.example.meetup.sharedPreference.PreferenceUtil
 import com.example.meetup.sharedPreference.TokenManager
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.messaging.FirebaseMessaging
 import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.common.model.ClientError
 import com.kakao.sdk.common.model.ClientErrorCause
@@ -27,6 +23,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+
 class MainActivity : AppCompatActivity() {
 
     private val APIS = RetrofitInstance.retrofitInstance().create(APIS::class.java)
@@ -34,12 +31,16 @@ class MainActivity : AppCompatActivity() {
 
     lateinit var authActivity: AuthActivity
 
+    lateinit var sharedPreferenceManager: PreferenceUtil
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
 
         authActivity = AuthActivity()
+
+        setFCMToken()
 
         binding.run {
             // 이메일 로그인 버튼 클릭
@@ -147,4 +148,26 @@ class MainActivity : AppCompatActivity() {
                 }
             })
     }
+
+    fun setFCMToken(){
+
+        FirebaseMessaging.getInstance().token.addOnCompleteListener { task ->
+            if (!task.isSuccessful) {
+                Log.d("FCM Token", "Fetching FCM registration token failed", task.exception)
+                return@addOnCompleteListener
+            }
+
+            // Get new FCM registration token
+            val token = task.result
+            Log.d("FCM Token", "$token")
+            MyApplication.preferences.setFCMToken(token)
+            Log.d("토큰", "FCM 토큰 : ${MyApplication.preferences.getFCMToken()}")
+
+            if (this::sharedPreferenceManager.isInitialized) {
+                Log.d("FCM Token", "this::sharedPreferenceManager.isInitialized")
+                sharedPreferenceManager.setFCMToken(token)
+            }
+        }
+    }
+
 }

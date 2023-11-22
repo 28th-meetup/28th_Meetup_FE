@@ -96,6 +96,7 @@ class SignUpAddressCheckFragment : Fragment() {
 
     fun setAddresses() {
 
+        MyApplication.address.fcmToken = MyApplication.preferences.getFCMToken().toString()
         Log.d("밋업", "사용자 주소 설정 : ${MyApplication.address}")
 
         APIS.setAddresses(MyApplication.address).enqueue(object :

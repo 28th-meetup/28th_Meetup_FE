@@ -58,6 +58,11 @@ class ModalBottomSheetFragment(var activity: ViewModelStoreOwner) : BottomSheetD
         super.onViewCreated(view, savedInstanceState)
 
         binding.run {
+            textviewRecommended.setOnClickListener {
+                categoryViewModel.getCategoryFoodInfo(requireContext(), "RECOMMENDED", MyApplication.categoryId)
+                MyApplication.filtering = "추천순"
+                dismiss()
+            }
             textviewTopReview.setOnClickListener {
                 categoryViewModel.getCategoryFoodInfo(requireContext(), "REVIEW_HIGH", MyApplication.categoryId)
                 MyApplication.filtering = "후기 많은 순"
