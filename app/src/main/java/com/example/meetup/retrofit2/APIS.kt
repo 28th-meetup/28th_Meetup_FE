@@ -7,6 +7,8 @@ import com.example.meetup.model.CategoryIdResponseModel
 import com.example.meetup.model.GetHeartListResponseModel
 import com.example.meetup.model.FoodIdResponseModel
 import com.example.meetup.model.FoodOptionResponseList
+import com.example.meetup.model.GetChatRoom
+import com.example.meetup.model.GetChatRoomResult
 import com.example.meetup.model.GetOrderListResponseModel
 import com.example.meetup.model.GetStoreDetailMenuInfoResponseModel
 import com.example.meetup.model.GetStoreDetailReviewResponseModel
@@ -296,4 +298,12 @@ interface APIS {
     fun getMyStoreId(
         @Header("Authorization") Authorization: String,
     ) : Call<MyStoreIdResponseModel>
+
+    @GET("chat/room/{roomId}")
+    fun getChatRoom(
+        @Header("Authorization") Authorization: String,
+        @Path("roomId") roomId : String
+
+        ) : Call<GetChatRoom>
+
 }

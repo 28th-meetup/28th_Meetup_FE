@@ -1,6 +1,7 @@
 package com.example.meetup.fragment
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -8,7 +9,9 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.meetup.R
 import com.example.meetup.adapter.StoreDetailMenuAdapter
+import com.example.meetup.adapter.StoreListAdapter
 import com.example.meetup.databinding.FragmentStoreDetailMenuBinding
 import com.example.meetup.model.store.StoreDetailMenuResponseModel
 import com.example.meetup.sharedPreference.MyApplication
@@ -27,6 +30,7 @@ class StoreDetailMenuFragment : Fragment() {
 
     private lateinit var storeDetailMenuAdapter: StoreDetailMenuAdapter
 
+    lateinit var viewModel2: FoodMenuDetailViewModel
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -37,6 +41,7 @@ class StoreDetailMenuFragment : Fragment() {
 
         viewModel = ViewModelProvider(requireActivity()).get(StoreDetailMenuViewModel::class.java)
         menuViewModel = ViewModelProvider(requireActivity()).get(FoodMenuDetailViewModel::class.java)
+        viewModel2 = ViewModelProvider(requireActivity())[FoodMenuDetailViewModel::class.java]
 
 //        val store_detail_menu_list = ArrayList<StoreDetailMenuResponseModel>()
 //
@@ -55,12 +60,12 @@ class StoreDetailMenuFragment : Fragment() {
         binding.recyclerviewStoreDetailMenu.adapter = storeDetailMenuAdapter
         binding.recyclerviewStoreDetailMenu.layoutManager = GridLayoutManager(context,2)
 
-
         viewModel.getStoreMenu(requireContext(),MyApplication.preferences.getString("storeId","").toInt())
 
         viewModel.storeDetailMenuList.observe(viewLifecycleOwner){
             storeDetailMenuAdapter = StoreDetailMenuAdapter(it.result)
             binding.recyclerviewStoreDetailMenu.adapter = storeDetailMenuAdapter
+
 
             storeDetailMenuAdapter.itemClick = object  : StoreDetailMenuAdapter.ItemClick {
                 override fun onClick(view: View, position: Int) {

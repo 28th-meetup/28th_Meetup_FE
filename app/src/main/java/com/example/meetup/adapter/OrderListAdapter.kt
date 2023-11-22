@@ -62,7 +62,9 @@ class OrderListAdapter(
 
         var textview_store_name : TextView = view.findViewById(R.id.textview_store_name)
 
+
         fun bind(item: GetOrderListResponseModelResult) {
+
 
             Glide.with(itemView.context)
                 .load(item.storeImage)

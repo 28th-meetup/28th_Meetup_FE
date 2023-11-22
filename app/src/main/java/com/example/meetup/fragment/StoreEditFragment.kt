@@ -63,6 +63,7 @@ class StoreEditFragment : Fragment() {
     var foodChangeYn = false
     var koreanYn = false
 
+    var globalRegion = 0L
     var isClickSpinner = false
     var imageNum = 0
 
@@ -291,7 +292,7 @@ class StoreEditFragment : Fragment() {
             description = binding.edittextStoreExplain.text.toString()
             countryPhoneCode = "KOREA"
             phoneNum = binding.edittextPhoneNumber.text.toString()
-            globalRegionId = 1L
+            globalRegion = globalRegionId
             address = binding.edittextLocation1.text.toString()
             detailAddress = binding.edittextLocation2.text.toString()
             deliveryRegion = binding.edittextDeliverAbleArea.text.toString()
@@ -396,7 +397,7 @@ class StoreEditFragment : Fragment() {
         }
         try {
 
-            API.postStore(tokenManager.getAccessToken().toString(), PostStoreDtoRequestModel(name,minOrderAmount,description,countryPhoneCode,phoneNum,globalRegionId,address,detailAddress,deliveryRegion,operationTime,foodChangeYn, koreanYn),imagesParts).enqueue(
+            API.postStore(tokenManager.getAccessToken().toString(), PostStoreDtoRequestModel(name,minOrderAmount,description,countryPhoneCode,phoneNum,globalRegion,address,detailAddress,deliveryRegion,operationTime,foodChangeYn, koreanYn),imagesParts).enqueue(
                 object : Callback<PostStoreResponseModel> {
 
                     override fun onResponse(call: Call<PostStoreResponseModel>, response: Response<PostStoreResponseModel>) {

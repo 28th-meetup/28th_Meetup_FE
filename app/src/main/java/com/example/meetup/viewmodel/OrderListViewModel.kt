@@ -2,6 +2,7 @@ package com.example.meetup.viewmodel
 
 import android.content.Context
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -45,7 +46,12 @@ class OrderListViewModel :ViewModel() {
                         override fun onResponse(call: Call<GetOrderListResponseModel>, response: Response<GetOrderListResponseModel>) {
                             if (response.isSuccessful) {
 
-                                _orderList.value = response.body()
+                                if(response.body()?.result?.size==0){
+                                    Toast.makeText(context,"order list 가 없습니다",Toast.LENGTH_SHORT).show()
+                                } else {
+                                    _orderList.value = response.body()
+
+                                }
 
 
                                 Log.d("_orderList : " , " success , ${_orderList.value}")

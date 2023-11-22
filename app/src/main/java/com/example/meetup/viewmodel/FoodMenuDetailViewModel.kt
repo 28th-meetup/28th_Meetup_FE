@@ -8,6 +8,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.meetup.R
 import com.example.meetup.fragment.MenuFragment
+import com.example.meetup.fragment.StoreDetailNoticeFragment
 import com.example.meetup.model.FoodIdResponseModel
 import com.example.meetup.model.FoodIdResult
 import com.example.meetup.model.FoodOptionResponseList
@@ -76,6 +77,9 @@ class FoodMenuDetailViewModel : ViewModel() {
                     tempList.add(food)
 
                     foodMenuInfoList.value = tempList
+
+
+
 
                     Log.d("밋업", "${foodMenuInfoList.value}")
 
