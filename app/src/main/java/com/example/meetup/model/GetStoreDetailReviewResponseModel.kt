@@ -15,7 +15,7 @@ data class GetStoreDetailReviewResponseModelResult(
 data class ReviewList(
     val id: Long,
     val orderId: Long,
-    val rating: Long,
+    val rating: Double,
     val message: String,
     val image: String,
 )

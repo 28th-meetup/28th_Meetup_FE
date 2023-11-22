@@ -62,7 +62,7 @@
             android:layout_marginTop="22.83dp"
             android:layout_marginBottom="22.83dp"
             android:fontFamily="@font/pretendard_regular"
-            android:text="가게 등록"
+            android:text="가게 정보"
             android:textColor="@color/black"
             android:textSize="18.27sp"
             app:layout_constraintBottom_toBottomOf="parent"

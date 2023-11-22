@@ -54,8 +54,8 @@ class OrderListAdapter(
         var orderListPrice : TextView = view.findViewById(R.id.textview_order_price)
         var textview_order_list_menu_1 : TextView = view.findViewById(R.id.textview_order_list_menu_1)
         var textview_order_list_menu_1_count : TextView = view.findViewById(R.id.textview_order_list_menu_1_count)
-        var textview_order_list_menu_2 : TextView = view.findViewById(R.id.textview_order_list_menu_2)
-        var textview_order_list_menu_2_count : TextView = view.findViewById(R.id.textview_order_list_menu_2_count)
+//        var textview_order_list_menu_2 : TextView = view.findViewById(R.id.textview_order_list_menu_2)
+//        var textview_order_list_menu_2_count : TextView = view.findViewById(R.id.textview_order_list_menu_2_count)
 
 
         var btn_write_review : MaterialCardView = view.findViewById(R.id.btn_write_review)
@@ -71,8 +71,8 @@ class OrderListAdapter(
             orderListPrice.text = item.totalPrice.toString()
             textview_order_list_menu_1.text = item.orderFoodDetailList[0].foodName
             textview_order_list_menu_1_count.text = item.orderFoodDetailList[0].orderCount.toString()
-            textview_order_list_menu_2.text = item.orderFoodDetailList[1].foodName
-            textview_order_list_menu_2_count.text = item.orderFoodDetailList[1].orderCount.toString()
+//            textview_order_list_menu_2.text = item.orderFoodDetailList[1].foodName
+//            textview_order_list_menu_2_count.text = item.orderFoodDetailList[1].orderCount.toString()
 
         }
     }
