@@ -42,7 +42,9 @@ class MenuEditFragment : Fragment() {
 
         menuListAdapter = MenuListAdapter(ArrayList(),
             itemClickListener1 = {},
-            itemClickListener2 = {})
+            itemClickListener2 = {
+
+            })
 
         binding.recyclerviewMenuList.adapter = menuListAdapter
 
@@ -55,7 +57,12 @@ binding.recyclerviewMenuList.layoutManager = LinearLayoutManager(requireContext(
 
             menuListAdapter = MenuListAdapter(it.result,
                 itemClickListener1 = {},
-                itemClickListener2 = {})
+                itemClickListener2 = {
+//                    viewModel.storeDetailMenuList.value!!.result.removeAt(it)
+//                    Log.d("itemClickListener2",it.toString())
+
+
+                })
 
             binding.recyclerviewMenuList.adapter = menuListAdapter
 

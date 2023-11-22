@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.meetup.model.GetStoreDetailMenuInfoResponseModel
 import com.example.meetup.model.MenuListResponseModel
 import com.example.meetup.model.store.GetStoreDetailResponseModel
 import com.example.meetup.model.store.GetStoreListResponseModel

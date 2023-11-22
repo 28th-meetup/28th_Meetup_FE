@@ -1,12 +1,14 @@
 package com.example.meetup.model.chatting
 
+import com.google.gson.annotations.SerializedName
 import kotlinx.serialization.Serializable
 
 @Serializable
 data class ChattingDataModel (
-    var senderName : String,
-    var roomId : String,
-    var message  :String,
-    var sendTime : String
+    @SerializedName("senderName") var senderName : String,
+    @SerializedName("roomId") var roomId : String,
+    @SerializedName("message") var message  :String,
+    @SerializedName("isTypeOne") var isTypeOne  :Boolean,
+
 
 )

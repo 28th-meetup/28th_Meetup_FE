@@ -7,6 +7,9 @@ import com.example.meetup.model.CategoryIdResponseModel
 import com.example.meetup.model.GetHeartListResponseModel
 import com.example.meetup.model.FoodIdResponseModel
 import com.example.meetup.model.FoodOptionResponseList
+import com.example.meetup.model.GetOrderListResponseModel
+import com.example.meetup.model.GetStoreDetailMenuInfoResponseModel
+import com.example.meetup.model.GetStoreDetailReviewResponseModel
 import com.example.meetup.model.HomeResponseModel
 import com.example.meetup.model.MenuAddRequestModelDto
 import com.example.meetup.model.MenuListResponseModel
@@ -15,6 +18,9 @@ import com.example.meetup.model.OrderFoodResponseModel
 import com.example.meetup.model.MessageRequestDto
 import com.example.meetup.model.MypageResponseModel
 import com.example.meetup.model.PostKaKaoTokenResponseModel
+import com.example.meetup.model.PostReivewRequestModel
+import com.example.meetup.model.PostReviewResponseModel
+import com.example.meetup.model.PostReviewResponseModelResult
 import com.example.meetup.model.PostReviewWriteResponseModel
 import com.example.meetup.model.PostStoreResponseModel
 import com.example.meetup.model.RenewAccessTokenResponseModel
@@ -250,4 +256,36 @@ interface APIS {
     fun getMypageData(
         @Header("Authorization") Authorization: String
     ) : Call<MypageResponseModel>
+
+    //가게 상세 정보
+    @GET("store/info/{storeId}")
+    fun getStoreDetailMenu(
+        @Header("Authorization") Authorization: String,
+        @Path("storeId") storeId : Int
+        ) : Call<GetStoreDetailMenuInfoResponseModel>
+
+    //주문 목록
+    @GET("order/history")
+    fun getOrderList(
+        @Header("Authorization") Authorization: String,
+        ) : Call<GetOrderListResponseModel>
+
+    //리뷰 작성
+    @Multipart
+    @POST("review")
+    fun postReview(
+        @Header("Authorization") Authorization: String,
+        @Part("dto") dto : PostReivewRequestModel,
+        @Part image : MultipartBody.Part
+
+        ) : Call<PostReviewResponseModel>
+
+    //가게 상세 리뷰
+    @GET("review/{storeId}")
+    fun getStoreDetailReview(
+        @Header("Authorization") Authorization: String,
+
+        @Path("storeId") storeId : Int
+
+    ) : Call<GetStoreDetailReviewResponseModel>
 }
