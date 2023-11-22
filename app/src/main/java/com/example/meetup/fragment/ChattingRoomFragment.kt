@@ -68,12 +68,15 @@ class ChattingRoomFragment : Fragment() {
 //        var senderName = intent.getStringExtra("senderName")
 //
 //        Log.d("roomId", "$roomId")
+        MyApplication.preferences.setString("senderName", "신승균")
 
 
         var roomId = MyApplication.preferences.getString("roomId", "")
         var senderName = MyApplication.preferences.getString("senderName", "")
 
 
+        Log.d("roomId real", roomId)
+        Log.d("roomId real", senderName)
         stompClient = Stomp.over(Stomp.ConnectionProvider.OKHTTP, "ws://3.39.37.33:8080/ws-stomp")
         stompClient.connect()
 

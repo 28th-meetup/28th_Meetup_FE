@@ -29,7 +29,9 @@ class MypageSellerOrderManageFragment : Fragment() {
                 transaction.replace(R.id.frameArea, orderFragment)
                 transaction.addToBackStack("")
                 transaction.commit()
+
             }
+
             btnKoreanCheck.setOnClickListener{
                 val certificationFragment = CertificationFragment()
 

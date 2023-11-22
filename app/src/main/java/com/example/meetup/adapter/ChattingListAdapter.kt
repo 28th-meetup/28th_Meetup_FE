@@ -15,13 +15,6 @@ class ChattingListAdapter(
 ) :
     RecyclerView.Adapter<ChattingListAdapter.ViewHolder>() {
 
-//    var filtered = ArrayList<ChattingListResponseModel>()
-//    var itemFilter = ItemFilter()
-
-//    init {
-//        filtered.addAll(chattingList)
-//    }
-
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -71,47 +64,5 @@ class ChattingListAdapter(
 
         }
     }
-
-//    override fun getFilter(): Filter {
-//
-//        return itemFilter
-//    }
-
-//    inner class ItemFilter : Filter() {
-//        override fun performFiltering(p0: CharSequence?): FilterResults {
-//            val filterString = p0.toString()
-//            val results = FilterResults()
-//            //검색이 필요없을 경우를 위해 원본 배열을 복제
-//
-//            val filterList: ArrayList<ChattingListResponseModel> =
-//                ArrayList<ChattingListResponseModel>()
-//            //공백제외 아무런 값이 없을 경우 -> 원본 배열
-//
-//            if (filterString.trim { it <= ' ' }.isEmpty()) {
-//                results.values = chattingList
-//                results.count = chattingList.size
-//
-//                return results
-//            } else {
-//                for (a in chattingList) {
-//                    if (a.textview_chatting_name.contains(filterString)) {
-//                        filterList.add(a)
-//                    }
-//                }
-//            }
-//
-//            results.values = filterList
-//            results.count = filterList.size
-//
-//            return results
-//        }
-
-//        override fun publishResults(p0: CharSequence?, p1: FilterResults?) {
-//            filtered.clear()
-//            filtered.addAll(p1?.values as ArrayList<ChattingListResponseModel>)
-//            notifyDataSetChanged()
-//        }
-
-//    }
 
 }
