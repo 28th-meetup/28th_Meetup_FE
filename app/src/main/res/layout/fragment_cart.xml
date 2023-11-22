@@ -22,7 +22,7 @@
 
 
     <androidx.core.widget.NestedScrollView
-        android:id="@+id/scrollView2"
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout10"
@@ -96,6 +96,45 @@
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
+
+    <LinearLayout
+        android:id="@+id/layout_no_cart_list"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout10"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="80dp"
+            android:fontFamily="@font/pretendard_bold"
+            android:text="장바구니가 비었어요"
+            android:textColor="@color/black"
+            android:textSize="25.12sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="11dp"
+            android:fontFamily="@font/pretendard_regular"
+            android:gravity="center"
+            android:text="마음에 드는 상품을\n담아 주세요!"
+            android:textColor="@color/gray3"
+            android:textSize="18.27sp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="46.99dp"
+            android:layout_gravity="center"
+            android:src="@drawable/img_cart" />
+    </LinearLayout>
 
     <com.google.android.material.divider.MaterialDivider
         android:id="@+id/divider3"

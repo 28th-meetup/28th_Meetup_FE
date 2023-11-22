@@ -93,6 +93,8 @@ class MyPageSellerFragment : BaseFragment<FragmentMyPageSellerBinding>(R.layout.
 
         //구매자 모드 전환
         binding.btnChangeSeller.setOnClickListener {
+            MyApplication.mypageSeller = false
+            Log.d("밋업", "mypage : ${MyApplication.mypageSeller}")
             val myPageFragment = MyPageFragment()
             fragmentManager?.beginTransaction()?.apply {
                 replace(R.id.frameArea, myPageFragment)
@@ -151,12 +153,15 @@ class MyPageSellerFragment : BaseFragment<FragmentMyPageSellerBinding>(R.layout.
                     var result: MyStoreIdResponseModel? = response.body()
                     Log.d("##", "onResponse 성공: " + result?.toString())
 
+                    binding.textviewStoreName.text = result?.result!!.name
+
                 } else {
                     // 통신이 실패한 경우(응답코드 3xx, 4xx 등)
                     Log.d("##", "onResponse 실패: " + response.code())
                     Log.d("##", "onResponse 실패: " + response.body())
 
                     if (response.code() == 400) {
+                        binding.textviewStoreName.text = ""
                         val dialog = StoreEnrollDialogFragment(homeActivity.manager)
                         // 알림창이 띄워져있는 동안 배경 클릭 막기
                         dialog.isCancelable = false

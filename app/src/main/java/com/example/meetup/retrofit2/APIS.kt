@@ -35,6 +35,7 @@ import com.example.meetup.model.SellerOrderHistoryResponseModel
 import com.example.meetup.model.store.PostStoreDtoRequestModel
 import com.example.meetup.model.SignInResponseModel
 import com.example.meetup.model.SignUpResponseModel
+import com.example.meetup.model.StoreManageResponseModel
 import com.example.meetup.model.chatting.ChatListResponseModel
 import com.example.meetup.model.chatting.ChatListResult
 import com.example.meetup.model.chatting.PostChatRoomResponseModel
@@ -315,4 +316,10 @@ interface APIS {
         @Path("roomId") roomId : String
 
         ) : Call<GetChattingMessage>
+
+    //판매자 - 마이페이지 주문관리 데이터 조회
+    @GET("store/manage")
+    fun getStoreManageData(
+        @Header("Authorization") Authorization: String,
+    ) : Call<StoreManageResponseModel>
 }

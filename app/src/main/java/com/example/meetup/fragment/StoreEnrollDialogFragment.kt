@@ -18,6 +18,7 @@ import com.example.meetup.databinding.ActivityHomeBinding
 import com.example.meetup.databinding.DialogEnrollStoreBinding
 import com.example.meetup.databinding.FragmentStoreEnrollDialogBinding
 import com.example.meetup.dialog.EnrollStoreDialogInterface
+import com.example.meetup.sharedPreference.MyApplication
 import com.google.android.material.card.MaterialCardView
 
 
@@ -45,6 +46,15 @@ class StoreEnrollDialogFragment(var manager: FragmentManager) : DialogFragment()
 
         binding.btnBack.setOnClickListener {
             dismiss()
+
+            MyApplication.mypageSeller = false
+
+            val myPageFragment = MyPageFragment()
+
+            val transaction = manager.beginTransaction()
+            transaction.replace(R.id.frameArea, myPageFragment)
+            transaction.addToBackStack("")
+            transaction.commit()
         }
 
         // 확인 버튼 클릭

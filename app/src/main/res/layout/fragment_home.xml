@@ -17,7 +17,7 @@
         android:fontFamily="@font/pretendard_semi_bold"
         android:text="내가 설정한 주소"
         android:textColor="@color/black"
-        android:textSize="22sp"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -178,7 +178,7 @@
                     android:layout_marginTop="13.7dp"
                     android:fontFamily="@font/pretendard_light"
                     android:text="문의 | email\ncopyright 2023 Jipbapdochak. All right reserved"
-                    android:textSize="15.98sp" />
+                    android:textSize="14sp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -193,7 +193,7 @@
                         android:layout_weight="1"
                         android:fontFamily="@font/pretendard_semi_bold"
                         android:text="사업자 정보"
-                        android:textSize="13.7dp" />
+                        android:textSize="12sp" />
 
                     <TextView
                         android:id="@+id/textview2"
@@ -202,7 +202,7 @@
                         android:layout_weight="1"
                         android:fontFamily="@font/pretendard_regular"
                         android:text="이용약관"
-                        android:textSize="13.7dp" />
+                        android:textSize="12sp" />
 
                     <TextView
                         android:id="@+id/textview3"
@@ -211,7 +211,7 @@
                         android:layout_weight="1"
                         android:fontFamily="@font/pretendard_regular"
                         android:text="개인정보처리방침"
-                        android:textSize="13.7dp" />
+                        android:textSize="12sp" />
 
                     <TextView
                         android:id="@+id/textview4"
@@ -220,7 +220,7 @@
                         android:layout_weight="1"
                         android:fontFamily="@font/pretendard_regular"
                         android:text="전자금융거래이용약관"
-                        android:textSize="13.7dp" />
+                        android:textSize="12sp" />
                 </LinearLayout>
 
             </LinearLayout>

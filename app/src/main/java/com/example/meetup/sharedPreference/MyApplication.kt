@@ -22,6 +22,8 @@ class MyApplication : Application() {
 
         var regionId = 0
 
+        var mypageSeller = false
+
         var address = AddressesRequestModel(0, 0, "", "", "", "")
 
         var cartItem = mutableListOf<CartFood>()

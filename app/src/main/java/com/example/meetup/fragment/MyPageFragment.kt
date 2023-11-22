@@ -63,12 +63,7 @@ class MyPageFragment : Fragment() {
                 commit()
             }
         }
-        binding.btnChangeSeller.setOnClickListener {
-            val storeEnrollDialogFragment = StoreEnrollDialogFragment(homeActivity.manager)
 
-            storeEnrollDialogFragment.show(requireFragmentManager(), "StoreEnrollDialogFragment")
-
-        }
         binding.imageviewCart.setOnClickListener {
             val cartFragment = CartFragment()
             fragmentManager?.beginTransaction()?.apply {
@@ -96,6 +91,8 @@ class MyPageFragment : Fragment() {
         }
 
         binding.btnChangeSeller.setOnClickListener {
+            MyApplication.mypageSeller = true
+            Log.d("밋업", "mypage : ${MyApplication.mypageSeller}")
             val myPageSellerFragment = MyPageSellerFragment()
             fragmentManager?.beginTransaction()?.apply {
                 replace(R.id.frameArea, myPageSellerFragment)
