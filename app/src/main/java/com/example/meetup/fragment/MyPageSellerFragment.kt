@@ -56,6 +56,8 @@ class MyPageSellerFragment : BaseFragment<FragmentMyPageSellerBinding>(R.layout.
             userName.observe(homeActivity) {
                 Log.d("밋업", "viewModel : ${it.toString()}")
                 binding.textviewMyName.text = it.toString()
+
+                MyApplication.preferences.setString("senderNameMine",binding.textviewMyName.text.toString())
             }
         }
         viewModel.getMypageData(homeActivity)

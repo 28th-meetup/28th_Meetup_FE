@@ -68,15 +68,16 @@ class ChattingRoomFragment : Fragment() {
 //        var senderName = intent.getStringExtra("senderName")
 //
 //        Log.d("roomId", "$roomId")
-        MyApplication.preferences.setString("senderNametest", "신승균")
 
 
         var roomId = MyApplication.preferences.getString("roomId", "")
         var senderName = MyApplication.preferences.getString("senderName", "")
 
+        var senderNameMine =  MyApplication.preferences.getString("senderNameMine","")
 
         Log.d("roomId real", roomId)
-        Log.d("roomId real", senderName)
+        Log.d("senderName ", senderName)
+        Log.d("senderNameMine ", senderNameMine)
         stompClient = Stomp.over(Stomp.ConnectionProvider.OKHTTP, "ws://3.39.37.33:8080/ws-stomp")
         stompClient.connect()
 
@@ -101,7 +102,7 @@ class ChattingRoomFragment : Fragment() {
                 Log.d(" received chatResponse", chatResponse.toString())
 
 
-                if (chatResponse.senderName == MyApplication.preferences.getString("senderNametest","")) {
+                if (chatResponse.senderName ==senderNameMine) {
                     Log.d(" chatResponse sendername", "Same!")
 
                 } else {

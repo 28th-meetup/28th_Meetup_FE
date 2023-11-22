@@ -299,6 +299,7 @@ interface APIS {
         @Header("Authorization") Authorization: String,
     ) : Call<MyStoreIdResponseModel>
 
+    //채팅 진입
     @GET("chat/room/{roomId}")
     fun getChatRoom(
         @Header("Authorization") Authorization: String,
@@ -306,4 +307,5 @@ interface APIS {
 
         ) : Call<GetChatRoom>
 
+    //
 }
