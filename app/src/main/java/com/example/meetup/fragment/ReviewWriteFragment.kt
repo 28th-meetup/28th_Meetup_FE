@@ -227,7 +227,11 @@ class ReviewWriteFragment :
                                 override fun onResponse(call: Call<PostReviewResponseModel>, response: Response<PostReviewResponseModel>) {
                                     if (response.isSuccessful) {
 
-
+                                        val homeFragment = HomeFragment()
+                                        fragmentManager?.beginTransaction()?.apply {
+                                            replace(R.id.frameArea, homeFragment)
+                                            commit()
+                                        }
 
                                         Log.d("PostReviewResponseModel : " , " success , ${response.body().toString()}")
                                     } else {
