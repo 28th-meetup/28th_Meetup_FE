@@ -228,7 +228,7 @@
                         android:layout_marginTop="11.42dp"
                         android:background="@drawable/text_login_background"
                         android:fontFamily="@font/pretendard_regular"
-                        android:hint="010-0000-0000"
+                        android:hint="연락처를 입력해주세요"
                         android:inputType="text|textPersonName"
                         android:paddingHorizontal="22.83dp"
                         android:paddingVertical="11.42dp"

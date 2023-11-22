@@ -63,7 +63,8 @@
 
         <androidx.cardview.widget.CardView
             android:layout_marginLeft="22.83dp"
-            android:layout_width="313dp"
+            android:layout_width="wrap_content"
+            android:layout_weight="1"
             android:layout_height="48dp"
             app:cardCornerRadius="11.42dp"
             android:backgroundTint="@color/gray_blue2"
@@ -79,10 +80,12 @@
 
 
         </androidx.cardview.widget.CardView>
+
         <ImageView
             android:id="@+id/imageview_send_chatting"
             android:layout_width="45dp"
             android:layout_height="45dp"
+            android:layout_marginRight="22.83dp"
             android:layout_gravity="center"
             android:layout_marginLeft="15.56dp"
             android:src="@drawable/ic_navigate_circle"/>

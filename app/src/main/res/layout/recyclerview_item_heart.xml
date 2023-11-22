@@ -5,7 +5,7 @@
     android:layout_height="wrap_content">
 
 
-    <ImageView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/imageview_heart_list"
         android:layout_width="85.62dp"
         android:layout_height="85.62dp"
@@ -14,6 +14,7 @@
         android:layout_marginBottom="11.42dp"
         android:scaleType="fitXY"
         android:background="@color/gray_blue2"
+        app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Medium"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

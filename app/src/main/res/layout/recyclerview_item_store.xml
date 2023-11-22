@@ -2,17 +2,15 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginLeft="22.83dp"
     android:layout_marginBottom="22dp"
     android:background="@drawable/store_list_border"
     android:elevation="5dp"
     android:gravity="center">
 
     <LinearLayout
-
-        android:layout_width="365.33dp"
+        android:layout_width="0dp"
         android:layout_height="238.52dp"
         android:layout_gravity="center"
         android:background="@drawable/store_list_border"
@@ -27,11 +25,13 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <ImageView
+            <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/imageview_1"
-                android:layout_width="272.86dp"
+                android:layout_width="270dp"
                 android:layout_height="160.98dp"
+                android:layout_weight="1"
                 android:background="@drawable/store_list_border_left_top"
+                app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Medium"
                 android:scaleType="fitXY"
                 android:src="@drawable/ic_mountain" />
 
@@ -41,28 +41,30 @@
                 android:orientation="vertical"
                 android:paddingLeft="1.14dp">
 
-                <ImageView
+                <com.google.android.material.imageview.ShapeableImageView
                     android:id="@+id/imageview_2"
-                    android:layout_width="91.33dp"
+                    android:layout_width="90dp"
                     android:layout_height="79.92dp"
                     android:background="@drawable/store_list_border_right_top"
+                    app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Medium"
                     android:scaleType="fitXY"
                     android:src="@drawable/ic_mountain" />
 
-                <ImageView
+                <com.google.android.material.imageview.ShapeableImageView
                     android:id="@+id/imageview_3"
-                    android:layout_width="91.33dp"
+                    android:layout_width="90dp"
                     android:layout_height="79.92dp"
                     android:layout_marginTop="1.14dp"
-
+                    app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Medium"
                     android:scaleType="fitXY"
                     android:src="@drawable/ic_mountain" />
             </LinearLayout>
         </LinearLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20dp">
 
             <TextView
                 android:id="@+id/textview_store_name"
