@@ -13,14 +13,23 @@ import com.example.meetup.activity.HomeActivity
 import com.example.meetup.base.BaseFragment
 import com.example.meetup.databinding.FragmentMyPageBinding
 import com.example.meetup.databinding.FragmentMyPageSellerBinding
+import com.example.meetup.model.MyStoreIdResponseModel
+import com.example.meetup.retrofit2.RetrofitInstance
 import com.example.meetup.sharedPreference.MyApplication
+import com.example.meetup.sharedPreference.TokenManager
 import com.example.meetup.viewmodel.MypageViewModel
+import com.google.android.material.snackbar.Snackbar
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class MyPageSellerFragment : BaseFragment<FragmentMyPageSellerBinding>(R.layout.fragment_my_page_seller) {
 
     lateinit var homeActivity: HomeActivity
     lateinit var viewModel: MypageViewModel
+
+    private val APIS = RetrofitInstance.retrofitInstance().create(com.example.meetup.retrofit2.APIS::class.java)
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,6 +59,8 @@ class MyPageSellerFragment : BaseFragment<FragmentMyPageSellerBinding>(R.layout.
             }
         }
         viewModel.getMypageData(homeActivity)
+
+        checkStore()
 
         val mypageSellerStoreManageFragment = MypageSellerStoreManageFragment()
         fragmentManager?.beginTransaction()?.apply {
@@ -123,4 +134,39 @@ class MyPageSellerFragment : BaseFragment<FragmentMyPageSellerBinding>(R.layout.
     }
 
 
+    fun checkStore() {
+
+        var tokenManager = TokenManager(homeActivity)
+
+        APIS.getMyStoreId(tokenManager.getAccessToken().toString()).enqueue(object :
+            Callback<MyStoreIdResponseModel> {
+            override fun onResponse(
+                call: Call<MyStoreIdResponseModel>,
+                response: Response<MyStoreIdResponseModel>
+            ) {
+                if (response.isSuccessful) {
+                    // 정상적으로 통신이 성공된 경우
+                    var result: MyStoreIdResponseModel? = response.body()
+                    Log.d("##", "onResponse 성공: " + result?.toString())
+
+                } else {
+                    // 통신이 실패한 경우(응답코드 3xx, 4xx 등)
+                    Log.d("##", "onResponse 실패: " + response.code())
+                    Log.d("##", "onResponse 실패: " + response.body())
+
+                    if (response.code() == 400) {
+                        val dialog = StoreEnrollDialogFragment(homeActivity.manager)
+                        // 알림창이 띄워져있는 동안 배경 클릭 막기
+                        dialog.isCancelable = false
+                        activity?.let { dialog.show(homeActivity.manager, "OrderDialog") }
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<MyStoreIdResponseModel>, t: Throwable) {
+                // 통신 실패
+                Log.d("##", "onFailure 에러: " + t.message.toString());
+            }
+        })
+    }
 }
