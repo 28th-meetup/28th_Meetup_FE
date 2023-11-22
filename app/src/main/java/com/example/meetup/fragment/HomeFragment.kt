@@ -96,7 +96,7 @@ class HomeFragment : Fragment() {
         }
 
         orderHistoryViewModel.run {
-            orderHistoryList.observe(homeActivity) {
+            orderHomeHistoryList.observe(homeActivity) {
                 orderHistory = it
 
                 if(orderHistory.size != 0) {

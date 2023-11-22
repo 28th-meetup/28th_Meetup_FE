@@ -74,6 +74,8 @@ class SearchStoreAdapter(var manager: FragmentManager, var activity: ViewModelSt
         init {
             binding.root.setOnClickListener {
                 // 가게 상세 정보 화면으로 이동
+                MyApplication.preferences.setString("storeId", storeList.get(adapterPosition).id.toString())
+
                 Handler().postDelayed({
                     viewModel.getStoreDetail(context!!, storeList.get(adapterPosition).id)
 
