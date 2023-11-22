@@ -9,6 +9,7 @@ import com.example.meetup.model.FoodIdResponseModel
 import com.example.meetup.model.FoodOptionResponseList
 import com.example.meetup.model.GetOrderListResponseModel
 import com.example.meetup.model.GetStoreDetailMenuInfoResponseModel
+import com.example.meetup.model.GetStoreDetailReviewResponseModel
 import com.example.meetup.model.HomeResponseModel
 import com.example.meetup.model.MenuAddRequestModelDto
 import com.example.meetup.model.MenuListResponseModel
@@ -264,4 +265,13 @@ interface APIS {
         @Part image : MultipartBody.Part
 
         ) : Call<PostReviewResponseModel>
+
+    //가게 상세 리뷰
+    @GET("review/{storeId}")
+    fun getStoreDetailReview(
+        @Header("Authorization") Authorization: String,
+
+        @Path("storeId") storeId : Int
+
+    ) : Call<GetStoreDetailReviewResponseModel>
 }

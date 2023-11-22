@@ -6,10 +6,14 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.meetup.R
+import com.example.meetup.model.GetStoreDetailReviewResponseModel
+import com.example.meetup.model.GetStoreDetailReviewResponseModelResult
+import com.example.meetup.model.ReviewList
 import com.example.meetup.model.review.ReviewListResponseModel
 
-class ReviewListAdapter (private var reviewList : ArrayList<ReviewListResponseModel>) :
+class ReviewListAdapter (private var reviewList : ArrayList<ReviewList>) :
     RecyclerView.Adapter<ReviewListAdapter.ViewHolder>() {
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -42,15 +46,15 @@ class ReviewListAdapter (private var reviewList : ArrayList<ReviewListResponseMo
         var textview_review_content : TextView = view.findViewById(R.id.textview_review_content)
         var textview_review_writer : TextView = view.findViewById(R.id.textview_review_writer)
         var textview_review_date : TextView = view.findViewById(R.id.textview_review_date)
-        fun bind(item: ReviewListResponseModel) {
+        fun bind(item: ReviewList) {
 
-//            Glide.with(itemView.context)
-//                .load(item.reviewImage)
-//                .into(imageview_review_image)
-            textview_option_menu.text = item.reviewMenuOptionName
-            textview_review_content.text = item.reviewContent
-            textview_review_writer.text = item.reviewWriter
-            textview_review_date.text = item.reviewDate
+            Glide.with(itemView.context)
+                .load(item.image)
+                .into(imageview_review_image)
+            textview_option_menu.text = item.orderId.toString()
+            textview_review_content.text = item.message
+            textview_review_writer.text = item.id.toString()
+//            textview_review_date.text = item.
 
 
             itemView.setOnClickListener {
