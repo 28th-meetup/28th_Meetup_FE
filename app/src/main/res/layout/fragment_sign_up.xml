@@ -155,40 +155,32 @@
                         android:textColor="@color/black"
                         android:textSize="15.98sp" />
 
-                    <LinearLayout
+                    <EditText
+                        android:id="@+id/edittext_nick_name"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal">
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="11.42dp"
+                        android:background="@drawable/text_login_background"
+                        android:fontFamily="@font/pretendard_regular"
+                        android:hint="사용하실 닉네임을 입력해주세요"
+                        android:inputType="text|textPersonName"
+                        android:paddingHorizontal="22.83dp"
+                        android:paddingVertical="11.42dp"
+                        android:textColor="@color/black"
+                        android:textColorHint="#6E7178"
+                        android:textSize="18.27sp" />
 
-                        <EditText
-                            android:id="@+id/edittext_nick_name"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="11.42dp"
-                            android:layout_marginBottom="11.42dp"
-                            android:background="@drawable/text_login_background"
-                            android:fontFamily="@font/pretendard_regular"
-                            android:hint="사용하실 닉네임을 입력해주세요"
-                            android:inputType="text|textPersonName"
-                            android:paddingHorizontal="22.83dp"
-                            android:paddingVertical="11.42dp"
-                            android:textColor="@color/black"
-                            android:textColorHint="#6E7178"
-                            android:textSize="18.27sp" />
-
-                        <Button
-                            android:id="@+id/button_check_nickname"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="11dp"
-                            android:layout_marginTop="11.42dp"
-                            android:layout_marginBottom="11.42dp"
-                            android:background="@drawable/button_check_nickname"
-                            android:fontFamily="@font/pretendard_medium"
-                            android:textSize="17sp"
-                            android:textColor="@color/black"
-                            android:text="중복 확인" />
-                    </LinearLayout>
+                    <Button
+                        android:id="@+id/button_check_nickname"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="11.42dp"
+                        android:layout_marginBottom="11.42dp"
+                        android:background="@drawable/button_check_nickname"
+                        android:fontFamily="@font/pretendard_medium"
+                        android:textSize="17sp"
+                        android:textColor="@color/black"
+                        android:text="중복 확인" />
 
                     <TextView
                         android:id="@+id/textview_nick_name_error"
