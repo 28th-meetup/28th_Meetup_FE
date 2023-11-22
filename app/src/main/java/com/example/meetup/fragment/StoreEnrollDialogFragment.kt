@@ -16,6 +16,7 @@ import com.example.meetup.R
 import com.example.meetup.activity.HomeActivity
 import com.example.meetup.databinding.ActivityHomeBinding
 import com.example.meetup.databinding.DialogEnrollStoreBinding
+import com.example.meetup.databinding.FragmentStoreEnrollDialogBinding
 import com.example.meetup.dialog.EnrollStoreDialogInterface
 import com.google.android.material.card.MaterialCardView
 
@@ -23,7 +24,7 @@ import com.google.android.material.card.MaterialCardView
 class StoreEnrollDialogFragment(var manager: FragmentManager) : DialogFragment() {
 
     // 뷰 바인딩 정의
-    private var _binding: DialogEnrollStoreBinding? = null
+    private var _binding: FragmentStoreEnrollDialogBinding? = null
     private val binding get() = _binding!!
 
     lateinit var homeActivity: HomeActivity
@@ -35,19 +36,19 @@ class StoreEnrollDialogFragment(var manager: FragmentManager) : DialogFragment()
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = DialogEnrollStoreBinding.inflate(inflater)
+        _binding = FragmentStoreEnrollDialogBinding.inflate(inflater)
         homeActivity = activity as HomeActivity
 
         dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT));
         dialog?.requestWindowFeature(Window.FEATURE_NO_TITLE)
 
 
-        binding.buttonBack.setOnClickListener {
+        binding.btnBack.setOnClickListener {
             dismiss()
         }
 
         // 확인 버튼 클릭
-        binding.buttonAddStore.setOnClickListener {
+        binding.btnEnroll.setOnClickListener {
             this.confirmDialogInterface?.onClickYesButton(id!!)
             dismiss()
 

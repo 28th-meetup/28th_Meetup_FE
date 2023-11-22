@@ -48,6 +48,7 @@
             android:textSize="25sp" />
 
         <com.google.android.material.card.MaterialCardView
+            android:id="@+id/btn_enroll"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -60,7 +61,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="88dp"
-
                 android:layout_marginTop="16dp"
                 android:layout_marginRight="88dp"
                 android:layout_marginBottom="16dp"
