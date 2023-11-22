@@ -6,13 +6,19 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import com.example.meetup.databinding.ActivityMainBinding
 import com.example.meetup.model.PostKaKaoTokenResponseModel
+import com.example.meetup.model.RenewAccessTokenResponseModel
+import com.example.meetup.model.SignInResponseModel
 import com.example.meetup.retrofit2.APIS
 import com.example.meetup.retrofit2.RetrofitInstance
 import com.example.meetup.sharedPreference.MyApplication
 import com.example.meetup.sharedPreference.PreferenceUtil
 import com.example.meetup.sharedPreference.TokenManager
+import com.example.meetup.viewmodel.HomeFoodViewModel
+import com.example.meetup.viewmodel.MypageViewModel
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.messaging.FirebaseMessaging
 import com.kakao.sdk.auth.model.OAuthToken
@@ -33,6 +39,8 @@ class MainActivity : AppCompatActivity() {
 
     lateinit var sharedPreferenceManager: PreferenceUtil
 
+    lateinit var viewModel: MypageViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -40,7 +48,10 @@ class MainActivity : AppCompatActivity() {
 
         authActivity = AuthActivity()
 
+        viewModel = ViewModelProvider(this)[MypageViewModel::class.java]
+
         setFCMToken()
+        viewModel.checkData(this)
 
         binding.run {
             // 이메일 로그인 버튼 클릭

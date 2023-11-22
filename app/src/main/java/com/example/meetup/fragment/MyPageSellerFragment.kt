@@ -2,21 +2,25 @@ package com.example.meetup.fragment
 
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
 import com.example.meetup.R
 import com.example.meetup.activity.HomeActivity
 import com.example.meetup.base.BaseFragment
 import com.example.meetup.databinding.FragmentMyPageBinding
 import com.example.meetup.databinding.FragmentMyPageSellerBinding
 import com.example.meetup.sharedPreference.MyApplication
+import com.example.meetup.viewmodel.MypageViewModel
 
 
 class MyPageSellerFragment : BaseFragment<FragmentMyPageSellerBinding>(R.layout.fragment_my_page_seller) {
 
     lateinit var homeActivity: HomeActivity
+    lateinit var viewModel: MypageViewModel
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,6 +41,15 @@ class MyPageSellerFragment : BaseFragment<FragmentMyPageSellerBinding>(R.layout.
 
         homeActivity = activity as HomeActivity
         homeActivity.hideBottomNavigation(false)
+
+        viewModel = ViewModelProvider(this)[MypageViewModel::class.java]
+        viewModel.run {
+            userName.observe(homeActivity) {
+                Log.d("밋업", "viewModel : ${it.toString()}")
+                binding.textviewMyName.text = it.toString()
+            }
+        }
+        viewModel.getMypageData(homeActivity)
 
         val mypageSellerStoreManageFragment = MypageSellerStoreManageFragment()
         fragmentManager?.beginTransaction()?.apply {
