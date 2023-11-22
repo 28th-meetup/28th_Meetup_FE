@@ -37,6 +37,9 @@ class HomeFragment : Fragment() {
     var topFoodList = mutableListOf<BestSellingFoodList>()
     var setFoodList = mutableListOf<RecentSetFoodList>()
 
+    var categoryNameList = listOf<String>()
+    var locationList = listOf<String>()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -44,6 +47,9 @@ class HomeFragment : Fragment() {
 
         binding = FragmentHomeBinding.inflate(layoutInflater)
         homeActivity = activity as HomeActivity
+
+        categoryNameList = homeActivity.resources!!.getStringArray(R.array.category_name).toList()
+        locationList = homeActivity.resources!!.getStringArray(R.array.location_array).toList()
 
         viewModel = ViewModelProvider(homeActivity)[HomeFoodViewModel::class.java]
         searchViewModel = ViewModelProvider(homeActivity)[SearchViewModel::class.java]
@@ -76,13 +82,12 @@ class HomeFragment : Fragment() {
             }
             regionId.observe(homeActivity) {
                 binding.run {
-                    var region = resources.getStringArray(R.array.location_array).get(it)
-                    textviewRegion.text = region
+                    textviewRegion.text = locationList.get(it)
                 }
             }
         }
 
-        viewModel.getHomeFoodInfo(requireContext())
+        viewModel.getHomeFoodInfo(homeActivity)
 
         initView()
 
@@ -120,8 +125,7 @@ class HomeFragment : Fragment() {
     fun initView() {
         binding.run {
             recyclerviewCategory.run {
-                var categoryNameList: Array<String> = requireContext()?.resources!!.getStringArray(R.array.category_name)
-                adapter = CategoryAdapter(categoryNameList, homeActivity.manager, homeActivity)
+                adapter = CategoryAdapter(categoryNameList.toTypedArray(), homeActivity.manager, homeActivity)
                 layoutManager = GridLayoutManager(requireContext(),5)
 
 //                addItemDecoration(CategoryAdapter.GridSpaceItemDecoration(5,20))
