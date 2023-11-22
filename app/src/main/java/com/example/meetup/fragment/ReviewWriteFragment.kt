@@ -238,6 +238,10 @@ class ReviewWriteFragment :
                                         Log.d("PostReviewResponseModel : " , " success , ${response.body().toString()}")
                                     } else {
 
+                                        if(response.code() == 400) {
+                                            Toast.makeText(homeActivity, "이미 작성된 리뷰입니다.", Toast.LENGTH_SHORT).show()
+                                        }
+
                                         Log.d("PostReviewResponseModel Response : ", "fail 1 ${response.body().toString()} , ${response.message()}, ${response.errorBody().toString()}")
                                     }
                                 }
