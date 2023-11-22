@@ -115,10 +115,11 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="11.42dp"
                     android:fontFamily="@font/pretendard_regular"
-                    android:text="캐나다 토론토 주소"
+                    android:text="주소"
                     android:textSize="16sp" />
 
                 <TextView
+                    android:id="@+id/textview_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="11.42dp"
@@ -127,6 +128,7 @@
                     android:textSize="16sp" />
 
                 <TextView
+                    android:id="@+id/textview_deliveryegion"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="11.42dp"
@@ -165,6 +167,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="22.83dp"
                 android:layout_marginTop="18.27dp"
+                android:fontFamily="@font/pretendard_regular"
+                android:textSize="16sp"
+                android:textColor="@color/black"
                 android:text="안녕하세요! 맛있는 김치를 만드는 OO가게 입니다.\n늘 신선하고 건강한 김치를 만들기 위해 최선을 다하는 \n가게가 되겠습니다."
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView3" />

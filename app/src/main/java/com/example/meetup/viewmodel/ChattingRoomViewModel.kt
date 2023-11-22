@@ -19,7 +19,7 @@ class ChattingRoomViewModel:ViewModel() {
 
 
     fun addData ( A :ArrayList<ChattingDataModel> ){
-        _chattingData.value = A
+        _chattingData.value= A
 
     }
 

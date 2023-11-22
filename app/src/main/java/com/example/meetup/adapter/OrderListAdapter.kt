@@ -6,13 +6,15 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.meetup.R
+import com.example.meetup.model.GetOrderListResponseModelResult
 import com.example.meetup.model.OrderListResponseModel
 import com.google.android.material.card.MaterialCardView
 
 
 class OrderListAdapter(
-    private var orderList: ArrayList<OrderListResponseModel>,
+    private var orderList: ArrayList<GetOrderListResponseModelResult>,
     private val itemClickListener: (Int) -> Unit
 ) : RecyclerView.Adapter<OrderListAdapter.ViewHolder>() {
 
@@ -50,15 +52,27 @@ class OrderListAdapter(
         var orderListImage : ImageView = view.findViewById(R.id.imageview_store)
         var orderListTime : TextView = view.findViewById(R.id.textview_time)
         var orderListPrice : TextView = view.findViewById(R.id.textview_order_price)
-        var orderListMenu : TextView = view.findViewById(R.id.textview_order_list_menu)
+        var textview_order_list_menu_1 : TextView = view.findViewById(R.id.textview_order_list_menu_1)
+        var textview_order_list_menu_1_count : TextView = view.findViewById(R.id.textview_order_list_menu_1_count)
+        var textview_order_list_menu_2 : TextView = view.findViewById(R.id.textview_order_list_menu_2)
+        var textview_order_list_menu_2_count : TextView = view.findViewById(R.id.textview_order_list_menu_2_count)
+
+
         var btn_write_review : MaterialCardView = view.findViewById(R.id.btn_write_review)
 
+        var textview_store_name : TextView = view.findViewById(R.id.textview_store_name)
 
-        fun bind(item: OrderListResponseModel) {
+        fun bind(item: GetOrderListResponseModelResult) {
 
-            orderListTime.text = item.orderListTime
-            orderListPrice.text = item.orderListPrice
-            orderListMenu.text = item.orderListMenu
+            Glide.with(itemView.context)
+                .load(item.storeImage)
+                .into(orderListImage)
+
+            orderListPrice.text = item.totalPrice.toString()
+            textview_order_list_menu_1.text = item.orderFoodDetailList[0].foodName
+            textview_order_list_menu_1_count.text = item.orderFoodDetailList[0].orderCount.toString()
+            textview_order_list_menu_2.text = item.orderFoodDetailList[1].foodName
+            textview_order_list_menu_2_count.text = item.orderFoodDetailList[1].orderCount.toString()
 
         }
     }

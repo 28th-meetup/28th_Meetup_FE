@@ -2,6 +2,8 @@
 <layout xmlns:app="http://schemas.android.com/apk/res-auto">
 
 <androidx.constraintlayout.widget.ConstraintLayout
+    android:background="#FFFFFF"
+
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -29,7 +31,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20.55dp"
             android:fontFamily="@font/pretendard_semi_bold"
-            android:text="채팅 모아보기"
+            android:text="채팅"
             android:textColor="@color/black"
             android:textSize="23sp"
             app:layout_constraintEnd_toEndOf="parent"
