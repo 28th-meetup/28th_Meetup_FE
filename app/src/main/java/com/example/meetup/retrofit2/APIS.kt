@@ -13,9 +13,11 @@ import com.example.meetup.model.MenuListResponseModel
 import com.example.meetup.model.MenuOptionResponseModel
 import com.example.meetup.model.OrderFoodResponseModel
 import com.example.meetup.model.MessageRequestDto
+import com.example.meetup.model.MypageResponseModel
 import com.example.meetup.model.PostKaKaoTokenResponseModel
 import com.example.meetup.model.PostReviewWriteResponseModel
 import com.example.meetup.model.PostStoreResponseModel
+import com.example.meetup.model.RenewAccessTokenResponseModel
 import com.example.meetup.model.SearchResponseModel
 import com.example.meetup.model.SellerOrderHistoryMenuResponseModel
 import com.example.meetup.model.SellerOrderHistoryResponseModel
@@ -242,4 +244,10 @@ interface APIS {
         @Query("field") field: String,
         @Query("direction") direction: String,
     ) : Call<SearchResponseModel>
+
+    // 마이페이지 데이터 받아오기
+    @GET("users/nickname")
+    fun getMypageData(
+        @Header("Authorization") Authorization: String
+    ) : Call<MypageResponseModel>
 }
