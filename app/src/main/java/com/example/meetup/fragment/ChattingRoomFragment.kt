@@ -98,13 +98,11 @@ class ChattingRoomFragment : Fragment() {
                 Log.d(" received chatResponse", chatResponse.toString())
 
 
-                if(chatResponse.senderName == senderName){
+                if (chatResponse.senderName == senderName) {
                     Log.d(" chatResponse sendername", "Same!")
 
-
-
                 } else {
-                chatArray.add(chatResponse)
+                    chatArray.add(chatResponse)
                     chattingAdapter = ChattingAdapter(chatArray)
 
                     binding.recyclerViewChatting.adapter = chattingAdapter
@@ -124,7 +122,6 @@ class ChattingRoomFragment : Fragment() {
                     throwable.printStackTrace()
                     // Add your custom error handling logic here
                 }
-
 
 
             ) {
@@ -169,16 +166,11 @@ class ChattingRoomFragment : Fragment() {
                     )
                 )
 
-
                 Log.d("chatArray", chatArray.toString())
-
-
-//                viewModel.addData(chatArray)
 
                 Log.d("SendData", sendData.toString())
 
                 Log.d("viewmodel SendData", viewModel.chattingData.value.toString())
-
 
                 stompClient.send("/pub/message", sendData.toString()).subscribe()
                 binding.edittextWriteChattingText.text.clear()
@@ -199,11 +191,11 @@ class ChattingRoomFragment : Fragment() {
 //        viewModel.chattingData.observe(viewLifecycleOwner) {
 
 
-            chattingAdapter = ChattingAdapter(chatArray)
+        chattingAdapter = ChattingAdapter(chatArray)
 
-            binding.recyclerViewChatting.adapter = chattingAdapter
+        binding.recyclerViewChatting.adapter = chattingAdapter
 
-            chattingAdapter.notifyDataSetChanged()
+        chattingAdapter.notifyDataSetChanged()
 //        }
 
 
