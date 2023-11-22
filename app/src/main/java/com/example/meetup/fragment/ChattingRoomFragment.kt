@@ -141,7 +141,6 @@ class ChattingRoomFragment : Fragment() {
 
 
 
-
         //-------------------------------------------------------------------------
 
         Log.d("roomId real", roomId)
@@ -167,9 +166,12 @@ class ChattingRoomFragment : Fragment() {
                 var chatResponse = Gson().fromJson(chat, ChattingDataModel::class.java)
 
                 Log.d(" received chatResponse", chatResponse.toString())
+                Log.d(" chatResponse sendername", "${chatResponse.senderName}")
 
 
-                if (chatResponse.senderName ==senderNameMine) {
+                if (chatResponse.senderName == senderNameMine) {
+                    Log.d(" chatResponse sendername", "${chatResponse.senderName}")
+
                     Log.d(" chatResponse sendername", "Same!")
 
                 } else {
@@ -197,7 +199,7 @@ class ChattingRoomFragment : Fragment() {
                 binding.recyclerViewChatting.adapter = chattingAdapter
 
 //                chattingAdapter.notifyDataSetChanged()
-                viewModel.addData(chatArray)
+//                viewModel.addData(chatArray)
 //                Log.d(" received viewModel", viewModel.chattingData.value.toString())
 
 
@@ -218,7 +220,7 @@ class ChattingRoomFragment : Fragment() {
 
             if (binding.edittextWriteChattingText.text.toString() != "") {
                 val sendData = JSONObject()
-                sendData.put("senderName", "${senderName}")
+                sendData.put("senderName", "${senderNameMine}")
                 sendData.put("roomId", "${roomId}")
                 sendData.put("message", binding.edittextWriteChattingText.text.toString())
 //            sendData.put("sendTime", "0")
@@ -226,7 +228,7 @@ class ChattingRoomFragment : Fragment() {
 
                 chatArray.add(
                     ChattingDataModel(
-                        "${senderName}",
+                        "${senderNameMine}",
                         "${roomId}",
                         binding.edittextWriteChattingText.text.toString(),
                         true
