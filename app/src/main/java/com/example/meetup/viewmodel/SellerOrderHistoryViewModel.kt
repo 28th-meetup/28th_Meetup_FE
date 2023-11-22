@@ -21,11 +21,13 @@ class SellerOrderHistoryViewModel : ViewModel() {
     private val APIS = RetrofitInstance.retrofitInstance().create(com.example.meetup.retrofit2.APIS::class.java)
 
     var orderHistoryList = MutableLiveData<MutableList<OrderPreviewResponseList>>()
+    var orderHomeHistoryList = MutableLiveData<MutableList<OrderPreviewResponseList>>()
     var orderCount = MutableLiveData<Long>()
 
 
     init {
         orderHistoryList.value = mutableListOf<OrderPreviewResponseList>()
+        orderHomeHistoryList.value = mutableListOf<OrderPreviewResponseList>()
     }
 
     fun getSellerOrderHistory(context: Context, orderStatus : String) {
@@ -117,7 +119,7 @@ class SellerOrderHistoryViewModel : ViewModel() {
                     Log.d("##", "onResponse 성공: " + result?.toString())
                     if(result?.result!!.orderPreviewResponseList.size == 0) {
                         orderCount.value = 0
-                        orderHistoryList.value = tempZeroList
+                        orderHomeHistoryList.value = tempZeroList
                     } else {
                         orderCount.value = result.result!!.orderCount
                         for (i in 0 until result.result!!.orderPreviewResponseList.size) {
@@ -145,9 +147,9 @@ class SellerOrderHistoryViewModel : ViewModel() {
                             tempPreviewList.add(orderHistory)
                         }
 
-                        orderHistoryList.value = tempPreviewList
+                        orderHomeHistoryList.value = tempPreviewList
 
-                        Log.d("밋업", "${orderHistoryList.value}")
+                        Log.d("밋업", "${orderHomeHistoryList.value}")
                     }
                 } else {
                     // 통신이 실패한 경우(응답코드 3xx, 4xx 등)
