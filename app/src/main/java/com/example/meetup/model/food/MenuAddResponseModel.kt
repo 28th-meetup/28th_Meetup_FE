@@ -12,8 +12,8 @@ data class MenuAddResponseModelResult(
     val storeId: Long,
     val categoryId: Long,
     val name: String,
-    val dollarPrice: Long,
-    val canadaPrice: Long,
+    val dollarPrice: Double,
+    val canadaPrice: Double,
     val description: String,
     val image: String,
 )

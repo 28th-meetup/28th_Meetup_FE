@@ -23,20 +23,21 @@
             android:id="@+id/button_filter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="22.83dp"
             android:layout_gravity="end"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="22.83dp"
             android:drawableRight="@drawable/ic_chevron_down"
             android:drawablePadding="2dp"
-            android:text="추천순"
             android:fontFamily="@font/pretendard_regular"
-            android:textSize="16sp"
-            android:textColor="@color/black" />
+            android:text="추천순"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="22.83dp" />
+            android:paddingHorizontal="10dp" />
 
 
     </LinearLayout>

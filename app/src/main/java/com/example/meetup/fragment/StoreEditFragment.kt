@@ -397,7 +397,7 @@ class StoreEditFragment : Fragment() {
         }
         try {
 
-            API.postStore(tokenManager.getAccessToken().toString(), PostStoreDtoRequestModel(name,minOrderAmount,description,countryPhoneCode,phoneNum,globalRegion,address,detailAddress,deliveryRegion,operationTime,foodChangeYn, koreanYn),imagesParts).enqueue(
+            API.postStore(tokenManager.getAccessToken().toString(), PostStoreDtoRequestModel(name,minOrderAmount.toDouble(),description,countryPhoneCode,phoneNum,globalRegion,address,detailAddress,deliveryRegion,operationTime,foodChangeYn, koreanYn),imagesParts).enqueue(
                 object : Callback<PostStoreResponseModel> {
 
                     override fun onResponse(call: Call<PostStoreResponseModel>, response: Response<PostStoreResponseModel>) {

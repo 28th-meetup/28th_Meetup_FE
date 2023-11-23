@@ -26,8 +26,8 @@ data class GetStoreListFoods(
     var storeId: Long,
     var categoryId: Long,
     var name: String,
-    var dollarPrice: Long,
-    var canadaPrice: Long,
+    var dollarPrice: Double,
+    var canadaPrice: Double,
     var description: String,
     var image: String
 )

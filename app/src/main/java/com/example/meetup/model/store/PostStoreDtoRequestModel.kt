@@ -2,7 +2,7 @@ package com.example.meetup.model.store
 
 data class PostStoreDtoRequestModel(
     val name: String,
-    val minOrderAmount: Long,
+    val minOrderAmount: Double,
     val description: String,
     val countryPhoneCode: String,
     val phoneNum: String,

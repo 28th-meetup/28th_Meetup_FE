@@ -455,6 +455,8 @@ class SignUpFragment : Fragment() {
 
                     Toast.makeText(authActivity, "사용 가능한 닉네임입니다.", Toast.LENGTH_LONG).show()
 
+                    binding.buttonCheckNickname.setBackgroundResource(R.drawable.button_radius)
+
                     checkClick()
 
                 } else {
