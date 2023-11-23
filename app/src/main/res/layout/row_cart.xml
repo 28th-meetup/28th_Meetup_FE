@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:paddingHorizontal="22.83dp"
+        android:paddingHorizontal="10dp"
         android:paddingTop="22.83dp"
         android:paddingBottom="13.7dp">
 
@@ -183,9 +183,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:fontFamily="@font/pretendard_semi_bold"
-            android:text="원"
+            android:text=""
             android:textAlignment="textEnd"
-            android:textColor="#1E1F23"
+            android:textColor="@color/main_color"
             android:textSize="20.55sp" />
     </LinearLayout>
 
