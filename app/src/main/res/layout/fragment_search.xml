@@ -25,7 +25,8 @@
         style="@style/SearchViewStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="22.83dp"
+        android:layout_marginVertical="15dp"
+        android:layout_marginHorizontal="22.83dp"
         android:iconifiedByDefault="false"
         android:queryBackground="@color/transparent"
         android:queryHint="메뉴 또는 가게 이름을 입력해주세요">
@@ -77,7 +78,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="22.83dp">
+                android:paddingHorizontal="22.83dp"
+                android:paddingTop="22.83dp">
 
                 <TextView
                     android:id="@+id/textview_search_food"
@@ -89,11 +91,13 @@
                     android:textColor="@color/black"
                     android:textSize="18.27sp" />
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerview_search_food"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
             </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerview_search_food"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="10dp" />
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

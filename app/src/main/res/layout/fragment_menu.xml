@@ -66,7 +66,7 @@
                     android:text=""
                     android:textAlignment="textEnd"
                     android:textColor="@color/main_color"
-                    android:textSize="17sp" />
+                    android:textSize="20sp" />
             </LinearLayout>
 
             <com.google.android.material.divider.MaterialDivider
