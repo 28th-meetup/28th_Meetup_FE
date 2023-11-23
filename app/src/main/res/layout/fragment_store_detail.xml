@@ -209,7 +209,7 @@
                 android:paddingBottom="9.4dp"
                 android:text="메뉴"
                 android:textColor="#000000"
-                android:textSize="18.27sp" />
+                android:textSize="15sp" />
 
             <TextView
                 android:id="@+id/btn_store_info"
@@ -223,7 +223,7 @@
                 android:paddingBottom="9.4dp"
                 android:text="가게정보"
                 android:textColor="#6E7178"
-                android:textSize="18.27sp" />
+                android:textSize="15sp" />
 
             <TextView
                 android:id="@+id/btn_notice"
@@ -237,7 +237,7 @@
                 android:paddingBottom="9.4dp"
                 android:text="공지사항"
                 android:textColor="#6E7178"
-                android:textSize="18.27sp" />
+                android:textSize="15sp" />
 
             <TextView
                 android:id="@+id/btn_review"
@@ -251,7 +251,7 @@
                 android:paddingBottom="9.4dp"
                 android:text="리뷰"
                 android:textColor="#6E7178"
-                android:textSize="18.27sp" />
+                android:textSize="15sp" />
 
         </LinearLayout>
 

@@ -17,7 +17,7 @@ data class GetOrderListResponseModelResult(
     val storeImage2: String,
     val storeImage3: String,
     val totalCount: Long,
-    val totalPrice: Long,
+    val totalPrice: Double,
     val selectedOption: String,
     val orderedAt: String,
     val status: String,
@@ -32,5 +32,5 @@ data class GetOrderListResponseModelOrderFoodDetailList(
     val foodOptionId: Long,
     val foodOptionName: String,
     val orderCount: Long,
-    val orderAmount: Long,
+    val orderAmount: Double,
 )

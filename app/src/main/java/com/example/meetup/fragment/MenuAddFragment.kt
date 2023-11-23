@@ -490,7 +490,7 @@ class MenuAddFragment : Fragment() {
                 binding.edittextMenuName.text.toString(),
                 binding.edittextPrice.text.toString().toDouble(),
                 0.0,
-                binding.edittextMenuExplain.toString(),
+                binding.edittextMenuExplain.text.toString(),
                 foodOptionRequestList,
                 foodPackage,
                 binding.edittextMenuIngredient.text.toString())
@@ -662,7 +662,7 @@ class MenuAddFragment : Fragment() {
         val imagePart1 =
             MultipartBody.Part.createFormData("image", file1.name, requestBody1)
         val imagePart2 =
-            MultipartBody.Part.createFormData("informationDescriptionImage", file2.name, requestBody2)
+            MultipartBody.Part.createFormData("informationImage", file2.name, requestBody2)
 
 
         Log.d("imagePart1", imagePart1.toString())

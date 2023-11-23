@@ -591,7 +591,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="112dp"
                         android:fontFamily="@font/pretendard_bold"
-                        android:text="1,000,000 원"
+                        android:text=""
                         android:textSize="16sp"
                         app:layout_constraintBottom_toBottomOf="@+id/textView18"
                         app:layout_constraintStart_toEndOf="@+id/textView18"
@@ -617,7 +617,6 @@
                         android:theme="@style/Theme.MaterialComponents.Light"
                         app:cardCornerRadius="6.85dp"
                         app:cardElevation="0dp"
-
                         app:layout_constraintBottom_toBottomOf="@+id/textview_add_option"
                         app:layout_constraintStart_toEndOf="@+id/textview_add_option"
                         app:layout_constraintTop_toTopOf="@+id/textview_add_option"
@@ -628,27 +627,18 @@
                             android:id="@+id/edittext_price_1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:inputType="number"
                             android:layout_marginLeft="22.83dp"
                             android:layout_marginTop="10.8dp"
                             android:layout_marginRight="66dp"
                             android:layout_marginBottom="10.8dp"
                             android:background="@color/transparent"
+                            android:inputType="number"
                             android:hint="3,000"
                             android:textColor="@color/black"
                             android:textSize="16sp" />
 
                     </com.google.android.material.card.MaterialCardView>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/pretendard_bold"
-                        android:text="원"
-                        android:textSize="16sp"
-                        app:layout_constraintBottom_toBottomOf="@+id/edittext_option_price"
-                        app:layout_constraintEnd_toEndOf="@+id/textView19"
-                        app:layout_constraintTop_toTopOf="@+id/edittext_option_price" />
 
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -784,7 +774,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="112dp"
                         android:fontFamily="@font/pretendard_bold"
-                        android:text="1,000,000 원"
+                        android:text=""
                         android:textSize="16sp"
                         app:layout_constraintBottom_toBottomOf="@+id/textView181"
                         app:layout_constraintStart_toEndOf="@+id/textView181"
@@ -833,16 +823,6 @@
                             android:textSize="16sp" />
 
                     </com.google.android.material.card.MaterialCardView>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/pretendard_bold"
-                        android:text="원"
-                        android:textSize="16sp"
-                        app:layout_constraintBottom_toBottomOf="@+id/edittext_option_price2"
-                        app:layout_constraintEnd_toEndOf="@+id/textView191"
-                        app:layout_constraintTop_toTopOf="@+id/edittext_option_price2" />
 
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -978,7 +958,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="112dp"
                         android:fontFamily="@font/pretendard_bold"
-                        android:text="1,000,000 원"
+                        android:text=""
                         android:textSize="16sp"
                         app:layout_constraintBottom_toBottomOf="@+id/textView183"
                         app:layout_constraintStart_toEndOf="@+id/textView183"
@@ -1005,6 +985,7 @@
                         app:cardCornerRadius="6.85dp"
                         app:cardElevation="0dp"
                         android:inputType="number"
+                        android:hint="3,000"
 
                         app:layout_constraintBottom_toBottomOf="@+id/textview_add_option3"
                         app:layout_constraintStart_toEndOf="@+id/textview_add_option3"
@@ -1027,15 +1008,6 @@
 
                     </com.google.android.material.card.MaterialCardView>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/pretendard_bold"
-                        android:text="원"
-                        android:textSize="16sp"
-                        app:layout_constraintBottom_toBottomOf="@+id/edittext_option_price3"
-                        app:layout_constraintEnd_toEndOf="@+id/textView193"
-                        app:layout_constraintTop_toTopOf="@+id/edittext_option_price3" />
 
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -1171,7 +1143,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="112dp"
                         android:fontFamily="@font/pretendard_bold"
-                        android:text="1,000,000 원"
+                        android:text=""
                         android:textSize="16sp"
                         app:layout_constraintBottom_toBottomOf="@+id/textView184"
                         app:layout_constraintStart_toEndOf="@+id/textView184"
@@ -1198,6 +1170,7 @@
                         app:cardCornerRadius="6.85dp"
                         app:cardElevation="0dp"
                         android:inputType="number"
+                        android:hint="3,000"
 
                         app:layout_constraintBottom_toBottomOf="@+id/textview_add_option4"
                         app:layout_constraintStart_toEndOf="@+id/textview_add_option4"
@@ -1214,21 +1187,11 @@
                             android:layout_marginRight="66dp"
                             android:layout_marginBottom="10.8dp"
                             android:background="@color/transparent"
-                            android:hint="3,000"
                             android:textColor="@color/black"
                             android:textSize="16sp" />
 
                     </com.google.android.material.card.MaterialCardView>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/pretendard_bold"
-                        android:text="원"
-                        android:textSize="16sp"
-                        app:layout_constraintBottom_toBottomOf="@+id/edittext_option_price4"
-                        app:layout_constraintEnd_toEndOf="@+id/textView194"
-                        app:layout_constraintTop_toTopOf="@+id/edittext_option_price4" />
 
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -1364,7 +1327,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="112dp"
                         android:fontFamily="@font/pretendard_bold"
-                        android:text="1,000,000 원"
+                        android:text=""
                         android:textSize="16sp"
                         app:layout_constraintBottom_toBottomOf="@+id/textView185"
                         app:layout_constraintStart_toEndOf="@+id/textView185"
@@ -1405,22 +1368,13 @@
                             android:layout_marginRight="66dp"
                             android:layout_marginBottom="10.8dp"
                             android:background="@color/transparent"
-                            android:hint="3,000"
                             android:inputType="number"
+                            android:hint="3,000"
+
                             android:textColor="@color/black"
                             android:textSize="16sp" />
 
                     </com.google.android.material.card.MaterialCardView>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/pretendard_bold"
-                        android:text="원"
-                        android:textSize="16sp"
-                        app:layout_constraintBottom_toBottomOf="@+id/edittext_option_price5"
-                        app:layout_constraintEnd_toEndOf="@+id/textView195"
-                        app:layout_constraintTop_toTopOf="@+id/edittext_option_price5" />
 
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
