@@ -59,13 +59,13 @@ class OrderRequestDialogFragment(var activity: ViewModelStoreOwner, var orderHis
         }
 
         binding.buttonAccepted.setOnClickListener {
-            acceptOrder()
             viewModel.clearList()
+            acceptOrder()
         }
 
         binding.buttonRejected.setOnClickListener {
-            cancelOrder()
             viewModel.clearList()
+            cancelOrder()
         }
 
         return binding.root

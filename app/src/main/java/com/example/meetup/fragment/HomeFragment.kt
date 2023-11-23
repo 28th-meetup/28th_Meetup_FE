@@ -102,7 +102,7 @@ class HomeFragment : Fragment() {
                 if(orderHistory.size != 0) {
                     val dialog = OrderRequestDialogFragment(homeActivity, orderHistory)
                     // 알림창이 띄워져있는 동안 배경 클릭 막기
-                    dialog.isCancelable = false
+//                    dialog.isCancelable = false
                     activity?.let { dialog.show(homeActivity.manager, "OrderDialog") }
                 }
             }
