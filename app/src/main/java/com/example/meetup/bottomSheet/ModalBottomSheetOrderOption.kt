@@ -159,7 +159,7 @@ class ModalBottomSheetOrderOption(var foodInfo: List<FoodIdResult>) : BottomShee
                 for(i in 0 until selectFoodOptionList.size) {
                     totalFoodPrice += (selectFoodOptionList.get(i).orderEachPrice.toDouble() * selectFoodOptionList.get(i).orderCount)
                 }
-                textviewTotalFoodPrice.text = "총 ${totalFoodPrice}"
+                textviewTotalFoodPrice.text = "총 $ ${totalFoodPrice}"
                 foodInfoList.get(0).foodPackage = "DELIVERY"
                 Log.d("밋업", "foodInfo : ${foodInfoList}")
                 recyclerviewFood.run {
@@ -191,7 +191,7 @@ class ModalBottomSheetOrderOption(var foodInfo: List<FoodIdResult>) : BottomShee
                 for(i in 0 until selectFoodOptionList.size) {
                     totalFoodPrice += (selectFoodOptionList.get(i).orderEachPrice.toDouble() * selectFoodOptionList.get(i).orderCount)
                 }
-                textviewTotalFoodPrice.text = "총 ${totalFoodPrice}"
+                textviewTotalFoodPrice.text = "총 $ ${totalFoodPrice}"
                 foodInfoList.get(0).foodPackage = "PACKAGE"
                 Log.d("밋업", "foodInfo : ${foodInfoList}")
                 recyclerviewFood.run {
@@ -339,7 +339,7 @@ class ModalBottomSheetOrderOption(var foodInfo: List<FoodIdResult>) : BottomShee
                     for(i in 0 until selectFoodOptionList.size) {
                         totalFoodPrice += (selectFoodOptionList.get(i).orderEachPrice.toDouble() * selectFoodOptionList.get(i).orderCount)
                     }
-                    binding.textviewTotalFoodPrice.text = "총 ${totalFoodPrice}"
+                    binding.textviewTotalFoodPrice.text = "총 $ ${totalFoodPrice}"
                 }
                 rowCountPlusButton.setOnClickListener {
                     count++
@@ -352,7 +352,7 @@ class ModalBottomSheetOrderOption(var foodInfo: List<FoodIdResult>) : BottomShee
                     for(i in 0 until selectFoodOptionList.size) {
                         totalFoodPrice += (selectFoodOptionList.get(i).orderEachPrice.toDouble() * selectFoodOptionList.get(i).orderCount)
                     }
-                    binding.textviewTotalFoodPrice.text = "총 ${totalFoodPrice}"
+                    binding.textviewTotalFoodPrice.text = "총 $ ${totalFoodPrice}"
                 }
 
                 rowCloseButton.setOnClickListener {
@@ -385,7 +385,7 @@ class ModalBottomSheetOrderOption(var foodInfo: List<FoodIdResult>) : BottomShee
             holder.rowFoodName.text = "${selectFoodOptionList.get(position).foodName}"
             holder.rowOptionName.text = "${selectFoodOptionList.get(position).foodOptionName}"
             var totalPrice = selectFoodOptionList.get(position).orderCount * selectFoodOptionList.get(position).orderEachPrice
-            holder.rowPrice.text = "${totalPrice}"
+            holder.rowPrice.text = "$ ${totalPrice}"
             holder.rowCount.text = "${selectFoodOptionList.get(position).orderCount}"
             holder.rowDeliveryOptionButton.text = "${selectFoodOptionList.get(position).orderDeliveryOption}"
             if(selectFoodOptionList.get(position).orderDeliveryOption == "포장") {
