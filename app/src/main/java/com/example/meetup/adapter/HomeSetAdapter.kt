@@ -82,26 +82,4 @@ class HomeSetAdapter(var manager: FragmentManager, var activity: ViewModelStoreO
             }
         }
     }
-
-    internal class GridSpacingItemDecoration(private val spanCount: Int, private val spacing: Int, private val includeEdge: Boolean) :
-        RecyclerView.ItemDecoration() {
-
-        override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
-            val position = parent.getChildAdapterPosition(view) // 아이템의 위치를 가져옴
-            val column = position % spanCount // 아이템이 속한 열을 계산
-
-            if (includeEdge) {
-                outRect.left = spacing - column * spacing / spanCount
-                outRect.right = (column + 1) * spacing / spanCount
-            } else {
-                outRect.left = column * spacing / spanCount
-                outRect.right = spacing - (column + 1) * spacing / spanCount
-            }
-
-            if (position < spanCount) {
-                outRect.top = spacing // 첫 번째 행에는 위쪽 간격을 설정
-            }
-            outRect.bottom = spacing // 아래쪽 간격을 설정
-        }
-    }
 }

@@ -55,10 +55,6 @@ class HomeCategoryFragment : Fragment() {
                         adapter = CategorySetAdapter(homeActivity.manager, homeActivity, categoryFoodList)
 
                         layoutManager = GridLayoutManager(homeActivity, 2)
-
-                        val spanCount = 2
-                        val space = 22.83f.fromDpToPx()
-                        addItemDecoration(HomeSetAdapter.GridSpacingItemDecoration(spanCount, space, false))
                     }
                 }
             }

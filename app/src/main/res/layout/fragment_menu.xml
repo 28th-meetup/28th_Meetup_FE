@@ -97,6 +97,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingHorizontal="22.83dp"
+                android:scaleType="center"
                 android:src="@drawable/img_basic" />
 
             <com.google.android.material.divider.MaterialDivider

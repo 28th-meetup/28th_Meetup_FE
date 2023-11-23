@@ -86,7 +86,7 @@
             android:paddingVertical="11.42dp"
             android:textColor="@color/black"
             android:textColorHint="#6E7178"
-            android:textSize="18.27sp" />
+            android:textSize="16sp" />
 
     </LinearLayout>
 

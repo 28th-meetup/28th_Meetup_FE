@@ -9,11 +9,12 @@
     android:layout_marginTop="13.7dp"
     android:orientation="vertical">
 
-    <ImageView
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/imageview_menu"
-        android:scaleType="fitXY"
-        android:layout_width="171.25dp"
-        android:layout_height="154.13dp"
+        android:scaleType="centerCrop"
+        app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Medium"
+        android:layout_width="140dp"
+        android:layout_height="130dp"
         android:src="@drawable/food" />
 
     <TextView
@@ -22,7 +23,7 @@
         android:layout_height="wrap_content"
         android:text="밑반찬 세트"
         android:textColor="#000000"
-        android:textSize="18.27sp"
+        android:textSize="15sp"
         android:fontFamily="@font/pretendard_semi_bold"
         android:layout_marginTop="9.13dp"/>
 
@@ -34,16 +35,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="00000"
-            android:textColor="#000000"
+            android:textColor="@color/main_color"
             android:fontFamily="@font/pretendard_semi_bold"
-            android:textSize="16sp"/>
+            android:textSize="13sp"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="$"
-            android:textColor="#000000"
+            android:textColor="@color/main_color"
             android:fontFamily="@font/pretendard_semi_bold"
-            android:textSize="16sp"/>
+            android:textSize="13sp"/>
     </LinearLayout>
 
 
