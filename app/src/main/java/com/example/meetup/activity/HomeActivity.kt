@@ -1,5 +1,6 @@
 package com.example.meetup.activity
 
+import android.Manifest
 import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -22,6 +23,11 @@ class HomeActivity : AppCompatActivity() {
     val manager = supportFragmentManager
     lateinit var binding: ActivityHomeBinding
 
+    // 확인할 권한 목록
+    val permissionList = arrayOf(
+        Manifest.permission.POST_NOTIFICATIONS,
+    )
+
 
     @SuppressLint("ResourceType")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,6 +38,7 @@ class HomeActivity : AppCompatActivity() {
 
         setContentView(binding.root)
 
+        requestPermissions(permissionList,0)
 
         val bottomNav = findViewById<BottomNavigationView>(R.id.bottom_nav)
         val itemColor = ContextCompat.getColorStateList(this, R.drawable.bottom_navigation_click)
