@@ -43,7 +43,7 @@ class HomeTopAdapter(var manager: FragmentManager, var activity:ViewModelStoreOw
 
     override fun onBindViewHolder(holder: HomeTopViewHolder, position: Int) {
         holder.rank.text = "${position+1}"
-//        Glide.with(context!!).load(foodList.get(position).image).into(holder.image)
+        Glide.with(context!!).load(foodList.get(position).image).into(holder.image)
         holder.storeName.text = "${foodList.get(position).storeName}"
         holder.foodName.text = "${foodList.get(position).name}"
         if(foodList.get(position).dollarPrice.toInt() == 0) {

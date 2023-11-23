@@ -141,7 +141,7 @@ class CartFragment : Fragment() {
                     totalFoodPrice += (MyApplication.cartItem.get(i).orderEachPrice.toDouble() * MyApplication.cartItem.get(i).orderCount)
                 }
             }
-            textviewOrderTotalPrice.text = "총 ${totalFoodPrice}"
+            textviewOrderTotalPrice.text = "총 $ ${totalFoodPrice}"
 
             recyclerviewCart.run {
                 adapter = RecyclerViewAdapter()
@@ -209,7 +209,7 @@ class CartFragment : Fragment() {
                             totalFoodPrice += (MyApplication.cartItem.get(i).orderEachPrice.toDouble() * MyApplication.cartItem.get(i).orderCount)
                         }
                     }
-                    binding.textviewOrderTotalPrice.text = "총 ${totalFoodPrice}"
+                    binding.textviewOrderTotalPrice.text = "총 $ ${totalFoodPrice}"
                 }
 
                 rowOptionChange.setOnClickListener {
@@ -229,7 +229,7 @@ class CartFragment : Fragment() {
                     }
                     rowBinding.run {
                         textviewFoodNum.text = count.toString()
-                        textviewFoodTotalPrice.text = (count * MyApplication.cartItem.get(adapterPosition).orderEachPrice).toString()
+                        textviewFoodTotalPrice.text = "$" + (count * MyApplication.cartItem.get(adapterPosition).orderEachPrice).toString()
                     }
                     var totalFoodPrice = 0.0
                     for(i in 0 until MyApplication.cartItem.size) {
@@ -237,7 +237,7 @@ class CartFragment : Fragment() {
                             totalFoodPrice += (MyApplication.cartItem.get(i).orderEachPrice.toDouble() * MyApplication.cartItem.get(i).orderCount)
                         }
                     }
-                    binding.textviewOrderTotalPrice.text = "총 ${totalFoodPrice}"
+                    binding.textviewOrderTotalPrice.text = "총 $ ${totalFoodPrice}"
                 }
                 rowPlus.setOnClickListener {
                     count = MyApplication.cartItem.get(adapterPosition).orderCount.toInt()
@@ -245,7 +245,7 @@ class CartFragment : Fragment() {
                     MyApplication.cartItem.get(adapterPosition).orderCount = count.toLong()
                     rowBinding.run {
                         textviewFoodNum.text = count.toString()
-                        textviewFoodTotalPrice.text = (count * MyApplication.cartItem.get(adapterPosition).orderEachPrice).toString()
+                        textviewFoodTotalPrice.text = "$" + (count * MyApplication.cartItem.get(adapterPosition).orderEachPrice).toString()
                     }
                     var totalFoodPrice = 0.0
                     for(i in 0 until MyApplication.cartItem.size) {
@@ -253,7 +253,7 @@ class CartFragment : Fragment() {
                             totalFoodPrice += (MyApplication.cartItem.get(i).orderEachPrice.toDouble() * MyApplication.cartItem.get(i).orderCount)
                         }
                     }
-                    binding.textviewOrderTotalPrice.text = "총 ${totalFoodPrice}"
+                    binding.textviewOrderTotalPrice.text = "총 $ ${totalFoodPrice}"
                 }
 
                 rowClose.setOnClickListener {
@@ -285,10 +285,10 @@ class CartFragment : Fragment() {
             Glide.with(context!!).load(MyApplication.cartItem.get(position).foodImage).into(holder.rowFoodImage)
             holder.rowFoodName.text = "${MyApplication.cartItem.get(position).foodName}"
             holder.rowOptionName.text = "${MyApplication.cartItem.get(position).foodOptionName}"
-            holder.rowPrice.text = "개당가격 : ${MyApplication.cartItem.get(position).orderEachPrice}"
+            holder.rowPrice.text = "개당가격 : $ ${MyApplication.cartItem.get(position).orderEachPrice}"
             holder.rowCount.text = "${MyApplication.cartItem.get(position).orderCount}"
             var totalPrice = MyApplication.cartItem.get(position).orderCount * MyApplication.cartItem.get(position).orderEachPrice
-            holder.rowTotalPrice.text = totalPrice.toString()
+            holder.rowTotalPrice.text = "$" + totalPrice.toString()
             holder.rowDeliveryOption.text = "${MyApplication.cartItem.get(position).orderDeliveryOption}"
             if(MyApplication.cartItem.get(position).orderDeliveryOption == "포장") {
                 holder.rowDeliveryOption.setBackgroundResource(R.drawable.button_pickup_background)
