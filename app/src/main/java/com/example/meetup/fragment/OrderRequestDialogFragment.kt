@@ -10,6 +10,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.Window
 import androidx.fragment.app.DialogFragment
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelStoreOwner
 import com.example.meetup.R
 import com.example.meetup.databinding.ActivityAuthBinding
 import com.example.meetup.databinding.DialogSignUpBinding
@@ -19,18 +21,20 @@ import com.example.meetup.model.BasicResponseModel
 import com.example.meetup.model.OrderPreviewResponseList
 import com.example.meetup.retrofit2.RetrofitInstance
 import com.example.meetup.sharedPreference.TokenManager
+import com.example.meetup.viewmodel.SellerOrderHistoryViewModel
 import com.google.android.material.snackbar.Snackbar
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class OrderRequestDialogFragment(var orderHistory: List<OrderPreviewResponseList>) : DialogFragment() {
+class OrderRequestDialogFragment(var activity: ViewModelStoreOwner, var orderHistory: List<OrderPreviewResponseList>) : DialogFragment() {
 
     // 뷰 바인딩 정의
     private var _binding: FragmentOrderRequestDialogBinding? = null
     private val binding get() = _binding!!
 
     private var confirmDialogInterface: SignUpDialogInterface? = null
+    lateinit var viewModel: SellerOrderHistoryViewModel
 
     private val APIS = RetrofitInstance.retrofitInstance().create(com.example.meetup.retrofit2.APIS::class.java)
 
@@ -44,6 +48,8 @@ class OrderRequestDialogFragment(var orderHistory: List<OrderPreviewResponseList
         dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT));
         dialog?.requestWindowFeature(Window.FEATURE_NO_TITLE)
 
+        viewModel = ViewModelProvider(activity)[SellerOrderHistoryViewModel::class.java]
+
 
         binding.run {
             textviewMenuName.text = orderHistory.get(0).orderDetailPreviewList.get(0).foodName
@@ -54,10 +60,12 @@ class OrderRequestDialogFragment(var orderHistory: List<OrderPreviewResponseList
 
         binding.buttonAccepted.setOnClickListener {
             acceptOrder()
+            viewModel.clearList()
         }
 
         binding.buttonRejected.setOnClickListener {
             cancelOrder()
+            viewModel.clearList()
         }
 
         return binding.root

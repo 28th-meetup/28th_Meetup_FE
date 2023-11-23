@@ -164,4 +164,9 @@ class SellerOrderHistoryViewModel : ViewModel() {
             }
         })
     }
+
+    fun clearList() {
+        var tempZeroList = mutableListOf<OrderPreviewResponseList>()
+        orderHomeHistoryList.value?.clear()
+    }
 }
