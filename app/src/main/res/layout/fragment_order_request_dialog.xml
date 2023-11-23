@@ -58,6 +58,7 @@
                         android:layout_marginTop="22.27dp"
                         android:fontFamily="@font/pretendard_semi_bold"
                         android:text="밑반찬 세트"
+                        android:textAlignment="center"
                         android:textColor="@color/black"
                         android:textSize="20.55sp" />
 
@@ -70,6 +71,7 @@
                         android:layout_marginRight="29.37dp"
                         android:fontFamily="@font/pretendard_regular"
                         android:text="[옵션] 기본 A 세트[나물+ 김치]"
+                        android:textAlignment="center"
                         android:textColor="@color/gray2"
                         android:textSize="16sp" />
 
@@ -81,7 +83,8 @@
                         android:fontFamily="@font/pretendard_regular"
                         android:text="2023. 10. 16 10:00 AM"
                         android:textColor="@color/gray2"
-                        android:textSize="16sp" />
+                        android:textSize="16sp"
+                        android:textAlignment="center" />
 
                     <TextView
                         android:id="@+id/textview_location"
@@ -91,6 +94,7 @@
                         android:layout_marginBottom="22.27dp"
                         android:fontFamily="@font/pretendard_semi_bold"
                         android:text="2511 Chamming Way,\nBerkeley, CA 94704"
+                        android:textAlignment="center"
                         android:textColor="@color/gray2"
                         android:textSize="16sp" />
 
