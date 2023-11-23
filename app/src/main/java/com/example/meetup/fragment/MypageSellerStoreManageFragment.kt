@@ -49,6 +49,15 @@ class MypageSellerStoreManageFragment : BaseFragment<FragmentMypageSellerStoreMa
                 commit()
             }
         }
+
+        binding.btnChattingList.setOnClickListener {
+            val chattingFragment = ChattingFragment()
+            fragmentManager?.beginTransaction()?.apply {
+                replace(R.id.frameArea, chattingFragment)
+                addToBackStack(null)
+                commit()
+            }
+        }
     }
 
 

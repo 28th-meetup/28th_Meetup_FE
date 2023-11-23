@@ -24,5 +24,5 @@ data class OrderFoodDetailList(
     val foodId: Long,
     val foodOptionId: Long,
     val orderCount: Long,
-    val orderAmount: Long,
+    val orderAmount: Double,
 )
