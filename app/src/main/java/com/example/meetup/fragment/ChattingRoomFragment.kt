@@ -17,6 +17,7 @@ import com.example.meetup.databinding.FragmentChattingBinding
 import com.example.meetup.databinding.FragmentChattingRoomBinding
 import com.example.meetup.model.GetChattingMessage
 import com.example.meetup.model.GetChattingMessageResult
+import com.example.meetup.model.chatting.ChatMessageResponseModelResult
 import com.example.meetup.model.chatting.ChattingDataModel
 import com.example.meetup.retrofit2.APIS
 import com.example.meetup.sharedPreference.MyApplication
@@ -78,12 +79,6 @@ class ChattingRoomFragment : Fragment() {
 
 
 
-//        var roomId = intent.getStringExtra("roomId")
-//
-//        var senderName = intent.getStringExtra("senderName")
-//
-//        Log.d("roomId", "$roomId")
-
 
         var roomId = MyApplication.preferences.getString("roomId", "")
         var senderName = MyApplication.preferences.getString("senderName", "")
@@ -94,49 +89,24 @@ class ChattingRoomFragment : Fragment() {
         //-------------------------------------------------------------------------
 
 
+        viewModel.getChattingMessage(requireContext(),roomId)
+
+        Log.d("_chattingMessageList",viewModel.chattingMessageList.value.toString())
 
 
-
-
-//        val tokenManager = com.example.meetup.sharedPreference.TokenManager(requireContext())   //가게 목록 가져오기
+//        for(i : Int in 0 ..viewModel.chattingMessageList.value?.size!!-1){
+//            if(viewModel.chattingMessageList.value!![i].senderName==senderName){
 //
-////        val accessToken = MyApplication.preferences.getString("accessToken", "")
+//                chatArray.add(ChattingDataModel(viewModel.chattingMessageList.value!![i].senderName,
+//                    viewModel.chattingMessageList.value!![i].roomId,
+//                    viewModel.chattingMessageList.value!![i].message,true))
 //
-//        Log.d("tokenManager", tokenManager.getAccessToken().toString())
-//
-//        try{
-//            API.getChattingMessage(tokenManager.getAccessToken().toString(),roomId).enqueue(
-//                object : Callback<GetChattingMessage> {
-//
-//                    override fun onResponse(call: Call<GetChattingMessage>, response: Response<GetChattingMessage>) {
-//                        if (response.isSuccessful) {
-//
-////                                _storeList.value = response.body()?.result?.stores
-//
-//                            alreadychatList = response.body()!!.result
-//                            r = alreadychatList[0].roomId
-//                           m =  alreadychatList[0].message
-//                            s = alreadychatList[0].senderName
-//
-//                            chatArray.add(ChattingDataModel(s,r,m,false))
-//
-////                                Log.d("_storeList : " , " success , ${_storeList.value}")
-//
-//                            Log.d("GetChattingMessage : " , " success , ${response.body().toString()}")
-//                        } else {
-//
-//                            Log.d("GetChattingMessage Response : ", "fail 1 ${response.body().toString()} , ${response.message()}, ${response.errorBody().toString()}")
-//                        }
-//                    }
-//
-//                    override fun onFailure(call: Call<GetChattingMessage>, t: Throwable) {
-//                        Log.d("GetChattingMessage Response : ", " fail 2 , ${t.message.toString()}")
-//                    }
-//                })
-//        } catch (e:Exception) {
-//            Log.d("GetChattingMessage response : ", " fail 3 , ${e.message}")
+//            } else {
+//                chatArray.add(ChattingDataModel(viewModel.chattingMessageList.value!![i].senderName,
+//                    viewModel.chattingMessageList.value!![i].roomId,
+//                    viewModel.chattingMessageList.value!![i].message,false))
+//            }
 //        }
-
 
 
 
@@ -198,13 +168,6 @@ class ChattingRoomFragment : Fragment() {
 
                 binding.recyclerViewChatting.adapter = chattingAdapter
 
-//                chattingAdapter.notifyDataSetChanged()
-//                viewModel.addData(chatArray)
-//                Log.d(" received viewModel", viewModel.chattingData.value.toString())
-
-
-//                notifyAll()
-//                notify()
                 viewModel.chattingData.observe(viewLifecycleOwner) {
                     chattingAdapter = ChattingAdapter(it)
 
@@ -213,17 +176,29 @@ class ChattingRoomFragment : Fragment() {
                 }
             }
 
-//        viewModel.addData(chatArray)
-
         binding.imageviewSendChatting.setOnClickListener {
+//-------------------------------------
+            for(i : Int in 0 ..viewModel.chattingMessageList.value?.size!!-1){
+                if(viewModel.chattingMessageList.value!![i].senderName==senderName){
 
+                    chatArray.add(ChattingDataModel(viewModel.chattingMessageList.value!![i].senderName,
+                        viewModel.chattingMessageList.value!![i].roomId,
+                        viewModel.chattingMessageList.value!![i].message,true))
+
+                } else {
+                    chatArray.add(ChattingDataModel(viewModel.chattingMessageList.value!![i].senderName,
+                        viewModel.chattingMessageList.value!![i].roomId,
+                        viewModel.chattingMessageList.value!![i].message,false))
+                }
+            }
+
+            //=======================
 
             if (binding.edittextWriteChattingText.text.toString() != "") {
                 val sendData = JSONObject()
                 sendData.put("senderName", "${senderNameMine}")
                 sendData.put("roomId", "${roomId}")
                 sendData.put("message", binding.edittextWriteChattingText.text.toString())
-//            sendData.put("sendTime", "0")
 
 
                 chatArray.add(
@@ -276,10 +251,5 @@ class ChattingRoomFragment : Fragment() {
         return view
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-
-    }
 
 }

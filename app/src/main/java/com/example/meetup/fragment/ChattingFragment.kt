@@ -33,9 +33,9 @@ class ChattingFragment : Fragment() {
     private var _binding: FragmentChattingBinding? = null
     private val binding get() = _binding!!
 
-    lateinit var homeActivity : HomeActivity
+    lateinit var homeActivity: HomeActivity
 
-    lateinit var viewModel : ChattingViewModel
+    lateinit var viewModel: ChattingViewModel
 
     private lateinit var chattingListAdapter: ChattingListAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -57,14 +57,6 @@ class ChattingFragment : Fragment() {
 
         viewModel = ViewModelProvider(requireActivity()).get(ChattingViewModel::class.java)
 
-//        var chattingList = ArrayList<ChattingListResponseModel>()
-//
-//        chattingList.add(ChattingListResponseModel("111", "111", "1111", "1111", "1"))
-//        chattingList.add(ChattingListResponseModel("22", "22", "222", "222", "2"))
-//        chattingList.add(ChattingListResponseModel("22", "333", "333", "333", "3"))
-//
-
-//        binding.searchview.setOnQueryTextListener(searchViewTextListener)
         chattingListAdapter = ChattingListAdapter(ArrayList())
 
         binding.recyclerviewChattingList.adapter = chattingListAdapter
@@ -73,7 +65,7 @@ class ChattingFragment : Fragment() {
 
         viewModel.getChatList(requireContext())
 
-        viewModel.chatList.observe(viewLifecycleOwner){
+        viewModel.chatList.observe(viewLifecycleOwner) {
 
             chattingListAdapter = ChattingListAdapter(it.result)
             binding.recyclerviewChattingList.adapter = chattingListAdapter
@@ -84,7 +76,8 @@ class ChattingFragment : Fragment() {
 
                     API = RetrofitInstance.retrofitInstance().create(APIS::class.java)
 
-                    val tokenManager = com.example.meetup.sharedPreference.TokenManager(requireContext())
+                    val tokenManager =
+                        com.example.meetup.sharedPreference.TokenManager(requireContext())
 
                     try {
                         API.getChatRoom(
@@ -105,7 +98,10 @@ class ChattingFragment : Fragment() {
                                         val senderName = response.body()!!.result.senderName
 
                                         MyApplication.preferences.setString("roomId", roomId)
-                                        MyApplication.preferences.setString("senderName",senderName)
+                                        MyApplication.preferences.setString(
+                                            "senderName",
+                                            senderName
+                                        )
                                         Log.d("roomId real", roomId.toString())
 
 //
@@ -124,7 +120,9 @@ class ChattingFragment : Fragment() {
                                             "GetChatRoom : ",
                                             "fail 1 ${
                                                 response.body().toString()
-                                            } , ${response.message()}, ${response.errorBody().toString()}"
+                                            } , ${response.message()}, ${
+                                                response.errorBody().toString()
+                                            }"
                                         )
                                     }
                                 }
@@ -162,19 +160,5 @@ class ChattingFragment : Fragment() {
         }
     }
 
-//    var searchViewTextListener: SearchView.OnQueryTextListener =
-//        object : SearchView.OnQueryTextListener {
-//            //검색버튼 입력시 호출, 검색버튼이 없으므로 사용하지 않음
-//            override fun onQueryTextSubmit(s: String): Boolean {
-//                return false
-//            }
-//
-//            //텍스트 입력/수정시에 호출
-//            override fun onQueryTextChange(s: String): Boolean {
-//                chattingListAdapter.getFilter().filter(s)
-//                Log.d("Aaa", "SearchVies Text is changed : $s")
-//
-//                return false
-//            }
-//        }
+
 }

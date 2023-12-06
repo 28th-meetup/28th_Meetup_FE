@@ -9,6 +9,8 @@ import androidx.lifecycle.viewModelScope
 import com.example.meetup.model.GetChattingMessage
 import com.example.meetup.model.GetChattingMessageResult
 import com.example.meetup.model.chatting.ChatListResponseModel
+import com.example.meetup.model.chatting.ChatMessageResponseModel
+import com.example.meetup.model.chatting.ChatMessageResponseModelResult
 import com.example.meetup.model.chatting.ChattingDataModel
 import com.example.meetup.model.store.GetStoreListResponseModel
 import com.example.meetup.retrofit2.APIS
@@ -25,6 +27,10 @@ class ChattingRoomViewModel : ViewModel() {
 
     private var _chattingData = MutableLiveData<ArrayList<ChattingDataModel>>()
     var chattingData: LiveData<ArrayList<ChattingDataModel>> = _chattingData
+
+    private var _chattingMessageList = MutableLiveData<ArrayList<ChatMessageResponseModelResult>>()
+    var chattingMessageList: LiveData<ArrayList<ChatMessageResponseModelResult>> = _chattingMessageList
+
 
     var _roomId = MutableLiveData<String>()
     var roomId: LiveData<String> = _roomId
@@ -52,29 +58,30 @@ class ChattingRoomViewModel : ViewModel() {
         viewModelScope.launch {
             try{
                 API.getChattingMessage(tokenManager.getAccessToken().toString(),roomId).enqueue(
-                    object : Callback<GetChattingMessage> {
+                    object : Callback<ChatMessageResponseModel> {
 
-                        override fun onResponse(call: Call<GetChattingMessage>, response: Response<GetChattingMessage>) {
+                        override fun onResponse(call: Call<ChatMessageResponseModel>, response: Response<ChatMessageResponseModel>) {
                             if (response.isSuccessful) {
 
 //                                _storeList.value = response.body()?.result?.stores
 
+                                _chattingMessageList.value = response.body()?.result
 
-//                                Log.d("_storeList : " , " success , ${_storeList.value}")
+                                Log.d("_chattingMessageList : " , " success , ${_chattingMessageList.value}")
 
-                                Log.d("GetChattingMessage : " , " success , ${response.body().toString()}")
+                                Log.d("ChatMessageResponseModel : " , " success , ${response.body().toString()}")
                             } else {
 
-                                Log.d("GetChattingMessage Response : ", "fail 1 ${response.body().toString()} , ${response.message()}, ${response.errorBody().toString()}")
+                                Log.d("ChatMessageResponseModel Response : ", "fail 1 ${response.body().toString()} , ${response.message()}, ${response.errorBody().toString()}")
                             }
                         }
 
-                        override fun onFailure(call: Call<GetChattingMessage>, t: Throwable) {
-                            Log.d("GetChattingMessage Response : ", " fail 2 , ${t.message.toString()}")
+                        override fun onFailure(call: Call<ChatMessageResponseModel>, t: Throwable) {
+                            Log.d("ChatMessageResponseModel Response : ", " fail 2 , ${t.message.toString()}")
                         }
                     })
             } catch (e:Exception) {
-                Log.d("GetChattingMessage response : ", " fail 3 , ${e.message}")
+                Log.d("ChatMessageResponseModel response : ", " fail 3 , ${e.message}")
             }
         }
     }
