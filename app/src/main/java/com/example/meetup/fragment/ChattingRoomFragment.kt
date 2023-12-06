@@ -88,6 +88,9 @@ class ChattingRoomFragment : Fragment() {
         //-------------------------------------------------------------------------
 
 
+        viewModel.getChattingMessage(requireContext(),roomId)
+
+        Log.d("_chattingMessageList",viewModel.chattingMessageList.value.toString())
 
 
 
