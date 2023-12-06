@@ -38,6 +38,7 @@ import com.example.meetup.model.SignUpResponseModel
 import com.example.meetup.model.StoreManageResponseModel
 import com.example.meetup.model.chatting.ChatListResponseModel
 import com.example.meetup.model.chatting.ChatListResult
+import com.example.meetup.model.chatting.ChatMessageResponseModel
 import com.example.meetup.model.chatting.PostChatRoomResponseModel
 import com.example.meetup.model.food.MenuAddResponseModel
 import com.example.meetup.model.request.AddressesRequestModel
@@ -315,11 +316,14 @@ interface APIS {
         @Header("Authorization") Authorization: String,
         @Path("roomId") roomId : String
 
-        ) : Call<GetChattingMessage>
+        ) : Call<ChatMessageResponseModel>
 
     //판매자 - 마이페이지 주문관리 데이터 조회
     @GET("store/manage")
     fun getStoreManageData(
         @Header("Authorization") Authorization: String,
     ) : Call<StoreManageResponseModel>
+
+
+
 }
