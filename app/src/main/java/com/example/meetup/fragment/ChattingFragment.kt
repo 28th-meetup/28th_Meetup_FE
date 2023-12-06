@@ -57,14 +57,6 @@ class ChattingFragment : Fragment() {
 
         viewModel = ViewModelProvider(requireActivity()).get(ChattingViewModel::class.java)
 
-//        var chattingList = ArrayList<ChattingListResponseModel>()
-//
-//        chattingList.add(ChattingListResponseModel("111", "111", "1111", "1111", "1"))
-//        chattingList.add(ChattingListResponseModel("22", "22", "222", "222", "2"))
-//        chattingList.add(ChattingListResponseModel("22", "333", "333", "333", "3"))
-//
-
-//        binding.searchview.setOnQueryTextListener(searchViewTextListener)
         chattingListAdapter = ChattingListAdapter(ArrayList())
 
         binding.recyclerviewChattingList.adapter = chattingListAdapter
