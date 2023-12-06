@@ -17,6 +17,7 @@ import com.example.meetup.databinding.FragmentChattingBinding
 import com.example.meetup.databinding.FragmentChattingRoomBinding
 import com.example.meetup.model.GetChattingMessage
 import com.example.meetup.model.GetChattingMessageResult
+import com.example.meetup.model.chatting.ChatMessageResponseModelResult
 import com.example.meetup.model.chatting.ChattingDataModel
 import com.example.meetup.retrofit2.APIS
 import com.example.meetup.sharedPreference.MyApplication
@@ -93,6 +94,19 @@ class ChattingRoomFragment : Fragment() {
         Log.d("_chattingMessageList",viewModel.chattingMessageList.value.toString())
 
 
+//        for(i : Int in 0 ..viewModel.chattingMessageList.value?.size!!-1){
+//            if(viewModel.chattingMessageList.value!![i].senderName==senderName){
+//
+//                chatArray.add(ChattingDataModel(viewModel.chattingMessageList.value!![i].senderName,
+//                    viewModel.chattingMessageList.value!![i].roomId,
+//                    viewModel.chattingMessageList.value!![i].message,true))
+//
+//            } else {
+//                chatArray.add(ChattingDataModel(viewModel.chattingMessageList.value!![i].senderName,
+//                    viewModel.chattingMessageList.value!![i].roomId,
+//                    viewModel.chattingMessageList.value!![i].message,false))
+//            }
+//        }
 
 
 
@@ -163,7 +177,22 @@ class ChattingRoomFragment : Fragment() {
             }
 
         binding.imageviewSendChatting.setOnClickListener {
+//-------------------------------------
+            for(i : Int in 0 ..viewModel.chattingMessageList.value?.size!!-1){
+                if(viewModel.chattingMessageList.value!![i].senderName==senderName){
 
+                    chatArray.add(ChattingDataModel(viewModel.chattingMessageList.value!![i].senderName,
+                        viewModel.chattingMessageList.value!![i].roomId,
+                        viewModel.chattingMessageList.value!![i].message,true))
+
+                } else {
+                    chatArray.add(ChattingDataModel(viewModel.chattingMessageList.value!![i].senderName,
+                        viewModel.chattingMessageList.value!![i].roomId,
+                        viewModel.chattingMessageList.value!![i].message,false))
+                }
+            }
+
+            //=======================
 
             if (binding.edittextWriteChattingText.text.toString() != "") {
                 val sendData = JSONObject()
