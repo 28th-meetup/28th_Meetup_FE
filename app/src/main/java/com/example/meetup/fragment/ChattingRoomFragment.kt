@@ -151,13 +151,6 @@ class ChattingRoomFragment : Fragment() {
 
                 binding.recyclerViewChatting.adapter = chattingAdapter
 
-//                chattingAdapter.notifyDataSetChanged()
-//                viewModel.addData(chatArray)
-//                Log.d(" received viewModel", viewModel.chattingData.value.toString())
-
-
-//                notifyAll()
-//                notify()
                 viewModel.chattingData.observe(viewLifecycleOwner) {
                     chattingAdapter = ChattingAdapter(it)
 
@@ -165,8 +158,6 @@ class ChattingRoomFragment : Fragment() {
 
                 }
             }
-
-//        viewModel.addData(chatArray)
 
         binding.imageviewSendChatting.setOnClickListener {
 
@@ -176,7 +167,6 @@ class ChattingRoomFragment : Fragment() {
                 sendData.put("senderName", "${senderNameMine}")
                 sendData.put("roomId", "${roomId}")
                 sendData.put("message", binding.edittextWriteChattingText.text.toString())
-//            sendData.put("sendTime", "0")
 
 
                 chatArray.add(
@@ -229,10 +219,5 @@ class ChattingRoomFragment : Fragment() {
         return view
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-
-    }
 
 }
